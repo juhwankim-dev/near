@@ -4,6 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/SSAFY/GitHub/Near/app/src/main/res/layout/activity_main.xml" value="0.2703804347826087" />
+        <entry key="..\:/Users/SSAFY/GitLab2/S06P12D203/aos/Near/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/SSAFY/GitLab2/S06P12D203/aos/Near/app/src/main/res/layout/fragment_game.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/SSAFY/GitLab2/S06P12D203/aos/Near/app/src/main/res/layout/fragment_home.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/SSAFY/GitLab2/S06P12D203/aos/Near/app/src/main/res/layout/fragment_my_page.xml" value="0.26403985507246375" />
+        <entry key="..\:/Users/SSAFY/GitLab2/S06P12D203/aos/Near/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3614583333333333" />
       </map>
     </option>
   </component>
