@@ -1,0 +1,27 @@
+unKnown:
+  code: "-9999"
+  msg: "알수 없는 오류가 발생하였습니다."
+userNotFound:
+  code: "-1000"
+  msg: "존재하지 않는 회원입니다."
+entryPointException:
+  code: "-1002"
+  msg: "해당 리소스에 접근하기 위한 권한이 없습니다."
+accessDenied:
+  code: "-1003"
+  msg: "보유한 권한으로 접근할수 없는 리소스 입니다."
+dataNotExistError:
+  code: "0"
+  msg: "필수 정보의 형식이 맞지않습니다. 다시 확인하고 입력해주세요"
+failedException:
+  code: "0"
+  msg: "실패"
+FileNotSupportException:
+  code: "0"
+  msg: "지원하지 않는 형식의 파일입니다."
+FileUploadException:
+  code: "0"
+  msg: "파일 업로드에 실패했습니다. 다시 시도해 주세요."
+FileSizeException:
+  code: "0"
+  msg: "업로드 가능한 파일 사이즈를 초과했습니다."
