@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragment_home"
+        android:icon="@drawable/ic_navi_gome"
+        android:title="홈"
+        />
+    <item
+        android:id="@+id/fragment_hand_sign"
+        android:icon="@drawable/ic_navi_hand_sign"
+        android:title="수어교육"
+        />
+    <item
+        android:id="@+id/fragment_finger_sign"
+        android:icon="@drawable/ic_navi_finger_sign"
+        android:title="지어교육"
+        />
+    <item
+        android:id="@+id/fragment_game"
+        android:icon="@drawable/ic_navi_game"
+        android:title="게임"
+        />
+    <item
+        android:id="@+id/fragment_my_page"
+        android:icon="@drawable/ic_navi_my_page"
+        android:title="마이페이지"
+        />
+</menu>
