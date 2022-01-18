@@ -65,7 +65,7 @@ public class SignController {
                 .phone(req.getPhone())
                 .address(req.getAddress())
                 .addressDetail(req.getAddressDetail())
-                .nickname(req.getNickname())
+                .nickname(req.getNickname()) // 회원가입 닉네임 추가
 
                 // 가입 후 프로필 등록으로 받을 데이터는 우선 기본값으로 세팅
                 .age(0)
