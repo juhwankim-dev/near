@@ -11,6 +11,16 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home"/>
     <fragment
+        android:id="@+id/fragment_hand_sign"
+        android:name="com.ssafy.near.src.main.handsign.HandSignFragment"
+        android:label="fragment_hand_sign"
+        tools:layout="@layout/fragment_hand_sign"/>
+    <fragment
+        android:id="@+id/fragment_finger_sign"
+        android:name="com.ssafy.near.src.main.fingersign.FingerSignFragment"
+        android:label="fragment_finger_sign"
+        tools:layout="@layout/fragment_finger_sign"/>
+    <fragment
         android:id="@+id/fragment_game"
         android:name="com.ssafy.near.src.main.game.GameFragment"
         android:label="fragment_game"

@@ -6,6 +6,16 @@
         android:title="홈"
         />
     <item
+        android:id="@+id/fragment_hand_sign"
+        android:icon="@drawable/ic_nav_home"
+        android:title="수어교육"
+        />
+    <item
+        android:id="@+id/fragment_finger_sign"
+        android:icon="@drawable/ic_nav_home"
+        android:title="지어교육"
+        />
+    <item
         android:id="@+id/fragment_game"
         android:icon="@drawable/ic_nav_home"
         android:title="게임"

@@ -35,8 +35,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 //            it.items
 //        })
 
-        setContentView(R.layout.activity_main)
-
         // 네비게이션 호스트
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host) as NavHostFragment
 
