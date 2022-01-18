@@ -1,6 +1,5 @@
-package com.ssafy.near.src
+package com.ssafy.near.src.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -9,6 +8,8 @@ import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityMainBinding
 import com.ssafy.near.repository.SampleRepository
+import com.ssafy.near.src.SampleViewModel
+import com.ssafy.near.src.SampleViewModelFactory
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     lateinit var sampleViewModel: SampleViewModel
@@ -17,7 +18,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         val sampleRepository = SampleRepository()
-        sampleViewModel = ViewModelProvider(this, SampleViewModelFactory(sampleRepository)).get(SampleViewModel::class.java)
+        sampleViewModel = ViewModelProvider(this, SampleViewModelFactory(sampleRepository)).get(
+            SampleViewModel::class.java)
 
         initEvent()
     }
