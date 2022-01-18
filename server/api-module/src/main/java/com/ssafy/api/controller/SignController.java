@@ -1,6 +1,7 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.config.security.JwtTokenProvider;
+import com.ssafy.api.dto.req.CheckIdReqDTO;
 import com.ssafy.api.dto.req.LoginUserReqDTO;
 import com.ssafy.api.dto.req.SignUpReqDTO;
 import com.ssafy.api.dto.res.LoginUserResDTO;
@@ -117,5 +118,25 @@ public class SignController {
         signService.saveUser(user);
 
         return responseService.getSingleResult(dto);
+    }
+
+    /**
+     * 2022-01-18 by 김영훈
+     *
+     * @param req
+     * @return true, false 반환
+     * @brief 아이디 중복 확인
+     * @date 2022-01-18
+     */
+    @ApiOperation(value = "", notes = "중복에 따라 Ture, false를 반환한다.")
+    @GetMapping(value = "/checkid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> checkId(@Valid CheckIdReqDTO req) throws Exception {
+        User user = signService.findByUid(req.getUid(), YNCode.Y);
+
+        if (user == null) {
+            return responseService.getSingleResult(true);
+        }
+        return responseService.getSingleResult(false);
     }
 }
