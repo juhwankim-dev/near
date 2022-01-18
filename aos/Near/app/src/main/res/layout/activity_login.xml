@@ -10,13 +10,12 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="300dp"
             android:layout_height="300dp"
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_tvId"
+            android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_outline_person_24"
@@ -31,7 +30,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/login_tvPwd"
+            android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:startIconDrawable="@drawable/ic_outline_lock_24"
@@ -48,7 +47,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/login_btnLogin"
+            android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그인"
@@ -60,7 +59,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/login_btnSignup"
+                android:id="@+id/btn_sign_up"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -69,7 +68,7 @@
                 android:textSize="@dimen/body_text_size" />
 
             <Button
-                android:id="@+id/login_btnFindIdPw"
+                android:id="@+id/btn_find_id_pw"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
