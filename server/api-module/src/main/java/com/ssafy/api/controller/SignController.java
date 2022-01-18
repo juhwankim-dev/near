@@ -8,6 +8,7 @@ import com.ssafy.api.dto.res.UserIdResDTO;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
+import com.ssafy.api.service.common.CommonResult;
 import com.ssafy.core.code.JoinCode;
 import com.ssafy.core.code.MFCode;
 import com.ssafy.core.code.YNCode;
@@ -15,10 +16,13 @@ import com.ssafy.core.entity.User;
 import com.ssafy.core.exception.ApiMessageException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.loader.plan.spi.JoinDefinedByMetadata;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +43,7 @@ public class SignController {
 
     /**
      * 로그인 : get /login
+     * 회원탈퇴 : delete
      * 회원가입 일반 : post /signup
      * 회원가입 후 프로필등록 : post /regProfile
      * 소셜 가입 여부 체크 : get /exists/social
@@ -87,6 +92,22 @@ public class SignController {
         return responseService.getSingleResult(UserIdResDTO.builder().id(userId).build());
     }
 
+
+    // 회원 탈퇴 API
+    @ApiOperation(value = "회원탈퇴", notes = "회원탈퇴")
+    @DeleteMapping(value = "/resign/{uid}")
+    public @ResponseBody
+    CommonResult resign(@PathVariable("uid") @ApiParam(value = "탈퇴할 회원의 uid(일반회원: 아이디, sns로그인: uid값", required = true) String uid) throws Exception {
+//        // UID값과 회원가입 타입으로 해당되는 회원정보 조회
+        User user = signService.findByUid(uid,YNCode.Y);
+        if (user == null) {
+            return responseService.getFailResult(0, "회원탈퇴에서 오류가 발생했습니다.");
+        }
+        signService.resign(user.getId());
+
+        return responseService.getSuccessResult("회원탈퇴에 성공했습니다.");
+    }
+
     // 로그인
     @ApiOperation(value = "로그인", notes = "로그인")
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -96,12 +117,12 @@ public class SignController {
         User user = signService.findUserByUidType(req.getUid(), JoinCode.valueOf(req.getType()));
 
         // 조회된 회원 정보가 없을 경우
-        if(user==null){
+        if (user == null) {
             throw new ApiMessageException("존재하지 않는 회원정보입니다. 입력 정보를 확인해 주세요.");
         }
 
         // 조회된 회원정보와 비밀번호 비교
-        else if(!passwordEncoder.matches(req.getPassword(), user.getPassword())){
+        else if (!passwordEncoder.matches(req.getPassword(), user.getPassword())) {
             throw new ApiMessageException("비밀번호가 일치하지 않습니다.");
         }
 
@@ -118,4 +139,6 @@ public class SignController {
 
         return responseService.getSingleResult(dto);
     }
+
+
 }

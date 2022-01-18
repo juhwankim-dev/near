@@ -40,7 +40,6 @@ public class SignService {
         return userRepository.findByUid(uid, isBind);
     }
 
-
     /**
      * 회원가입 후 userId 리턴
      *
@@ -55,6 +54,7 @@ public class SignService {
 
     /**
      * uid, type으로 회원정보 조회
+     *
      * @param uid
      * @param type
      * @return
@@ -65,61 +65,23 @@ public class SignService {
 
     /**
      * 회원 엔티티 저장
+     *
      * @param user
      */
     @Transactional(readOnly = false)
-    public void saveUser(User user){
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 
+
+    /**
+     * id로 회원 탈퇴
+     *
+     * @param id
+     */
+
+    public void resign(long id) {
+        userRepository.deleteById(id);
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
