@@ -80,8 +80,8 @@ public class SignService {
      * @param id
      */
 
-    public void resign(long id) {
-        userRepository.deleteById(id);
+    public void resign(User user) {
+        userRepository.delete(user);
     }
 
 }

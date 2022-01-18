@@ -40,7 +40,6 @@ public class SignController {
     private final ResponseService responseService;
     private final JwtTokenProvider jwtTokenProvider;
 
-
     /**
      * 로그인 : get /login
      * 회원탈퇴 : delete
@@ -103,7 +102,7 @@ public class SignController {
         if (user == null) {
             return responseService.getFailResult(0, "회원탈퇴에서 오류가 발생했습니다.");
         }
-        signService.resign(user.getId());
+        signService.resign(user);
 
         return responseService.getSuccessResult("회원탈퇴에 성공했습니다.");
     }
