@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+
 public class SignService {
     private final UserRepository userRepository;
 
@@ -87,8 +87,9 @@ public class SignService {
     *  @param user
 
     */
+    @Transactional(readOnly = false)
     public void resign(User user) {
-//        userRepository.delete(user);
+        userRepository.delete(user);
     }
 
 }
