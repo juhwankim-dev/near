@@ -7,7 +7,7 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface UserApi {
-    @POST("user/login")
+    @POST("api/sign/login")
     fun login (
         @Query("type") @NotNull type: String,
         @Query("uid")  @NotNull uid : String,

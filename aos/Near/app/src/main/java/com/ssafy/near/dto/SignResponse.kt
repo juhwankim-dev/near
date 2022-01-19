@@ -1,8 +1,9 @@
 package com.ssafy.near.dto
 
+import com.google.gson.annotations.SerializedName
+
 data class SignResponse(
-    val id: Int,
-    val token: String,
+    @SerializedName("data") val userToken: UserToken,
     val msg: String,
-    val output: Int,
+    val output: Int
 )

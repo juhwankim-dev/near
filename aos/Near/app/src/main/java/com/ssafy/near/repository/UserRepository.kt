@@ -24,7 +24,8 @@ class UserRepository {
                 if (response.body() != null) {
                     val userResponse = response.body()!!
                     if (userResponse.output > 0) {
-                        ApplicationClass.sSharedPreferences.addUser(userResponse.token)
+                        val token = userResponse.userToken
+                        ApplicationClass.sSharedPreferences.addUser(token)
                     }
                     _signResponse.postValue(userResponse)
                 }

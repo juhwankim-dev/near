@@ -8,7 +8,7 @@ import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityLoginBinding
 import com.ssafy.near.repository.UserRepository
-import com.ssafy.near.src.MainActivity
+import com.ssafy.near.src.main.MainActivity
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
 
@@ -48,7 +48,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         userViewModel.login(type, uid, pw)
         val signResponse = userViewModel.getSignResponse().value
 
-        if (signResponse?.token == "") {
+        if (signResponse == null) {
+            Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+        } else if (signResponse.output != 1) {
             Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
         } else {
             val intent = Intent(this, MainActivity::class.java)
