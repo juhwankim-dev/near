@@ -47,8 +47,13 @@ public class UserRepoCommonImpl implements UserRepoCommon{
     }
 
     @Override
-    public User deleteRoleById(Long id) {
-        return null;
+    public User findByEmail(String email) {
+        User result = queryFactory
+                .select(QUser.user)
+                .from(QUser.user)
+                .where(QUser.user.email.eq(email))
+                .fetchOne();
+        return result;
     }
 
 

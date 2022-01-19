@@ -11,8 +11,7 @@ public interface UserRepoCommon {
 
     User findByUid(String uid, YNCode isBind);
 
-    User deleteRoleById(Long id);
-
+    User findByEmail(String email);
 }
 
 

@@ -1,6 +1,8 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.config.security.JwtTokenProvider;
+import com.ssafy.api.dto.req.CheckEmailReqDTO;
+import com.ssafy.api.dto.req.CheckIdReqDTO;
 import com.ssafy.api.dto.req.LoginUserReqDTO;
 import com.ssafy.api.dto.req.SignUpReqDTO;
 import com.ssafy.api.dto.res.LoginUserResDTO;
@@ -61,7 +63,6 @@ public class SignController {
         if (uidChk != null)
             throw new ApiMessageException("중복된 uid값의 회원이 존재합니다.");
 
-        List<String> role = new ArrayList<>();
         // DB에 저장할 User Entity 세팅
         User user = User.builder()
                 .joinType(JoinCode.valueOf(req.getType()))
@@ -141,5 +142,49 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
+    /** 2022-01-18 by 김영훈
 
+    *  @brief 아이디 중복 확인
+
+    *  @date 2022-01-18
+
+    *  @return true : 회원 아이디 존재 false : 회원 아이디 없음
+
+    *  @param req 아이디를 받아 옴
+
+    */
+    @ApiOperation(value = "아이디 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
+    @GetMapping(value = "/checkid", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> checkId(@Valid CheckIdReqDTO req) throws Exception {
+        User user = signService.findByUid(req.getUid(), YNCode.Y);
+
+        if (user == null) {
+            return responseService.getSingleResult(false);
+        }
+        return responseService.getSingleResult(true);
+    }
+
+    /** 2022-01-19 by 김영훈
+
+    *  @brief 이메일 중복 확인
+
+    *  @date 2022-01-19
+
+    *  @return ture : 회원 이메일 존해 false : 회원 이메일 없음
+
+    *  @param req 인자 설명
+
+    */
+    @ApiOperation(value = "이메일 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
+    @GetMapping(value = "/checkemail", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> checkmail(@Valid CheckEmailReqDTO req) throws Exception {
+        User user = signService.findUserByEmail(req.getEmail());
+
+        if (user == null) {
+            return responseService.getSingleResult(false);
+        }
+        return responseService.getSingleResult(true);
+    }
 }
