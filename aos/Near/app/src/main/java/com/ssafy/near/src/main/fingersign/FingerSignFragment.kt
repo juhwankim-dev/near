@@ -9,6 +9,7 @@ import com.ssafy.near.databinding.FragmentFingerSignBinding
 
 class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.fragment_finger_sign) {
     lateinit var fingerSignAdapter: FingerSignAdapter
+    lateinit var dialog: FingerSignDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -23,9 +24,17 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
             layoutManager = LinearLayoutManager(context)
             adapter = fingerSignAdapter
         }
+
+        dialog = FingerSignDialog(requireContext())
     }
 
     private fun initEvent() {
+        fingerSignAdapter.setItemClickListener(object : FingerSignAdapter.ItemClickListener{
+            override fun onClick(id: String) {
+                dialog.createDialog("임시데이터")
+            }
+        })
+
         // 버튼 클릭시 HTTP 요청하는 샘플
 //        binding.XXX.setOnClickListener {
 //            sampleViewModel.selectselectSamples(1)

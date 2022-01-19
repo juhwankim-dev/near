@@ -6,7 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.near.databinding.ListItemFingerSignBinding
 
 class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewHolder>() {
-    var repoList = mutableListOf<String>()
+    private lateinit var itemClickListner: ItemClickListener
+    var list = mutableListOf<String>()
 
     inner class FingerSignViewHolder(private val binding: ListItemFingerSignBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(item: String) {
@@ -20,8 +21,23 @@ class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewH
     }
 
     override fun onBindViewHolder(holder: FingerSignViewHolder, position: Int) {
-        holder.bindInfo(repoList[position])
+        holder.apply {
+            bindInfo(list[position])
+
+            //클릭연결
+            itemView.setOnClickListener{
+                itemClickListner.onClick(list[position])
+            }
+        }
     }
 
-    override fun getItemCount(): Int = repoList.size
+    override fun getItemCount(): Int = list.size
+
+    interface ItemClickListener {
+        fun onClick(id: String)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListner = itemClickListener
+    }
 }
