@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/activity_margin_default">
+
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_temp_mascot" />
+
+        <TextView
+            android:id="@+id/tv_consonants"
+            style="@style/header_text"
+            android:text="ㄱ"
+            android:layout_marginStart="@dimen/activity_margin_default"
+            app:layout_constraintStart_toEndOf="@+id/iv_thumbnail"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/body_text"
+            android:id="@+id/tv_explain"
+            android:layout_width="0dp"
+            android:text="설명입니다.설명입니다.설명입니다.설명입니다.설명입니다.설명입니다."
+            app:layout_constraintWidth_percent="0.7"
+            app:layout_constraintStart_toStartOf="@+id/tv_consonants"
+            app:layout_constraintTop_toBottomOf="@+id/tv_consonants" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
