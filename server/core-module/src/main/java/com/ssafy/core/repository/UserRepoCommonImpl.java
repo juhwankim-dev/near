@@ -46,6 +46,10 @@ public class UserRepoCommonImpl implements UserRepoCommon{
         return result;
     }
 
+    @Override
+    public User deleteRoleById(Long id) {
+        return null;
+    }
 
 
     // isBind 조건만 체크
