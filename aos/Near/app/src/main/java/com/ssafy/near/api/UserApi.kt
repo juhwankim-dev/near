@@ -8,10 +8,9 @@ import retrofit2.http.Query
 
 interface UserApi {
     @POST("api/sign/login")
-    fun login (
+    suspend fun login (
         @Query("type") @NotNull type: String,
         @Query("uid")  @NotNull uid : String,
-        @Query("pass") @NotNull pass: String,
-        @Query("token") token: String,
+        @Query("password") @NotNull password: String,
     ): Response<SignResponse>
 }

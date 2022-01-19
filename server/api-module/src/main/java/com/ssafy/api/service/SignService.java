@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+
 public class SignService {
     private final UserRepository userRepository;
 
@@ -39,7 +39,6 @@ public class SignService {
     public User findByUid(String uid, YNCode isBind) throws Exception {
         return userRepository.findByUid(uid, isBind);
     }
-
 
     /**
      * 회원가입 후 userId 리턴
@@ -72,54 +71,25 @@ public class SignService {
         userRepository.save(user);
     }
 
+
+    public User findUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
+
+
+    /** 2022-01-19 by 김예진
+    *  @brief 입력한 회원 탈퇴 처리를 하는 메소드
+
+    *  @date 2022-01-19
+
+    *  @return
+
+    *  @param user
+
+    */
+    @Transactional(readOnly = false)
+    public void resign(User user) {
+        userRepository.delete(user);
+    }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

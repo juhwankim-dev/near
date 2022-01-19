@@ -14,10 +14,10 @@ class UserRepository {
     var _signResponse = MutableLiveData<SignResponse>()
         private set
 
-    suspend fun login(type: String, uid: String, pw: String) {
+    suspend fun login(uid: String, pw: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.login(type, uid, pw, "")
+                RetrofitUtil.userService.login("none", uid, pw)
             }
 
             if (response.isSuccessful) {
