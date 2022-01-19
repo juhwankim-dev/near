@@ -27,7 +27,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 @Api(tags = {"02. 가입"})
 @Slf4j
@@ -59,6 +61,7 @@ public class SignController {
         if (uidChk != null)
             throw new ApiMessageException("중복된 uid값의 회원이 존재합니다.");
 
+        List<String> role = new ArrayList<>();
         // DB에 저장할 User Entity 세팅
         User user = User.builder()
                 .joinType(JoinCode.valueOf(req.getType()))

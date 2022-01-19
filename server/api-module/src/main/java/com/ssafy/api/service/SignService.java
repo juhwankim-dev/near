@@ -9,11 +9,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.logging.Logger;
+
 
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class SignService {
+    private final static Logger LOG = Logger.getGlobal();
     private final UserRepository userRepository;
 
 
@@ -85,9 +88,8 @@ public class SignService {
 
     */
     public void resign(User user) {
-//        user.getRoles().remove("ROLE_USER");
-//        user.getRoles().remove(user.getId());
-        userRepository.delete(user);
+        LOG.info(user.getRoles().toString());
+//        userRepository.delete(user);
     }
 
 }
