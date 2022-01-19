@@ -74,13 +74,19 @@ public class SignService {
     }
 
 
-    /**
-     * id로 회원 탈퇴
-     *
-     * @param id
-     */
+    /** 2022-01-19 by 김예진
+    *  @brief 입력한 회원 탈퇴 처리를 하는 메소드
 
+    *  @date 2022-01-19
+
+    *  @return
+
+    *  @param user
+
+    */
     public void resign(User user) {
+//        user.getRoles().remove("ROLE_USER");
+//        user.getRoles().remove(user.getId());
         userRepository.delete(user);
     }
 

@@ -100,10 +100,9 @@ public class SignController {
 //        // UID값과 회원가입 타입으로 해당되는 회원정보 조회
         User user = signService.findByUid(uid,YNCode.Y);
         if (user == null) {
-            return responseService.getFailResult(0, "회원탈퇴에서 오류가 발생했습니다.");
+            return responseService.getFailResult(0, "해당하는 아이디가 없습니다.");
         }
         signService.resign(user);
-
         return responseService.getSuccessResult("회원탈퇴에 성공했습니다.");
     }
 
