@@ -18,10 +18,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initViewModel()
+        initEvent()
+    }
+
+    private fun initViewModel() {
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
 
-        initEvent()
+        userViewModel.getSignResponse().observe(this, { signResponse ->
+            if (signResponse == null) {
+                Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+            } else if (signResponse.output != 1) {
+                Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        })
     }
 
     private fun initEvent() {
@@ -46,16 +61,5 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun login(type: String, uid: String, pw: String) {
         userViewModel.login(type, uid, pw)
-        userViewModel.getSignResponse().observe(this, { signResponse ->
-            if (signResponse == null) {
-                Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-            } else if (signResponse.output != 1) {
-                Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
-            } else {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        })
     }
 }
