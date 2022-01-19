@@ -55,11 +55,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 return@setOnClickListener;
             }
 
-            login("none", id, pw)
+            login(id, pw)
         }
     }
 
-    private fun login(type: String, uid: String, pw: String) {
-        userViewModel.login(type, uid, pw)
+    private fun login(id: String, pw: String) {
+        userViewModel.login(id, pw)
     }
 }

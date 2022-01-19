@@ -15,9 +15,9 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         return signResponse
     }
 
-    fun login(type: String, id: String, pw: String) {
+    fun login(id: String, pw: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            userRepository.login(type, id, pw)
+            userRepository.login(id, pw)
         }
     }
 }

@@ -12,6 +12,5 @@ interface UserApi {
         @Query("type") @NotNull type: String,
         @Query("uid")  @NotNull uid : String,
         @Query("password") @NotNull password: String,
-        @Query("token") token: String,
     ): Response<SignResponse>
 }
