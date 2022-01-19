@@ -5,6 +5,9 @@
     <dimen name="activity_margin_default">16dp</dimen>
     <dimen name="activity_margin_narrow">8dp</dimen>
 
+    <dimen name="viewpager_page_margin">200dp</dimen>
+    <dimen name="viewpage_page_width">50dp</dimen>
+
     <!-- 폰트 크기 값 -->
     <dimen name="appbar_text_size">18sp</dimen>
     <dimen name="header_text_size">16sp</dimen>

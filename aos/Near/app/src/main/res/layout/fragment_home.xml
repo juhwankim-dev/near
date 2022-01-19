@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".src.main.home.HomeFragment">
+
+        <TextView
+            android:id="@+id/tv_app_bar"
+            style="@style/appbar_text"
+            android:layout_margin="@dimen/activity_margin_default"
+            android:text="N: EAR"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_mascot"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/img_temp_mascot"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_app_bar" />
+
+        <TextView
+            android:id="@+id/tv_header"
+            style="@style/appbar_text"
+            android:layout_marginTop="100dp"
+            android:layout_marginStart="@dimen/activity_margin_default"
+            android:text="Contents"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_mascot" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_marginVertical="@dimen/activity_margin_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_header" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
