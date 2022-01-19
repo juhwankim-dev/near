@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Near">
         <activity
+            android:name=".src.login.LoginActivity"
+            android:exported="true" />
+        <activity
             android:name=".src.main.MainActivity"
             android:exported="true">
             <intent-filter>
