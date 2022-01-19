@@ -35,6 +35,17 @@
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
         <Button
+            android:id="@+id/btn_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:layout_margin="@dimen/activity_margin_default"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+        <Button
             android:id="@+id/btn_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
