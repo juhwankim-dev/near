@@ -11,7 +11,7 @@ interface UserApi {
     fun login (
         @Query("type") @NotNull type: String,
         @Query("uid")  @NotNull uid : String,
-        @Query("pass") @NotNull pass: String,
+        @Query("password") @NotNull password: String,
         @Query("token") token: String,
     ): Response<SignResponse>
 }
