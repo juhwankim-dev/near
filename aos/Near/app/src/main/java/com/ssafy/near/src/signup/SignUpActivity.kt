@@ -1,13 +1,21 @@
 package com.ssafy.near.src.signup
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivitySignUpBinding
+import com.ssafy.near.repository.UserRepository
+import com.ssafy.near.src.UserViewModel
+import com.ssafy.near.src.UserViewModelFactory
 import com.ssafy.near.util.Validation
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
+    lateinit var userViewModel: UserViewModel
     var isCheckedId: Boolean = false
     var isCheckedNickname: Boolean = false
     var isCheckedEmail: Boolean = false
@@ -16,26 +24,44 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initViewModel()
         initValidation()
         initEvent()
+    }
+
+    private fun initViewModel() {
+        userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
+            .get(UserViewModel::class.java)
+
+        userViewModel.getCheckedId().observe(this, {
+            if (it) {
+                isCheckedId = false
+                binding.etId.error = "이미 존재하는 아이디입니다."
+                binding.etId.helperText = ""
+            } else {
+                isCheckedId = true
+                binding.etId.error = ""
+                binding.etId.helperText = "사용 가능한 아이디입니다."
+            }
+        })
     }
 
     private fun initValidation() {
         binding.etId.editText?.addTextChangedListener {
             if (Validation.validateId(it.toString(), binding.etId)) {
-                // 중복검사
+                checkDuplicatedId(it.toString())
             }
         }
 
         binding.etNickname.editText?.addTextChangedListener {
             if (Validation.validateNickname(it.toString(), binding.etNickname)) {
-                // 중복검사
+                checkDuplicatedNickname(it.toString())
             }
         }
 
         binding.etEmail.editText?.addTextChangedListener {
-            if (Validation.validateEmail(it.toString(), binding.etEmail) == false) {
-                // 중복검사
+            if (Validation.validateEmail(it.toString(), binding.etEmail)) {
+                checkDuplicatedEmail(it.toString())
             }
         }
 
@@ -51,6 +77,18 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     private fun initEvent() {
+
+    }
+
+    fun checkDuplicatedId(id: String) {
+        userViewModel.checkDuplicatedId(id)
+    }
+
+    fun checkDuplicatedNickname(nickname: String) {
+
+    }
+
+    fun checkDuplicatedEmail(email: String) {
 
     }
 }
