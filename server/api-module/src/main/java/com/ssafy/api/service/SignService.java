@@ -92,4 +92,7 @@ public class SignService {
         userRepository.delete(user);
     }
 
+    public User findUserByNickname(String nickname) {
+        return userRepository.findByNickname(nickname);
+    }
 }

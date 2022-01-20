@@ -12,6 +12,8 @@ public interface UserRepoCommon {
     User findByUid(String uid, YNCode isBind);
 
     User findByEmail(String email);
+
+    User findByNickname(String nickname);
 }
 
 
