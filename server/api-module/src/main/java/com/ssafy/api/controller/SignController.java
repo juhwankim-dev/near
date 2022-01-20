@@ -1,12 +1,10 @@
 package com.ssafy.api.controller;
 
 import com.ssafy.api.config.security.JwtTokenProvider;
-import com.ssafy.api.dto.req.CheckEmailReqDTO;
-import com.ssafy.api.dto.req.CheckIdReqDTO;
-import com.ssafy.api.dto.req.LoginUserReqDTO;
-import com.ssafy.api.dto.req.SignUpReqDTO;
+import com.ssafy.api.dto.req.*;
 import com.ssafy.api.dto.res.LoginUserResDTO;
 import com.ssafy.api.dto.res.UserIdResDTO;
+import com.ssafy.api.dto.res.UserInfoResDTO;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
 import com.ssafy.api.service.common.SingleResult;
@@ -33,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Api(tags = {"02. 가입"})
+@Api(tags = {"02. 회원"})
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -102,7 +100,7 @@ public class SignController {
     public @ResponseBody
     CommonResult resign(@PathVariable("uid") @ApiParam(value = "탈퇴할 회원의 uid(일반회원: 아이디, sns로그인: uid값", required = true) String uid) throws Exception {
 //        // UID값과 회원가입 타입으로 해당되는 회원정보 조회
-        User user = signService.findByUid(uid,YNCode.Y);
+        User user = signService.findByUid(uid, YNCode.Y);
         if (user == null) {
             return responseService.getFailResult(0, "해당하는 아이디가 없습니다.");
         }
@@ -136,23 +134,20 @@ public class SignController {
         dto.setToken(jwtTokenProvider.createToken(String.valueOf(user.getId()), Collections.singletonList("ROLE_USER")));
 
         // 회원의 토큰값, 디바이스 정보 업데이트
-        user.updateToken(req.getToken());
+        user.updateToken(dto.getToken());
         signService.saveUser(user);
 
         return responseService.getSingleResult(dto);
     }
 
-    /** 2022-01-18 by 김영훈
-
-    *  @brief 아이디 중복 확인
-
-    *  @date 2022-01-18
-
-    *  @return true : 회원 아이디 존재 false : 회원 아이디 없음
-
-    *  @param req 아이디를 받아 옴
-
-    */
+    /**
+     * 2022-01-18 by 김영훈
+     *
+     * @param req 아이디를 받아 옴
+     * @return true : 회원 아이디 존재 false : 회원 아이디 없음
+     * @brief 아이디 중복 확인
+     * @date 2022-01-18
+     */
     @ApiOperation(value = "아이디 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/checkid", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
@@ -165,22 +160,80 @@ public class SignController {
         return responseService.getSingleResult(true);
     }
 
-    /** 2022-01-19 by 김영훈
-
-    *  @brief 이메일 중복 확인
-
-    *  @date 2022-01-19
-
-    *  @return ture : 회원 이메일 존해 false : 회원 이메일 없음
-
-    *  @param req 인자 설명
-
-    */
+    /**
+     * 2022-01-19 by 김영훈
+     *
+     * @param req 인자 설명
+     * @return ture : 회원 이메일 존해 false : 회원 이메일 없음
+     * @brief 이메일 중복 확인
+     * @date 2022-01-19
+     */
     @ApiOperation(value = "이메일 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/checkemail", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<Boolean> checkmail(@Valid CheckEmailReqDTO req) throws Exception {
         User user = signService.findUserByEmail(req.getEmail());
+
+        if (user == null) {
+            return responseService.getSingleResult(false);
+        }
+        return responseService.getSingleResult(true);
+    }
+
+    /**
+     * 2022-01-20 by 김영훈
+     *
+     * @param req 유저 정보를 반환
+     * @return 리턴값에 대한설명
+     * @brief 토큰 값을 받아 회원정보 반환
+     * @date 2022-01-20
+     */
+    @ApiOperation(value = "토큰으로 유저정보 반환", notes = "토큰에 따라 유저 정보를 반환한다")
+    @GetMapping(value = "/userInfo", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<UserInfoResDTO> UserInfo(@Valid UserInfoReqDTO req) throws Exception {
+
+        // 1. 유효기간을 확인한다.
+        if (!jwtTokenProvider.validateToken(req.getToken())) {
+            throw new ApiMessageException("유효기간이 만료된 토큰입니다.");
+        }
+
+        // 2. 토큰으로 들어온 유저를 반환한다.
+        User result = signService.findUserById(Long.parseLong(jwtTokenProvider.getUserPk(req.getToken())));
+
+        // 3. 유저 db에 저장되어 있는 토큰과 받아온 토큰이 일치하는지 판단 한다.
+        if (!result.getToken().equals(req.getToken())) {
+            throw new ApiMessageException("다른 곳에서 로그인 한 아이디 입니다.");
+        }
+
+
+        //4. 유저 정보 반환
+        return responseService.getSingleResult(UserInfoResDTO.builder()
+                .address(result.getAddress())
+                .addressDetail(result.getAddressDetail())
+                .email(result.getEmail())
+                .name(result.getName())
+                .uid(result.getUid())
+                .password(result.getPassword())
+                .nickname(result.getNickname())
+                .phone(result.getPhone())
+                .build());
+
+    }
+
+    /**
+     * 2022-01-20 by 김영훈
+     *
+     * @param req 닉네임을 받음
+     * @return 회원 아이디 존재 false : 회원 아이디 없음
+     * @brief 닉네임이 중복 결과를 반환한다.
+     * @date 2022-01-20
+     */
+    @ApiOperation(value = "닉네임 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
+    @GetMapping(value = "/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> checkmail(@Valid CheckNicknameReqDTO req) throws Exception {
+        User user = signService.findUserByNickname(req.getNickname());
 
         if (user == null) {
             return responseService.getSingleResult(false);
