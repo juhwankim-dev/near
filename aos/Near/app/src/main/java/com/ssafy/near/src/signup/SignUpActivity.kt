@@ -1,10 +1,7 @@
 package com.ssafy.near.src.signup
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
@@ -56,6 +53,18 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etNickname.helperText = "사용 가능한 닉네임입니다."
             }
         })
+
+        userViewModel.getCheckedEmail().observe(this, {
+            if (it) {
+                isCheckedEmail = false
+                binding.etEmail.error = "이미 존재하는 이메일입니다."
+                binding.etEmail.helperText = ""
+            } else {
+                isCheckedEmail = true
+                binding.etEmail.error = ""
+                binding.etEmail.helperText = "사용 가능한 이메일입니다."
+            }
+        })
     }
 
     private fun initValidation() {
@@ -101,6 +110,6 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     fun checkDuplicatedEmail(email: String) {
-
+        userViewModel.checkDuplicatedEmail(email)
     }
 }

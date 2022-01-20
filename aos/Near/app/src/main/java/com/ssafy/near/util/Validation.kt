@@ -37,6 +37,11 @@ object Validation {
     fun validateEmail(email: String, tiLayout: TextInputLayout): Boolean {
         val pattern = android.util.Patterns.EMAIL_ADDRESS
 
+        if (email.trim().isEmpty()) {
+            tiLayout.error = "이메일을 입력하십시오."
+            tiLayout.helperText = ""
+            return false
+        }
         if (pattern.matcher(email).matches() == false) {
             tiLayout.error = "올바른 이메일 형식이 아닙니다."
             return false
