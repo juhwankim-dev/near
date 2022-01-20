@@ -63,12 +63,20 @@ object Validation {
     fun confirmPw(checkedPw: String, pw: String, tiLayout: TextInputLayout): Boolean {
         if (checkedPw == pw) {
             tiLayout.error = ""
-            if (pw.length < 8 || pw.length > 20) {
-                return false
+            tiLayout.helperText = "비밀번호가 일치합니다."
+
+            if (pw.length in 8..20) {
+                return true
             }
-            return true
+            return false
         }
-        tiLayout.error = "비밀번호가 일치하지 않습니다."
+        if (checkedPw.isEmpty()) {
+            tiLayout.error = ""
+        } else {
+            tiLayout.error = "비밀번호가 일치하지 않습니다."
+        }
+        tiLayout.helperText = ""
+
         return false
     }
 }

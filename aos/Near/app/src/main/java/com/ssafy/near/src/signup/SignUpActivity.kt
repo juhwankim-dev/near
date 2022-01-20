@@ -71,23 +71,32 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         binding.etId.editText?.addTextChangedListener {
             if (Validation.validateId(it.toString(), binding.etId)) {
                 checkDuplicatedId(it.toString())
+            } else {
+                isCheckedId = false
             }
         }
 
         binding.etNickname.editText?.addTextChangedListener {
             if (Validation.validateNickname(it.toString(), binding.etNickname)) {
                 checkDuplicatedNickname(it.toString())
+            } else {
+                isCheckedNickname = false
             }
         }
 
         binding.etEmail.editText?.addTextChangedListener {
             if (Validation.validateEmail(it.toString(), binding.etEmail)) {
                 checkDuplicatedEmail(it.toString())
+            } else {
+                isCheckedEmail = false
             }
         }
 
         binding.etPw.editText?.addTextChangedListener {
             Validation.validatePw(it.toString(), binding.etPw)
+            isCheckedPw = Validation.confirmPw(binding.etConfirmPw.editText?.text.toString(),
+                it.toString(),
+                binding.etConfirmPw)
         }
 
         binding.etConfirmPw.editText?.addTextChangedListener {
