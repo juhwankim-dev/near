@@ -13,6 +13,11 @@ class UserRepository {
     private val TAG = "UserRepository"
     var _signResponse = MutableLiveData<SignResponse>()
         private set
+    var _checkedId = MutableLiveData<Boolean>()
+        private set
+    var _checkedNickname = MutableLiveData<Boolean>()
+        private set
+
 
     suspend fun login(uid: String, pw: String) {
         try {
@@ -32,9 +37,45 @@ class UserRepository {
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
             }
-
         } catch (e: Exception) {
             Log.d(TAG, e.message ?: "onFailure")
         }
     }
+
+    suspend fun checkDuplicatedId(uid: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.checkId(uid)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    _checkedId.postValue(response.body()!!.isDuplicated)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun checkDuplicatedNickname(nickname: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.checkNickname(nickname)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    Log.d(TAG, "checkDuplicatedNickname: $response")
+                    _checkedNickname.postValue(response.body()!!.isDuplicated)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+
 }
