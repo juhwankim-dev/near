@@ -5,9 +5,6 @@ import { registerUser } from '../../_actions/userAction';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 
-
-
-
 function RegisterPage(props) {
   const [Email, setEmail] = useState('');
   const [Id, setId] = useState('');
