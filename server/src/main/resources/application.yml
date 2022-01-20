@@ -1,0 +1,42 @@
+# commons
+logging:
+  level:
+    root: warn
+    com.ssafy.shop.api: debug
+    com.ssafy.shop.core: debug
+    org.hibernate.type.descriptor.sql: trace
+spring:
+  profiles:
+    active: local
+    include:
+      - core
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  jwt:
+    secret: DvqcGn8mnFjqSL4a
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties.hibernate:
+      hbm2ddl.auto: update
+      format_sql: true
+      show_sql: true
+      use_sql_comments: true
+    generate-ddl: true
+    open-in-view: false
+  datasource:
+#    url: jdbc:mariadb://1.234.23.117:3306/db_banhae?characterEncoding=utf-8
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    username: banhae
+#    password: petcode13@$
+    url: jdbc:mariadb://localhost:3306/commonModule?characterEncoding=utf-8
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: 1234
+  flyway:
+    enabled: false
+  config:
+    activate:
+      on-profile: local
+server:
+  port: 8380

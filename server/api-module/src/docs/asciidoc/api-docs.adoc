@@ -1,0 +1,307 @@
+= RESTful Notes API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectnums:
+:sectlinks:
+:sectanchors:
+
+
+[[api]]
+== 인증 (Auth)
+=== 이메일 인증코드 발송
+- POST /auth/send/email
+
+요청 예시
+include::{snippets}/auth/sendEmail/http-request.adoc[]
+요청 헤더
+include::{snippets}/auth/sendEmail/request-headers.adoc[]
+요청 필드
+include::{snippets}/auth/sendEmail/request-fields.adoc[]
+응답 예시
+include::{snippets}/auth/sendEmail/http-response.adoc[]
+응답 필드
+include::{snippets}/auth/sendEmail/response-fields.adoc[]
+
+=== 이메일 인증코드 확인
+- GET /auth/check/email
+
+요청 예시
+include::{snippets}/auth/checkEmail/http-request.adoc[]
+요청 헤더
+include::{snippets}/auth/checkEmail/request-headers.adoc[]
+요청 필드
+include::{snippets}/auth/checkEmail/request-fields.adoc[]
+응답 예시
+include::{snippets}/auth/checkEmail/http-response.adoc[]
+응답 필드
+include::{snippets}/auth/checkEmail/response-fields.adoc[]
+
+
+
+
+
+== 가입 (Sign)
+=== 회원가입
+- POST /sign/signup
+
+요청 예시
+include::{snippets}/sign/signup/http-request.adoc[]
+요청 헤더
+include::{snippets}/sign/signup/request-headers.adoc[]
+요청 필드
+include::{snippets}/sign/signup/request-fields.adoc[]
+응답 예시
+include::{snippets}/sign/signup/http-response.adoc[]
+응답 필드
+include::{snippets}/sign/signup/response-fields.adoc[]
+
+=== 회원가입 후 프로필 등록
+- POST /sign/regProfile
+
+요청 예시
+include::{snippets}/sign/regProfile/http-request.adoc[]
+요청 헤더
+include::{snippets}/sign/regProfile/request-headers.adoc[]
+요청 필드
+include::{snippets}/sign/regProfile/request-fields.adoc[]
+응답 예시
+include::{snippets}/sign/regProfile/http-response.adoc[]
+응답 필드
+include::{snippets}/sign/regProfile/response-fields.adoc[]
+
+=== 로그인
+- GET /sign/login
+
+요청 예시
+include::{snippets}/sign/login/http-request.adoc[]
+요청 헤더
+include::{snippets}/sign/login/request-headers.adoc[]
+요청 필드
+include::{snippets}/sign/login/request-fields.adoc[]
+응답 예시
+include::{snippets}/sign/login/http-response.adoc[]
+응답 필드
+include::{snippets}/sign/login/response-fields.adoc[]
+
+=== 소셜 회원가입 여부 확인
+- GET /sign/exists/social
+
+요청 예시
+include::{snippets}/sign/existsSocial/http-request.adoc[]
+요청 헤더
+include::{snippets}/sign/existsSocial/request-headers.adoc[]
+요청 필드
+include::{snippets}/sign/existsSocial/request-fields.adoc[]
+응답 예시
+include::{snippets}/sign/existsSocial/http-response.adoc[]
+응답 필드
+include::{snippets}/sign/existsSocial/response-fields.adoc[]
+
+
+
+
+
+== 회원 (User)
+=== 회원의 스터디모임 조회
+- GET /user/myClass
+
+요청 예시
+include::{snippets}/user/myClass/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/myClass/request-headers.adoc[]
+//요청 필드
+//include::{snippets}/user/myClass/request-fields.adoc[]
+응답 예시
+include::{snippets}/user/myClass/http-response.adoc[]
+응답 필드
+include::{snippets}/user/myClass/response-fields.adoc[]
+
+=== 회원정보 조회
+- GET /user/myInfo
+
+요청 예시
+include::{snippets}/user/myInfo/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/myInfo/request-headers.adoc[]
+//요청 필드
+//include::{snippets}/user/myInfo/request-fields.adoc[]
+응답 예시
+include::{snippets}/user/myInfo/http-response.adoc[]
+응답 필드
+include::{snippets}/user/myInfo/response-fields.adoc[]
+
+=== 푸쉬 설정값 조회
+- GET /user/myPush
+
+요청 예시
+include::{snippets}/user/myPush/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/myPush/request-headers.adoc[]
+//요청 필드
+//include::{snippets}/user/myPush/request-fields.adoc[]
+응답 예시
+include::{snippets}/user/myPush/http-response.adoc[]
+응답 필드
+include::{snippets}/user/myPush/response-fields.adoc[]
+
+=== 회원정보 수정
+- PUT /user/profile
+
+요청 예시
+include::{snippets}/user/updateProfile/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/updateProfile/request-headers.adoc[]
+요청 필드
+include::{snippets}/user/updateProfile/request-fields.adoc[]
+응답 예시
+include::{snippets}/user/updateProfile/http-response.adoc[]
+응답 필드
+include::{snippets}/user/updateProfile/response-fields.adoc[]
+
+=== 푸쉬 설정값 수정
+- PUT /user/push
+
+요청 예시
+include::{snippets}/user/updatePush/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/updatePush/request-headers.adoc[]
+요청 파라미터
+include::{snippets}/user/updatePush/path-parameters.adoc[]
+응답 예시
+include::{snippets}/user/updatePush/http-response.adoc[]
+응답 필드
+include::{snippets}/user/updatePush/response-fields.adoc[]
+
+=== 회원탈퇴
+- DELETE /user/
+
+요청 예시
+include::{snippets}/user/withdrawal/http-request.adoc[]
+요청 헤더
+include::{snippets}/user/withdrawal/request-headers.adoc[]
+//요청 필드
+//include::{snippets}/user/withdrawal/request-fields.adoc[]
+응답 예시
+include::{snippets}/user/withdrawal/http-response.adoc[]
+응답 필드
+include::{snippets}/user/withdrawal/response-fields.adoc[]
+
+
+
+
+
+== 스터디모임 (StudyClass)
+=== 리스트 조회 (정렬)
+- GET /studyclass/list
+
+요청 예시
+include::{snippets}/studyclass/list/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/list/request-headers.adoc[]
+요청 필드
+include::{snippets}/studyclass/list/request-fields.adoc[]
+응답 예시
+include::{snippets}/studyclass/list/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/list/response-fields.adoc[]
+
+=== 리스트 조회 (검색)
+- GET /studyclass/search
+
+요청 예시
+include::{snippets}/studyclass/search/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/search/request-headers.adoc[]
+요청 필드
+include::{snippets}/studyclass/search/request-fields.adoc[]
+응답 예시
+include::{snippets}/studyclass/search/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/search/response-fields.adoc[]
+
+=== 상세조회
+- GET /studyclass/detail
+
+요청 예시
+include::{snippets}/studyclass/detail/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/detail/request-headers.adoc[]
+요청 파라미터
+include::{snippets}/studyclass/detail/path-parameters.adoc[]
+응답 예시
+include::{snippets}/studyclass/detail/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/detail/response-fields.adoc[]
+
+=== 개설하기
+- POST /studyclass/
+
+요청 예시
+include::{snippets}/studyclass/createStudyClass/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/createStudyClass/request-headers.adoc[]
+요청 필드
+include::{snippets}/studyclass/createStudyClass/request-fields.adoc[]
+응답 예시
+include::{snippets}/studyclass/createStudyClass/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/createStudyClass/response-fields.adoc[]
+
+=== 수정하기
+- PUT /studyclass/
+
+요청 예시
+include::{snippets}/studyclass/updateStudyClass/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/updateStudyClass/request-headers.adoc[]
+요청 필드
+include::{snippets}/studyclass/updateStudyClass/request-fields.adoc[]
+응답 예시
+include::{snippets}/studyclass/updateStudyClass/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/updateStudyClass/response-fields.adoc[]
+
+=== 참가하기
+- POST /studyclass/participate
+
+요청 예시
+include::{snippets}/studyclass/participate/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/participate/request-headers.adoc[]
+요청 파라미터
+include::{snippets}/studyclass/participate/path-parameters.adoc[]
+응답 예시
+include::{snippets}/studyclass/participate/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/participate/response-fields.adoc[]
+
+=== 참가자 제외
+- DELETE /studyclass/user
+
+요청 예시
+include::{snippets}/studyclass/deleteStudyUser/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/deleteStudyUser/request-headers.adoc[]
+요청 필드
+include::{snippets}/studyclass/deleteStudyUser/request-fields.adoc[]
+응답 예시
+include::{snippets}/studyclass/deleteStudyUser/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/deleteStudyUser/response-fields.adoc[]
+
+=== 삭제하기
+- DELETE /studyclass/
+
+요청 예시
+include::{snippets}/studyclass/delete/http-request.adoc[]
+요청 헤더
+include::{snippets}/studyclass/delete/request-headers.adoc[]
+요청 파라미터
+include::{snippets}/studyclass/delete/path-parameters.adoc[]
+응답 예시
+include::{snippets}/studyclass/delete/http-response.adoc[]
+응답 필드
+include::{snippets}/studyclass/delete/response-fields.adoc[]
