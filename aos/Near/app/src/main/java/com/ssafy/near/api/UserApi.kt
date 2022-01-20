@@ -18,4 +18,7 @@ interface UserApi {
 
     @GET("api/sign/checkid")
     suspend fun checkId(@Query("uid") @NotNull uid: String): Response<Duplication>
+
+    @GET("api/sign/nickname")
+    suspend fun checkNickname(@Query("nickname") @NotNull nickname: String): Response<Duplication>
 }

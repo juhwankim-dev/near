@@ -44,6 +44,18 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etId.helperText = "사용 가능한 아이디입니다."
             }
         })
+
+        userViewModel.getCheckedNickname().observe(this, {
+            if (it) {
+                isCheckedNickname = false
+                binding.etNickname.error = "이미 존재하는 닉네임입니다."
+                binding.etNickname.helperText = ""
+            } else {
+                isCheckedNickname = true
+                binding.etNickname.error = ""
+                binding.etNickname.helperText = "사용 가능한 닉네임입니다."
+            }
+        })
     }
 
     private fun initValidation() {
@@ -85,7 +97,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     fun checkDuplicatedNickname(nickname: String) {
-
+        userViewModel.checkDuplicatedNickname(nickname)
     }
 
     fun checkDuplicatedEmail(email: String) {
