@@ -10,13 +10,10 @@ import { useDispatch } from 'react-redux';
 
 // Page Load
 // import LandingPage from './views/LandingPage/Account';
+import NavBar from './components/NavBar/NavBar';
 import Login from './views/Accounts/Login';
 import Register from './views/Accounts/Register';
-
-
-
-
-
+import Mainpage from './views/Mainpage/Mainpage';
 
 function App() {
   const [isLogin, setIslogin] = useState(false);
@@ -32,16 +29,21 @@ function App() {
 
   return (
     <div>
-      <Router history={history}>
-        <Switch>
-          {/* <Route path="/login" component={LandingPage} /> */}
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Register} />
-          <Route path="/">ㅎㅇ</Route>
-        </Switch>
-      </Router>
-    </div>
+    <Router history={history}>
+    <NavBar></NavBar>
+    <Route path='/login' component={Login}/>
+    <Route path='/signup' component={Register}/>
+    <Route path='/main' component={Mainpage}/>
+    
+    {/* <Switch>
+    <Route path='/login' component={Login}/>
+    <Route path='/main' component={Mainpage}/>
+    
+    </NavBar>
+    </Switch> */}
 
+    </Router>
+    </div>
   );
 
 

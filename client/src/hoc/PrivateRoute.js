@@ -10,25 +10,25 @@
 // 유효한 인증으로 인해 서버 API의 실제 보안 데이터에 대한 액세스
 // 권한을 부여하지 않습니다. 이를 위해서는 토큰 (JWT)이 필요합니다.
 
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+// import React from 'react';
+// import { Route, Redirect } from 'react-router-dom';
 
-function PrivateRoute({ component: Component, roles, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={(props) => {
-        if (!localStorage.getItem('user')) {
-          return (
-            <Redirect
-              to={{ pathname: '/login', state: { from: props.location } }}
-            />
-          );
-        }
-        return <Component {...props} />;
-      }}
-    />
-  );
-}
+// function PrivateRoute({ component: Component, roles, ...rest }) {
+//   return (
+//     <Route
+//       {...rest}
+//       render={(props) => {
+//         if (!localStorage.getItem('user')) {
+//           return (
+//             <Redirect
+//               to={{ pathname: '/login', state: { from: props.location } }}
+//             />
+//           );
+//         }
+//         return <Component {...props} />;
+//       }}
+//     />
+//   );
+// }
 
-export { PrivateRoute };
+// export { PrivateRoute };

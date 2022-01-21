@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../_actions/userAction';
 import toast from 'react-hot-toast';
 
 
 function LoginPage(props) {
+  let history = useHistory();
+
   const [Id, setId] = useState('');
   const [Password, setPassword] = useState('');
   const dispatch = useDispatch();
@@ -85,6 +87,8 @@ function LoginPage(props) {
           <button className="account__button" type="submit">
             로그인
           </button>
+        <br />
+        <button onClick={()=>{ history.push('/signup')}} className="btn btn-primary">회원가입</button>
         </form>
       </div>
     </>

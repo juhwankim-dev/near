@@ -1,21 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { withRouter, useHistory } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 // import RegisterPage from '../../components/Accounts/Register';
 import LoginPage from '../../components/Accounts/Login';
-import Button from '../../components/NavBar/Button';
 import toast, { Toaster } from 'react-hot-toast';
 // import './Account.scss';
 import '../../trash/LandingPage/Account.css';
 
 
-function Login() {
-  
-// function Login({ history }) {
-//   if (localStorage.getItem('user')) {
-//     history.goBack();
-//   }
-
-  let history = useHistory();
+function Login({ history }) {
+  if (localStorage.getItem('user')) {
+    history.goBack();
+  }
 
   return (
     <div>
@@ -35,10 +30,8 @@ function Login() {
       <div>
       <LoginPage />
       </div>
-      
-      {/* <Button/> */}
     </div>
       );
     }
 
-export default Login;
+export default withRouter(Login);

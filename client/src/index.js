@@ -9,6 +9,9 @@ import promiseMiddlerware from 'redux-promise';
 import reduxThunk from 'redux-thunk';
 import reducer from './_reducers';
 
+//
+import {BrowserRouter} from 'react-router-dom';
+
 
 
 const createStoreWidthMiddleware = applyMiddleware(
@@ -18,6 +21,7 @@ const createStoreWidthMiddleware = applyMiddleware(
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
     <Provider
       store={createStoreWidthMiddleware(
         reducer,
@@ -28,6 +32,7 @@ ReactDOM.render(
     >
       <App />
     </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root'),
 );
