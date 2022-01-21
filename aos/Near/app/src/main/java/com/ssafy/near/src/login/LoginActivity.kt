@@ -11,6 +11,7 @@ import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.main.MainActivity
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
+import com.ssafy.near.src.signup.SignUpActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     lateinit var userViewModel: UserViewModel
@@ -56,6 +57,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             }
 
             login(id, pw)
+        }
+
+        binding.btnSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 
