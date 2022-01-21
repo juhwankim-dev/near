@@ -1,6 +1,7 @@
 package com.ssafy.near.src.signup
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -66,6 +67,17 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etEmail.helperText = "사용 가능한 이메일입니다."
             }
         })
+
+        userViewModel.getSignResponse().observe(this, { signResponse ->
+            when {
+                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                else -> {
+                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        })
     }
 
     private fun initValidation() {
@@ -108,7 +120,23 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     }
 
     private fun initEvent() {
+        binding.btnSignUp.setOnClickListener {
+            when {
+                isCheckedId == false        -> binding.etId.editText?.requestFocus()
+                isCheckedNickname == false  -> binding.etNickname.editText?.requestFocus()
+                isCheckedEmail == false     -> binding.etEmail.editText?.requestFocus()
+                isCheckedPw == false        -> binding.etPw.editText?.requestFocus()
+                isCheckedConfirmPw == false -> binding.etConfirmPw.editText?.requestFocus()
+                else -> {
+                    val id = binding.etId.editText?.text.toString()
+                    val nickname = binding.etNickname.editText?.text.toString()
+                    val email = binding.etEmail.editText?.text.toString()
+                    val pw = binding.etPw.editText?.text.toString()
 
+                    signUp(id, nickname, email, pw)
+                }
+            }
+        }
     }
 
     private fun checkDuplicatedId(id: String) {
@@ -121,5 +149,9 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     private fun checkDuplicatedEmail(email: String) {
         userViewModel.checkDuplicatedEmail(email)
+    }
+
+    private fun signUp(id: String, nickname: String, email: String, pw: String) {
+        userViewModel.signUp(id, nickname, email, pw)
     }
 }

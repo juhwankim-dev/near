@@ -44,6 +44,24 @@ class UserRepository {
         }
     }
 
+    suspend fun signUp(uid: String, nickname: String, email: String, pw: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.signUp("none", uid, nickname, email, pw)
+            }
+            if (response.isSuccessful) {
+                Log.d(TAG, "signUp: $response")
+                if (response.body() != null) {
+                    _signResponse.postValue(response.body())
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
     suspend fun checkDuplicatedId(uid: String) {
         try {
             val response = withContext(Dispatchers.IO) {

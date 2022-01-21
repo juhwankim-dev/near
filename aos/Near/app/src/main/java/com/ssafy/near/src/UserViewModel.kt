@@ -37,6 +37,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         }
     }
 
+    fun signUp(id: String, nickname: String, email: String, pw: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.signUp(id, nickname, email, pw)
+        }
+    }
+
     fun checkDuplicatedId(id: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.checkDuplicatedId(id)
