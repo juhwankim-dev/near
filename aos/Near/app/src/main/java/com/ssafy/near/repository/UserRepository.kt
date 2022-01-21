@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.ssafy.near.config.ApplicationClass
 import com.ssafy.near.dto.SignResponse
-import com.ssafy.near.dto.UserInfoResponse
+import com.ssafy.near.dto.UserInfo
 import com.ssafy.near.util.RetrofitUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -20,7 +20,7 @@ class UserRepository {
         private set
     var _checkedEmail = MutableLiveData<Boolean>()
         private set
-    var _userInfo = MutableLiveData<UserInfoResponse>()
+    var _userInfo = MutableLiveData<UserInfo?>()
         private set
 
 
@@ -53,13 +53,31 @@ class UserRepository {
                 RetrofitUtil.userService.signUp("none", uid, nickname, email, pw)
             }
             if (response.isSuccessful) {
-                Log.d(TAG, "signUp: $response")
                 if (response.body() != null) {
                     _signResponse.postValue(response.body())
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
             }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun loadUserInfo(token: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.loadUserInfo(token)
+            }
+            if (response.isSuccessful) {
+                Log.d(TAG, "loadUserInfo: ${response.body()}")
+                if (response.body() != null) {
+                    _userInfo.postValue(response.body()?.userInfo)
+                } else {
+                    Log.d(TAG, "onError: Error Code ${response.code()} $response")
+                }
+            }
+
         } catch (e: Exception) {
             Log.d(TAG, e.message ?: "onFailure")
         }
@@ -89,7 +107,6 @@ class UserRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    Log.d(TAG, "checkDuplicatedNickname: $response")
                     _checkedNickname.postValue(response.body()!!.isDuplicated)
                 }
             } else {
@@ -107,26 +124,7 @@ class UserRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    Log.d(TAG, "checkDuplicatedNickname: $response")
                     _checkedEmail.postValue(response.body()!!.isDuplicated)
-                }
-            } else {
-                Log.d(TAG, "onError: Error Code ${response.code()}")
-            }
-        } catch (e: Exception) {
-            Log.d(TAG, e.message ?: "onFailure")
-        }
-    }
-
-    suspend fun getUserInfo(token: String) {
-        try {
-            val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.getUserInfo(token)
-            }
-
-            if (response.isSuccessful) {
-                if (response.body() != null) {
-                    _userInfo.postValue(response.body())
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
