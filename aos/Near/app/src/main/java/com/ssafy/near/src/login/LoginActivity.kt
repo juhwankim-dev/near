@@ -27,14 +27,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             .get(UserViewModel::class.java)
 
         userViewModel.getSignResponse().observe(this, { signResponse ->
-            if (signResponse == null) {
-                Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-            } else if (signResponse.output != 1) {
-                Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
-            } else {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+            when {
+                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                else -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         })
     }
