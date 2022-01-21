@@ -17,6 +17,8 @@ class UserRepository {
         private set
     var _checkedNickname = MutableLiveData<Boolean>()
         private set
+    var _checkedEmail = MutableLiveData<Boolean>()
+        private set
 
 
     suspend fun login(uid: String, pw: String) {
@@ -33,6 +35,24 @@ class UserRepository {
                         ApplicationClass.sSharedPreferences.addUser(token)
                     }
                     _signResponse.postValue(userResponse)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun signUp(uid: String, nickname: String, email: String, pw: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.signUp("none", uid, nickname, email, pw)
+            }
+            if (response.isSuccessful) {
+                Log.d(TAG, "signUp: $response")
+                if (response.body() != null) {
+                    _signResponse.postValue(response.body())
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
@@ -77,5 +97,21 @@ class UserRepository {
         }
     }
 
-
+    suspend fun checkDuplicatedEmail(email: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.checkEmail(email)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    Log.d(TAG, "checkDuplicatedNickname: $response")
+                    _checkedEmail.postValue(response.body()!!.isDuplicated)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
 }

@@ -1,10 +1,8 @@
 package com.ssafy.near.src.signup
 
-import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
@@ -16,10 +14,11 @@ import com.ssafy.near.util.Validation
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     lateinit var userViewModel: UserViewModel
-    var isCheckedId: Boolean = false
-    var isCheckedNickname: Boolean = false
-    var isCheckedEmail: Boolean = false
-    var isCheckedPw: Boolean = false
+    var isCheckedId = false
+    var isCheckedNickname = false
+    var isCheckedEmail = false
+    var isCheckedPw = false
+    var isCheckedConfirmPw = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,51 +55,103 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etNickname.helperText = "사용 가능한 닉네임입니다."
             }
         })
+
+        userViewModel.getCheckedEmail().observe(this, {
+            if (it) {
+                isCheckedEmail = false
+                binding.etEmail.error = "이미 존재하는 이메일입니다."
+                binding.etEmail.helperText = ""
+            } else {
+                isCheckedEmail = true
+                binding.etEmail.error = ""
+                binding.etEmail.helperText = "사용 가능한 이메일입니다."
+            }
+        })
+
+        userViewModel.getSignResponse().observe(this, { signResponse ->
+            when {
+                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                else -> {
+                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    finish()
+                }
+            }
+        })
     }
 
     private fun initValidation() {
         binding.etId.editText?.addTextChangedListener {
             if (Validation.validateId(it.toString(), binding.etId)) {
                 checkDuplicatedId(it.toString())
+            } else {
+                isCheckedId = false
             }
         }
 
         binding.etNickname.editText?.addTextChangedListener {
             if (Validation.validateNickname(it.toString(), binding.etNickname)) {
                 checkDuplicatedNickname(it.toString())
+            } else {
+                isCheckedNickname = false
             }
         }
 
         binding.etEmail.editText?.addTextChangedListener {
             if (Validation.validateEmail(it.toString(), binding.etEmail)) {
                 checkDuplicatedEmail(it.toString())
+            } else {
+                isCheckedEmail = false
             }
         }
 
         binding.etPw.editText?.addTextChangedListener {
-            Validation.validatePw(it.toString(), binding.etPw)
+            isCheckedPw = Validation.validatePw(it.toString(), binding.etPw)
+            isCheckedConfirmPw = Validation.confirmPw(binding.etConfirmPw.editText?.text.toString(),
+                it.toString(),
+                binding.etConfirmPw)
         }
 
         binding.etConfirmPw.editText?.addTextChangedListener {
-            isCheckedPw = Validation.confirmPw(it.toString(),
+            isCheckedConfirmPw = Validation.confirmPw(it.toString(),
                 binding.etPw.editText?.text.toString(),
                 binding.etConfirmPw)
         }
     }
 
     private fun initEvent() {
+        binding.btnSignUp.setOnClickListener {
+            when {
+                isCheckedId == false        -> binding.etId.editText?.requestFocus()
+                isCheckedNickname == false  -> binding.etNickname.editText?.requestFocus()
+                isCheckedEmail == false     -> binding.etEmail.editText?.requestFocus()
+                isCheckedPw == false        -> binding.etPw.editText?.requestFocus()
+                isCheckedConfirmPw == false -> binding.etConfirmPw.editText?.requestFocus()
+                else -> {
+                    val id = binding.etId.editText?.text.toString()
+                    val nickname = binding.etNickname.editText?.text.toString()
+                    val email = binding.etEmail.editText?.text.toString()
+                    val pw = binding.etPw.editText?.text.toString()
 
+                    signUp(id, nickname, email, pw)
+                }
+            }
+        }
     }
 
-    fun checkDuplicatedId(id: String) {
+    private fun checkDuplicatedId(id: String) {
         userViewModel.checkDuplicatedId(id)
     }
 
-    fun checkDuplicatedNickname(nickname: String) {
+    private fun checkDuplicatedNickname(nickname: String) {
         userViewModel.checkDuplicatedNickname(nickname)
     }
 
-    fun checkDuplicatedEmail(email: String) {
+    private fun checkDuplicatedEmail(email: String) {
+        userViewModel.checkDuplicatedEmail(email)
+    }
 
+    private fun signUp(id: String, nickname: String, email: String, pw: String) {
+        userViewModel.signUp(id, nickname, email, pw)
     }
 }

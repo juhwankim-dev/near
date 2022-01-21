@@ -12,6 +12,8 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val signResponse = userRepository._signResponse
     private val checkedId = userRepository._checkedId
     private val checkedNickname = userRepository._checkedNickname
+    private val checkedEmail = userRepository._checkedEmail
+
 
     fun getSignResponse(): LiveData<SignResponse> {
         return signResponse
@@ -25,9 +27,19 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
         return checkedNickname
     }
 
+    fun getCheckedEmail(): LiveData<Boolean> {
+        return checkedEmail
+    }
+
     fun login(id: String, pw: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.login(id, pw)
+        }
+    }
+
+    fun signUp(id: String, nickname: String, email: String, pw: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.signUp(id, nickname, email, pw)
         }
     }
 
@@ -40,6 +52,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     fun checkDuplicatedNickname(nickname: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.checkDuplicatedNickname(nickname)
+        }
+    }
+
+    fun checkDuplicatedEmail(email: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.checkDuplicatedEmail(email)
         }
     }
 }

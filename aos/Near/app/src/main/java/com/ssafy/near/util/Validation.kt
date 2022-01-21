@@ -37,6 +37,11 @@ object Validation {
     fun validateEmail(email: String, tiLayout: TextInputLayout): Boolean {
         val pattern = android.util.Patterns.EMAIL_ADDRESS
 
+        if (email.trim().isEmpty()) {
+            tiLayout.error = "이메일을 입력하십시오."
+            tiLayout.helperText = ""
+            return false
+        }
         if (pattern.matcher(email).matches() == false) {
             tiLayout.error = "올바른 이메일 형식이 아닙니다."
             return false
@@ -45,25 +50,31 @@ object Validation {
         return true
     }
 
-    fun validatePw(pw: String, tiLayout: TextInputLayout) {
+    fun validatePw(pw: String, tiLayout: TextInputLayout): Boolean {
         if (Pattern.matches(PW, pw) == false) {
             tiLayout.error = "사용할 수 없는 문자를 포함하고 있습니다."
-        }else if (pw.length < 8 || pw.length > 20) {
-            tiLayout.error = "비밀번호는 8 ~ 20자입니다."
-        }else {
-            tiLayout.error = ""
+            return false
         }
+        if (pw.length < 8 || pw.length > 20) {
+            tiLayout.error = "비밀번호는 8 ~ 20자입니다."
+            return false
+        }
+        tiLayout.error = ""
+        return true
     }
 
     fun confirmPw(checkedPw: String, pw: String, tiLayout: TextInputLayout): Boolean {
         if (checkedPw == pw) {
             tiLayout.error = ""
-            if (pw.length < 8 || pw.length > 20) {
-                return false
-            }
+            tiLayout.helperText = "비밀번호가 일치합니다."
             return true
         }
-        tiLayout.error = "비밀번호가 일치하지 않습니다."
+        if (checkedPw.isEmpty()) {
+            tiLayout.error = ""
+        } else {
+            tiLayout.error = "비밀번호가 일치하지 않습니다."
+        }
+        tiLayout.helperText = ""
         return false
     }
 }
