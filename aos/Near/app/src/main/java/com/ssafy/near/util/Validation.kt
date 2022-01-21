@@ -50,25 +50,24 @@ object Validation {
         return true
     }
 
-    fun validatePw(pw: String, tiLayout: TextInputLayout) {
+    fun validatePw(pw: String, tiLayout: TextInputLayout): Boolean {
         if (Pattern.matches(PW, pw) == false) {
             tiLayout.error = "사용할 수 없는 문자를 포함하고 있습니다."
-        }else if (pw.length < 8 || pw.length > 20) {
-            tiLayout.error = "비밀번호는 8 ~ 20자입니다."
-        }else {
-            tiLayout.error = ""
+            return false
         }
+        if (pw.length < 8 || pw.length > 20) {
+            tiLayout.error = "비밀번호는 8 ~ 20자입니다."
+            return false
+        }
+        tiLayout.error = ""
+        return true
     }
 
     fun confirmPw(checkedPw: String, pw: String, tiLayout: TextInputLayout): Boolean {
         if (checkedPw == pw) {
             tiLayout.error = ""
             tiLayout.helperText = "비밀번호가 일치합니다."
-
-            if (pw.length in 8..20) {
-                return true
-            }
-            return false
+            return true
         }
         if (checkedPw.isEmpty()) {
             tiLayout.error = ""
@@ -76,7 +75,6 @@ object Validation {
             tiLayout.error = "비밀번호가 일치하지 않습니다."
         }
         tiLayout.helperText = ""
-
         return false
     }
 }

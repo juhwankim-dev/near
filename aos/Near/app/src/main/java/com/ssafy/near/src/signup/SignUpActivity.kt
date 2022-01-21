@@ -13,10 +13,11 @@ import com.ssafy.near.util.Validation
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     lateinit var userViewModel: UserViewModel
-    var isCheckedId: Boolean = false
-    var isCheckedNickname: Boolean = false
-    var isCheckedEmail: Boolean = false
-    var isCheckedPw: Boolean = false
+    var isCheckedId = false
+    var isCheckedNickname = false
+    var isCheckedEmail = false
+    var isCheckedPw = false
+    var isCheckedConfirmPw = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,14 +94,14 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
         }
 
         binding.etPw.editText?.addTextChangedListener {
-            Validation.validatePw(it.toString(), binding.etPw)
-            isCheckedPw = Validation.confirmPw(binding.etConfirmPw.editText?.text.toString(),
+            isCheckedPw = Validation.validatePw(it.toString(), binding.etPw)
+            isCheckedConfirmPw = Validation.confirmPw(binding.etConfirmPw.editText?.text.toString(),
                 it.toString(),
                 binding.etConfirmPw)
         }
 
         binding.etConfirmPw.editText?.addTextChangedListener {
-            isCheckedPw = Validation.confirmPw(it.toString(),
+            isCheckedConfirmPw = Validation.confirmPw(it.toString(),
                 binding.etPw.editText?.text.toString(),
                 binding.etConfirmPw)
         }
@@ -110,15 +111,15 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
     }
 
-    fun checkDuplicatedId(id: String) {
+    private fun checkDuplicatedId(id: String) {
         userViewModel.checkDuplicatedId(id)
     }
 
-    fun checkDuplicatedNickname(nickname: String) {
+    private fun checkDuplicatedNickname(nickname: String) {
         userViewModel.checkDuplicatedNickname(nickname)
     }
 
-    fun checkDuplicatedEmail(email: String) {
+    private fun checkDuplicatedEmail(email: String) {
         userViewModel.checkDuplicatedEmail(email)
     }
 }
