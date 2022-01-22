@@ -11,22 +11,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            style="@style/body_text"
-            android:id="@+id/tv_content_header"
-            android:text="말하다"
-            app:layout_constraintBottom_toTopOf="@+id/iv_content_preview"
-            app:layout_constraintStart_toStartOf="@+id/iv_content_preview" />
-
-        <ImageView
-            android:id="@+id/iv_content_preview"
-            android:layout_width="200dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="@dimen/activity_margin_narrow"
-            android:src="@drawable/img_temp_mascot"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/fragment_home_cv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/activity_margin_default">
+
+                <ImageView
+                    android:id="@+id/iv_content_preview"
+                    android:layout_width="200dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/img_thumbnail_sample_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv_content_preview"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_content_preview"
+                    app:layout_constraintStart_toStartOf="@+id/iv_content_preview"
+                    app:layout_constraintTop_toTopOf="@+id/iv_content_preview"
+                    app:srcCompat="@drawable/ic_video_play"
+                    app:tint="@color/black_medium_emphasis" />
+
+                <TextView
+                    android:id="@+id/tv_content_header"
+                    style="@style/body_text"
+                    android:layout_marginTop="@dimen/activity_margin_narrow"
+                    android:text="가게"
+                    android:textColor="@color/temp_green"
+                    app:layout_constraintStart_toStartOf="@+id/iv_content_preview"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_content_preview" />
+
+                <TextView
+                    android:id="@+id/tv_content_explain"
+                    style="@style/explain_text"
+                    android:layout_marginTop="@dimen/activity_margin_narrow"
+                    android:text="작은 규모로 물건을 파는 곳"
+                    app:layout_constraintStart_toStartOf="@+id/tv_content_header"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_content_header" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_content_header"
+                    app:layout_constraintEnd_toEndOf="@+id/iv_content_preview"
+                    app:layout_constraintTop_toTopOf="@+id/tv_content_header" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
