@@ -28,17 +28,5 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             binding.btnLogout.visibility = View.GONE
             binding.btnLogin.visibility = View.VISIBLE
         }
-
-        binding.tvMemberModify.setOnClickListener {
-
-        }
-
-        binding.tvSetting.setOnClickListener {
-
-        }
-
-        binding.tvMyNote.setOnClickListener {
-
-        }
     }
 }

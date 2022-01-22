@@ -67,39 +67,197 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:layout_marginHorizontal="@dimen/activity_margin_wide"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/guideline">
 
-            <TextView
-                style="@style/body_text"
-                android:id="@+id/tv_member_modify"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_notice"
+                android:layout_marginTop="@dimen/activity_margin_narrow"
                 android:layout_width="match_parent"
-                android:text="회원 정보 수정"
-                android:padding="@dimen/activity_margin_default"/>
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_notice"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_notice" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="공지사항"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_notice"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/gray_low_emphasis"/>
+                android:layout_height="0.5dp"
+                android:background="@color/gray_navigation"
+                android:layout_marginVertical="@dimen/activity_margin_narrow"/>
 
-            <TextView
-                style="@style/body_text"
-                android:id="@+id/tv_setting"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_my_note"
                 android:layout_width="match_parent"
-                android:text="설정"
-                android:padding="@dimen/activity_margin_default"/>
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_bookmark"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_bookmark" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="내 단어장"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_bookmark"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_edu"
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_edu"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_edu" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="학습 진도율"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_edu"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_award"
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_award"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_award" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="게임 기록"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_award"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="@color/gray_low_emphasis"/>
+                android:layout_height="0.5dp"
+                android:background="@color/gray_navigation"
+                android:layout_marginVertical="@dimen/activity_margin_narrow"/>
 
-            <TextView
-                style="@style/body_text"
-                android:id="@+id/tv_my_note"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_member_modify"
                 android:layout_width="match_parent"
-                android:text="내 단어장"
-                android:padding="@dimen/activity_margin_default"/>
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_setting"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_setting" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="회원 정보 수정"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_setting"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_camera"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_camera" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="거울 모드"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_camera"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <Switch
+                    android:id="@+id/switch_mirror_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:switchMinWidth="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_email"
+                android:layout_width="match_parent"
+                android:layout_height="52dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon_email"
+                    android:layout_width="52dp"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/activity_margin_default"
+                    app:tint="@color/gray_low_emphasis"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_email" />
+
+                <TextView
+                    style="@style/body_text"
+                    android:layout_width="0dp"
+                    android:text="문의 및 버그신고"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/iv_icon_email"
+                    app:layout_constraintTop_toTopOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
 
 
