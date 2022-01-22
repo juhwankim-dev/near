@@ -13,20 +13,9 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
 
         initView()
-        initEvent()
     }
 
     private fun initView() {
-        binding.tvNickName.text = sSharedPreferences.getUserId()
-    }
-
-    private fun initEvent() {
-
-        binding.btnLogout.setOnClickListener {
-            sSharedPreferences.deleteUser()
-            binding.tvNickName.text = "로그인이 필요한\n서비스 입니다."
-            binding.btnLogout.visibility = View.GONE
-            binding.btnLogin.visibility = View.VISIBLE
-        }
+        //binding.tvNickName.text = sSharedPreferences.getUserId()
     }
 }

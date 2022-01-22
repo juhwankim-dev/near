@@ -8,15 +8,6 @@
         android:layout_height="match_parent"
         tools:context=".src.main.mypage.MyPageFragment">
 
-        <ImageView
-            android:id="@+id/iv_profile"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_margin="@dimen/activity_margin_default"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_app_bar"
-            app:srcCompat="@drawable/img_temp_mascot" />
-
         <TextView
             android:id="@+id/tv_app_bar"
             style="@style/appbar_text"
@@ -25,66 +16,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_margin="@dimen/activity_margin_wide"
+            app:tint="@color/gray_navigation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_app_bar"
+            app:srcCompat="@drawable/ic_face" />
+
         <TextView
             style="@style/header_text"
             android:id="@+id/tv_nick_name"
-            android:text="닉네임"
+            android:text="주환이는 주황주황"
             android:layout_margin="@dimen/activity_margin_default"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
-        <Button
-            android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그인"
+        <TextView
+            style="@style/header_text"
+            android:id="@+id/tv_login"
+            android:text="로그인 및 회원가입 하기"
             android:layout_margin="@dimen/activity_margin_default"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
-
-        <Button
-            android:id="@+id/btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="로그아웃"
-            android:layout_margin="@dimen/activity_margin_default"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
-
-        <View
-            android:id="@+id/guideline"
-            android:layout_width="match_parent"
-            android:layout_height="0.3dp"
-            android:background="@color/gray_low_emphasis"
-            android:layout_marginTop="@dimen/activity_margin_default"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
+            android:layout_marginTop="@dimen/activity_margin_default"
             android:layout_marginHorizontal="@dimen/activity_margin_wide"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/guideline">
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+            tools:layout_editor_absoluteX="32dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_notice"
-                android:layout_marginTop="@dimen/activity_margin_narrow"
                 android:layout_width="match_parent"
-                android:layout_height="52dp">
+                android:layout_height="52dp"
+                android:layout_marginTop="@dimen/activity_margin_narrow">
 
                 <ImageView
                     android:id="@+id/iv_icon_notice"
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_notice" />
+                    app:srcCompat="@drawable/ic_notice"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -99,8 +83,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/gray_navigation"
-                android:layout_marginVertical="@dimen/activity_margin_narrow"/>
+                android:layout_marginVertical="@dimen/activity_margin_narrow"
+                android:background="@color/gray_navigation" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_my_note"
@@ -112,9 +96,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_bookmark" />
+                    app:srcCompat="@drawable/ic_bookmark"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -123,7 +107,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_icon_bookmark"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -136,9 +120,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_edu" />
+                    app:srcCompat="@drawable/ic_edu"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -147,7 +131,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_icon_edu"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -160,9 +144,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_award" />
+                    app:srcCompat="@drawable/ic_award"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -171,14 +155,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_icon_award"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:background="@color/gray_navigation"
-                android:layout_marginVertical="@dimen/activity_margin_narrow"/>
+                android:layout_marginVertical="@dimen/activity_margin_narrow"
+                android:background="@color/gray_navigation" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_member_modify"
@@ -190,9 +174,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_setting" />
+                    app:srcCompat="@drawable/ic_setting"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -213,9 +197,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_camera" />
+                    app:srcCompat="@drawable/ic_camera"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -223,7 +207,7 @@
                     android:text="거울 모드"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_icon_camera"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <Switch
                     android:id="@+id/switch_mirror_mode"
@@ -245,9 +229,9 @@
                     android:layout_width="52dp"
                     android:layout_height="match_parent"
                     android:padding="@dimen/activity_margin_default"
-                    app:tint="@color/gray_low_emphasis"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:srcCompat="@drawable/ic_email" />
+                    app:srcCompat="@drawable/ic_email"
+                    app:tint="@color/gray_low_emphasis" />
 
                 <TextView
                     style="@style/body_text"
@@ -256,10 +240,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/iv_icon_email"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
