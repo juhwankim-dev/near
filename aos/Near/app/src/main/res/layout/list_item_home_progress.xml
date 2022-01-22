@@ -12,7 +12,7 @@
         android:paddingVertical="@dimen/activity_margin_default">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_main_image"
+            android:id="@+id/cv_thumbnail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/activity_margin_default"
@@ -29,46 +29,46 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_title"
             style="@style/body_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="수어 배우기 1주차"
             android:layout_marginStart="@dimen/activity_margin_default"
-            app:layout_constraintStart_toEndOf="@+id/cv_main_image"
-            app:layout_constraintTop_toTopOf="@+id/cv_main_image" />
+            app:layout_constraintStart_toEndOf="@+id/cv_thumbnail"
+            app:layout_constraintTop_toTopOf="@+id/cv_thumbnail" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_content"
             style="@style/explain_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="자음 모음부터 나아가기"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/tv_title"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
         <TextView
             style="@style/explain_text"
-            android:id="@+id/textView4"
+            android:id="@+id/tv_percentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="40%"
             android:textColor="@color/temp_green"
-            app:layout_constraintBottom_toTopOf="@+id/progressBar"
-            app:layout_constraintStart_toStartOf="@+id/progressBar" />
+            app:layout_constraintBottom_toTopOf="@+id/pb_edu"
+            app:layout_constraintStart_toStartOf="@+id/pb_edu" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tv_state"
             style="@style/explain_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="진행중"
             android:textColor="@color/temp_green"
-            app:layout_constraintBottom_toTopOf="@+id/progressBar"
-            app:layout_constraintEnd_toEndOf="@+id/progressBar" />
+            app:layout_constraintBottom_toTopOf="@+id/pb_edu"
+            app:layout_constraintEnd_toEndOf="@+id/pb_edu" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/tv_type"
             style="@style/explain_text"
             android:layout_width="wrap_content"
             android:layout_height="16dp"
@@ -77,32 +77,32 @@
             android:text="공개형"
             android:textSize="8sp"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintStart_toStartOf="@+id/textView4" />
+            app:layout_constraintBottom_toTopOf="@+id/tv_percentage"
+            app:layout_constraintStart_toStartOf="@+id/tv_percentage" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/pb_edu"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:progressTint="@color/temp_green"
             android:progress="40"
-            app:layout_constraintBottom_toBottomOf="@+id/cv_main_image"
-            app:layout_constraintEnd_toStartOf="@+id/guideline2"
-            app:layout_constraintStart_toStartOf="@+id/textView3" />
+            app:layout_constraintBottom_toBottomOf="@+id/cv_thumbnail"
+            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintStart_toStartOf="@+id/tv_content" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/iv_donate"
             android:layout_width="64dp"
             android:layout_height="64dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_home_donate" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
+            android:id="@+id/guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
