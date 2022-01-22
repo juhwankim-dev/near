@@ -11,6 +11,7 @@ import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.main.MainActivity
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
+import com.ssafy.near.src.signup.SignUpActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     lateinit var userViewModel: UserViewModel
@@ -27,14 +28,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             .get(UserViewModel::class.java)
 
         userViewModel.getSignResponse().observe(this, { signResponse ->
-            if (signResponse == null) {
-                Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-            } else if (signResponse.output != 1) {
-                Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
-            } else {
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+            when {
+                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
+                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                else -> {
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
             }
         })
     }
@@ -56,6 +57,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             }
 
             login(id, pw)
+        }
+
+        binding.btnSignUp.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
         }
     }
 

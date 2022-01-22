@@ -30,7 +30,7 @@ public class SwaggerConfig {
     @Bean
     public Docket apiV1() {
         version = "V1";
-        title = "SSAFY API " + version;
+        title = "Near API " + version;
 
         return new Docket(DocumentationType.SWAGGER_2)
                 .host(host)

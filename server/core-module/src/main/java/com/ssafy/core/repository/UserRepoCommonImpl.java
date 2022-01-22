@@ -56,6 +56,16 @@ public class UserRepoCommonImpl implements UserRepoCommon{
         return result;
     }
 
+    @Override
+    public User findByNickname(String nickname) {
+        User result = queryFactory
+                .select(QUser.user)
+                .from(QUser.user)
+                .where(QUser.user.nickname.eq(nickname))
+                .fetchOne();
+        return result;
+    }
+
 
     // isBind 조건만 체크
     public BooleanExpression checkUserIsBind(YNCode isBind){
