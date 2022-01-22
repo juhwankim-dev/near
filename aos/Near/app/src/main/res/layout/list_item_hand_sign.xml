@@ -16,11 +16,12 @@
             style="@style/body_text"
             android:layout_width="match_parent"
             android:padding="@dimen/activity_margin_default"
-            android:text="수어 단어" />
+            android:text="@{voca}" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
             android:background="@color/gray_low_emphasis" />
     </LinearLayout>
 </layout>

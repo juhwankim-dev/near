@@ -10,50 +10,48 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/temp_gray_light"
         tools:context=".src.main.handsign.HandSignFragment">
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
-            android:background="@color/white"
-            app:layout_constraintBottom_toBottomOf="@+id/radioGroup"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/radioGroup" />
+        <ImageView
+            android:id="@+id/iv_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img_hand_sign_header" />
 
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_default"
+            android:layout_height="40dp"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/activity_margin_default"
-            app:layout_constraintTop_toTopOf="parent">
+            android:paddingHorizontal="@dimen/activity_margin_wide"
+            app:layout_constraintTop_toBottomOf="@+id/iv_header">
 
             <RadioButton
                 android:id="@+id/rb_all_hand_sign"
                 style="@style/body_text"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/selector_radio_button_green"
+                android:background="@drawable/selector_left_radio_button_blue"
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
                 android:text="전체 수어"
-                android:textColor="@drawable/selector_radio_text_green" />
+                android:textStyle="bold"
+                android:textColor="@drawable/selector_radio_text_blue" />
 
             <RadioButton
                 android:id="@+id/rb_my_note"
                 style="@style/body_text"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:background="@drawable/selector_radio_button_green"
+                android:background="@drawable/selector_right_radio_button_blue"
                 android:button="@null"
                 android:gravity="center"
                 android:text="내 단어장"
-                android:textColor="@drawable/selector_radio_text_green" />
+                android:textStyle="bold"
+                android:textColor="@drawable/selector_radio_text_blue" />
         </RadioGroup>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -5,9 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.near.databinding.ListItemHandSignBinding
 
-class HandSignAdapter : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
+class HandSignAdapter(var list: MutableList<String>) : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
     private lateinit var itemClickListner: ItemClickListener
-    var list = mutableListOf<String>()
+    //var list = mutableListOf<String>()
 
     inner class HandSignViewHolder(private val binding: ListItemHandSignBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(s: String) {

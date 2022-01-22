@@ -18,7 +18,7 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
     }
 
     private fun initView() {
-        handSignAdapter = HandSignAdapter()
+        handSignAdapter = HandSignAdapter(mutableListOf("말하다", "고맙다", "사랑한다", "좋아한다", "심심하다", "졸리다"))
         binding.rvHandSign.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = handSignAdapter
