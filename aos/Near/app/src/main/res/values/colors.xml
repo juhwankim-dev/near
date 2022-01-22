@@ -12,6 +12,8 @@
     <color name="black_high_emphasis">#D9000000</color>
     <color name="black_medium_emphasis">#99000000</color>
     <color name="gray_low_emphasis">#66000000</color>
+    <color name="gray_navigation">#d1cec9</color>
+    <color name="gray_divider">#f4f4f3</color>
 
     <color name="temp_green">#ADE3B5</color>
     <color name="green_pass">#38cf5b</color>

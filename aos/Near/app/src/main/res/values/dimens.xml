@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- margin 값 -->
     <dimen name="activity_margin_wide">32dp</dimen>
     <dimen name="activity_margin_default">16dp</dimen>
