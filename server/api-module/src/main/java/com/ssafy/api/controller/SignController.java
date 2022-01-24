@@ -19,17 +19,12 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.loader.plan.spi.JoinDefinedByMetadata;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 @Api(tags = {"02. 회원"})
 @Slf4j
@@ -191,7 +186,7 @@ public class SignController {
     @ApiOperation(value = "토큰으로 유저정보 반환", notes = "토큰에 따라 유저 정보를 반환한다")
     @GetMapping(value = "/userInfo", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<UserInfoResDTO> userInfo(@Valid UserInfoReqDTO req) throws Exception {
+    SingleResult<UserInfoResDTO> userInfo(@Valid tokenReqDTO req) throws Exception {
 
         // 1. 유효기간을 확인한다.
         if (!jwtTokenProvider.validateToken(req.getToken())) {
