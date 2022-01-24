@@ -6,7 +6,7 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
-import com.ssafy.near.config.ApplicationClass
+import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityEditUserInfoBinding
 import com.ssafy.near.dto.UserInfo
@@ -21,10 +21,11 @@ class EditUserInfoActivity :
     lateinit var userViewModel: UserViewModel
     var isCheckedNickname = false
     var isCheckedEmail = false
-    var isCheckedPw = false
-    var isCheckedConfirmPw = false
+    var isCheckedOldPw = false
+    var isCheckedNewPw = false
+    var isCheckedConfirmNewPw = false
     var oldInfo = UserInfo()
-    var newInfo = UserInfo()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,7 +81,7 @@ class EditUserInfoActivity :
         })
 
         userViewModel.getCheckedEmail().observe(this, {
-            isCheckedEmail = when(it) {
+            isCheckedEmail = when (it) {
                 true -> {
                     when (binding.etEmail.editText?.text.toString()) {
                         oldInfo.email -> {
@@ -108,14 +109,33 @@ class EditUserInfoActivity :
                 }
             }
         })
+
+        userViewModel.getCheckedPw().observe(this, {
+            isCheckedOldPw = when (it) {
+                true -> {
+                    binding.etOldPw.apply {
+                        error = ""
+                        helperText = "비밀번호가 일치합니다."
+                    }
+                    true
+                }
+                false -> {
+                    binding.etOldPw.apply {
+                        error = "비밀번호가 일치하지 않습니다."
+                        helperText = ""
+                    }
+                    false
+                }
+            }
+        })
     }
 
     private fun initData() {
-        val token = ApplicationClass.sSharedPreferences.getToken()
-        if (token == "") {
+        val token = sSharedPreferences.getUserToken()
+        if (token == "default") {
             requestLogin()
         } else {
-            userViewModel.loadUserInfo(token!!)
+            userViewModel.loadUserInfo(token)
         }
     }
 
@@ -136,16 +156,33 @@ class EditUserInfoActivity :
             }
         }
 
+        binding.etOldPw.editText?.addTextChangedListener {
+            when {
+                Validation.validatePw(it.toString(), binding.etOldPw) -> checkPw(it.toString(),
+                    sSharedPreferences.getUserToken())
+                else -> isCheckedOldPw = false
+            }
+        }
+
         binding.etNewPw.editText?.addTextChangedListener {
-            isCheckedPw = Validation.validatePw(it.toString(), binding.etNewPw)
-            isCheckedConfirmPw =
+            isCheckedNewPw = when {
+                it.toString() == binding.etOldPw.editText?.text.toString() -> {
+                    binding.etNewPw.error = "다른 비밀번호를 사용하세요."
+                    false
+                }
+                else -> {
+                    binding.etNewPw.error = ""
+                    Validation.validatePw(it.toString(), binding.etNewPw)
+                }
+            }
+            isCheckedConfirmNewPw =
                 Validation.confirmPw(binding.etConfirmNewPw.editText?.text.toString(),
                     it.toString(),
                     binding.etConfirmNewPw)
         }
 
         binding.etConfirmNewPw.editText?.addTextChangedListener {
-            isCheckedConfirmPw = Validation.confirmPw(it.toString(),
+            isCheckedConfirmNewPw = Validation.confirmPw(it.toString(),
                 binding.etNewPw.editText?.text.toString(),
                 binding.etConfirmNewPw)
         }
@@ -163,6 +200,10 @@ class EditUserInfoActivity :
 
     private fun checkDuplicatedEmail(email: String) {
         userViewModel.checkDuplicatedEmail(email)
+    }
+
+    private fun checkPw(pw: String, token: String) {
+        userViewModel.checkPw(pw, token)
     }
 
     private fun updateUserInfo() {

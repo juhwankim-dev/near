@@ -12,9 +12,10 @@ import kotlinx.coroutines.launch
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val signResponse = userRepository._signResponse
     private val userInfo = userRepository._userInfo
-    private val checkedId = userRepository._checkedId
-    private val checkedNickname = userRepository._checkedNickname
-    private val checkedEmail = userRepository._checkedEmail
+    private val isCheckedId = userRepository._isCheckedId
+    private val isCheckedNickname = userRepository._isCheckedNickname
+    private val isCheckedEmail = userRepository._isCheckedEmail
+    private val isCheckedPw = userRepository._isCheckedPw
 
 
     fun getSignResponse(): LiveData<SignResponse> {
@@ -26,15 +27,19 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     }
 
     fun getCheckedId(): LiveData<Boolean> {
-        return checkedId
+        return isCheckedId
     }
 
     fun getCheckedNickname(): LiveData<Boolean> {
-        return checkedNickname
+        return isCheckedNickname
     }
 
     fun getCheckedEmail(): LiveData<Boolean> {
-        return checkedEmail
+        return isCheckedEmail
+    }
+
+    fun getCheckedPw(): LiveData<Boolean> {
+        return isCheckedPw
     }
 
     fun login(id: String, pw: String) {
@@ -70,6 +75,12 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     fun checkDuplicatedEmail(email: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.checkDuplicatedEmail(email)
+        }
+    }
+
+    fun checkPw(pw: String, token: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.checkPw(pw, token)
         }
     }
 }

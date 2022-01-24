@@ -1,6 +1,7 @@
 package com.ssafy.near.api
 
 import com.ssafy.near.dto.Duplication
+import com.ssafy.near.dto.Model
 import com.ssafy.near.dto.SignResponse
 import com.ssafy.near.dto.UserInfoResponse
 import org.jetbrains.annotations.NotNull
@@ -36,5 +37,11 @@ interface UserApi {
     ): Response<SignResponse>
 
     @POST("api/sign/userInfo")
-    suspend fun getUserInfo(@Query("token") @NotNull token: String): Response<UserInfoResponse>
+    suspend fun loadUserInfo(@Query("token") @NotNull token: String): Response<UserInfoResponse>
+
+    @POST("api/modify/check")
+    suspend fun checkPw(
+        @Query("password") @NotNull password: String,
+        @Query("token") @NotNull token: String,
+    ): Response<Model<String>>
 }
