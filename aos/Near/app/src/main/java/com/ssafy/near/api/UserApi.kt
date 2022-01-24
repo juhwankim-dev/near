@@ -35,6 +35,6 @@ interface UserApi {
         @Query("password") @NotNull password: String
     ): Response<SignResponse>
 
-    @GET("api/sign/userInfo")
+    @POST("api/sign/userInfo")
     suspend fun getUserInfo(@Query("token") @NotNull token: String): Response<UserInfoResponse>
 }

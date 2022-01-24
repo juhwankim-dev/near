@@ -30,10 +30,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             .get(UserViewModel::class.java)
 
         userViewModel.getUserInfo().observe(viewLifecycleOwner, {
-            when(it.output) {
-                0 -> setLogoutState()
-                1 -> {
-                    binding.tvNickName.text = it.data.nickname
+            when(it.userInfo) {
+                null -> setLogoutState()
+                else -> {
+                    binding.tvNickName.text = it.userInfo.nickname
                     setLoginState()
                 }
             }
@@ -46,7 +46,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     private fun initEvent() {
         binding.tvLogin.setOnClickListener {
-            setLoginState()
             startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 

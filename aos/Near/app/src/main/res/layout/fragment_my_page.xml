@@ -38,8 +38,9 @@
         <TextView
             android:id="@+id/tv_login"
             style="@style/body_text"
-            android:layout_marginEnd="@dimen/activity_margin_wide"
+            android:layout_marginEnd="@dimen/activity_margin_default"
             android:text="로그인 >"
+            android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />

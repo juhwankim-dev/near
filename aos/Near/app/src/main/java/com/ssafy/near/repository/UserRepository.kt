@@ -27,7 +27,7 @@ class UserRepository {
     suspend fun login(uid: String, pw: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.login("sns", uid, pw)
+                RetrofitUtil.userService.login("none", uid, pw)
             }
 
             if (response.isSuccessful) {
