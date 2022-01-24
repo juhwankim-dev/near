@@ -191,7 +191,7 @@ public class SignController {
     @ApiOperation(value = "토큰으로 유저정보 반환", notes = "토큰에 따라 유저 정보를 반환한다")
     @GetMapping(value = "/userInfo", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<UserInfoResDTO> UserInfo(@Valid UserInfoReqDTO req) throws Exception {
+    SingleResult<UserInfoResDTO> userInfo(@Valid UserInfoReqDTO req) throws Exception {
 
         // 1. 유효기간을 확인한다.
         if (!jwtTokenProvider.validateToken(req.getToken())) {
@@ -232,7 +232,7 @@ public class SignController {
     @ApiOperation(value = "닉네임 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<Boolean> checkmail(@Valid CheckNicknameReqDTO req) throws Exception {
+    SingleResult<Boolean> checkNickname(@Valid CheckNicknameReqDTO req) throws Exception {
         User user = signService.findUserByNickname(req.getNickname());
 
         if (user == null) {
@@ -240,4 +240,8 @@ public class SignController {
         }
         return responseService.getSingleResult(true);
     }
+
+
+
+
 }
