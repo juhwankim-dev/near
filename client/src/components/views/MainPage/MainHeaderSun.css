@@ -1,0 +1,206 @@
+/* body {
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #2A003F;
+	position: relative;
+} */
+
+body > div {
+	position: a;
+  
+}
+.stars {
+	height: 5px;
+	width: 5px;
+	border-radius: 50%;
+	/* background-color: #FAE62D; */
+	position: absolute; 
+	top: -20px;
+	left: 20px;
+	box-shadow:
+    370px 340px 0  rgb(239, 241, 113),
+    70px 340px 0  rgb(239, 241, 113),
+		330px 25px 0 2px #FAE62D,
+		180px 400px 0 1px #3BEEED,
+		380px 200px #3BEEED,
+		-75px 100px 0 1px hsl(54, 95%, 58%),
+		450px 120px 0 1px #FAE62D,
+		340px 140px #FAE62D,
+		-40px 240px 0 2px #FAE62D,
+		430px 260px 0 1px #FAE62D,
+		-110px 370px #FAE62D,
+		400px 400px 0 1px #FAE62D,
+		480px 440px #3BEEED,
+		-10px 450px #FAE62D,
+		100px 500px 0 2px #FAE62D,
+		320px 520px 0 1px #FAE62D,
+		-50px 530px #FAE62D;
+}
+.sun {
+	position: absolute;
+	top: 45px;
+	left: 50px;
+	height: 250px;
+	width: 250px;
+	border-radius: 50%;
+	background-color: #FAE62D;
+	box-shadow: inset -20px -20px #FCC000;
+}
+.sun:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	background-color: #FCC000;
+	height: 280px;
+	width: 280px;
+	border-radius: 50%;
+	top: -15px;
+	left: -15px;
+	box-shadow:
+		0 0 0 40px rgba(252, 192, 0, 0.1),
+		0 0 0 75px rgba(252, 192, 0, 0.1),
+		0 0 0 110px rgba(252, 192, 0, 0.1),
+		0 0 0 145px rgba(252, 192, 0, 0.1);
+		position: absolute;
+}
+.face {
+	position: absolute;
+	top: 110px;
+	left: 70px;
+	animation: face 10s linear infinite;
+}
+.eyes {
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	background-color: #2A003F;
+	position: absolute;
+	box-shadow: 80px 0 #2A003F;
+	animation: eyes 7s linear infinite 2s;
+}
+.mouth {
+	height: 25px;
+	width: 49px;
+	border-radius: 50%;
+	border: 10px solid;
+	border-color: transparent transparent #2A003F;
+	position: absolute;
+	top: 15px;
+	left: 27px;
+}
+.mouth:before {
+	content: "";
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #2A003F;
+	bottom: -6px;
+	left: -7px;
+	box-shadow: 34px 0 #2A003F;
+}
+.arm {
+	width: 15px;
+	height: 80px;
+	border-radius: 10px;
+	background-color: #2A003F;
+	/* position: absolute; */
+
+	left: -125px;
+	transform-origin: top;
+}
+.arm > div {
+	width: 15px;
+	height: 50px;
+	border-radius: 10px;
+	background-color: #2A003F;
+	position: absolute;
+	transform-origin: top;
+	bottom: -40px;
+}
+.arm > div > div {
+	width: 15px;
+	height: 30px;
+	border-radius: 10px;
+	background-color: #2A003F;
+	position: absolute;
+	transform-origin: top;
+	bottom: -20px;
+}
+.arm.left {
+	animation: leftArm 10s linear infinite;
+}
+.arm.right {
+	left: initial;
+	right: -125px;
+	animation: rightArm 10s linear infinite, arm 0.6s alternate linear infinite;
+	transform: rotate(-140deg);
+}
+.arm.right > div {
+	transform: rotate(-30deg);
+	left: -2px;
+	animation: forearm 0.6s alternate linear infinite;
+}
+.arm.right > div > div {
+	transform: rotate(-20deg);
+	animation: hand 0.6s alternate linear infinite;
+}
+
+@keyframes eyes {
+	2% {
+		height: 4px;
+		top: 8px;
+	}
+	4% {
+		height: 20px;
+		top: 0;
+	}
+}
+@keyframes face {
+	10% {left: 10px;}
+	20% {left: 10px;}
+	40% {left: 150px;}
+	50% {left: 150px;}
+	60% {left: 70px;}
+}
+@keyframes leftArm {
+	10% {left: -100px;}
+	20% {left: -100px;}
+	30% {
+		z-index: 0;
+		left: -125px;
+	}
+	35% {z-index: 1;}
+	40% {left: -110px;}
+	50% {left: -110px;}
+	60% {left: -125px;}
+	80% {z-index: 0;}
+}
+
+@keyframes rightArm {
+	5% {z-index: 1}
+	10% {right: -100px;}
+	20% {right: -100px;}
+	30% {right: -125px;}
+	40% {right: -110px;}
+	50% {right: -110px;}
+	55% {z-index: 0;}
+	60% {right: -125px;}
+}
+@keyframes arm {
+	to {transform: rotate(-120deg);}
+}
+@keyframes forearm {
+	to {
+		transform: rotate(0deg);
+		left: 0;
+	}
+}
+@keyframes hand {
+	to {
+		transform: rotate(0deg);
+	}
+}
