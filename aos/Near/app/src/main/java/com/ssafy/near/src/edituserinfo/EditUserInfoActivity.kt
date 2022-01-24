@@ -86,7 +86,7 @@ class EditUserInfoActivity :
                         oldInfo.email -> {
                             binding.etEmail.apply {
                                 error = ""
-                                helperText = ""
+                                helperText = "   "
                             }
                             true
                         }
