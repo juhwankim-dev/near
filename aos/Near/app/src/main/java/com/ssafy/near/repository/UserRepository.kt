@@ -70,7 +70,6 @@ class UserRepository {
                 RetrofitUtil.userService.loadUserInfo(token)
             }
             if (response.isSuccessful) {
-                Log.d(TAG, "loadUserInfo: ${response.body()}")
                 if (response.body() != null) {
                     _userInfo.postValue(response.body()?.userInfo)
                 } else {

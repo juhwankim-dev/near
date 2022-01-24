@@ -50,46 +50,62 @@ class EditUserInfoActivity :
         })
 
         userViewModel.getCheckedNickname().observe(this, {
-            if (it) {
-                if (binding.etNickname.editText?.text.toString() == oldInfo.nickname) {
-                    isCheckedNickname = true
-                    binding.etNickname.apply {
-                        error = ""
-                        helperText = ""
-                    }
-                } else {
-                    isCheckedNickname = false
-                    binding.etNickname.apply {
-                        error = "이미 존재하는 닉네임입니다."
-                        helperText = ""
+            isCheckedNickname = when (it) {
+                true -> {
+                    when (binding.etNickname.editText?.text.toString()) {
+                        oldInfo.nickname -> {
+                            binding.etNickname.apply {
+                                error = ""
+                                helperText = ""
+                            }
+                            true
+                        }
+                        else -> {
+                            binding.etNickname.apply {
+                                error = "이미 존재하는 닉네임입니다."
+                                helperText = ""
+                            }
+                            false
+                        }
                     }
                 }
-            } else {
-                isCheckedNickname = true
-                binding.etNickname.apply {
-                    error = ""
-                    helperText = "사용 가능한 닉네임입니다."
+                false -> {
+                    binding.etNickname.apply {
+                        error = ""
+                        helperText = "사용 가능한 닉네임입니다."
+                    }
+                    true
                 }
             }
         })
 
         userViewModel.getCheckedEmail().observe(this, {
-            if (it) {
-                if (binding.etEmail.editText?.text.toString() == oldInfo.email) {
-                    isCheckedEmail = true
-                    binding.etNickname.apply {
-                        error = ""
-                        helperText = ""
+            isCheckedEmail = when(it) {
+                true -> {
+                    when (binding.etEmail.editText?.text.toString()) {
+                        oldInfo.email -> {
+                            binding.etEmail.apply {
+                                error = ""
+                                helperText = ""
+                            }
+                            true
+                        }
+                        else -> {
+                            binding.etEmail.apply {
+                                error = "이미 존재하는 이메일입니다."
+                                helperText = ""
+                            }
+                            false
+                        }
                     }
-                } else {
-                    isCheckedEmail = false
-                    binding.etEmail.error = "이미 존재하는 이메일입니다."
-                    binding.etEmail.helperText = ""
                 }
-            } else {
-                isCheckedEmail = true
-                binding.etEmail.error = ""
-                binding.etEmail.helperText = "사용 가능한 이메일입니다."
+                false -> {
+                    binding.etEmail.apply {
+                        error = ""
+                        helperText = "사용 가능한 이메일입니다."
+                    }
+                    true
+                }
             }
         })
     }
