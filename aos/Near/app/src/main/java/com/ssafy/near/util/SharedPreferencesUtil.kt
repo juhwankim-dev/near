@@ -21,6 +21,10 @@ class SharedPreferencesUtil(context: Context) {
         return preferences.getString("id", "default")!!;
     }
 
+    fun getUserToken(): String {
+        return preferences.getString("token", "default")!!;
+    }
+
     fun deleteUser() {
         val editor = preferences.edit()
         editor.clear()

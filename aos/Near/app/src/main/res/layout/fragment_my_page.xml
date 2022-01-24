@@ -29,20 +29,29 @@
         <TextView
             style="@style/header_text"
             android:id="@+id/tv_nick_name"
-            android:text="주환이는 주황주황"
+            android:text="로그인이 필요합니다"
             android:layout_margin="@dimen/activity_margin_default"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
             app:layout_constraintStart_toEndOf="@+id/iv_profile"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
         <TextView
-            style="@style/header_text"
             android:id="@+id/tv_login"
-            android:text="로그인 및 회원가입 하기"
-            android:layout_margin="@dimen/activity_margin_default"
+            style="@style/body_text"
+            android:layout_marginEnd="@dimen/activity_margin_wide"
+            android:text="로그인 >"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+        <TextView
+            android:id="@+id/tv_logout"
+            style="@style/body_text"
+            android:layout_marginEnd="@dimen/activity_margin_wide"
+            android:text="로그아웃 >"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
-            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_profile" />
 
         <LinearLayout
