@@ -10,7 +10,8 @@ object ImageBindingAdapter {
     fun bindImageUrl(view: ImageView, src: String){
         Glide.with(view.context)
             .load(src)
-            .override(200, 200)
+            .override(200, 150)
+            .circleCrop()
             .into(view)
     }
 }

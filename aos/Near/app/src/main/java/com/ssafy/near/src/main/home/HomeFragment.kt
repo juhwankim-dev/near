@@ -2,12 +2,14 @@ package com.ssafy.near.src.main.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
+    lateinit var progressAdapter: ProgressAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,6 +31,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             it.setPageTransformer { page, position ->
                 page.translationX = position * -offsetPx
             }
+        }
+
+        binding.rvProgress.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = ProgressAdapter(mutableListOf("test", "test", "test", "test"))
         }
     }
 }
