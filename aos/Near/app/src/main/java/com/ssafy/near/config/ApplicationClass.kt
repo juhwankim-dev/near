@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApplicationClass : Application() {
-    private val baseUrl = "https://api.github.com/" // TODO BE에서 제공하는 url 입력
+    private val baseUrl = "https://hoonycode.loca.lt/"
     companion object {
         lateinit var sSharedPreferences: SharedPreferencesUtil
         const val SHARED_PREFERENCES_NAME = "SSAFY_APP"

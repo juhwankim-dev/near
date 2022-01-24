@@ -2,6 +2,7 @@ package com.ssafy.near.api
 
 import com.ssafy.near.dto.Duplication
 import com.ssafy.near.dto.SignResponse
+import com.ssafy.near.dto.UserInfoResponse
 import org.jetbrains.annotations.NotNull
 import retrofit2.Response
 import retrofit2.http.GET
@@ -33,4 +34,7 @@ interface UserApi {
         @Query("email") email: String,
         @Query("password") @NotNull password: String
     ): Response<SignResponse>
+
+    @POST("api/sign/userInfo")
+    suspend fun getUserInfo(@Query("token") @NotNull token: String): Response<UserInfoResponse>
 }
