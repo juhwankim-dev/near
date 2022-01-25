@@ -26,7 +26,7 @@ class UserRepository {
     var _isCheckedPw = MutableLiveData<Boolean>()
         private set
 
-    var _isUpdatedUsesr = MutableLiveData<Boolean>()
+    var _isUpdatedUser = MutableLiveData<Boolean>()
         private set
     var _isUpdatedNickname = MutableLiveData<Boolean>()
         private set
@@ -169,7 +169,7 @@ class UserRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    _isUpdatedUsesr.postValue(response.body()!!.output == 1)
+                    _isUpdatedUser.postValue(response.body()!!.output == 1)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")

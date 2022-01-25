@@ -18,15 +18,13 @@ import com.ssafy.near.util.Validation
 class EditUserInfoActivity :
     BaseActivity<ActivityEditUserInfoBinding>(R.layout.activity_edit_user_info) {
     lateinit var userViewModel: UserViewModel
-    var oldInfo = UserInfo()
+    lateinit var oldInfo: UserInfo
     var isCheckedNickname = false
     var isCheckedEmail = false
     var isCheckedOldPw = false
     var isCheckedNewPw = false
     var isCheckedConfirmNewPw = false
-    var isUpdatedNickname = false
-    var isUpdatedEmail = false
-    var isUpdatedPw = false
+    var isUpdatedUser = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,22 +107,15 @@ class EditUserInfoActivity :
             }
         })
 
-        userViewModel.getUpdatedNickname().observe(this, {
-            isUpdatedNickname = it
-        })
-
-        userViewModel.getUpdatedEmail().observe(this, {
-            isUpdatedEmail = it
-        })
-
-        userViewModel.getUpdatedPw().observe(this, {
-            isUpdatedPw = it
-
-            if (isUpdatedNickname && isUpdatedEmail && isUpdatedPw) {
-                showToastMessage("회원 정보 수정 성공!")
-                finish()
-            } else {
-                showToastMessage("회원 정보 수정 실패! 다시 시도해주세요.")
+        userViewModel.getUpdatedUser().observe(this, {
+            when (it) {
+                true -> {
+                    showToastMessage("회원정보가 수정되었습니다.")
+                    finish()
+                }
+                else -> {
+                    showToastMessage("회원정보 수정에 실패했습니다. 다시 시도해주세요.")
+                }
             }
         })
     }
@@ -224,9 +215,7 @@ class EditUserInfoActivity :
         if (id == "-1")
             requestLogin()
         else {
-            userViewModel.updateNickname(id, nickname)
-            userViewModel.updateEmail(id, email)
-            userViewModel.updatePw(id, pw)
+            userViewModel.updateUser(id, nickname, email, pw)
         }
     }
 

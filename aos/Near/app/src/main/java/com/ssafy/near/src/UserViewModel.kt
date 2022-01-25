@@ -18,6 +18,7 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val isCheckedEmail = userRepository._isCheckedEmail
     private val isCheckedPw = userRepository._isCheckedPw
 
+    private val isUpdatedUser = userRepository._isUpdatedUser
     private val isUpdatedNickname = userRepository._isUpdatedNickname
     private val isUpdatedEmail = userRepository._isUpdatedEmail
     private val isUpdatedPw = userRepository._isUpdatedPw
@@ -45,6 +46,10 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun getCheckedPw(): LiveData<Boolean> {
         return isCheckedPw
+    }
+
+    fun getUpdatedUser(): LiveData<Boolean> {
+        return isUpdatedUser
     }
 
     fun getUpdatedNickname(): LiveData<Boolean> {
