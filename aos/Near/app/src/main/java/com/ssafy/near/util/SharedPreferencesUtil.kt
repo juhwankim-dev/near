@@ -15,4 +15,19 @@ class SharedPreferencesUtil(context: Context) {
         editor.putString("token", userToken.token)
         editor.apply()
     }
+
+    // TODO: 2022-01-20 우선 이 id를 가져오는거로 작성해놓았지만 회원 id 가져오는거로 변경 필요
+    fun getUserId(): String {
+        return preferences.getString("id", "default")!!;
+    }
+
+    fun getUserToken(): String {
+        return preferences.getString("token", "default")!!;
+    }
+
+    fun deleteUser() {
+        val editor = preferences.edit()
+        editor.clear()
+        editor.apply()
+    }
 }
