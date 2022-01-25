@@ -42,10 +42,8 @@ public class ModifyService {
         long cnt = 0;
         cnt += userRepository.updatePassword(id, user.getPassword())
                 +  userRepository.updateNickname(id, user.getNickname())
-                + userRepository.updatePhone(id, user.getPhone())
-                + userRepository.updateAddress(id, user.getAddress(), user.getAddressDetail())
                 + userRepository.updateEmail(id, user.getEmail());
 
-        return cnt >= 6 ? true : false;
+        return cnt >= 3 ? true : false;
     }
 }

@@ -25,18 +25,6 @@ public class ModifyUserReqDTO {
     private String nickname;
 
     @NotBlank
-    @ApiModelProperty(value = "주소", required = true, example = "경북 구미시 3공단 3로 ")
-    private String address;
-
-    @NotBlank
-    @ApiModelProperty(value = "상세주소", required = true, example = "302 임수동 94-1 멀티캠퍼스")
-    private String addressDetail;
-
-    @NotBlank
-    @ApiModelProperty(value = "핸드폰번호('-'값 없이 입력)", required = true, example = "01012345678")
-    private String phone;
-
-    @NotBlank
     @ApiModelProperty(value = "이메일 주소", required = true, example = "kakao@gmail.com")
     private String email;
 
