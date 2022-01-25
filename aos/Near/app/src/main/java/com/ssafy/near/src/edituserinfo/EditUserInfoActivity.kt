@@ -2,6 +2,7 @@ package com.ssafy.near.src.edituserinfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -24,7 +25,6 @@ class EditUserInfoActivity :
     var isCheckedOldPw = false
     var isCheckedNewPw = false
     var isCheckedConfirmNewPw = false
-    var isUpdatedUser = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -161,7 +161,6 @@ class EditUserInfoActivity :
                     false
                 }
                 else -> {
-                    binding.etNewPw.error = ""
                     Validation.validatePw(it.toString(), binding.etNewPw)
                 }
             }
@@ -180,16 +179,26 @@ class EditUserInfoActivity :
 
     private fun initEvent() {
         binding.btnSave.setOnClickListener {
+            if (binding.etNewPw.editText?.text.toString().trim().isEmpty()
+                && binding.etConfirmNewPw.editText?.text.toString().trim().isEmpty()) {
+                isCheckedNewPw = true
+                isCheckedConfirmNewPw = true
+            }
+
             when {
-                isCheckedNickname == false  -> binding.etNickname.editText?.requestFocus()
-                isCheckedEmail == false     -> binding.etEmail.editText?.requestFocus()
-                isCheckedOldPw == false     -> binding.etOldPw.editText?.requestFocus()
-                isCheckedNewPw == false     -> binding.etNewPw.editText?.requestFocus()
+                isCheckedNickname == false -> binding.etNickname.editText?.requestFocus()
+                isCheckedEmail == false -> binding.etEmail.editText?.requestFocus()
+                isCheckedOldPw == false -> binding.etOldPw.editText?.requestFocus()
+                isCheckedNewPw == false -> binding.etNewPw.editText?.requestFocus()
                 isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.editText?.requestFocus()
                 else -> {
-                    val nickname    = binding.etNickname.editText?.text.toString()
-                    val email       = binding.etEmail.editText?.text.toString()
-                    val pw          = binding.etNewPw.editText?.text.toString()
+                    val nickname = binding.etNickname.editText?.text.toString()
+                    val email = binding.etEmail.editText?.text.toString()
+                    val pw = if (binding.etNewPw.editText?.text.toString().trim().isEmpty()) {
+                        binding.etOldPw.editText?.text.toString()
+                    } else {
+                        binding.etNewPw.editText?.text.toString()
+                    }
 
                     updateUserInfo(nickname, email, pw)
                 }
