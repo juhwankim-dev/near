@@ -52,7 +52,7 @@ public class ModifyController {
         }
 
         //현재 비밀번호가 같지 않을 때
-        if (!passwordEncoder.matches(req.getPassword(), result.getPassword())){
+        if (!passwordEncoder.matches(req.getPassword(), result.getPassword())) {
             throw new ApiMessageException("현재 비밀번호가 일치하지 않습니다");
         }
 
@@ -143,13 +143,40 @@ public class ModifyController {
         return responseService.getSingleResult("성공");
     }
 
-
+    /**
+     * 2022-01-25 by 김영훈
+     *
+     * @param req 유저 이메일을 받아옴
+     * @return 성공 실패
+     * @brief 이메일 변경
+     * @date 2022-01-25
+     */
     @ApiOperation(value = "이메일 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/email", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     CommonResult ModifyEmail(@Valid ModifyEmailReqDTO req) throws Exception {
 
         if (!modifyService.updateNickname(Long.parseLong(req.getId()), req.getEmail())) {
+            throw new ApiMessageException("실패");
+        }
+
+        return responseService.getSingleResult("성공");
+    }
+
+    /**
+     * 2022-01-25 by 김영훈
+     *
+     * @param req 유저 변경 정보를 받아옴
+     * @return 성공 실패
+     * @brief 유저 정보 변경 완료
+     * @date 2022-01-25
+     */
+    @ApiOperation(value = "유저정보 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
+    @PutMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    CommonResult ModifyUser(@Valid ModifyUserReqDTO req) throws Exception {
+
+        if (!modifyService.updateUser(Long.parseLong(req.getId()), req)) {
             throw new ApiMessageException("실패");
         }
 
