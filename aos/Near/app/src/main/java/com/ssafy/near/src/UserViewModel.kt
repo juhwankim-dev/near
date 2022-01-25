@@ -12,10 +12,15 @@ import kotlinx.coroutines.launch
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val signResponse = userRepository._signResponse
     private val userInfo = userRepository._userInfo
+
     private val isCheckedId = userRepository._isCheckedId
     private val isCheckedNickname = userRepository._isCheckedNickname
     private val isCheckedEmail = userRepository._isCheckedEmail
     private val isCheckedPw = userRepository._isCheckedPw
+
+    private val isUpdatedNickname = userRepository._isUpdatedNickname
+    private val isUpdatedEmail = userRepository._isUpdatedEmail
+    private val isUpdatedPw = userRepository._isUpdatedPw
 
 
     fun getSignResponse(): LiveData<SignResponse> {
@@ -40,6 +45,18 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     fun getCheckedPw(): LiveData<Boolean> {
         return isCheckedPw
+    }
+
+    fun getUpdatedNickname(): LiveData<Boolean> {
+        return isUpdatedNickname
+    }
+
+    fun getUpdatedEmail(): LiveData<Boolean> {
+        return isUpdatedEmail
+    }
+
+    fun getUpdatedPw(): LiveData<Boolean> {
+        return isUpdatedPw
     }
 
     fun login(id: String, pw: String) {
@@ -81,6 +98,30 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     fun checkPw(pw: String, token: String) {
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.checkPw(pw, token)
+        }
+    }
+
+    fun updateUser(id: String, nickname: String, email: String, pw: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updateUser(id, nickname, email, pw)
+        }
+    }
+
+    fun updateNickname(id: String, nickname: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updateNickname(id, nickname)
+        }
+    }
+
+    fun updateEmail(id: String, email: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updateEmail(id, email)
+        }
+    }
+
+    fun updatePw(id: String, pw: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            userRepository.updatePw(id, pw)
         }
     }
 }

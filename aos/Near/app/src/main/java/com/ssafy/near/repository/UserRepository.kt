@@ -14,6 +14,9 @@ class UserRepository {
     private val TAG = "UserRepository"
     var _signResponse = MutableLiveData<SignResponse>()
         private set
+    var _userInfo = MutableLiveData<UserInfo?>()
+        private set
+
     var _isCheckedId = MutableLiveData<Boolean>()
         private set
     var _isCheckedNickname = MutableLiveData<Boolean>()
@@ -22,7 +25,14 @@ class UserRepository {
         private set
     var _isCheckedPw = MutableLiveData<Boolean>()
         private set
-    var _userInfo = MutableLiveData<UserInfo?>()
+
+    var _isUpdatedUsesr = MutableLiveData<Boolean>()
+        private set
+    var _isUpdatedNickname = MutableLiveData<Boolean>()
+        private set
+    var _isUpdatedEmail = MutableLiveData<Boolean>()
+        private set
+    var _isUpdatedPw = MutableLiveData<Boolean>()
         private set
 
 
@@ -143,6 +153,74 @@ class UserRepository {
             if (response.isSuccessful) {
                 if (response.body() != null) {
                     _isCheckedPw.postValue(response.body()!!.output == 1)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun updateUser(id: String, nickname: String, email: String, pw: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.updateUser(id, nickname, email, pw)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    _isUpdatedUsesr.postValue(response.body()!!.output == 1)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun updateNickname(id: String, nickname: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.updateNickname(id, nickname)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    _isUpdatedNickname.postValue(response.body()!!.output == 1)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun updateEmail(id: String, email: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.updateEmail(id, email)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    _isUpdatedEmail.postValue(response.body()!!.output == 1)
+                }
+            } else {
+                Log.d(TAG, "onError: Error Code ${response.code()}")
+            }
+        } catch (e: Exception) {
+            Log.d(TAG, e.message ?: "onFailure")
+        }
+    }
+
+    suspend fun updatePw(id: String, pw: String) {
+        try {
+            val response = withContext(Dispatchers.IO) {
+                RetrofitUtil.userService.updatePassword(id, pw)
+            }
+            if (response.isSuccessful) {
+                if (response.body() != null) {
+                    _isUpdatedPw.postValue(response.body()!!.output == 1)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")

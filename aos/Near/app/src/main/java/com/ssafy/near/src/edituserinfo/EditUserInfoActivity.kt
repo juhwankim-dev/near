@@ -2,7 +2,6 @@ package com.ssafy.near.src.edituserinfo
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -19,12 +18,15 @@ import com.ssafy.near.util.Validation
 class EditUserInfoActivity :
     BaseActivity<ActivityEditUserInfoBinding>(R.layout.activity_edit_user_info) {
     lateinit var userViewModel: UserViewModel
+    var oldInfo = UserInfo()
     var isCheckedNickname = false
     var isCheckedEmail = false
     var isCheckedOldPw = false
     var isCheckedNewPw = false
     var isCheckedConfirmNewPw = false
-    var oldInfo = UserInfo()
+    var isUpdatedNickname = false
+    var isUpdatedEmail = false
+    var isUpdatedPw = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,28 +55,19 @@ class EditUserInfoActivity :
         userViewModel.getCheckedNickname().observe(this, {
             isCheckedNickname = when (it) {
                 true -> {
-                    when (binding.etNickname.editText?.text.toString()) {
-                        oldInfo.nickname -> {
-                            binding.etNickname.apply {
-                                error = ""
-                                helperText = ""
-                            }
-                            true
-                        }
-                        else -> {
-                            binding.etNickname.apply {
-                                error = "이미 존재하는 닉네임입니다."
-                                helperText = ""
-                            }
-                            false
-                        }
+                    if (binding.etNickname.editText?.text.toString() == oldInfo.nickname) {
+                        binding.etNickname.error = ""
+                        binding.etNickname.helperText = ""
+                        true
+                    } else {
+                        binding.etNickname.error = "이미 존재하는 닉네임입니다."
+                        binding.etNickname.helperText = ""
+                        false
                     }
                 }
                 false -> {
-                    binding.etNickname.apply {
-                        error = ""
-                        helperText = "사용 가능한 닉네임입니다."
-                    }
+                    binding.etNickname.error = ""
+                    binding.etNickname.helperText = "사용 가능한 닉네임입니다."
                     true
                 }
             }
@@ -83,28 +76,19 @@ class EditUserInfoActivity :
         userViewModel.getCheckedEmail().observe(this, {
             isCheckedEmail = when (it) {
                 true -> {
-                    when (binding.etEmail.editText?.text.toString()) {
-                        oldInfo.email -> {
-                            binding.etEmail.apply {
-                                error = ""
-                                helperText = "   "
-                            }
-                            true
-                        }
-                        else -> {
-                            binding.etEmail.apply {
-                                error = "이미 존재하는 이메일입니다."
-                                helperText = ""
-                            }
-                            false
-                        }
+                    if (binding.etEmail.editText?.text.toString() == oldInfo.email) {
+                        binding.etEmail.error = ""
+                        binding.etEmail.helperText = "   "
+                        true
+                    } else {
+                        binding.etEmail.error = "이미 존재하는 이메일입니다."
+                        binding.etEmail.helperText = ""
+                        false
                     }
                 }
                 false -> {
-                    binding.etEmail.apply {
-                        error = ""
-                        helperText = "사용 가능한 이메일입니다."
-                    }
+                    binding.etEmail.error = ""
+                    binding.etEmail.helperText = "사용 가능한 이메일입니다."
                     true
                 }
             }
@@ -113,19 +97,34 @@ class EditUserInfoActivity :
         userViewModel.getCheckedPw().observe(this, {
             isCheckedOldPw = when (it) {
                 true -> {
-                    binding.etOldPw.apply {
-                        error = ""
-                        helperText = "비밀번호가 일치합니다."
-                    }
+                    binding.etOldPw.error = ""
+                    binding.etOldPw.helperText = "비밀번호가 일치합니다."
                     true
                 }
                 false -> {
-                    binding.etOldPw.apply {
-                        error = "비밀번호가 일치하지 않습니다."
-                        helperText = ""
-                    }
+                    binding.etOldPw.error = "비밀번호가 일치하지 않습니다."
+                    binding.etOldPw.helperText = ""
                     false
                 }
+            }
+        })
+
+        userViewModel.getUpdatedNickname().observe(this, {
+            isUpdatedNickname = it
+        })
+
+        userViewModel.getUpdatedEmail().observe(this, {
+            isUpdatedEmail = it
+        })
+
+        userViewModel.getUpdatedPw().observe(this, {
+            isUpdatedPw = it
+
+            if (isUpdatedNickname && isUpdatedEmail && isUpdatedPw) {
+                showToastMessage("회원 정보 수정 성공!")
+                finish()
+            } else {
+                showToastMessage("회원 정보 수정 실패! 다시 시도해주세요.")
             }
         })
     }
@@ -190,7 +189,20 @@ class EditUserInfoActivity :
 
     private fun initEvent() {
         binding.btnSave.setOnClickListener {
+            when {
+                isCheckedNickname == false  -> binding.etNickname.editText?.requestFocus()
+                isCheckedEmail == false     -> binding.etEmail.editText?.requestFocus()
+                isCheckedOldPw == false     -> binding.etOldPw.editText?.requestFocus()
+                isCheckedNewPw == false     -> binding.etNewPw.editText?.requestFocus()
+                isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.editText?.requestFocus()
+                else -> {
+                    val nickname    = binding.etNickname.editText?.text.toString()
+                    val email       = binding.etEmail.editText?.text.toString()
+                    val pw          = binding.etNewPw.editText?.text.toString()
 
+                    updateUserInfo(nickname, email, pw)
+                }
+            }
         }
     }
 
@@ -206,12 +218,20 @@ class EditUserInfoActivity :
         userViewModel.checkPw(pw, token)
     }
 
-    private fun updateUserInfo() {
+    private fun updateUserInfo(nickname: String, email: String, pw: String) {
+        val id = sSharedPreferences.getUserId().toString()
 
+        if (id == "-1")
+            requestLogin()
+        else {
+            userViewModel.updateNickname(id, nickname)
+            userViewModel.updateEmail(id, email)
+            userViewModel.updatePw(id, pw)
+        }
     }
 
     private fun requestLogin() {
-        Toast.makeText(this, "로그인 정보가 만료되었습니다. 다시 로그인해주세요.", Toast.LENGTH_SHORT).show()
+        showToastMessage("로그인 정보가 만료되었습니다. 다시 로그인해주세요.")
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()

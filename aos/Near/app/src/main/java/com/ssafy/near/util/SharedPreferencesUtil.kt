@@ -17,12 +17,12 @@ class SharedPreferencesUtil(context: Context) {
     }
 
     // TODO: 2022-01-20 우선 이 id를 가져오는거로 작성해놓았지만 회원 id 가져오는거로 변경 필요
-    fun getUserId(): String {
-        return preferences.getString("id", "default")!!;
+    fun getUserId(): Int {
+        return preferences.getInt("id", -1)
     }
 
     fun getUserToken(): String {
-        return preferences.getString("token", "default")!!;
+        return preferences.getString("token", "default")!!
     }
 
     fun deleteUser() {
