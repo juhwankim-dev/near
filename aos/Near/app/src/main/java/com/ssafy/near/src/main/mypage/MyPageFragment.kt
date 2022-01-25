@@ -12,6 +12,7 @@ import com.ssafy.near.databinding.FragmentMyPageBinding
 import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
+import com.ssafy.near.src.edituserinfo.EditUserInfoActivity
 import com.ssafy.near.src.login.LoginActivity
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
@@ -21,8 +22,12 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel()
-        initView()
         initEvent()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initView()
     }
 
     private fun initViewModel() {
@@ -53,6 +58,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             sSharedPreferences.deleteUser()
             showToastMessage("로그아웃 되었습니다")
             setLogoutState()
+        }
+
+        binding.layoutMemberModify.setOnClickListener {
+            startActivity(Intent(requireContext(), EditUserInfoActivity::class.java))
         }
     }
 
