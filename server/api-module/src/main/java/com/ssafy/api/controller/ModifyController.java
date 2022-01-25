@@ -171,8 +171,8 @@ public class ModifyController {
      * @brief 유저 정보 변경 완료
      * @date 2022-01-25
      */
-    @ApiOperation(value = "이메일 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
-    @PutMapping(value = "/email", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "유저정보 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
+    @PutMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     CommonResult ModifyUser(@Valid ModifyUserReqDTO req) throws Exception {
 
