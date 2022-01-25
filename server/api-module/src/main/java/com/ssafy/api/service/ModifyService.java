@@ -1,5 +1,6 @@
 package com.ssafy.api.service;
 
+import com.ssafy.api.dto.req.ModifyUserReqDTO;
 import com.ssafy.core.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class ModifyService {
 
     @Transactional(readOnly = false)
     public boolean updatePhone(long id, String phone) {
-        return (userRepository.updatePassword(id, phone) > 0)  ? true : false;
+        return (userRepository.updatePhone(id, phone) > 0)  ? true : false;
     }
 
     @Transactional(readOnly = false)
@@ -34,5 +35,17 @@ public class ModifyService {
     @Transactional(readOnly = false)
     public boolean updateEmail(long id, String email){
         return (userRepository.updateEmail(id, email) > 0 ? true : false);
+    }
+
+    @Transactional(readOnly = false)
+    public boolean updateUser(long id, ModifyUserReqDTO user){
+        long cnt = 0;
+        cnt += userRepository.updatePassword(id, user.getPassword())
+                +  userRepository.updateNickname(id, user.getNickname())
+                + userRepository.updatePhone(id, user.getPhone())
+                + userRepository.updateAddress(id, user.getAddress(), user.getAddressDetail())
+                + userRepository.updateEmail(id, user.getEmail());
+
+        return cnt >= 6 ? true : false;
     }
 }

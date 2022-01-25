@@ -18,7 +18,7 @@ public class ModifyEmailReqDTO {
     private String id;
 
     @NotBlank
-    @ApiModelProperty(value = "상세주소", required = true, example = "302 임수동 94-1 멀티캠퍼스")
+    @ApiModelProperty(value = "이메일", required = true, example = "302 임수동 94-1 멀티캠퍼스")
     private String email;
 
 }
