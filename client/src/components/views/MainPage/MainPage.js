@@ -3,6 +3,7 @@ import axios from 'axios';
 import React from 'react';
 import MainHeader from './MainHeader';
 import Footer from '../Footer/Footer';
+import MainStudy from './MainStudy';
 
 function MainPage(props) {
 
@@ -13,6 +14,7 @@ function MainPage(props) {
     }}>
       
       <MainHeader></MainHeader>
+      <MainStudy></MainStudy>
       메인페이지
     </div>
   );

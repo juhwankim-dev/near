@@ -11,7 +11,7 @@ const MainHeader = () => {
 
   // text js
 var
-  words = ['당신의 곁에','N:ear'],
+  words = ['당신의 곁에', 'N:ear','Communication Intelligence'],
   part,
   i = 0,
   offset = 0,
@@ -19,7 +19,7 @@ var
   forwards = true,
   skip_count = 0,
   skip_delay = 5,
-  speed = 100;
+  speed = 150;
 
 var wordflick = function(){
   setInterval(function(){
@@ -60,8 +60,9 @@ $(document).ready(function(){
 });
 
   return (
-    //해
+    
     <div>
+    {/* 해 */}
     <div class="header">
     <div class="inner-header flex">
 
@@ -72,7 +73,8 @@ $(document).ready(function(){
 			<div class="mouth"></div>
 		</div>
 	</div>
-    <h1 class="word">당신의 곁에 N:ear</h1>
+    {/* <h2>당신의 곁에</h2> */}
+    <h1 class="word"></h1>
     <div>
     <div>
 </div>
@@ -97,9 +99,7 @@ $(document).ready(function(){
     </div>
     
     <div class="content flex">
-      <p>흠</p>
     </div>
-
     </div>
   );
 };
