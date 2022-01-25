@@ -1,0 +1,30 @@
+//// Make long shadows
+/// @param {Number} $num [1] - number of shadows to make
+/// @param {Color} $color [white] - color of shadows
+@function longshadow($num,$color: white){
+  $shadow: '';
+  $i: 0;
+  @for $i from 1 through $num{
+    $shadow: $shadow + (1 * $i) + 'px' + ' ' + (1 * ($i * 2)) + 'px' + ' ' + $color;
+    @if $i < $num{
+      $shadow: $shadow + ', ';
+    }
+  }
+  @return unquote($shadow);
+}
+
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+
+$key: #55A4E9;
+// #55A4E9;
+
+html{
+  height: 100%;
+}
+.word{
+  margin: auto;
+  color: white;
+  font: 700 normal 4em/1.5 'Montserrat',sans-serif;
+  text-shadow: longshadow(8,darken($key,10%));
+}
+//longshadow 뒤에 숫자가 그림자 크기

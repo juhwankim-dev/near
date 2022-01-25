@@ -2,42 +2,84 @@
 import React from 'react';
 import './MainHeader.css';
 import './MainHeaderSun.css';
-
+import './MainHeaderText.scss';
+import jQuery from "jquery";
+import $ from 'jquery'; 
+window.$ = window.jQuery = jQuery;
 
 const MainHeader = () => {
 
-  
+  // text js
+var
+  words = ['당신의 곁에','N:ear'],
+  part,
+  i = 0,
+  offset = 0,
+  len = words.length,
+  forwards = true,
+  skip_count = 0,
+  skip_delay = 5,
+  speed = 100;
+
+var wordflick = function(){
+  setInterval(function(){
+      if (forwards) {
+        if(offset >= words[i].length){
+          ++skip_count;
+          if (skip_count === skip_delay) {
+            forwards = false;
+            skip_count = 0;
+          }
+        }
+      }
+      else {
+         if(offset === 0){
+            forwards = true;
+            i++;
+            offset = 0;
+            if(i >= len){
+              i=0;
+            } 
+         }
+      }
+      part = words[i].substr(0, offset);
+      if (skip_count === 0) {
+        if (forwards) {
+          offset++;
+        }
+        else {
+          offset--;
+        }
+      }
+    	$('.word').text(part);
+  },speed);
+};
+
+$(document).ready(function(){
+  wordflick();
+});
+
   return (
-    
+    //해
     <div>
     <div class="header">
-
     <div class="inner-header flex">
 
 	<div class="stars"></div>
-	{/* <div class="arm left">
-		<div>
-			<div></div>
-		</div>
-	</div>
-	<div class="arm right">
-		<div>
-			<div></div>
-		</div>
-	</div> */}
 	<div class="sun">
 		<div class="face">
 			<div class="eyes"></div>
 			<div class="mouth"></div>
 		</div>
 	</div>
-    <h1>당신의 곁에 N:ear</h1>
+    <h1 class="word">당신의 곁에 N:ear</h1>
     <div>
     <div>
 </div>
     </div>
     </div>
-    
+
+    {/* 파도 */}
     <div>
     <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink"
     viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -54,12 +96,10 @@ const MainHeader = () => {
     </div>
     </div>
     
-
     <div class="content flex">
       <p>흠</p>
     </div>
 
-      
     </div>
   );
 };
