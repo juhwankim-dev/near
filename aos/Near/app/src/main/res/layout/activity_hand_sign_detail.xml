@@ -34,8 +34,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_margin="@dimen/activity_margin_default"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_bookmark">
+            app:layout_constraintBottom_toTopOf="@+id/btn_close"
+            app:layout_constraintTop_toBottomOf="@+id/iv_bookmark"
+            tools:layout_editor_absoluteX="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,11 +46,11 @@
                 <TextView
                     android:id="@+id/tv_explain1"
                     style="@style/header_text"
-                    android:text="작은 규모로 물건을 파는 곳"/>
+                    android:text="작은 규모로 물건을 파는 곳" />
 
                 <TextView
-                    style="@style/body_text"
                     android:id="@+id/tv_explain2"
+                    style="@style/body_text"
                     android:text="[장사 + 집]" />
 
                 <ImageView
@@ -57,15 +58,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="@dimen/activity_margin_default"
-                    app:srcCompat="@drawable/img_temp_mascot" />
+                    app:srcCompat="@drawable/img_thumbnail_sample_2" />
 
                 <TextView
                     style="@style/header_text"
                     android:text="설명" />
 
                 <TextView
-                    style="@style/body_text"
                     android:id="@+id/textView3"
+                    style="@style/body_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_margin_default"
@@ -73,14 +74,14 @@
 
                 <TextView
                     style="@style/header_text"
-                    android:text="영상으로 배우기"
-                    android:layout_marginTop="@dimen/activity_margin_wide"/>
+                    android:layout_marginTop="@dimen/activity_margin_wide"
+                    android:text="영상으로 배우기" />
 
-                <ImageView
+                <com.google.android.exoplayer2.ui.PlayerView
+                    android:id="@+id/pv_hand_sign"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_margin="@dimen/activity_margin_default"
-                    app:srcCompat="@drawable/img_temp_mascot" />
+                    android:layout_height="300dp"
+                    android:layout_marginBottom="@dimen/activity_margin_wide" />
             </LinearLayout>
         </ScrollView>
 
