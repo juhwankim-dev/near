@@ -23,6 +23,7 @@ public interface UserRepoCommon {
 
     long updateNickname(long id, String nicknmae);
 
+    long updateEmail(long id, String email);
 }
 
 

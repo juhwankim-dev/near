@@ -33,7 +33,8 @@ public class SignUpReqDTO {
     private String name;
 
     // 닉네임 추가
-    @ApiModelProperty(value = "닉네임", required = false, example = "닉네임")
+    @NotBlank
+    @ApiModelProperty(value = "닉네임", required = true, example = "닉네임")
     private String nickname;
 
     @ApiModelProperty(value = "이메일", required = false, example = "kakao123@test.com")

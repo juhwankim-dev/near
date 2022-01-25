@@ -1,5 +1,6 @@
 package com.ssafy.api.dto.req;
 
+
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
@@ -10,13 +11,14 @@ import javax.validation.constraints.NotBlank;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ModifyPhoneReqDTO {
+public class ModifyEmailReqDTO {
 
     @NotBlank
-    @ApiModelProperty(value = "유저 번호", required = true, example = "1")
+    @ApiModelProperty(value = "유저 번호", required = true, example = "유저 번호")
     private String id;
 
     @NotBlank
-    @ApiModelProperty(value = "핸드폰번호('-'값 없이 입력)", required = true, example = "01012345678")
-    private String phone;
+    @ApiModelProperty(value = "상세주소", required = true, example = "302 임수동 94-1 멀티캠퍼스")
+    private String email;
+
 }

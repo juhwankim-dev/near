@@ -111,6 +111,15 @@ public class UserRepoCommonImpl implements UserRepoCommon{
         return cnt;
     }
 
+    @Override
+    public long updateEmail(long id, String email) {
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.email, email)
+                .execute();
+        return cnt;
+    }
+
 
     // isBind 조건만 체크
     public BooleanExpression checkUserIsBind(YNCode isBind){

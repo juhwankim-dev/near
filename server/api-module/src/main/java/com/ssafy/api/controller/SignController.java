@@ -184,7 +184,7 @@ public class SignController {
      * @date 2022-01-20
      */
     @ApiOperation(value = "토큰으로 유저정보 반환", notes = "토큰에 따라 유저 정보를 반환한다")
-    @GetMapping(value = "/userInfo", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/userInfo", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<UserInfoResDTO> userInfo(@Valid tokenReqDTO req) throws Exception {
 

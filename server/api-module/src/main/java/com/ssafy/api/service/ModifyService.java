@@ -30,4 +30,9 @@ public class ModifyService {
     public boolean updateNickname(long id, String nickname){
         return (userRepository.updateNickname(id, nickname) > 0 ? true : false);
     }
+
+    @Transactional(readOnly = false)
+    public boolean updateEmail(long id, String email){
+        return (userRepository.updateEmail(id, email) > 0 ? true : false);
+    }
 }

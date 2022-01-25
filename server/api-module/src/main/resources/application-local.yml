@@ -89,4 +89,4 @@ app:
 
 # swagger에서 테스트 할 때의 host
 swagger:
-  host: localhost:8185
+  host: hoonycode.loca.lt

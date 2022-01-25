@@ -143,4 +143,17 @@ public class ModifyController {
         return responseService.getSingleResult("성공");
     }
 
+
+    @ApiOperation(value = "이메일 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
+    @PutMapping(value = "/email", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    CommonResult ModifyEmail(@Valid ModifyEmailReqDTO req) throws Exception {
+
+        if (!modifyService.updateNickname(Long.parseLong(req.getId()), req.getEmail())) {
+            throw new ApiMessageException("실패");
+        }
+
+        return responseService.getSingleResult("성공");
+    }
+
 }
