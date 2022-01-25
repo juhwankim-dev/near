@@ -18,7 +18,7 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_temp_mascot" />
+            app:srcCompat="@drawable/img_thumbnail_sample_2" />
 
         <TextView
             android:id="@+id/tv_consonants"

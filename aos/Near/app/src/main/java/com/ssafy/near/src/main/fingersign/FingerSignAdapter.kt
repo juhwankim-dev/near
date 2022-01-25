@@ -7,7 +7,7 @@ import com.ssafy.near.databinding.ListItemFingerSignBinding
 
 class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewHolder>() {
     private lateinit var itemClickListner: ItemClickListener
-    var list = mutableListOf<String>()
+    var list = mutableListOf("test", "test", "test", "test", "test", "test", "test")
 
     inner class FingerSignViewHolder(private val binding: ListItemFingerSignBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(item: String) {
