@@ -70,10 +70,10 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
         userViewModel.getSignResponse().observe(this, { signResponse ->
             when {
-                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                signResponse == null        -> showToastMessage("통신에 문제가 발생하였습니다.")
+                signResponse.output != 1    -> showToastMessage(signResponse.msg)
                 else -> {
-                    Toast.makeText(this, "회원가입 성공", Toast.LENGTH_SHORT).show()
+                    showToastMessage("회원가입 성공")
                     finish()
                 }
             }
