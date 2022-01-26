@@ -31,6 +31,7 @@ import java.util.Collections;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/sign")
+@CrossOrigin(origins = "*")
 public class SignController {
     private final SignService signService;
     private final PasswordEncoder passwordEncoder;
