@@ -5,7 +5,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin_narrow"
+        android:layout_margin="@dimen/activity_margin_default"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -18,14 +18,14 @@
             android:id="@+id/et_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_outline_person_24"
-            android:hint="ID"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearance="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:hint="ID" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -33,16 +33,16 @@
             android:id="@+id/et_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            android:hint="PW"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:passwordToggleEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:shapeAppearance="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_lock_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                />
+                android:hint="PW" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -50,8 +50,10 @@
             android:id="@+id/btn_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_wide"
+            android:background="@drawable/btn_background"
             android:text="로그인"
-            android:textSize="@dimen/header_text_size"/>
+            android:textSize="@dimen/header_text_size" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,19 +62,19 @@
 
             <Button
                 android:id="@+id/btn_sign_up"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:text="회원가입"
                 android:textSize="@dimen/body_text_size" />
 
             <Button
                 android:id="@+id/btn_find_id_pw"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:text="아이디/비밀번호 찾기"
                 android:textSize="@dimen/body_text_size" />
 
