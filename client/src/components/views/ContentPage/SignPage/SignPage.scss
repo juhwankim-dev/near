@@ -15,6 +15,102 @@ $button-bg-2: #D903;
 $border-radius: 6px;
 $overlay-color: #fff;
 
+.description {
+  font-size: 30px;
+  // margin-left: 90px;
+  margin-top: 30px;
+  // background-color: white;
+  width: 1750px;
+  padding: 20px;
+  margin: 30px auto; 
+  // background-color: rgb(22, 46, 119);
+  background-color: rgb(234, 243, 255);
+  box-shadow: 4px 4px gray;
+  font-weight: bold;
+  // border-radius: 10px;
+  // color: white;
+
+}
+
+.meaning{
+ width: 1230px;
+ margin-right: 10px;
+}
+
+.buttons{
+  margin-top: 30px;
+  // margin-left: 620px;
+  
+}
+.btn1{
+  font-size: 22px;
+  font-weight: bolder;
+  background-color: rgb(209, 227, 253);
+  color: rgb(22, 46, 119);
+  margin-left: 7px;
+  margin-bottom: 25px;
+  border: none;
+  height: 50px;
+  width: 80px;
+}
+#abc {
+  position: relative;
+}
+
+#backVideo {
+  object-fit: cover;
+  width: 60vw;
+  height: 50vh;
+  // position: fixed;
+  
+}
+.flex-container{
+  display: flex;
+  
+}
+
+.flex-item-video{
+  width: 1100px;
+  height: 650px;
+  object-fit:none;
+  margin-left: 25px;
+  // background-color: darksalmon;
+}
+
+.flex-item-img2{
+  width: 630px;
+  height: 650px;
+  margin-left: 20px;
+  margin-right: 25px;
+}
+
+.flex-item-img{
+  width: 250px;
+  height: 500px;
+  // margin-left: 10px;
+  // margin-right: 20px;
+  // margin: 10px;
+  // background-color: darksalmon;
+}
+// .flex-item-img{
+//   width: 450px;
+//   height: 650px;
+//   margin-left: 10px;
+//   margin-right: 20px;
+//   // margin: 10px;
+//   // background-color: darksalmon;
+// }
+
+
+.detail {
+  width: 1800px;
+  background-color: hsla(214, 100%, 74%, 0.479);
+  border-radius: 20px;
+  margin:0 auto; 
+  margin-top: 80px;
+  // height: 1000px;
+  
+}
 
 body {
   background-color: $bg-color;
@@ -22,51 +118,30 @@ body {
   .nemo {
     background-color: hsla(214, 100%, 74%, 0.479);
     border-radius: 20px;
+    margin-top: 60px;
   }
 
 
   .kan {
     background-color: #adc6fc;;
     border-radius: 20px;
-    height: 400px;
+    height: 750px;
+    width: 1500px;
+    
   }
 
-
+  
   .container {
     width: 1200px;
-    margin: 50px auto 0px auto;
+    margin: 8px auto 0px auto;
     text-align: center;
     
-    h1 {
-      font: {
-        weight: 500;
-        style: normal;
-        size: 30px;
-      }
-      margin-bottom: 30px;
-      
-      span {
-        font: {
-          weight: 700;
-          style: italic;
-        }
-        
-        color: #D90368;
-        border-bottom: 2px dashed currentColor;
-      }
-    }
-    
+  
+  
     .button-effect {
       padding: 60px 10px; 
       
-      h2 {
-        font: {
-          family: 'Droid Serif', serif;
-          size: 20px;
-          
-        }
-        margin-bottom: 40px;
-      }
+      
       
       button {
         width: 220px;

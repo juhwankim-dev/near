@@ -20,10 +20,10 @@ function App() {
     <NavBar>
       </NavBar>   
       <Routes>
-        <Route path="/" element={<LandingPage /> } />
+        <Route exact path="/" element={<LandingPage /> } />
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
-        <Route path="/sign" element={<SignPage />} />
+        <Route exact path="/sign" element={<SignPage />} />
         <Route path ="/sign/detail" element={<SignDetail />} />
  
 
