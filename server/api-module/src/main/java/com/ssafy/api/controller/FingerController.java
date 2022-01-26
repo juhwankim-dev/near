@@ -52,19 +52,15 @@ public class FingerController {
         return responseService.getListResult(result, "성공");
     }
 
-    @ApiOperation(value = "지문 상세정보", notes = "지문자의 목록을 불러온다")
+    @ApiOperation(value = "지문자 상세정보", notes = "해당 지문자의 상세정보를 불러온다")
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<FingerDetailResDTO> FingerDetail(@PathVariable String id) throws Exception {
 
         Fingercontent fingercontent = fingerService.fingerDetail(Long.parseLong(id));
 
-        if (fingercontent == null) {
-            throw new ApiMessageException("실패");
-        }
-
         FingerDetailResDTO result =
-                new FingerDetailResDTO(fingercontent.getFingercotent_key(), fingercontent.getName(), fingercontent.getImage_path(), fingercontent.getExplanation());
+                new FingerDetailResDTO(fingercontent.getFingercotent_key(), fingercontent.getName(), fingercontent.getCategory(), fingercontent.getImage_path(), fingercontent.getExplanation());
 
 
         return responseService.getSingleResult(result);

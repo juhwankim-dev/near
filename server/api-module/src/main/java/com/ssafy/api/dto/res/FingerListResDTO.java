@@ -16,7 +16,6 @@ public class FingerListResDTO {
     private long fingercotent_key;
 
     @ApiModelProperty(value = "지문자", required = true,example = "ㄱ")
-    @Column(nullable = true, length = 2)
     private String name;
 
 }

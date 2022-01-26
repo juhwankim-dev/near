@@ -31,7 +31,7 @@ public class FingerService {
 
     @Transactional(readOnly = true)
     public Fingercontent fingerDetail(long id) throws Exception {
-        return fingerRepository.findById(id).orElseThrow(() -> new ApiMessageException(("존재 하지 않는 지문자 입니다")));
+        return fingerRepository.findById(id).orElseThrow(() -> new ApiMessageException(("존재하지 않는 지문자입니다")));
     }
 
 }
