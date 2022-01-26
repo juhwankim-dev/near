@@ -4,6 +4,7 @@ import React from 'react';
 import MainHeader from './MainHeader';
 import Footer from '../Footer/Footer';
 import MainStudy from './MainStudy';
+import MainGame from './MainGame';
 
 function MainPage(props) {
 
@@ -15,6 +16,7 @@ function MainPage(props) {
       
       <MainHeader></MainHeader>
       <MainStudy></MainStudy>
+      <MainGame></MainGame>
       메인페이지
     </div>
   );

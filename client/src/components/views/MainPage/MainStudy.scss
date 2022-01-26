@@ -23,7 +23,7 @@
   
   &:after {
     background: #5f5f5f;
-    bottom: -266px;
+    top: 1006px;
     height: 266px;
     left: 0;
     position: absolute;
@@ -92,7 +92,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: absolute;
-  left:45%;
+  left:43%;
   top:728px;
   width: 361px;
   height: 215px;
@@ -856,12 +856,13 @@
 
 .sign {
   background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background-size:400px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-  height: 300px;
-  left:70%;
+  height: 420px;
+  right:19%;
   position: absolute;
-  top: 180px;
-  width: 300px;
+  top: 130px;
+  width: 420px;
   border: 5px solid #948573;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
@@ -876,9 +877,9 @@
   background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 70px;
-  left:71%;
+  right:22%;
   position: absolute;
-  top: 550px;
+  top: 600px;
   width: 250px;
   border: 5px solid #948573;
   box-shadow: 
@@ -892,12 +893,13 @@
 
 .finger {
   background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background-size:400px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-  height: 300px;
-  left:24%;
+  height: 420px;
+  left:20%;
   position: absolute;
-  top: 180px;
-  width: 300px;
+  top: 130px;
+  width: 420px;
   border: 5px solid #948573;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
@@ -912,9 +914,9 @@
   background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 70px;
-  left:25%;
+  left:23%;
   position: absolute;
-  top: 550px;
+  top: 600px;
   width: 250px;
   border: 5px solid #948573;
   box-shadow: 
