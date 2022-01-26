@@ -13,7 +13,7 @@ import com.ssafy.near.repository.FingerSignRepository
 class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.fragment_finger_sign) {
     private lateinit var fingerSignViewModel: FingerSignViewModel
     lateinit var fingerSignAdapter: FingerSignAdapter
-    lateinit var dialog: FingerSignDialog
+    lateinit var fingerSignDialog: FingerSignDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,7 +30,7 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
             adapter = fingerSignAdapter
         }
 
-        dialog = FingerSignDialog(requireContext())
+        fingerSignDialog = FingerSignDialog(requireContext())
 
         fingerSignViewModel.loadFingerSignList()
     }
@@ -46,9 +46,21 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
 
     private fun initEvent() {
         fingerSignAdapter.setItemClickListener(object : FingerSignAdapter.ItemClickListener{
-            override fun onClick(id: FingerSignInfo) {
-                dialog.createDialog("임시데이터")
+            override fun onClick(fingerSignInfo: FingerSignInfo) {
+                fingerSignDialog.createDialog(fingerSignInfo)
             }
         })
+
+        binding.rbAllFingerSign.setOnClickListener {
+            fingerSignAdapter.filter?.filter("-1")
+        }
+
+        binding.rbConsonant.setOnClickListener {
+            fingerSignAdapter.filter?.filter("0")
+        }
+
+        binding.rbVowel.setOnClickListener {
+            fingerSignAdapter.filter?.filter("1")
+        }
     }
 }

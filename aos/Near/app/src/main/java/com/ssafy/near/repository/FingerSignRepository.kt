@@ -26,6 +26,8 @@ class FingerSignRepository {
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
+                Log.d(TAG, "loadFingerSignList: ${response.message()}")
+                Log.d(TAG, "loadFingerSignList: ${response.errorBody().toString()}")
             }
 
         } catch (e: Exception) {

@@ -65,11 +65,15 @@ class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewH
     }
 
     fun setInitList(list: List<FingerSignInfo>) {
+        fingerSignList.clear()
+        fingerSignListFiltered.clear()
         fingerSignList.addAll(list)
+        fingerSignListFiltered.addAll(list)
+        notifyDataSetChanged()
     }
 
     interface ItemClickListener {
-        fun onClick(id: FingerSignInfo)
+        fun onClick(fingerSignInfo: FingerSignInfo)
     }
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {

@@ -10,6 +10,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface FingerSignApi {
-    @GET("api/finger")
+    @GET("api/finger/")
     suspend fun loadFingerSignList(): Response<ModelList<FingerSignInfo>>
 }

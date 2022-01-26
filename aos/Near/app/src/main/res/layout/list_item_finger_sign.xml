@@ -18,10 +18,10 @@
             android:id="@+id/iv_thumbnail"
             android:layout_width="80dp"
             android:layout_height="80dp"
-
+            app:bindImageUrl="@{fingerSignInfo.image_path}"
+            tools:src="@drawable/img_thumbnail_sample_2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/img_thumbnail_sample_2" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_consonants"
