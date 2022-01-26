@@ -1,0 +1,127 @@
+// #667BF2 #4878D9 #716DF2
+// 배경 #F2F2F2 f3efe8
+// 핑크 보라 #F085F2 #9591F2 #7997F2 #6E6AD9 
+// 노랑 #F29F05 
+// 보라 조합 백:#e0c3fc 버튼:#c471f5
+// 009 Frozen DreamsGet .PNG#fdcbf1→#e6dee9
+// 최종 백 노랑#F2F2F2 보라#f6f3ff; 컨테이너 #e0c3fc;  버튼 #cd9cf2 #ca90f7  #c590f7;
+// #e6cefd; #ced5fd   버튼 #c590f7; #90a5f7; //  #adc6fc; #5f7ef8; hsl(219, 100%, 88%);
+// 버튼 #76adff;
+
+$bg-color:  #ffffff;
+$link-text-color: #fff;
+$button-bg-1: #5b9cff;
+$button-bg-2: #D903;
+$border-radius: 6px;
+$overlay-color: #fff;
+
+
+body {
+  background-color: $bg-color;
+  
+  .nemo {
+    background-color: hsla(214, 100%, 74%, 0.479);
+    border-radius: 20px;
+  }
+
+
+  .kan {
+    background-color: #adc6fc;;
+    border-radius: 20px;
+    height: 400px;
+  }
+
+
+  .container {
+    width: 1200px;
+    margin: 50px auto 0px auto;
+    text-align: center;
+    
+    h1 {
+      font: {
+        weight: 500;
+        style: normal;
+        size: 30px;
+      }
+      margin-bottom: 30px;
+      
+      span {
+        font: {
+          weight: 700;
+          style: italic;
+        }
+        
+        color: #D90368;
+        border-bottom: 2px dashed currentColor;
+      }
+    }
+    
+    .button-effect {
+      padding: 60px 10px; 
+      
+      h2 {
+        font: {
+          family: 'Droid Serif', serif;
+          size: 20px;
+          
+        }
+        margin-bottom: 40px;
+      }
+      
+      button {
+        width: 220px;
+        margin: 10px;
+        margin-right: 17px;
+        background-color: $button-bg-1;
+        
+        
+        
+      }
+    }
+  }
+}
+
+
+.effect {
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: $link-text-color;
+  /* background-color: - add your own background-color */
+  font: {
+    family: 'Roboto', sans-serif; /* put your font-family */
+    size: 30px;
+    weight: 700;
+  }
+  padding: 22px 5px;
+  width: 200px;
+  border-radius: $border-radius;
+  overflow: hidden;
+  border-color: white;
+  
+  
+  span {
+    left: 15px;  
+  }
+
+}
+
+// background: linear-gradient(300deg, rgb(205, 193, 252) 0%, rgb(203, 249, 255) 100%);
+// background: linear-gradient(300deg, #7028e4 0%, #e5b2ca 100%);
+//linear-gradient(300deg, #7028e4 0%, #e5b2ca 100%);
+// linear-gradient(300deg, #d32de9 0%, #f7c1da 100%);
+//  background: linear-gradient(300deg, #d32de9 0%, #f7c1da 100%);
+// rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%)  #7028e4 0%, #e5b2ca 100%)
+body {
+    background:  rgb(226, 241, 255);
+  width: 100vw;
+  height: 100vh;
+
+  &.liked {
+      svg.like {
+          animation: blink 1s forwards;
+      }
+  }
+}
+
