@@ -3,8 +3,9 @@ package com.ssafy.near.src
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ssafy.near.dto.SignResponse
+import com.ssafy.near.dto.Model
 import com.ssafy.near.dto.UserInfo
+import com.ssafy.near.dto.UserToken
 import com.ssafy.near.repository.UserRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,7 +25,7 @@ class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
     private val isUpdatedPw = userRepository._isUpdatedPw
 
 
-    fun getSignResponse(): LiveData<SignResponse> {
+    fun getSignResponse(): LiveData<Model<UserToken>> {
         return signResponse
     }
 
