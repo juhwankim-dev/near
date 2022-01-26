@@ -117,6 +117,7 @@ class UserRepository {
             val response = withContext(Dispatchers.IO) {
                 RetrofitUtil.userService.checkNickname(nickname)
             }
+
             if (response.isSuccessful) {
                 if (response.body() != null) {
                     _isCheckedNickname.postValue(response.body()!!.data!!)
