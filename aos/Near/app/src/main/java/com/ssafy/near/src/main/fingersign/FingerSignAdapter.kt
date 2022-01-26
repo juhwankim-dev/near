@@ -10,7 +10,7 @@ import com.ssafy.near.dto.FingerSignInfo
 
 class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewHolder>(),
     Filterable {
-    private lateinit var itemClickListner: ItemClickListener
+    private lateinit var itemClickListener: ItemClickListener
     private var fingerSignList: ArrayList<FingerSignInfo> = ArrayList()
     private var fingerSignListFiltered: ArrayList<FingerSignInfo> = ArrayList()
 
@@ -31,7 +31,7 @@ class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewH
 
             //클릭연결
             itemView.setOnClickListener{
-                itemClickListner.onClick(fingerSignListFiltered[position])
+                itemClickListener.onClick(fingerSignListFiltered[position])
             }
         }
     }
@@ -77,6 +77,6 @@ class FingerSignAdapter : RecyclerView.Adapter<FingerSignAdapter.FingerSignViewH
     }
 
     fun setItemClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListner = itemClickListener
+        this.itemClickListener = itemClickListener
     }
 }
