@@ -2,18 +2,23 @@ package com.ssafy.near.src.main.fingersign
 
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentFingerSignBinding
+import com.ssafy.near.dto.FingerSignInfo
+import com.ssafy.near.repository.FingerSignRepository
 
 class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.fragment_finger_sign) {
+    private lateinit var fingerSignViewModel: FingerSignViewModel
     lateinit var fingerSignAdapter: FingerSignAdapter
     lateinit var dialog: FingerSignDialog
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModel()
         initView()
         initEvent()
     }
@@ -26,24 +31,24 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
         }
 
         dialog = FingerSignDialog(requireContext())
+
+        fingerSignViewModel.loadFingerSignList()
+    }
+
+    private fun initViewModel() {
+        fingerSignViewModel = ViewModelProvider(requireActivity(), FingerSignViewModelFactory(FingerSignRepository()))
+            .get(FingerSignViewModel::class.java)
+
+        fingerSignViewModel.getFingerSignList().observe(viewLifecycleOwner, {
+            fingerSignAdapter.setInitList(it)
+        })
     }
 
     private fun initEvent() {
         fingerSignAdapter.setItemClickListener(object : FingerSignAdapter.ItemClickListener{
-            override fun onClick(id: String) {
+            override fun onClick(id: FingerSignInfo) {
                 dialog.createDialog("임시데이터")
             }
         })
-
-        // 버튼 클릭시 HTTP 요청하는 샘플
-//        binding.XXX.setOnClickListener {
-//            sampleViewModel.selectselectSamples(1)
-//        }
-
-//         응답받은 데이터를 LiveData가 Observe 한다.
-//         it에 데이터가 저장된다. 원하는 뷰에 뿌려주면 끝
-//        sampleViewModel.getSampleResponse().observe(this, {
-//            it.items
-//        })
     }
 }
