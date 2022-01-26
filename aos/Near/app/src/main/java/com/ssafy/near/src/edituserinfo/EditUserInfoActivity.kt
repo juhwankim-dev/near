@@ -2,7 +2,6 @@ package com.ssafy.near.src.edituserinfo
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -14,6 +13,8 @@ import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
 import com.ssafy.near.src.login.LoginActivity
+import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_ID
+import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_TOKEN
 import com.ssafy.near.util.Validation
 
 class EditUserInfoActivity :
@@ -122,7 +123,7 @@ class EditUserInfoActivity :
 
     private fun initData() {
         val token = sSharedPreferences.getUserToken()
-        if (token == "default") {
+        if (token == DEFAULT_TOKEN) {
             requestLogin()
         } else {
             userViewModel.loadUserInfo(token)
@@ -219,12 +220,12 @@ class EditUserInfoActivity :
     }
 
     private fun updateUserInfo(nickname: String, email: String, pw: String) {
-        val id = sSharedPreferences.getUserId().toString()
+        val id = sSharedPreferences.getUserId()
 
-        if (id == "-1")
+        if (id == DEFAULT_ID)
             requestLogin()
         else {
-            userViewModel.updateUser(id, nickname, email, pw)
+            userViewModel.updateUser(id.toString(), nickname, email, pw)
         }
     }
 

@@ -6,6 +6,11 @@ import com.ssafy.near.config.ApplicationClass
 import com.ssafy.near.dto.UserToken
 
 class SharedPreferencesUtil(context: Context) {
+    companion object {
+        const val DEFAULT_ID = -1
+        const val DEFAULT_TOKEN = "default"
+    }
+
     private var preferences: SharedPreferences =
         context.getSharedPreferences(ApplicationClass.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
@@ -16,13 +21,12 @@ class SharedPreferencesUtil(context: Context) {
         editor.apply()
     }
 
-    // TODO: 2022-01-20 우선 이 id를 가져오는거로 작성해놓았지만 회원 id 가져오는거로 변경 필요
     fun getUserId(): Int {
-        return preferences.getInt("id", -1)
+        return preferences.getInt("id", DEFAULT_ID)
     }
 
     fun getUserToken(): String {
-        return preferences.getString("token", "default")!!
+        return preferences.getString("token", DEFAULT_TOKEN)!!
     }
 
     fun deleteUser() {
