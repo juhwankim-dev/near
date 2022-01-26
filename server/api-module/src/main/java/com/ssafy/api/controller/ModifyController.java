@@ -24,6 +24,7 @@ import javax.validation.Valid;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 @RequestMapping(value = "/api/modify")
 public class ModifyController {
     private final ModifyService modifyService;
@@ -175,6 +176,8 @@ public class ModifyController {
     @PutMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     CommonResult ModifyUser(@Valid ModifyUserReqDTO req) throws Exception {
+
+        req.setPassword(passwordEncoder.encode(req.getPassword()));
 
         if (!modifyService.updateUser(Long.parseLong(req.getId()), req)) {
             throw new ApiMessageException("실패");
