@@ -11,7 +11,7 @@ import javax.persistence.Column;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class FingerDetailResDTO {
+public class FingerContentResDTO {
 
     @ApiModelProperty(value = "지문자 번호", required = true, example = "1")
     private long fingercotent_key;

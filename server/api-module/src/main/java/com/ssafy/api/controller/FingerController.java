@@ -1,7 +1,6 @@
 package com.ssafy.api.controller;
 
-import com.ssafy.api.dto.res.FingerDetailResDTO;
-import com.ssafy.api.dto.res.FingerListResDTO;
+import com.ssafy.api.dto.res.FingerContentResDTO;
 import com.ssafy.api.service.FingerService;
 import com.ssafy.api.service.common.ListResult;
 import com.ssafy.api.service.common.ResponseService;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Api(tags = {"04. 지문자"})
 @Slf4j
@@ -35,36 +33,24 @@ public class FingerController {
     @ApiOperation(value = "지문자 목록", notes = "지문자의 목록을 불러온다")
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    ListResult<FingerListResDTO> FingerList() throws Exception {
+    ListResult<FingerContentResDTO> FingerList() throws Exception {
 
         List<Fingercontent> fingerList = fingerService.fingerList();
 
         if (fingerList == null) {
             throw new ApiMessageException("지문자 목록이 없습니다");
         }
-
-        List<FingerListResDTO> result = new ArrayList<>();
-
+        List<FingerContentResDTO> result = new ArrayList<>();
         for (Fingercontent fingercontent : fingerList) {
-            result.add(new FingerListResDTO(fingercontent.getFingercotent_key(), fingercontent.getName()));
+            result.add(new FingerContentResDTO(
+                    fingercontent.getFingercotent_key(),
+                    fingercontent.getName(),
+                    fingercontent.getCategory(),
+                    fingercontent.getImage_path(),
+                    fingercontent.getExplanation()
+            ));
         }
-
         return responseService.getListResult(result, "성공");
     }
-
-    @ApiOperation(value = "지문자 상세정보", notes = "해당 지문자의 상세정보를 불러온다")
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public @ResponseBody
-    SingleResult<FingerDetailResDTO> FingerDetail(@PathVariable String id) throws Exception {
-
-        Fingercontent fingercontent = fingerService.fingerDetail(Long.parseLong(id));
-
-        FingerDetailResDTO result =
-                new FingerDetailResDTO(fingercontent.getFingercotent_key(), fingercontent.getName(), fingercontent.getCategory(), fingercontent.getImage_path(), fingercontent.getExplanation());
-
-
-        return responseService.getSingleResult(result);
-    }
-
 
 }
