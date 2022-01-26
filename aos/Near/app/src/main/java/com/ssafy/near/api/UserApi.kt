@@ -1,9 +1,8 @@
 package com.ssafy.near.api
 
-import com.ssafy.near.dto.Duplication
 import com.ssafy.near.dto.Model
-import com.ssafy.near.dto.SignResponse
-import com.ssafy.near.dto.UserInfoResponse
+import com.ssafy.near.dto.UserInfo
+import com.ssafy.near.dto.UserToken
 import org.jetbrains.annotations.NotNull
 import retrofit2.Response
 import retrofit2.http.GET
@@ -17,17 +16,16 @@ interface UserApi {
         @Query("type") @NotNull type: String,
         @Query("uid") @NotNull uid: String,
         @Query("password") @NotNull password: String,
-    ): Response<SignResponse>
-
+    ): Response<Model<UserToken>>
 
     @GET("api/sign/checkid")
-    suspend fun checkId(@Query("uid") @NotNull uid: String): Response<Duplication>
+    suspend fun checkId(@Query("uid") @NotNull uid: String): Response<Model<Boolean>>
 
     @GET("api/sign/nickname")
-    suspend fun checkNickname(@Query("nickname") @NotNull nickname: String): Response<Duplication>
+    suspend fun checkNickname(@Query("nickname") @NotNull nickname: String): Response<Model<Boolean>>
 
     @GET("api/sign/checkemail")
-    suspend fun checkEmail(@Query("email") @NotNull email: String): Response<Duplication>
+    suspend fun checkEmail(@Query("email") @NotNull email: String): Response<Model<Boolean>>
 
     @POST("api/sign/signup")
     suspend fun signUp(
@@ -36,11 +34,11 @@ interface UserApi {
         @Query("nickname") nickname: String,
         @Query("email") email: String,
         @Query("password") @NotNull password: String
-    ): Response<SignResponse>
+    ): Response<Model<UserToken>>
 
 
     @POST("api/sign/userInfo")
-    suspend fun loadUserInfo(@Query("token") @NotNull token: String): Response<UserInfoResponse>
+    suspend fun loadUserInfo(@Query("token") @NotNull token: String): Response<Model<UserInfo>>
 
 
     @POST("api/modify/check")
