@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Pagination } from 'react-bootstrap';
 import Data from './SignData.js';
+import Paging from './Paging.js';
 import SignCard from './SignCard.js';
 // import './SignPage.css';
 import './SignPage.scss';
@@ -34,7 +35,7 @@ function SignPage(){
         </div> 
     </div>   
 
-              
+    <Paging></Paging>          
  
    </div>
    )}

@@ -92,21 +92,29 @@ function RegisterPage(props) {
         id: Id,
         password: Password,
         nickname: Nickname,
+  
       };
 
 
       dispatch(registerUser(body))
-        .then(response => {
-          if(response.payload.success) {
-            toast.success('회원가입이 완료되었습니다.');
-            props.history.push('/login'); //회원가입 성공 했을 경우 로그인으로 페이지 이동
-          }});
-        } else {
-            toast.error('비밀번호가 일치하지 않습니다');
-              // alert('"Failed to sign up"')
-          }
+      .then((res) => { 
+        if(res.payload.success){
+          toast.success('회원가입이 완료되었습니다.');
         
-  };
+        }
+      });
+
+
+        //  toast.success('회원가입이 완료되었습니다.');
+        // props.history.push('/login');
+        // props.toggleClass();
+        // axios.get(`https://hoonycode.loca.lt:8185/api/login `);
+
+    
+    }else {
+      toast.error('비밀번호가 일치하지 않습니다');
+    }
+   };
 
   return (
     <div style={{
@@ -193,5 +201,6 @@ function RegisterPage(props) {
     </div>
   );
 }
+
 
 export default RegisterPage;
