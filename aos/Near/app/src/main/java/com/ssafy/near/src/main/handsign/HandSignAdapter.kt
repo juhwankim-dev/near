@@ -4,14 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.near.databinding.ListItemHandSignBinding
+import com.ssafy.near.dto.HandSignInfo
 
-class HandSignAdapter(var list: MutableList<String>) : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
-    private lateinit var itemClickListner: ItemClickListener
-    //var list = mutableListOf<String>()
+class HandSignAdapter() : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
+    private lateinit var itemClickListener: ItemClickListener
+    var handSignList = ArrayList<HandSignInfo>()
 
     inner class HandSignViewHolder(private val binding: ListItemHandSignBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindInfo(s: String) {
-            binding.voca = s
+        fun bindInfo(handSignInfo: HandSignInfo) {
+            binding.handSignInfo = handSignInfo
         }
     }
 
@@ -22,28 +23,26 @@ class HandSignAdapter(var list: MutableList<String>) : RecyclerView.Adapter<Hand
 
     override fun onBindViewHolder(holder: HandSignViewHolder, position: Int) {
         holder.apply {
-            bindInfo(list[position])
+            bindInfo(handSignList[position])
 
             itemView.setOnClickListener {
-                //itemClickListner.onClick(list[position].o_id) // TODO 나중에 BE 다 만들어지면 수정
+                itemClickListener.onClick(handSignList[position])
             }
         }
     }
 
-    // TODO 나중에 BE 다 만들어지면 수정
-    fun updateList() {
+    override fun getItemCount(): Int = handSignList.size
 
+    fun setInitList(list: List<HandSignInfo>) {
+        handSignList.clear()
+        handSignList.addAll(list)
     }
 
-    override fun getItemCount(): Int = list.size
-
-    //클릭 인터페이스 정의 사용하는 곳에서 만들어준다.
     interface ItemClickListener {
-        fun onClick(id: Int)
+        fun onClick(handSignInfo: HandSignInfo)
     }
 
-    //클릭리스너 등록 매소드
     fun setItemClickListener(itemClickListener: ItemClickListener) {
-        this.itemClickListner = itemClickListener
+        this.itemClickListener = itemClickListener
     }
 }

@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="voca"
-            type="String" />
+            name="handSignInfo"
+            type="com.ssafy.near.dto.HandSignInfo" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
             style="@style/body_text"
             android:layout_width="match_parent"
             android:padding="@dimen/activity_margin_default"
-            android:text="@{voca}" />
+            android:text="@{handSignInfo.name}" />
 
         <View
             android:layout_width="match_parent"
