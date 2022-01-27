@@ -8,7 +8,7 @@ function RegisterPage(props) {
   const [Email, setEmail] = useState('');
   const [Id, setId] = useState('');
   const [Password, setPassword] = useState('');
-  const [ConfirmPasword, setConfirmPasword] = useState('');
+  const [ConfirmPassword, setConfirmPassword] = useState('');
   const [Nickname, setNickname] = useState('');
 
   // const [Email, setEmail] = useState("") //initialState처음에 빈칸이라서 ""
@@ -60,30 +60,65 @@ function RegisterPage(props) {
   const onConfirmPasswordHandler = (event) => {
     setConfirmPassword(event.currentTarget.value) 
   }
+
   const onSubmitHandler = (event) => {
     event.preventDefault(); //버튼 눌렀을 때 새로고침 방지
+
+    if (Email === '' || Email === undefined || Email === null) {
+      toast.error('이메일을 입력하세요');
+      return;
+    }
+
+    if (Id === '' || Id === undefined || Id === null) {
+      toast.error('ID를 입력하세요');
+      return;
+    }
+
+    if (!check()) {
+      return;
+    }
 
     if (Password !== ConfirmPassword) {
       return alert('비밀번호와 비밀번호 확인은 같아야 합니다.')
     }
-    //같지않을 경우 아래로 진입 못함
-    let body = {
-      email: Email,
-      name: Name,
-      password: Password,
-    }
 
-    dispatch(registerUser(body))
-      .then(response => {
-        if(response.payload.success) {
-          props.history.push('/login') //회원가입 성공 했을 경우 로그인으로 페이지 이동
-        } else {
-            alert('"Failed to sign up"')
-        }
-      })
+
+    if (Password === ConfirmPassword) {
+      const body = {
+        email: Email,
+        id: Id,
+        password: Password,
+        nickname: Nickname,
+      };
+
+      dispatch(registerUser(body)).then((res) => {
+        
+        toast.success('회원가입이 완료되었습니다.');
+        // props.toggleClass();
+        // axios.get(`https://hoonycode.loca.lt:8185/api/login `);
+      });
+    } else {
+      toast.error('비밀번호가 일치하지 않습니다');
+    }
   }
 
-  return (
+    //같지않을 경우 아래로 진입 못함
+    // let body = {
+    //   email: Email,
+    //   name: Name,
+    //   password: Password,
+    // }
+
+    // dispatch(registerUser(body))
+    //   .then(response => {
+    //     if(response.payload.success) {
+    //       props.history.push('/login') //회원가입 성공 했을 경우 로그인으로 페이지 이동
+    //     } else {
+    //         alert('"Failed to sign up"')
+    //     }
+    //   })
+  
+
     <div style={{
       display:'flex', justifyContent: 'center', alignItems: 'center'
       ,width: '100%', height: '100vh'
@@ -110,7 +145,8 @@ function RegisterPage(props) {
         </button>
       </form>
     </div>
-  );
+ 
 }
+
 
 export default RegisterPage;

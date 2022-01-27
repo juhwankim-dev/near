@@ -14,6 +14,16 @@ public interface UserRepoCommon {
     User findByEmail(String email);
 
     User findByNickname(String nickname);
+
+    long updatePassword(long id, String password);
+
+    long updateAddress(long id, String address, String addressDetail);
+
+    long updatePhone(long id, String phone);
+
+    long updateNickname(long id, String nicknmae);
+
+    long updateEmail(long id, String email);
 }
 
 

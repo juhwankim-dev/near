@@ -18,7 +18,7 @@ public class UserInfoResDTO {
     @ApiModelProperty(value = "uid (일반회원:아이디, sns로그인:uid값)", required = true, example = "kakao123")
     private String uid;
 
-    @ApiModelProperty(value = "비밀번호", required = true, example = "123")
+    @ApiModelProperty(value = "비밀번호", required = true, example = "test123!")
     private String password;
 
     @ApiModelProperty(value = "이름", required = false, example = "카카오")

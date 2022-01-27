@@ -66,6 +66,60 @@ public class UserRepoCommonImpl implements UserRepoCommon{
         return result;
     }
 
+    @Override
+    public long updatePassword(long id, String password) {
+
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.password, password)
+                .execute();
+
+        return cnt;
+    }
+
+    @Override
+    public long updateAddress(long id, String address, String addressDetail) {
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.address, address)
+                .execute();
+
+        cnt += queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.addressDetail,addressDetail)
+                .execute();
+
+        return cnt;
+    }
+
+    @Override
+    public long updatePhone(long id, String phone) {
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.phone, phone)
+                .execute();
+
+        return cnt;
+    }
+
+    @Override
+    public long updateNickname(long id, String nicknmae) {
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.nickname, nicknmae)
+                .execute();
+        return cnt;
+    }
+
+    @Override
+    public long updateEmail(long id, String email) {
+        long cnt = queryFactory.update(QUser.user)
+                .where(QUser.user.id.eq(id))
+                .set(QUser.user.email, email)
+                .execute();
+        return cnt;
+    }
+
 
     // isBind 조건만 체크
     public BooleanExpression checkUserIsBind(YNCode isBind){
@@ -74,6 +128,7 @@ public class UserRepoCommonImpl implements UserRepoCommon{
 
         return QUser.user.isBind.eq(isBind);
     }
+
 }
 
 

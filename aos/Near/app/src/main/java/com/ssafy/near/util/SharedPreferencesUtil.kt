@@ -6,6 +6,11 @@ import com.ssafy.near.config.ApplicationClass
 import com.ssafy.near.dto.UserToken
 
 class SharedPreferencesUtil(context: Context) {
+    companion object {
+        const val DEFAULT_ID = -1
+        const val DEFAULT_TOKEN = "default"
+    }
+
     private var preferences: SharedPreferences =
         context.getSharedPreferences(ApplicationClass.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
@@ -13,6 +18,20 @@ class SharedPreferencesUtil(context: Context) {
         val editor = preferences.edit()
         editor.putInt("id", userToken.id)
         editor.putString("token", userToken.token)
+        editor.apply()
+    }
+
+    fun getUserId(): Int {
+        return preferences.getInt("id", DEFAULT_ID)
+    }
+
+    fun getUserToken(): String {
+        return preferences.getString("token", DEFAULT_TOKEN)!!
+    }
+
+    fun deleteUser() {
+        val editor = preferences.edit()
+        editor.clear()
         editor.apply()
     }
 }

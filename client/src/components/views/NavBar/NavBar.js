@@ -15,7 +15,7 @@ function NavBar() {
         {/* <Nav.Link href="login">Link</Nav.Link> */}
         <NavDropdown title="학습컨텐츠" id="basic-nav-dropdown">
           <NavDropdown.Item as={Link} to='/content1'>지어</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to='/content2'>수어</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to='/sign'>수어</NavDropdown.Item>
         </NavDropdown>
         <NavDropdown title="학습게임" id="basic-nav-dropdown">
           <NavDropdown.Item as={Link} to='/singleplay'>싱글플레이</NavDropdown.Item>

@@ -2,6 +2,7 @@ package com.ssafy.near.src.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -29,8 +30,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
         userViewModel.getSignResponse().observe(this, { signResponse ->
             when {
-                signResponse == null        -> Toast.makeText(this, "통신에 문제가 발생하였습니다.", Toast.LENGTH_SHORT).show()
-                signResponse.output != 1    -> Toast.makeText(this, signResponse.msg, Toast.LENGTH_SHORT).show()
+                signResponse == null        -> showToastMessage("통신에 문제가 발생하였습니다.")
+                signResponse.output != 1    -> showToastMessage(signResponse.msg)
                 else -> {
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -47,12 +48,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
             if (id == "") {
                 binding.etId.editText?.requestFocus()
-                Toast.makeText(this, "아이디를 입력하세요.", Toast.LENGTH_SHORT).show()
+                showToastMessage("아이디를 입력하세요.")
                 return@setOnClickListener;
             }
             if (pw == "") {
                 binding.etPw.editText?.requestFocus()
-                Toast.makeText(this, "비밀번호를 입력하세요.", Toast.LENGTH_SHORT).show()
+                showToastMessage("비밀번호를 입력하세요.")
                 return@setOnClickListener;
             }
 
