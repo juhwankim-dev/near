@@ -36,6 +36,7 @@ class HandSignAdapter() : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolde
     fun setInitList(list: List<HandSignInfo>) {
         handSignList.clear()
         handSignList.addAll(list)
+        notifyDataSetChanged()
     }
 
     interface ItemClickListener {
