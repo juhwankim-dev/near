@@ -34,7 +34,6 @@ public class ModifyController {
     private final JwtTokenProvider jwtTokenProvider;
 
 
-    //TODO
     @ApiOperation(value = "비밀번호 확인", notes = "비밀번호 일치 여부에 따라 성공, 실패를 반환한다.")
     @PostMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
