@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="handSignInfo"
+            type="com.ssafy.near.dto.HandSignInfo" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,10 +15,10 @@
         tools:context=".src.main.handsign.HandSignDetailActivity">
 
         <TextView
-            android:id="@+id/tv_hand_sign_title"
             style="@style/appbar_text"
-            android:text="가게"
             android:layout_marginStart="@dimen/activity_margin_default"
+            android:text="@{handSignInfo.name}"
+            tools:text="가게"
             app:layout_constraintBottom_toBottomOf="@+id/iv_bookmark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_bookmark" />
@@ -44,33 +46,29 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_explain1"
                     style="@style/header_text"
-                    android:text="작은 규모로 물건을 파는 곳" />
-
-                <TextView
-                    android:id="@+id/tv_explain2"
-                    style="@style/body_text"
-                    android:text="[장사 + 집]" />
+                    android:text="@{handSignInfo.mean}"
+                    tools:text="작은 규모로 물건을 파는 곳" />
 
                 <ImageView
                     android:id="@+id/iv_hand_sign"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_margin="@dimen/activity_margin_default"
-                    app:srcCompat="@drawable/img_thumbnail_sample_2" />
+                    bindImageUrl="@{handSignInfo.image_path}"
+                    tools:srcCompat="@drawable/img_thumbnail_sample_2" />
 
                 <TextView
                     style="@style/header_text"
                     android:text="설명" />
 
                 <TextView
-                    android:id="@+id/textView3"
                     style="@style/body_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_margin_default"
-                    android:text="두 손의 1-5지 끝을 맞대어 동그라미를 만들어 전후로 엇갈리게 움직인 다음, 두 손의 손끝을 맞대어 좌우로 비스듬히 세운다." />
+                    android:text="@{handSignInfo.explanation}"
+                    tools:text="두 손의 1-5지 끝을 맞대어 동그라미를 만들어 전후로 엇갈리게 움직인 다음, 두 손의 손끝을 맞대어 좌우로 비스듬히 세운다." />
 
                 <TextView
                     style="@style/header_text"

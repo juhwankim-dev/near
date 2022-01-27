@@ -1,5 +1,6 @@
 package com.ssafy.near.src.main.handsign
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,7 @@ import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentHandSignBinding
 import com.ssafy.near.dto.HandSignInfo
 import com.ssafy.near.repository.HandSignRepository
+import com.ssafy.near.src.main.MainActivity
 
 class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment_hand_sign) {
     private lateinit var handSignViewModel: HandSignViewModel
@@ -44,7 +46,9 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
     private fun initEvent() {
         handSignAdapter.setItemClickListener(object : HandSignAdapter.ItemClickListener{
             override fun onClick(handSignInfo: HandSignInfo) {
-                // TODO 단어가 클릭되었을 때 할 동작
+                val intent = Intent((context as MainActivity), HandSignDetailActivity::class.java)
+                intent.putExtra("handSignInfo", handSignInfo)
+                (context as MainActivity).startActivity(intent)
             }
         })
     }
