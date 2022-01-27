@@ -1,9 +1,10 @@
 package com.ssafy.near.dto
 
 data class HandSignInfo(
-    val explanation: String,
     val handcotent_key: Long,
-    val image_path: String,
+    val mean: String,
     val name: String,
-    val video_path: String
+    val explanation: String,
+    val video_path: String,
+    val image_path: String
 )
