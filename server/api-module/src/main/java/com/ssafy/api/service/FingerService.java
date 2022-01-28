@@ -25,13 +25,6 @@ public class FingerService {
     public List<Fingercontent> fingerList() throws Exception {
 
         List<Fingercontent> result = fingerRepository.findAll();
-
         return result;
     }
-
-    @Transactional(readOnly = true)
-    public Fingercontent fingerDetail(long id) throws Exception {
-        return fingerRepository.findById(id).orElseThrow(() -> new ApiMessageException(("존재하지 않는 지문자입니다")));
-    }
-
 }
