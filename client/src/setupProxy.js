@@ -1,0 +1,12 @@
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function(app) {
+  app.use(
+    '/api',
+    createProxyMiddleware({
+      target: 'https://hoonycode.loca.lt',
+      // 프론트엔드에서 벡엔드로 줄때 타겟을 설정하고 5000번으로 주겠다.(나중에 우리 백엔드 port번호로 바꿔야함)
+      changeOrigin: true,
+    })
+  );
+};

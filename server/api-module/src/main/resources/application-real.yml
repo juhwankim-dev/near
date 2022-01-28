@@ -1,0 +1,87 @@
+# 실서버에서 사용할 application yml 설정 파일
+# ':' 뒤에 설정값을 입력할 때는 반드시 ':' 다음에 공백이 필요
+# 설정할 값들의 레벨 주의 (ex. spring.datasource.url 을 입력할 경우, datasource: 는 spring: 보다 우측으로 한 탭 이동. url: 은 datasource: 보다 우측으로 한 탭 이동)
+
+# 기본 로그 레벨 설정
+logging:
+  level:
+    root: warn
+    com.ssafy.api: info
+    org.hibernate.type.descriptor.sql: trace
+spring:
+  profiles:
+    active: real
+    # application-aws.yml 추가 include
+    include:
+      - aws
+  messages:
+    basename: i18n/exception
+    encoding: UTF-8
+  # JWT 토큰에 사용할 secret 키값 (임의의 랜덤 키값)
+  jwt:
+    secret: DvqcGn8mnFjqSL4a
+  # JPA 기본 설정
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties.hibernate:
+      # 재시작 시 JPA Entity(DB 테이블 데이터)를 새로 생성할지 여부 (create:기존데이터 삭제 후 신규 생성, udpate:신규 데이터만 업데이트, none:아무 실행도 하지 않음)
+      hbm2ddl.auto: none   # !!!!!!!!!!!!!!!!!!!
+      format_sql: true
+      show_sql: true
+      use_sql_comments: true
+    generate-ddl: true
+    open-in-view: false
+
+  # 데이터 베이스 연결 설정
+  datasource:
+    url: 데이터베이스 연결 url
+    driver-class-name: 데이터 베이스 드라이버 (ex. org.mariadb.jdbc.Driver)
+    username: 데이터베이스 연결 name
+    password: 데이터베이스 연결 비밀번호
+  flyway:
+    enabled: false
+  config:
+    activate:
+      on-profile: real
+  servlet:
+    multipart:
+      file-size-threshold: 15MB
+      # 프로젝트 환경의 upload 파일을 저장할 경로
+      location: /home/ubuntu/project/ssafy/web/upload
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  # 메일 전송 시 사용할 설정값
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 메일을 전송하는 유저의 이메일 주소 (ex. test@test.com)
+    to-name: 메일을 받을 유저의 이메일 주소 (ex. test@test.com)
+    password: 메일 주소 계정의 비밀번호
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+server:
+  # 프로젝트 환경의 포트 설정
+  port: 80
+  domain: http://127.0.0.1
+  servlet:
+    session:
+      timeout: 1440m
+  max-http-header-size: 3145728
+
+aes256:
+  key: WZsExuBV3GSQ55Uf
+
+# 푸쉬 알림 전송 시 필요한 firebase json 파일의 위치
+app:
+  firebase-config: ssafy-e6f74-firebase-adminsdk-2911y-cfd0f23f96.json
+
+# swagger에서 테스트 할 때의 host
+swagger:
+  host: localhost:80
