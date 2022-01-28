@@ -3,8 +3,6 @@ package com.ssafy.near.repository
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.ssafy.near.dto.FingerSignInfo
-import com.ssafy.near.dto.Model
-import com.ssafy.near.dto.UserInfo
 import com.ssafy.near.util.RetrofitUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

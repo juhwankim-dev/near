@@ -5,12 +5,8 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Point
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.WindowManager
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
-import com.ssafy.near.R
 import com.ssafy.near.databinding.DialogFingerSignBinding
 import com.ssafy.near.dto.FingerSignInfo
 
