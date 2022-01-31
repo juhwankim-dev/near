@@ -11,7 +11,6 @@ import './SignPage.scss';
 import vid from '../../../../assets/NIA_SL_WORD0687_SYN02_F.mp4';
 import abc from '../../../../assets/abc.PNG';
 
-
 function SignPage(){
   let [signcards, setsigncard] = useState(Data);
   let [modal, setmodal] = useState(false);
@@ -22,6 +21,7 @@ function SignPage(){
   }
  
   return (
+    
     <div className="container">
       {/* <h1>수어 배우기</h1> */}
       <div className='nemo'> 
@@ -41,7 +41,6 @@ function SignPage(){
         )})}
         </div> 
     </div>   
-
     <Paging></Paging>          
  
    </div>

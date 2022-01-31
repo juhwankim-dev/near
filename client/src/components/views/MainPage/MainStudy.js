@@ -75,6 +75,7 @@ const MainStudy = () => {
   </div>
 
 {/* </Container> */}
+<div class="backgrounddesk"></div>
 </div>
 </div>;
 };
