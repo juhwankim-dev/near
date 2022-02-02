@@ -28,7 +28,8 @@ p {
   z-index: 1; 
   /* z-index 우선순위 숫자 클수록 위로 옴 */
   text-align:center;
-  background: linear-gradient(300deg,  rgb(135, 108, 240) 0%, rgb(2, 173, 196) 100%);
+  /* background: linear-gradient(300deg,  rgb(135, 108, 240) 0%, rgb(2, 173, 196) 100%); */
+  background: linear-gradient(300deg, rgba(84,58,183,1) 0%, rgba(0,172,193,1) 100%);
   color:white;
 }
 .logo {
