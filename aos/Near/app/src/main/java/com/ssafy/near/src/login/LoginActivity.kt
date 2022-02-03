@@ -1,6 +1,7 @@
 package com.ssafy.near.src.login
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -19,6 +20,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         super.onCreate(savedInstanceState)
 
         initViewModel()
+        initView()
         initEvent()
     }
 
@@ -39,18 +41,22 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
     }
 
+    fun initView() {
+        binding.tvSignUp.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+    }
+
     private fun initEvent() {
         binding.btnLogin.setOnClickListener {
-            val id = binding.etId.editText?.text.toString().trim()
-            val pw = binding.etPw.editText?.text.toString().trim()
+            val id = binding.etId?.text.toString().trim()
+            val pw = binding.etPw?.text.toString().trim()
 
             if (id == "") {
-                binding.etId.editText?.requestFocus()
+                binding.etId?.requestFocus()
                 showToastMessage("아이디를 입력하세요.")
                 return@setOnClickListener;
             }
             if (pw == "") {
-                binding.etPw.editText?.requestFocus()
+                binding.etPw?.requestFocus()
                 showToastMessage("비밀번호를 입력하세요.")
                 return@setOnClickListener;
             }
@@ -58,7 +64,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             login(id, pw)
         }
 
-        binding.btnSignUp.setOnClickListener {
+        binding.tvSignUp.setOnClickListener {
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
