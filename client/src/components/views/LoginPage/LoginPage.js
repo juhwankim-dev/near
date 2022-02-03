@@ -73,16 +73,18 @@ function LoginPage(props) {
   return (
     <div style={{
       display:'flex', justifyContent: 'center', alignItems: 'center'
-      ,width: '100%', height: '100vh'}}>
+      ,width: '100%', height: '100vh'}} onSubmit={onSubmitHandler}>
+  
   <div class="login-wrap">
 	<div class="login-html">
     <div><h1>N:ear</h1></div>
 		<input id="tab-1" type="radio" name="tab" class="sign-in" checked/><label for="tab-1" class="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" class="sign-up"/><label for="tab-2" class="tab">Sign Up</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" class="tab">Sign Up</label>
+    {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}
 		<div class="login-form">
 			<div class="sign-in-htm">
 				<div class="group">
-					<label for="user" class="label">Username</label>
+					<label for="user" class="label">ID</label>
 					<input id="user" type="text" class="input"/>
 				</div>
 				<div class="group">
@@ -90,45 +92,34 @@ function LoginPage(props) {
 					<input id="pass" type="password" class="input" data-type="password"/>
 				</div>
 				<div class="group">
-					<input id="check" type="checkbox" class="check" checked/>
+					<input id="check" type="checkbox" class="check" />
 					<label for="check"><span class="icon"></span> Keep me Signed in</label>
 				</div>
 				<div class="group">
 					<input type="submit" class="button" value="Sign In"/>
 				</div>
+        
 				<div class="hr"></div>
 				<div class="foot-lnk">
 					<a href="#forgot">Forgot Password?</a>
 				</div>
 			</div>
-			<div class="sign-up-htm">
-				<div class="group">
-					<label for="user" class="label">Username</label>
-					<input id="user" type="text" class="input"/>
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password"/>
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Repeat Password</label>
-					<input id="pass" type="password" class="input" data-type="password"/>
-				</div>
-				<div class="group">
-					<label for="pass" class="label">Email Address</label>
-					<input id="pass" type="text" class="input"/>
-				</div>
-				<div class="group">
-					<input type="submit" class="button" value="Sign Up"/>
-				</div>
-				<div class="hr"></div>
-				<div class="foot-lnk">
-					<label for="tab-1">Already Member?</label>
-				</div>
-			</div>
 		</div>
 	</div>
-</div>
+  </div>
+      <Toaster
+        position="top-center"
+        reverseOrder={true}
+        toastOptions={{
+          duration: 1000,
+          style: {
+            border: '1px solid #713200',
+            padding: '16px',
+            margin: '10vh',
+            color: '#713200',
+          },
+        }}
+      />
 </div>
 );
 }
