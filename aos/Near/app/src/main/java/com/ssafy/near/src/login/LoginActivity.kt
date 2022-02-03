@@ -1,8 +1,12 @@
 package com.ssafy.near.src.login
 
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Paint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
@@ -15,6 +19,8 @@ import com.ssafy.near.src.signup.SignUpActivity
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
     lateinit var userViewModel: UserViewModel
+    private var isIdEmpty: Boolean? = true
+    private var isPwEmpty: Boolean? = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +74,29 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
+
+        binding.etId.addTextChangedListener {
+            isIdEmpty = it.toString().isEmpty()
+            updateBtnState()
+        }
+
+        binding.etPw.addTextChangedListener {
+            isPwEmpty = it.toString().isEmpty()
+            updateBtnState()
+        }
     }
 
     private fun login(id: String, pw: String) {
         userViewModel.login(id, pw)
+    }
+
+    private fun updateBtnState() {
+        if(isIdEmpty == false && isPwEmpty == false) {
+            binding.btnLogin.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.temp_blue))
+            binding.btnLogin.isClickable = true
+        } else {
+            binding.btnLogin.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
+            binding.btnLogin.isClickable = false
+        }
     }
 }

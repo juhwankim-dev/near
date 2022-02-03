@@ -3,125 +3,314 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin_default"
+        android:background="#f8f7fc"
         android:orientation="vertical">
 
-        <TextView
-            style="@style/appbar_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_margin_wide"
-            android:text="회원가입" />
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="@dimen/activity_margin_default"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_id"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_person_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="15"
-            app:helperTextTextColor="@color/temp_blue">
+            android:layout_height="0dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/btn_sign_up"
+            app:layout_constraintTop_toBottomOf="@+id/iv_back">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="아이디" />
+                android:orientation="vertical">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f8f7fc"
+                    android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_nickname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_person_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="6"
-            app:helperTextTextColor="@color/temp_blue">
+                    <TextView
+                        style="@style/appbar_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:text="회원가입"
+                        android:textColor="@color/gray_low_emphasis" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="닉네임" />
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="@dimen/activity_margin_narrow"
+                        android:layout_marginBottom="@dimen/activity_margin_default"
+                        android:text="@string/sign_up_guide"
+                        android:textColor="@color/gray_low_emphasis"
+                        android:textSize="@dimen/explain_text_size" />
+                </LinearLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:gravity="right"
+                    android:orientation="horizontal">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_baseline_email_24"
-            app:helperText="   "
-            app:helperTextTextColor="@color/temp_blue">
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="이메일"
-                android:inputType="textWebEmailAddress" />
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="필수 입력 항목"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:orientation="horizontal">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_margin_wide" />
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:passwordToggleEnabled="true"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:helperTextTextColor="@color/temp_blue" >
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="ID"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="비밀번호"
-                android:inputType="textPassword" />
+                <EditText
+                    android:id="@+id/et_id"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="영문, 숫자 조합 / 6~15자"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_id_error"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    tools:text="아이디는 6~15자 입니다."
+                    android:textColor="@color/red_error_message" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_confirm_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:passwordToggleEnabled="true"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:helperTextTextColor="@color/temp_blue">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="비밀번호 확인"
-                android:inputType="textPassword" />
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="닉네임"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_nickname"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="영문 3~6자"
+                    android:inputType="textPersonName"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_nick_name_error"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    tools:text="이미 존재하는 닉네임입니다."
+                    android:textColor="@color/red_error_message" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
+
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="비밀번호"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_pw"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="영문, 숫자 조합 8~20자"
+                    android:inputType="textPassword"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_pw_error"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    tools:text="비밀번호는 8~20자입니다."
+                    android:textColor="@color/red_error_message" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
+
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="비밀번호 확인"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_confirm_pw"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="비밀번호를 다시 입력해주세요"
+                    android:inputType="textPassword"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_confirm_pw_error"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    tools:text="비밀번호가 일치하지 않습니다."
+                    android:textColor="@color/red_error_message" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginVertical="@dimen/activity_margin_wide"
+                    android:background="#e7e7ef" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
+
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="이메일"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_email"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:layout_marginBottom="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="이메일 주소를 입력해주세요"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_email_error"
+                    android:layout_marginStart="20dp"
+                    android:visibility="gone"
+                    tools:text="올바른 이메일 형식이 아닙니다."
+                    android:textColor="@color/red_error_message" />
+
+                <Button
+                    style="@style/body_text"
+                    android:id="@+id/btn_email_auth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:layout_marginBottom="80dp"
+                    android:text="본인인증"
+                    android:textColor="@color/white"
+                    android:clickable="false"
+                    android:background="@drawable/bg_blue_round"
+                    app:backgroundTint="@color/gray_btn_disabled"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+            </LinearLayout>
+        </ScrollView>
 
         <Button
+            style="@style/body_text"
             android:id="@+id/btn_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_wide"
-            android:background="@drawable/btn_background"
-            android:text="회원가입"
-            android:textSize="@dimen/header_text_size" />
+            android:paddingVertical="12dp"
+            android:text="가입완료"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_blue_round"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
