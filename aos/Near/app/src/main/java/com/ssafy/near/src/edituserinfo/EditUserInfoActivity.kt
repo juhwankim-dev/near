@@ -41,7 +41,7 @@ class EditUserInfoActivity :
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
 
-        userViewModel.getUserInfo().observe(this, {
+        userViewModel.getUserInfo().observe(this) {
             if (it == null) {
                 requestLogin()
             } else {
@@ -49,9 +49,9 @@ class EditUserInfoActivity :
                 binding.etEmail.editText!!.setText(it.email)
                 oldInfo = it
             }
-        })
+        }
 
-        userViewModel.getCheckedNickname().observe(this, {
+        userViewModel.getCheckedNickname().observe(this) {
             isCheckedNickname = when (it) {
                 true -> {
                     if (binding.etNickname.editText?.text.toString() == oldInfo.nickname) {
@@ -70,9 +70,9 @@ class EditUserInfoActivity :
                     true
                 }
             }
-        })
+        }
 
-        userViewModel.getCheckedEmail().observe(this, {
+        userViewModel.getCheckedEmail().observe(this) {
             isCheckedEmail = when (it) {
                 true -> {
                     if (binding.etEmail.editText?.text.toString() == oldInfo.email) {
@@ -91,9 +91,9 @@ class EditUserInfoActivity :
                     true
                 }
             }
-        })
+        }
 
-        userViewModel.getCheckedPw().observe(this, {
+        userViewModel.getCheckedPw().observe(this) {
             isCheckedOldPw = when (it) {
                 true -> {
                     binding.etOldPw.error = ""
@@ -106,9 +106,9 @@ class EditUserInfoActivity :
                     false
                 }
             }
-        })
+        }
 
-        userViewModel.getUpdatedUser().observe(this, {
+        userViewModel.getUpdatedUser().observe(this) {
             when (it) {
                 true -> {
                     showToastMessage("회원정보가 수정되었습니다.")
@@ -118,7 +118,7 @@ class EditUserInfoActivity :
                     showToastMessage("회원정보 수정에 실패했습니다. 다시 시도해주세요.")
                 }
             }
-        })
+        }
     }
 
     private fun initData() {

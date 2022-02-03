@@ -26,7 +26,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
 
-        userViewModel.getSignResponse().observe(this, { signResponse ->
+        userViewModel.getSignResponse().observe(this) { signResponse ->
             when {
                 signResponse == null        -> showToastMessage("통신에 문제가 발생하였습니다.")
                 signResponse.output != 1    -> showToastMessage(signResponse.msg)
@@ -36,7 +36,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                     finish()
                 }
             }
-        })
+        }
     }
 
     private fun initEvent() {
