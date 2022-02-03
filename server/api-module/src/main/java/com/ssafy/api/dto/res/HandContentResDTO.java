@@ -34,5 +34,9 @@ public class HandContentResDTO {
     @ApiModelProperty(value = "이미지 경로", required = true, example = "url")
     private String image_path;
 
+    @ApiModelProperty(value = "수어 동작", required = true, example = "[진찰 + 눕다]")
+    private String movement;
+
+
 
 }
