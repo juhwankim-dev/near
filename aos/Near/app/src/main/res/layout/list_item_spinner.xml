@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        style="@style/body_text"
+        android:id="@+id/tv_spinner_item"
+        android:layout_width="match_parent"
+        android:padding="@dimen/activity_margin_narrow"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#8b8b8a"
+        tools:text="최근 등록순" />
+</androidx.constraintlayout.widget.ConstraintLayout>

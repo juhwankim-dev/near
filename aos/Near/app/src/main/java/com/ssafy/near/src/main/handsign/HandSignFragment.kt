@@ -28,9 +28,9 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
         handSignViewModel = ViewModelProvider(requireActivity(), HandSignViewModelFactory(HandSignRepository()))
             .get(HandSignViewModel::class.java)
 
-        handSignViewModel.getHandSignList().observe(viewLifecycleOwner, {
+        handSignViewModel.getHandSignList().observe(viewLifecycleOwner) {
             handSignAdapter.setInitList(it)
-        })
+        }
     }
 
     private fun initView() {

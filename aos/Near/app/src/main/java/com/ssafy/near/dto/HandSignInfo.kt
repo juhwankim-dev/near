@@ -8,5 +8,6 @@ data class HandSignInfo(
     val name: String,
     val explanation: String,
     val video_path: String,
-    val image_path: String
+    val image_path: String,
+    val movement: String
 ) : Serializable

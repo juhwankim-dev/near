@@ -13,6 +13,7 @@ import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
 import com.ssafy.near.src.edituserinfo.EditUserInfoActivity
 import com.ssafy.near.src.login.LoginActivity
+import com.ssafy.near.src.main.mynote.MyNoteActivity
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
     private lateinit var userViewModel: UserViewModel
@@ -61,6 +62,10 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
         binding.layoutMemberModify.setOnClickListener {
             startActivity(Intent(requireContext(), EditUserInfoActivity::class.java))
+        }
+
+        binding.layoutMyNote.setOnClickListener {
+            startActivity(Intent(requireContext(), MyNoteActivity::class.java))
         }
     }
 
