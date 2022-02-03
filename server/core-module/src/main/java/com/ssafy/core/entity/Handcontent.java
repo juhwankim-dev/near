@@ -58,6 +58,10 @@ public class Handcontent {
     @Column(nullable = true, length = 255)
     private String explanation;
 
+    // 동작
+    @Column(nullable = true, length = 50)
+    private String movement;
+
 
     @CreatedDate
     @Column(nullable = false)

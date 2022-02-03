@@ -50,12 +50,13 @@ public class HandController {
                     .handcontent_key(handcontent.getHandcontent_key())
                     .image_path(handcontent.getImage_path())
                     .mean(handcontent.getMean())
-                    .video_path(handcontent.getVideo_path()).build());
+                    .video_path(handcontent.getVideo_path())
+                    .movement(handcontent.getMovement())
+                    .build());
         }
 
         return responseService.getListResult(result, "성공");
     }
-
 
 
 }
