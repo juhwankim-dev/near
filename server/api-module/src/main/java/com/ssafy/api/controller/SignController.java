@@ -147,7 +147,7 @@ public class SignController {
     @ApiOperation(value = "아이디 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/checkid", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<Boolean> checkId(@Valid @RequestBody CheckIdReqDTO req) throws Exception {
+    SingleResult<Boolean> checkId(@Valid CheckIdReqDTO req) throws Exception {
         User user = signService.findByUid(req.getUid(), YNCode.Y);
 
         if (user == null) {
@@ -167,7 +167,7 @@ public class SignController {
     @ApiOperation(value = "이메일 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/checkemail", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<Boolean> checkmail(@Valid @RequestBody CheckEmailReqDTO req) throws Exception {
+    SingleResult<Boolean> checkmail(@Valid CheckEmailReqDTO req) throws Exception {
         User user = signService.findUserByEmail(req.getEmail());
 
         if (user == null) {
@@ -228,7 +228,7 @@ public class SignController {
     @ApiOperation(value = "닉네임 중복 확인", notes = "중복에 따라 Ture, false를 반환한다.")
     @GetMapping(value = "/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<Boolean> checkNickname(@Valid @RequestBody CheckNicknameReqDTO req) throws Exception {
+    SingleResult<Boolean> checkNickname(@Valid CheckNicknameReqDTO req) throws Exception {
         User user = signService.findUserByNickname(req.getNickname());
 
         if (user == null) {
@@ -236,8 +236,6 @@ public class SignController {
         }
         return responseService.getSingleResult(true);
     }
-
-
 
 
 }

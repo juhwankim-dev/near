@@ -37,7 +37,7 @@ public class ModifyController {
     @ApiOperation(value = "비밀번호 확인", notes = "비밀번호 일치 여부에 따라 성공, 실패를 반환한다.")
     @PostMapping(value = "/check", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult CheckPassword(@Valid CheckPasswordReqDTO req) throws Exception {
+    CommonResult CheckPassword(@Valid @RequestBody CheckPasswordReqDTO req) throws Exception {
         // 1. 유효기간을 확인한다.
         if (!jwtTokenProvider.validateToken(req.getToken())) {
             throw new ApiMessageException("유효기간이 만료된 토큰입니다.");
@@ -71,7 +71,7 @@ public class ModifyController {
     @ApiOperation(value = "비밀번호 수정", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/password", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyPassword(@Valid ModifyPasswordReqDTO req) throws Exception {
+    CommonResult ModifyPassword(@Valid @RequestBody ModifyPasswordReqDTO req) throws Exception {
 
         if (!modifyService.updatePassword(Long.parseLong(req.getId()), passwordEncoder.encode(req.getPassword()))) {
             throw new ApiMessageException("실패");
@@ -91,7 +91,7 @@ public class ModifyController {
     @ApiOperation(value = "주소 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/address", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyAddress(@Valid ModifyAddressReqDTO req) throws Exception {
+    CommonResult ModifyAddress(@Valid @RequestBody ModifyAddressReqDTO req) throws Exception {
 
         if (!modifyService.updateAddress(Long.parseLong(req.getId()), req.getAddress(), req.getAddressDetail())) {
             throw new ApiMessageException("실페");
@@ -114,7 +114,7 @@ public class ModifyController {
     @ApiOperation(value = "휴대폰 번호 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/phone", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyPhone(@Valid ModifyPhoneReqDTO req) throws Exception {
+    CommonResult ModifyPhone(@Valid @RequestBody ModifyPhoneReqDTO req) throws Exception {
 
         if (!modifyService.updatePhone(Long.parseLong(req.getId()), req.getPhone())) {
             throw new ApiMessageException("실패");
