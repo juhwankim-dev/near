@@ -96,7 +96,7 @@ public class HandController {
     @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
     @PostMapping(value = "/bookmark/add", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult BookmarkAdd(@Valid BookmarkReqDTO req) throws Exception {
+    CommonResult BookmarkAdd(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
 
         Bookmark bookmark = Bookmark.builder()
@@ -112,7 +112,7 @@ public class HandController {
     @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제한다")
     @DeleteMapping(value = "/bookmark", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult BookmarkDelete(@Valid BookmarkReqDTO req) throws Exception {
+    CommonResult BookmarkDelete(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
         handService.delete(Long.parseLong(req.getId()), Long.parseLong(req.getHandcontent_key()));
         return responseService.getSuccessResult("성공");

@@ -134,7 +134,7 @@ public class ModifyController {
     @ApiOperation(value = "닉네임 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/nickname", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyNickname(@Valid ModifyNicknameReqDTO req) throws Exception {
+    CommonResult ModifyNickname(@Valid @RequestBody ModifyNicknameReqDTO req) throws Exception {
 
         if (!modifyService.updateNickname(Long.parseLong(req.getId()), req.getNickname())) {
             throw new ApiMessageException("실패");
@@ -154,7 +154,7 @@ public class ModifyController {
     @ApiOperation(value = "이메일 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/email", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyEmail(@Valid ModifyEmailReqDTO req) throws Exception {
+    CommonResult ModifyEmail(@Valid @RequestBody ModifyEmailReqDTO req) throws Exception {
 
         if (!modifyService.updateNickname(Long.parseLong(req.getId()), req.getEmail())) {
             throw new ApiMessageException("실패");
@@ -174,7 +174,7 @@ public class ModifyController {
     @ApiOperation(value = "유저정보 변경", notes = "변경에 따라 성공, 실패를 반환한다.")
     @PutMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult ModifyUser(@Valid ModifyUserReqDTO req) throws Exception {
+    CommonResult ModifyUser(@Valid @RequestBody ModifyUserReqDTO req) throws Exception {
 
         req.setPassword(passwordEncoder.encode(req.getPassword()));
 
