@@ -68,12 +68,12 @@ public class HandController {
     }
 
     @ApiOperation(value = "북마크 조회", notes = "회원의 북마크 목록을 보여준다")
-    @GetMapping(value = "/bookmark/{userid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/bookmark/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ListResult<HandContentResDTO> BookmarkList
-            (@PathVariable("userid") @ApiParam(value = "조회할 유저 번호", required = true) String userid) throws Exception {
+            (@PathVariable("id") @ApiParam(value = "조회할 유저 번호", required = true) String id) throws Exception {
 
-        List<Handcontent> result = handService.bookmarkList(Long.parseLong(userid));
+        List<Handcontent> result = handService.bookmarkList(Long.parseLong(id));
 
         List<HandContentResDTO> res = new ArrayList<>();
         for (Handcontent handcontent : result) {
