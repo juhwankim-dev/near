@@ -44,7 +44,7 @@ class HandSignRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    _bookmarkList.postValue(response.body())
+                    _bookmarkList.postValue(response.body()!!.data)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
@@ -57,7 +57,10 @@ class HandSignRepository {
     suspend fun addBookmark(handcontent_key: String, id: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.handSignService.addBookmark(handcontent_key, id)
+                var req = mutableMapOf<String, String>()
+                req["handcontent_key"] = handcontent_key
+                req["id"] = id
+                RetrofitUtil.handSignService.addBookmark(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -74,7 +77,10 @@ class HandSignRepository {
     suspend fun deleteBookmark(handcontent_key: String, id: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.handSignService.deleteBookmark(handcontent_key, id)
+                var req = mutableMapOf<String, String>()
+                req["handcontent_key"] = handcontent_key
+                req["id"] = id
+                RetrofitUtil.handSignService.deleteBookmark(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {

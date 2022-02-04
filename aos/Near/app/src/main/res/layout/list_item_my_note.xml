@@ -52,7 +52,7 @@
             android:layout_marginBottom="@dimen/activity_margin_default"
             app:layout_constraintBottom_toBottomOf="@+id/view_bg"
             app:layout_constraintStart_toStartOf="@+id/view_bg"
-            app:srcCompat="@drawable/img_handsign_sample" />
+            app:srcCompat="@drawable/img_handsign_sample_2" />
 
         <TextView
             style="@style/header_text"
@@ -84,7 +84,10 @@
         <TextView
             android:id="@+id/tv_example"
             style="@style/body_text"
+            android:layout_width="220dp"
             android:text="@{handSignInfo.mean}"
+            android:ellipsize="end"
+            android:maxLines="1"
             tools:text="¶ 노란 병아리가 귀엽다."
             app:layout_constraintBottom_toBottomOf="@+id/iv_thumbnail"
             app:layout_constraintStart_toStartOf="@+id/tv_name2" />

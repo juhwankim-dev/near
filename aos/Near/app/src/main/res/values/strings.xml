@@ -2,4 +2,5 @@
     <string name="app_name">Near</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_up_guide">지금 회원가입 하고 멀티플레이와 내 단어장 등 혜택을 누려보세요!</string>
 </resources>

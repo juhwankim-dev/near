@@ -5,25 +5,20 @@ import com.ssafy.near.dto.Model
 import com.ssafy.near.dto.ModelList
 import org.jetbrains.annotations.NotNull
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface HandSignApi {
     @GET("api/hand/")
     suspend fun loadHandSignList(): Response<ModelList<HandSignInfo>>
 
-    @GET("api/hand/bookmark")
-    suspend fun loadBookmarkList(@Query("id") @NotNull id: String): Response<List<HandSignInfo>>
+    @GET("api/hand/bookmark/{id}")
+    suspend fun loadBookmarkList(@Path("id") @NotNull id: String): Response<ModelList<HandSignInfo>>
 
-    @GET("api/hand/add")
-    suspend fun addBookmark(
-        @Query("handcontent_key") @NotNull handcontent_key: String,
-        @Query("id") @NotNull id: String,
-    ): Response<Model<Boolean?>>
+    @FormUrlEncoded
+    @POST("api/hand/bookmark/add")
+    suspend fun addBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 
-    @GET("api/hand/delete")
-    suspend fun deleteBookmark(
-        @Query("handcontent_key") @NotNull handcontent_key: String,
-        @Query("id") @NotNull id: String,
-    ): Response<Model<Boolean?>>
+    @FormUrlEncoded
+    @DELETE("api/hand/bookmark/delete")
+    suspend fun deleteBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 }
