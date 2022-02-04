@@ -8,8 +8,11 @@ import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import MainPage from './components/views/MainPage/MainPage';
 import SignPage from './components/views/ContentPage/SignPage/SignPage';
+import SignPageTwo from './components/views/ContentPage/SignPage/SignPage2';
 import SignDetail from './components/views/ContentPage/SignPage/SignDetail';
 import FingerPage from './components/views/ContentPage/FingerPage/FingerPage';
+import NavBar from './components/views/NavBar/NavBar';
+
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
@@ -17,11 +20,13 @@ import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저
 function App() {
   return ( 
     <Router>
+      
       <Routes>
         <Route path="/" element={<LandingPage /> } />
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
         <Route path="/sign" element={<SignPage />} />
+        <Route path="/sign2" element={<SignPageTwo />} />
         <Route path ="/sign/detail" element={<SignDetail />} />
         <Route path ="/finger" element={<FingerPage />} />
 

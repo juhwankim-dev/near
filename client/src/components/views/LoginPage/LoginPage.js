@@ -5,6 +5,7 @@ import { loginUser } from '../../../_actions/user_action';
 import toast, { Toaster } from 'react-hot-toast';
 import './Accounts.css';
 import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
 function LoginPage(props) {
   let navigate = useNavigate();
@@ -37,6 +38,7 @@ function LoginPage(props) {
     }
   };
 
+
   const onSubmitHandler = (e) => {
     e.preventDefault(); //버튼 눌렀을 때 새로고침 방지
     if (!chkPW()) {
@@ -44,37 +46,36 @@ function LoginPage(props) {
     }
 
     const body = {
-      id: Id,
+      uid: Id,
       password: Password,
+      type: 'none',
     };
-
-
-    console.log(body); 
     
     // 기존 코드 
     dispatch(loginUser(body))
-      .then(response => {
-        if(response.payload.loginSuccess) {
-          props.history.push('/') //로그인 성공 했을 경우 메인페이지(홈/처음)으로 이동
-        } else {
-          toast.error('잘못된 정보를 입력하셨습니다.');
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    };
+    .then((res) => {
+        if(res.payload !== undefined) {
+          toast.success('로그인 성공!')
+          localStorage.clear();
+          localStorage.setItem('user', JSON.stringify(res.payload));
+          navigate('/main');
+      } else {
+        toast.error('잘못된 정보를 입력하셧습니다.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
 
 
-    // Axios.post('/api/user/login', body)
-    // .then(Response => {
-    // }) actions로 옮겨준다.
-  
+  };
+
+
   return (
-    <div style={{
-      display:'flex', justifyContent: 'center', alignItems: 'center'
-      ,width: '100%', height: '100vh'}} onSubmit={onSubmitHandler}>
-  
+    <div>
+      <form
+        onSubmit={onSubmitHandler}
+      >
   <div class="login-wrap">
 	<div class="login-html">
     <div><h1>N:ear</h1></div>
@@ -85,11 +86,11 @@ function LoginPage(props) {
 			<div class="sign-in-htm">
 				<div class="group">
 					<label for="user" class="label">ID</label>
-					<input id="user" type="text" class="input"/>
+					<input id="user" type="text" class="input" onChange={onIdHandler}/>
 				</div>
 				<div class="group">
 					<label for="pass" class="label">Password</label>
-					<input id="pass" type="password" class="input" data-type="password"/>
+					<input id="pass" type="password" class="input" data-type="password"  onChange={onPasswordHanlder}/>
 				</div>
 				<div class="group">
 					<input id="check" type="checkbox" class="check" />
@@ -107,6 +108,8 @@ function LoginPage(props) {
 		</div>
 	</div>
   </div>
+  </form>
+  
       <Toaster
         position="top-center"
         reverseOrder={true}

@@ -47,25 +47,21 @@ function LoginPage(props) {
     password: Password,
   };
 
-  // 로그인을 진행하기위해서
-  // 첫번째 useDispatch(액션) 을 활용해서 액션을 dispatch해준다
+  // 기존 코드 
+  dispatch(loginUser(body))
+    .then(()=> {
+       toast.success('로그인 성공!');
+       navigate("/main");
+       })
+    .catch((err) => {
+      console.error(err);
+    });
+  };
+    // Axios.post('/api/user/login', body)
+    // .then(Response => {
+    // }) actions로 옮겨준다.
+  
 
-  // dispatch(loginUser(body))
-  //     .then(response => {
-  //         if(response.payload.loginSuccess) {
-  //         // localStorage.clear();
-  //         // localStorage.setItem('user', JSON.stringify(res.payload));
-  //         props.history.push('/');
-  //         // props.history.push('/select');
-  //         // window.location.reload();
-  //       } else {
-  //         toast.error('잘못된 정보를 입력하셧습니다.');
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // };
 
   // 기존 코드 
   dispatch(loginUser(body))
@@ -73,6 +69,7 @@ function LoginPage(props) {
       if(response.payload.loginSuccess) {
         props.history.push('/') //로그인 성공 했을 경우 메인페이지(홈/처음)으로 이동
       } else {
+        console.log(response)
         toast.error('잘못된 정보를 입력하셨습니다.');
       }
     })
@@ -118,7 +115,24 @@ function LoginPage(props) {
       </div>
     </>
   );
-}
+
+
+  // const onSubmit = (e) => {
+	// 	e.preventDefault();
+
+  //     axios.post('https://hoonycode.loca.lt/api/sign/login', 
+  //     {  
+  //       uid: Id,
+  //       password: Password,
+  //       type: 'none',
+  //     },
+
+  //     )
+  //   .then((res) => {
+  //     console.log(res);
+    
+  //     }  )};
+
   // return (
   //   <div style={{
   //     display:'flex', justifyContent: 'center', alignItems: 'center'
@@ -158,3 +172,60 @@ function LoginPage(props) {
   //   }
 
 export default LoginPage;
+
+
+
+// 로그인을 진행하기위해서
+// 첫번째 useDispatch(액션) 을 활용해서 액션을 dispatch해준다
+
+// dispatch(loginUser(body))
+//     .then(response => {
+//         if(response.payload.loginSuccess) {
+//         // localStorage.clear();
+//         // localStorage.setItem('user', JSON.stringify(res.payload));
+//         props.history.push('/');
+//         // props.history.push('/select');
+//         // window.location.reload();
+//       } else {
+//         toast.error('잘못된 정보를 입력하셧습니다.');
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+// };
+
+
+//   const onSubmit = (e) => {
+// 		e.preventDefault();
+
+
+//       axios.post('https://hoonycode.loca.lt/api/sign/login', 
+//       JSON.stringify({  
+//         uid: Id,
+//         password: Password,
+//  }), 
+//       { headers: {
+//         "Content-Type": `application/json`,
+//       },
+//     })
+//     .then((res) => {
+//       console.log(res);
+//       }  )};
+
+ 
+// 기존 코드 
+// dispatch(loginUser(body))
+// .then(()=> {
+//    toast.success('로그인 성공!');
+//    navigate("/main");
+//    })
+// .catch((err) => {
+//   console.error(err);
+// });
+
+
+// Axios.post('/api/user/login', body)
+// .then(Response => {
+// }) actions로 옮겨준다.
+  
