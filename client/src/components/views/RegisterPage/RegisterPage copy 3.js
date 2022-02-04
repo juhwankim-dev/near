@@ -10,6 +10,7 @@ function RegisterPage(props) {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  // const [Type, setType]= useState('none');
   const [Email, setEmail] = useState('');
   const [EmailCheck, setEmailCheck] = useState(false);
   const [Id, setId] = useState('');
@@ -114,6 +115,39 @@ function RegisterPage(props) {
     });
       
 
+
+//       fetch(`https://hoonycode.loca.lt/api/sign/signup`, {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//   email: Email,
+//   uid: Id,
+//   password: Password,
+//   nickname: Nickname,
+//   type: Type,
+//   }),
+// }).then((response) => console.log(response));
+			
+		// 	axios({
+		// 		method: "post",
+		// 		url: `https://hoonycode.loca.lt/api/sign/signup`,
+		// 		data: JSON.stringify({
+    //       email: 'q@com',
+    //       uid: '123qwe',
+    //       password: '!123qweasd',
+    //       nickname: 'g2g2g2',
+    //       type: 'none',
+  
+    //     }),
+		// 	})
+				
+		// 		.then((res) => console.log(res))
+    //     .then(() => navigate("/sign-in"))
+		// 		.catch((err) => console.log(err));
+		// } else {
+		// 	alert("somethings wrong");
 		}
 	};
 
@@ -122,7 +156,7 @@ function RegisterPage(props) {
 
 
   const onSubmitHandler = (e) => {
-    e.preventDefault(); 
+    e.preventDefault(); // 창 새로고침 ㄴㄴ
     if (Id === '' || Id === undefined || Id === null) {
       toast.error('ID를 입력하세요');
       return;
@@ -149,6 +183,23 @@ function RegisterPage(props) {
 
       };
         
+      
+      // async function postData() {
+      //   try {
+      //     //응답 성공 
+      //     const response = await axios.post(`https://hoonycode.loca.lt/api/sign/signup`,{
+      //         //보내고자 하는 데이터 
+      //         body
+      //     });
+      //     console.log(response);
+      //   } catch (error) {
+      //     //응답 실패
+      //     console.error(error);
+      //   }
+      // }
+      // .then((res) => console.log(res))
+    //     .then(() => navigate("/sign-in"))
+
 
       dispatch(registerUser(body))
       .then(() => { 
@@ -157,6 +208,13 @@ function RegisterPage(props) {
         
       });
 
+      // if(res.payload.register){
+      //   toast.success('회원가입이 완료되었습니다.');
+
+        //  toast.success('회원가입이 완료되었습니다.');
+        // props.history.push('/login');
+        // props.toggleClass();
+        // axios.get(`https://hoonycode.loca.lt:8185/api/login `);
     
     }else {
       toast.error('비밀번호가 일치하지 않습니다');
@@ -167,7 +225,9 @@ function RegisterPage(props) {
   <div >
 
   <form
+        // onSubmit={postData}
         onSubmit={onSubmitHandler}
+        // onSubmit={onSubmitHandler}
       >
   <div class="login-wrap">
 	<div class="login-html">
