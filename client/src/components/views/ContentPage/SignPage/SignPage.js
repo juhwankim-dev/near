@@ -21,7 +21,6 @@ function SignPage(){
   }
  
   return (
-    
     <div className="container">
       {/* <h1>수어 배우기</h1> */}
       <div className='nemo'> 

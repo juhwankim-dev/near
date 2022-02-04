@@ -25,7 +25,8 @@ public class SignService {
      */
     @Transactional(readOnly = true)
     public User findUserById(long id) throws Exception {
-        User user = userRepository.findById(id).orElseThrow(() -> new ApiMessageException("존재하지 않는 회원정보입니다."));
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new ApiMessageException("존재하지 않는 회원정보입니다."));
         return user;
     }
 
@@ -44,8 +45,8 @@ public class SignService {
     /**
      * 회원가입 후 userId 리턴
      *
-     * @param user
-     * @return
+     * @param user 회원
+     * @return userId
      */
     @Transactional(readOnly = false)
     public long userSignUp(User user) {

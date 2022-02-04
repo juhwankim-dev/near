@@ -11,7 +11,9 @@ import SignPage from './components/views/ContentPage/SignPage/SignPage';
 import SignPageTwo from './components/views/ContentPage/SignPage/SignPage2';
 import SignDetail from './components/views/ContentPage/SignPage/SignDetail';
 import FingerPage from './components/views/ContentPage/FingerPage/FingerPage';
-import NavBar from './components/views/NavBar/NavBar';
+
+// import NavBar from './components/views/NavBar/NavBar';
+import OXQuiz from './components/views/GamePage/OXQuiz/OXQuiz';
 
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
@@ -29,6 +31,8 @@ function App() {
         <Route path="/sign2" element={<SignPageTwo />} />
         <Route path ="/sign/detail" element={<SignDetail />} />
         <Route path ="/finger" element={<FingerPage />} />
+
+        <Route path ="/oxquiz" element={<OXQuiz />} />
 
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />

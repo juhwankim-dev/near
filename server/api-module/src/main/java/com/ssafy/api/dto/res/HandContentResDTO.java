@@ -16,7 +16,7 @@ public class HandContentResDTO {
     private long handcontent_key;
 
     // 수어 의미
-    @ApiModelProperty(value = "수어 의미", required = true, example = "사랑")
+    @ApiModelProperty(value = "수어 의미", required = true, example = "너를 사랑한다")
     private String mean;
 
     @ApiModelProperty(value = "수어 이름", required = true, example = "사랑")
@@ -34,5 +34,8 @@ public class HandContentResDTO {
     @ApiModelProperty(value = "이미지 경로", required = true, example = "url")
     private String image_path;
 
+    // 동작 설명
+    @ApiModelProperty(value = "동작", required = true, example = "[눕다 + 진찰]")
+    private String movement;
 
 }
