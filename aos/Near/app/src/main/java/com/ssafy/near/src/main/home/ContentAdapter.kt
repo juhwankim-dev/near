@@ -1,11 +1,8 @@
 package com.ssafy.near.src.main.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.ssafy.near.R
 import com.ssafy.near.databinding.ListItemHomeContentBinding
 
 class ContentAdapter(var list: MutableList<String>) : RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {

@@ -6,58 +6,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin_narrow"
+        android:layout_margin="@dimen/activity_margin_default"
         android:orientation="vertical">
 
         <TextView
-            style="@style/header_text"
+            style="@style/appbar_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginBottom="@dimen/activity_margin_wide"
             android:text="회원가입" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_id"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:counterEnabled="true"
-            app:counterMaxLength="15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearanceOverlay="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_person_24"
+            app:counterEnabled="true"
+            app:counterMaxLength="15"
             app:helperTextTextColor="@color/green_pass">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="아이디"
-                android:inputType="textPersonName" />
+                android:hint="아이디" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_nickname"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:counterEnabled="true"
-            app:counterMaxLength="6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearanceOverlay="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_person_24"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
             app:helperTextTextColor="@color/green_pass">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="닉네임"
-                android:inputType="textPersonName" />
+                android:hint="닉네임" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_email"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearanceOverlay="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_baseline_email_24"
+            app:helperText="   "
             app:helperTextTextColor="@color/green_pass">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -68,15 +70,21 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_margin_wide" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearanceOverlay="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_lock_24"
             app:passwordToggleEnabled="true"
             app:counterEnabled="true"
             app:counterMaxLength="20"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            app:helperTextTextColor="@color/green_pass" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -88,13 +96,14 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/et_confirm_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:shapeAppearanceOverlay="@style/rounded_edittext"
+            app:startIconDrawable="@drawable/ic_outline_lock_24"
             app:passwordToggleEnabled="true"
             app:counterEnabled="true"
             app:counterMaxLength="20"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
             app:helperTextTextColor="@color/green_pass">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -109,6 +118,8 @@
             android:id="@+id/btn_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/activity_margin_wide"
+            android:background="@drawable/btn_background"
             android:text="회원가입"
             android:textSize="@dimen/header_text_size" />
 

@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { registerUser } from '../../../_actions/user_action';
 import toast, { Toaster } from 'react-hot-toast';
+import '../LoginPage/Accounts.css';
 
 function RegisterPage(props) {
+  let navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [Type, setType]= useState('none');
   const [Email, setEmail] = useState('');
   const [Id, setId] = useState('');
   const [Password, setPassword] = useState('');
@@ -89,93 +93,81 @@ function RegisterPage(props) {
     if (Password === ConfirmPasword) {
       const body = {
         email: Email,
-        id: Id,
+        uid: Id,
         password: Password,
         nickname: Nickname,
+        type: Type,
+  
       };
 
 
       dispatch(registerUser(body))
-        .then(response => {
-          if(response.payload.success) {
-            toast.success('회원가입이 완료되었습니다.');
-            props.history.push('/login'); //회원가입 성공 했을 경우 로그인으로 페이지 이동
-          }});
-        } else {
-            toast.error('비밀번호가 일치하지 않습니다');
-              // alert('"Failed to sign up"')
-          }
+      .then((res) => { 
+        console.log(body)
+        if(res.payload.success){
+          toast.success('회원가입이 완료되었습니다.');
         
-  };
+        }
+      });
 
-  return (
+
+        //  toast.success('회원가입이 완료되었습니다.');
+        // props.history.push('/login');
+        // props.toggleClass();
+        // axios.get(`https://hoonycode.loca.lt:8185/api/login `);
+
+    
+    }else {
+      toast.error('비밀번호가 일치하지 않습니다');
+    }
+   };
+
+   return (
     <div style={{
       display:'flex', justifyContent: 'center', alignItems: 'center'
-      ,width: '100%', height: '100vh'
-    }}>
-      <form style={{ display:'flex', flexDirection:'column'}}
-        onSubmit={onSubmitHandler}
-      >
-        <h1>회원가입</h1>
-          <input
-            className="account__input"
-            type="email"
-            placeholder="Email"
-            value={Email}
-            onChange={onEmailHandler}
-          />
-          <input
-            className="account__input"
-            type="text"
-            placeholder="ID"
-            value={Id}
-            onChange={onIdHandler}
-          />
-          <input
-            className="account__input"
-            type="text"
-            placeholder="Nickname"
-            value={Nickname}
-            onChange={onNicknameHanlder}
-          />
-          <input
-            className="account__input"
-            type="password"
-            placeholder="Password"
-            value={Password}
-            onChange={onPasswordHanlder}
-          />
-          <input
-            className="account__input"
-            type="password"
-            placeholder="Password Comfirmation"
-            value={ConfirmPasword}
-            onChange={onConfirmPasswordHandler}
-          />
-          <button className="account__button" type="submit" onClick={()=>{
-            
-          }} >
-            회원가입
-          </button>
-        {/* <label>Email</label>
-        <input type="email" value={Email} onChange={onEmailHandler} /> 
+      ,width: '100%', height: '100vh'}} onSubmit={onSubmitHandler}>
+  
+  <div class="login-wrap">
+	<div class="login-html">
+    <div><h1>N:ear</h1></div>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" onClick={()=>{ navigate('/login')}} /><label for="tab-1" class="tab">Sign In</label>
+    {/* SIGN IN버튼 누를 경우 login페이지로 랜더링되게 변경 */}
+		<input id="tab-2" type="radio" name="tab" class="sign-up" checked /><label for="tab-2" class="tab">Sign Up</label>
+	 <div class="login-form">
 
-        <label>Name</label>
-        <input type="text" value={Name} onChange={onNameHandler} /> 
-        
-
-        <label>Password</label>
-        <input type="password" value={Password} onChange={onPasswordHandler} /> 
-
-       
-        <label>ConfirmPassword</label>
-        <input type="confirmpassword" value={ConfirmPassword} onChange={onConfirmPasswordHandler} />
-        <br />
-        <button type="submit">
-          Sign up
-        </button> */}
-      </form>
-
+			<div class="sign-up-htm">
+				<div class="group">
+					<label for="user" class="label">ID</label>
+					<input id="user" type="text" class="input"/>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password"/>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Repeat Password</label>
+					<input id="pass" type="password" class="input" data-type="password"/>
+				</div>
+        <div class="group">
+					<label for="pass" class="label">Nickname</label>
+					<input id="pass" type="text" class="input"/>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Email Address</label>
+					<input id="pass" type="text" class="input"/>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign Up"/>
+				</div>
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<label for="tab-1" onClick={()=>{ navigate('/login')}} >Already Member?</label>
+				{/* Already Member? 버튼 누를 경우 login페이지로 랜더링되게 변경 */}
+        </div>
+			</div>
+		</div>
+	</div>
+  </div>
       <Toaster
         position="top-center"
         reverseOrder={true}
@@ -189,9 +181,9 @@ function RegisterPage(props) {
           },
         }}
       />
-
-    </div>
-  );
+</div>
+);
 }
+
 
 export default RegisterPage;

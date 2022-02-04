@@ -3,7 +3,8 @@ import { withRouter, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import toast, { Toaster } from 'react-hot-toast';
-import './Account.css';
+import './Accounts.css';
+import { Container } from 'react-bootstrap';
 
 function LoginPage(props) {
   let navigate = useNavigate();
@@ -69,41 +70,44 @@ function LoginPage(props) {
     // .then(Response => {
     // }) actions로 옮겨준다.
   
-  
-
   return (
-    <>
-      <div style={{
+    <div style={{
       display:'flex', justifyContent: 'center', alignItems: 'center'
-      ,width: '100%', height: '100vh'}}>
-        <form style={{ display:'flex', flexDirection:'column'}}
-        onSubmit={onSubmitHandler}>
-          <h1>로그인</h1>
-          <span className=""></span>
-          <input
-            className=""
-            type="text"
-            value={Id}
-            placeholder="ID"
-            onChange={onIdHandler}
-          />
-          <input
-            className=""
-            type="password"
-            value={Password}
-            placeholder="Password"
-            onChange={onPasswordHanlder}
-          />
-          <button className="account__button" type="submit">
-            로그인
-          </button>
-        <br />
-        {/* <button onClick={()=>{ history.push('/signup')}} className="btn btn-primary">회원가입</button> */}
-        </form>
-        <button onClick={()=>{ navigate('/register')}} className="btn btn-primary">회원가입</button>
-
-        <Toaster
+      ,width: '100%', height: '100vh'}} onSubmit={onSubmitHandler}>
+  
+  <div class="login-wrap">
+	<div class="login-html">
+    <div><h1>N:ear</h1></div>
+		<input id="tab-1" type="radio" name="tab" class="sign-in" checked/><label for="tab-1" class="tab">Sign In</label>
+		<input id="tab-2" type="radio" name="tab" class="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" class="tab">Sign Up</label>
+    {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}
+		<div class="login-form">
+			<div class="sign-in-htm">
+				<div class="group">
+					<label for="user" class="label">ID</label>
+					<input id="user" type="text" class="input"/>
+				</div>
+				<div class="group">
+					<label for="pass" class="label">Password</label>
+					<input id="pass" type="password" class="input" data-type="password"/>
+				</div>
+				<div class="group">
+					<input id="check" type="checkbox" class="check" />
+					<label for="check"><span class="icon"></span> Keep me Signed in</label>
+				</div>
+				<div class="group">
+					<input type="submit" class="button" value="Sign In"/>
+				</div>
         
+				<div class="hr"></div>
+				<div class="foot-lnk">
+					<a href="#forgot">Forgot Password?</a>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+      <Toaster
         position="top-center"
         reverseOrder={true}
         toastOptions={{
@@ -115,48 +119,8 @@ function LoginPage(props) {
             color: '#713200',
           },
         }}
-      />  
-
-      </div>
-    </>
-  );
+      />
+</div>
+);
 }
-  // return (
-  //   <div style={{
-  //     display:'flex', justifyContent: 'center', alignItems: 'center'
-  //     ,width: '100%', height: '100vh'
-  //   }}>
-  //     <form style={{ display:'flex', flexDirection:'column'}}
-  //       onSubmit={onSubmitHandler}
-  //     >
-  //       <label>Email</label>
-  //       <input type="type" value={Id} onChange={onIdHandler} /> 
-  //       {/* 타이핑을 할때 onChange가 바뀌고 State를 바꿔준다 그 후 value를 바꿔준다. */}
-  //       <label>Password</label>
-  //       <input type="password" value={Password} onChange={onPasswordHanlder} />
-  //       <br />
-  //       <button type="submit">
-  //         Login
-  //       </button>
-  //     </form>
-
-  //     <Toaster
-  //       position="top-center"
-  //       reverseOrder={true}
-  //       toastOptions={{
-  //         duration: 1000,
-  //         style: {
-  //           border: '1px solid #713200',
-  //           padding: '16px',
-  //           margin: '10vh',
-  //           color: '#713200',
-  //         },
-  //       }}
-  //     />
-
-  //   </div>
-  // );
-  //     }
-  //   }
-
 export default LoginPage;

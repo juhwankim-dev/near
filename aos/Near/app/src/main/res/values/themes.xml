@@ -50,4 +50,10 @@
         <item name="android:fontFamily">@font/noto_sans_regular</item>
         <item name="android:includeFontPadding">false</item>
     </style>
+
+    <style name="rounded_edittext">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">40dp</item>
+    </style>
+
 </resources>

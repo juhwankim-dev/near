@@ -4,9 +4,9 @@ import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
 
 object Validation {
-    val ID = "^[a-zA-Z0-9]*\$"
-    val NICKNAME = "^[a-zA-Z가-힣0-9]*\$"
-    val PW = "^[a-zA-Z0-9!@#$%^&*]*\$"
+    const val ID = "^[a-zA-Z0-9]*\$"
+    const val NICKNAME = "^[a-zA-Z가-힣0-9]*\$"
+    const val PW = "^[a-zA-Z0-9!@#$%^&*]*\$"
 
     fun validateId(id: String, tiLayout: TextInputLayout): Boolean {
         return when {

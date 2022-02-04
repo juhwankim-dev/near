@@ -1,10 +1,5 @@
 package com.ssafy.near.dto
 
-import com.google.gson.annotations.SerializedName
-
-data class UserInfoResponse(
-    @SerializedName("data") val userInfo: UserInfo,
-)
 
 data class UserInfo(
     val address: String,
