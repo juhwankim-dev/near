@@ -98,8 +98,6 @@ public class ModifyController {
         }
 
         return responseService.getSingleResult("성공");
-
-
     }
 
 
