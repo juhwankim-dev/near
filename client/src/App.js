@@ -9,7 +9,9 @@ import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import MainPage from './components/views/MainPage/MainPage';
 import SignPage from './components/views/ContentPage/SignPage/SignPage';
 import SignPageTwo from './components/views/ContentPage/SignPage/SignPage2';
+import SignListPage from './components/views/ContentPage/SignPage/SignListPage';
 import SignDetail from './components/views/ContentPage/SignPage/SignDetail';
+import SignDetail3 from './components/views/ContentPage/SignPage/SignDetail3';
 import FingerPage from './components/views/ContentPage/FingerPage/FingerPage';
 
 // import NavBar from './components/views/NavBar/NavBar';
@@ -29,7 +31,8 @@ function App() {
         <Route path="/main" element={<MainPage />} />
         <Route path="/sign" element={<SignPage />} />
         <Route path="/sign2" element={<SignPageTwo />} />
-        <Route path ="/sign/detail" element={<SignDetail />} />
+        <Route path ="/sign2/:i" element={<SignDetail3 />} />
+        <Route path ="/sign/:i" element={<SignDetail3 />} />
         <Route path ="/finger" element={<FingerPage />} />
 
         <Route path ="/oxquiz" element={<OXQuiz />} />
