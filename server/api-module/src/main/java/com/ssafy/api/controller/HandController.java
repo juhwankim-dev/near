@@ -9,6 +9,7 @@ import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.CommonResult;
 import com.ssafy.api.service.common.ListResult;
 import com.ssafy.api.service.common.ResponseService;
+import com.ssafy.api.service.common.SingleResult;
 import com.ssafy.core.entity.Bookmark;
 import com.ssafy.core.entity.Fingercontent;
 import com.ssafy.core.entity.Handcontent;
@@ -68,12 +69,12 @@ public class HandController {
     }
 
     @ApiOperation(value = "북마크 조회", notes = "회원의 북마크 목록을 보여준다")
-    @GetMapping(value = "/bookmark/{userid}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/bookmark/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     ListResult<HandContentResDTO> BookmarkList
-            (@PathVariable("userid") @ApiParam(value = "조회할 유저 번호", required = true) String userid) throws Exception {
+            (@PathVariable("id") @ApiParam(value = "조회할 유저 번호", required = true) String id) throws Exception {
 
-        List<Handcontent> result = handService.bookmarkList(Long.parseLong(userid));
+        List<Handcontent> result = handService.bookmarkList(Long.parseLong(id));
 
         List<HandContentResDTO> res = new ArrayList<>();
         for (Handcontent handcontent : result) {
@@ -94,9 +95,9 @@ public class HandController {
 
 
     @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
-    @PostMapping(value = "/bookmark/add", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/bookmark", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult BookmarkAdd(@Valid BookmarkReqDTO req) throws Exception {
+    SingleResult<Boolean> BookmarkAdd(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
 
         Bookmark bookmark = Bookmark.builder()
@@ -106,16 +107,43 @@ public class HandController {
 
         handService.save(bookmark);
 
-        return responseService.getSuccessResult("성공");
+        return responseService.getSingleResult(true);
+    }
+
+    //북마크 추가 for Android
+    @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
+    @PostMapping(value = "/bookmark", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> BookmarkAddForAndroid(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
+
+
+        Bookmark bookmark = Bookmark.builder()
+                .user(signService.findUserById(Long.parseLong(req.getId())))
+                .handcontent(handService.findById(Long.parseLong(req.getHandcontent_key())))
+                .build();
+
+        handService.save(bookmark);
+
+        return responseService.getSingleResult(true);
     }
 
     @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제한다")
-    @DeleteMapping(value = "/bookmark", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/bookmark",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    CommonResult BookmarkDelete(@Valid BookmarkReqDTO req) throws Exception {
+    SingleResult<Boolean> BookmarkDelete(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
         handService.delete(Long.parseLong(req.getId()), Long.parseLong(req.getHandcontent_key()));
-        return responseService.getSuccessResult("성공");
+        return responseService.getSingleResult(true);
+    }
+
+    //ForAndroid
+    @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제한다")
+    @DeleteMapping(value = "/bookmark", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> BookmarkDeleteForAndroid(@Valid BookmarkReqDTO req) throws Exception {
+
+        handService.delete(Long.parseLong(req.getId()), Long.parseLong(req.getHandcontent_key()));
+        return responseService.getSingleResult(true);
     }
 
 }
