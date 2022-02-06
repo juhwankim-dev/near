@@ -179,7 +179,7 @@ public class SignController {
         return responseService.getSingleResult(dto);
     }
 
-    // 로그인
+    // 안드로이드 로그인
     @ApiOperation(value = "로그인", notes = "로그인")
     @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody

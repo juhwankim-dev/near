@@ -95,7 +95,7 @@ public class HandController {
 
 
     @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
-    @PostMapping(value = "/bookmark",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/bookmark", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<Boolean> BookmarkAdd(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
@@ -112,7 +112,7 @@ public class HandController {
 
     //북마크 추가 for Android
     @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
-    @PostMapping(value = "/bookmark",consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/bookmark", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<Boolean> BookmarkAddForAndroid(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
 
@@ -128,9 +128,19 @@ public class HandController {
     }
 
     @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제한다")
-    @DeleteMapping(value = "/bookmark", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value = "/bookmark",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     SingleResult<Boolean> BookmarkDelete(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
+
+        handService.delete(Long.parseLong(req.getId()), Long.parseLong(req.getHandcontent_key()));
+        return responseService.getSingleResult(true);
+    }
+
+    //ForAndroid
+    @ApiOperation(value = "북마크 삭제", notes = "북마크를 삭제한다")
+    @DeleteMapping(value = "/bookmark", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    SingleResult<Boolean> BookmarkDeleteForAndroid(@Valid BookmarkReqDTO req) throws Exception {
 
         handService.delete(Long.parseLong(req.getId()), Long.parseLong(req.getHandcontent_key()));
         return responseService.getSingleResult(true);
