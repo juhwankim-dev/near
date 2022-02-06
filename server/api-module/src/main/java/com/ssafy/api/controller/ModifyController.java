@@ -108,7 +108,7 @@ public class ModifyController {
 
     //ForAndroid
     @ApiOperation(value = "비밀번호 수정", notes = "변경에 따라 성공, 실패를 반환한다.")
-    @PutMapping(value = "/password", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/password", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
     CommonResult ModifyPasswordForAndroid(@Valid ModifyPasswordReqDTO req) throws Exception {
 
