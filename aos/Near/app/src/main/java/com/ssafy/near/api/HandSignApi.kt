@@ -15,10 +15,10 @@ interface HandSignApi {
     suspend fun loadBookmarkList(@Path("id") @NotNull id: String): Response<ModelList<HandSignInfo>>
 
     @FormUrlEncoded
-    @POST("api/hand/bookmark/add")
+    @POST("api/hand/bookmark/")
     suspend fun addBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 
     @FormUrlEncoded
-    @DELETE("api/hand/bookmark/delete")
+    @DELETE("api/hand/bookmark")
     suspend fun deleteBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 }

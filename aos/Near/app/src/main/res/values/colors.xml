@@ -15,6 +15,7 @@
     <color name="gray_navigation">#d1cec9</color>
     <color name="gray_divider">#f4f4f3</color>
     <color name="gray_btn_disabled">#cfcfd9</color>
+    <color name="gray_unchecked">#929293</color>
     <color name="temp_blue">#3465e7</color>
     <color name="temp_gray_light">#f4f4f3</color>
     <color name="red_error_message">#b00020</color>

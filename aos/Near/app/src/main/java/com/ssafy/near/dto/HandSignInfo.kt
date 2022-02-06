@@ -9,5 +9,6 @@ data class HandSignInfo(
     val explanation: String,
     val video_path: String,
     val image_path: String,
-    val movement: String
+    val movement: String,
+    var isChecked: Boolean = false
 ) : Serializable

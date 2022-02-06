@@ -65,6 +65,10 @@ class HandSignDetailActivity : BaseActivity<ActivityHandSignDetailBinding>(R.lay
                 handSignViewModel.addBookmark(handSignInfo!!.handcontent_key.toString(), sSharedPreferences.getUserId().toString())
             }
         }
+
+        binding.btnClose.setOnClickListener {
+            finish()
+        }
     }
 
     // MediaSource: 영상에 출력할 미디어 정보를 가져오는 클래스
