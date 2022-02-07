@@ -3,127 +3,238 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin_default"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            style="@style/appbar_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_margin_wide"
-            android:text="회원정보수정" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_nickname"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_person_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="6"
-            app:helperTextTextColor="@color/green_pass">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_margin_default"
+            android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                style="@style/appbar_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_margin_wide"
+                android:text="회원정보수정" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="닉네임" />
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:orientation="horizontal">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/body_text"
+                    android:layout_marginStart="@dimen/activity_margin_default"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="*"
+                    android:textColor="#ff786a" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_baseline_email_24"
-            app:helperText="   "
-            app:helperTextTextColor="@color/green_pass">
+                <TextView
+                    style="@style/explain_text"
+                    android:layout_marginEnd="@dimen/activity_margin_default"
+                    android:text="닉네임"
+                    android:textColor="@color/gray_low_emphasis" />
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/et_nickname"
+                style="@style/body_text"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/activity_margin_default"
+                android:backgroundTint="@color/gray_low_emphasis"
+                android:ems="10"
+                android:hint="영문 3~6자"
+                android:inputType="textPersonName"
+                android:paddingBottom="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/explain_text"
+                android:id="@+id/tv_nick_name_error"
+                android:layout_marginStart="20dp"
+                android:text=""
+                tools:text="이미 존재하는 닉네임입니다."
+                android:textColor="@color/red_error_message" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="이메일"
-                android:inputType="textWebEmailAddress" />
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:orientation="horizontal">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/body_text"
+                    android:layout_marginStart="@dimen/activity_margin_default"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="*"
+                    android:textColor="#ff786a" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_margin_wide" />
+                <TextView
+                    style="@style/explain_text"
+                    android:layout_marginEnd="@dimen/activity_margin_default"
+                    android:text="이메일"
+                    android:textColor="@color/gray_low_emphasis" />
+            </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_old_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:helperTextTextColor="@color/green_pass"
-            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/et_email"
+                style="@style/body_text"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/activity_margin_default"
+                android:backgroundTint="@color/gray_low_emphasis"
+                android:ems="10"
+                android:hint="이메일 주소를 입력해주세요"
+                android:inputType="textEmailAddress"
+                android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                style="@style/explain_text"
+                android:id="@+id/tv_email_error"
+                android:layout_marginStart="20dp"
+                android:text=""
+                tools:text="올바른 이메일 형식이 아닙니다."
+                android:textColor="@color/red_error_message" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="현재 비밀번호"
-                android:inputType="textPassword" />
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:orientation="horizontal">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/body_text"
+                    android:layout_marginStart="@dimen/activity_margin_default"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="*"
+                    android:textColor="#ff786a" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_new_pw"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:helperTextTextColor="@color/green_pass"
-            app:passwordToggleEnabled="true">
+                <TextView
+                    style="@style/explain_text"
+                    android:layout_marginEnd="@dimen/activity_margin_default"
+                    android:text="비밀번호"
+                    android:textColor="@color/gray_low_emphasis" />
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/et_old_pw"
+                style="@style/body_text"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/activity_margin_default"
+                android:backgroundTint="@color/gray_low_emphasis"
+                android:ems="10"
+                android:hint="영문, 숫자 조합 8~20자"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/explain_text"
+                android:id="@+id/tv_old_pw_error"
+                android:layout_marginStart="20dp"
+                android:text=""
+                tools:text="비밀번호는 8~20자입니다."
+                android:textColor="@color/red_error_message" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="새 비밀번호"
-                android:inputType="textPassword" />
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:orientation="horizontal">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/body_text"
+                    android:layout_marginStart="@dimen/activity_margin_default"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="*"
+                    android:textColor="#ff786a" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/et_confirm_new_pw"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearanceOverlay="@style/rounded_edittext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:startIconDrawable="@drawable/ic_outline_lock_24"
-            app:counterEnabled="true"
-            app:counterMaxLength="20"
-            app:helperTextTextColor="@color/green_pass"
-            app:passwordToggleEnabled="true">
+                <TextView
+                    style="@style/explain_text"
+                    android:layout_marginEnd="@dimen/activity_margin_default"
+                    android:text="새 비밀번호"
+                    android:textColor="@color/gray_low_emphasis" />
+            </LinearLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <EditText
+                android:id="@+id/et_new_pw"
+                style="@style/body_text"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/activity_margin_default"
+                android:backgroundTint="@color/gray_low_emphasis"
+                android:ems="10"
+                android:hint="영문, 숫자 조합 8~20자"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/explain_text"
+                android:id="@+id/tv_new_pw_error"
+                android:layout_marginStart="20dp"
+                android:text=""
+                tools:text="비밀번호는 8~20자입니다."
+                android:textColor="@color/red_error_message" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="새 비밀번호 확인"
-                android:inputType="textPassword" />
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:orientation="horizontal">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <TextView
+                    style="@style/body_text"
+                    android:layout_marginStart="@dimen/activity_margin_default"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="2dp"
+                    android:text="*"
+                    android:textColor="#ff786a" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:layout_marginEnd="@dimen/activity_margin_default"
+                    android:text="새 비밀번호 확인"
+                    android:textColor="@color/gray_low_emphasis" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/et_confirm_new_pw"
+                style="@style/body_text"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/activity_margin_default"
+                android:backgroundTint="@color/gray_low_emphasis"
+                android:ems="10"
+                android:hint="영문, 숫자 조합 8~20자"
+                android:inputType="textPassword"
+                android:paddingBottom="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                style="@style/explain_text"
+                android:id="@+id/tv_confirm_new_pw_error"
+                android:layout_marginStart="20dp"
+                android:text=""
+                tools:text="비밀번호는 8~20자입니다."
+                android:textColor="@color/red_error_message" />
+        </LinearLayout>
 
         <Button
             android:id="@+id/btn_save"
+            style="@style/body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/activity_margin_wide"
-            android:background="@drawable/btn_background"
+            android:background="@drawable/bg_blue_round"
+            android:paddingVertical="12dp"
             android:text="저장"
-            android:textSize="@dimen/header_text_size" />
-    </LinearLayout>
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

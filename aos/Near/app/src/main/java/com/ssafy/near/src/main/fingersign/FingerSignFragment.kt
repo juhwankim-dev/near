@@ -39,9 +39,9 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
         fingerSignViewModel = ViewModelProvider(requireActivity(), FingerSignViewModelFactory(FingerSignRepository()))
             .get(FingerSignViewModel::class.java)
 
-        fingerSignViewModel.getFingerSignList().observe(viewLifecycleOwner, {
+        fingerSignViewModel.getFingerSignList().observe(viewLifecycleOwner) {
             fingerSignAdapter.setInitList(it)
-        })
+        }
     }
 
     private fun initEvent() {

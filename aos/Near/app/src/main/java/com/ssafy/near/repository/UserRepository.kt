@@ -37,10 +37,15 @@ class UserRepository {
         private set
 
 
-    suspend fun login(uid: String, pw: String) {
+    suspend fun login(uid: String, password: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.login("none", uid, pw)
+                var req = mutableMapOf<String, String>()
+                req["type"] = "none"
+                req["uid"] = uid
+                req["password"] = password
+
+                RetrofitUtil.userService.login(req)
             }
 
             if (response.isSuccessful) {
@@ -60,10 +65,16 @@ class UserRepository {
         }
     }
 
-    suspend fun signUp(uid: String, nickname: String, email: String, pw: String) {
+    suspend fun signUp(uid: String, nickname: String, email: String, password: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.signUp("none", uid, nickname, email, pw)
+                var req = mutableMapOf<String, String>()
+                req["type"] = "none"
+                req["uid"] = uid
+                req["nickname"] = nickname
+                req["email"] = email
+                req["password"] = password
+                RetrofitUtil.userService.signUp(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -80,7 +91,9 @@ class UserRepository {
     suspend fun loadUserInfo(token: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.loadUserInfo(token)
+                var req = mutableMapOf<String, String>()
+                req["token"] = token
+                RetrofitUtil.userService.loadUserInfo(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -147,10 +160,13 @@ class UserRepository {
         }
     }
 
-    suspend fun checkPw(pw: String, token: String) {
+    suspend fun checkPw(password: String, token: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.checkPw(pw, token)
+                var req = mutableMapOf<String, String>()
+                req["password"] = password
+                req["token"] = token
+                RetrofitUtil.userService.checkPw(req)
             }
 
             if (response.isSuccessful) {
@@ -165,10 +181,15 @@ class UserRepository {
         }
     }
 
-    suspend fun updateUser(id: String, nickname: String, email: String, pw: String) {
+    suspend fun updateUser(id: String, nickname: String, email: String, password: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.updateUser(id, nickname, email, pw)
+                var req = mutableMapOf<String, String>()
+                req["id"] = id
+                req["nickname"] = nickname
+                req["email"] = email
+                req["password"] = password
+                RetrofitUtil.userService.updateUser(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -185,7 +206,10 @@ class UserRepository {
     suspend fun updateNickname(id: String, nickname: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.updateNickname(id, nickname)
+                var req = mutableMapOf<String, String>()
+                req["id"] = id
+                req["nickname"] = nickname
+                RetrofitUtil.userService.updateNickname(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -202,7 +226,10 @@ class UserRepository {
     suspend fun updateEmail(id: String, email: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.updateEmail(id, email)
+                var req = mutableMapOf<String, String>()
+                req["id"] = id
+                req["email"] = email
+                RetrofitUtil.userService.updateEmail(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
@@ -216,10 +243,13 @@ class UserRepository {
         }
     }
 
-    suspend fun updatePw(id: String, pw: String) {
+    suspend fun updatePw(id: String, password: String) {
         try {
             val response = withContext(Dispatchers.IO) {
-                RetrofitUtil.userService.updatePassword(id, pw)
+                var req = mutableMapOf<String, String>()
+                req["id"] = id
+                req["password"] = password
+                RetrofitUtil.userService.updatePassword(req)
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
