@@ -30,7 +30,7 @@
             android:padding="@dimen/activity_margin_default"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_hand_sign_bookmark" />
+            app:srcCompat="@drawable/ic_bookmark_add" />
 
         <ScrollView
             android:layout_width="match_parent"

@@ -46,7 +46,7 @@ class MyNoteActivity : BaseActivity<ActivityMyNoteBinding>(R.layout.activity_my_
             adapter = myNoteAdapter
         }
 
-        handSignViewModel.loadBookmarkList("${sSharedPreferences.getUserId()}")
+        handSignViewModel.loadBookmarkList(sSharedPreferences.getUserId())
 
         var spinnerAdapter = ArrayAdapter(this, R.layout.list_item_spinner, R.id.tv_spinner_item, arrayOf("최근 등록순", "가나다 순"))
         spinnerAdapter.setDropDownViewResource(R.layout.list_item_spinner)
@@ -63,7 +63,7 @@ class MyNoteActivity : BaseActivity<ActivityMyNoteBinding>(R.layout.activity_my_
             var newList = ArrayList<HandSignInfo>()
             myNoteAdapter.bookmarkList.forEach {
                 when(it.isChecked) {
-                    true -> handSignViewModel.deleteBookmark(it.handcontent_key.toString(), sSharedPreferences.getUserId().toString())
+                    true -> handSignViewModel.deleteBookmark(it.handcontent_key.toString(), sSharedPreferences.getUserId())
                     false -> newList.add(it)
                 }
             }

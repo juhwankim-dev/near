@@ -34,18 +34,18 @@ interface UserApi {
     suspend fun checkPw(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 
     @FormUrlEncoded
-    @PUT("api/modify/user")
+    @HTTP(method = "PUT", path = "api/modify/user", hasBody = true)
     suspend fun updateUser(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 
     @FormUrlEncoded
-    @PUT("api/modify/nickname")
+    @HTTP(method = "PUT", path = "api/modify/nickname", hasBody = true)
     suspend fun updateNickname(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 
     @FormUrlEncoded
-    @PUT("api/modify/email")
+    @HTTP(method = "PUT", path = "api/modify/email", hasBody = true)
     suspend fun updateEmail(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 
     @FormUrlEncoded
-    @PUT("api/modify/password")
+    @HTTP(method = "PUT", path = "api/modify/password", hasBody = true)
     suspend fun updatePassword(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 }

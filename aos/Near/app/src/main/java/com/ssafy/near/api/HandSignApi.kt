@@ -19,6 +19,6 @@ interface HandSignApi {
     suspend fun addBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 
     @FormUrlEncoded
-    @DELETE("api/hand/bookmark")
+    @HTTP(method = "DELETE", path = "api/hand/bookmark/", hasBody = true)
     suspend fun deleteBookmark(@FieldMap req: MutableMap<String, String>): Response<Model<Boolean?>>
 }

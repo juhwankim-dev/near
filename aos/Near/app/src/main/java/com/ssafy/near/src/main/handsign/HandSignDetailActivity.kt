@@ -2,6 +2,7 @@ package com.ssafy.near.src.main.handsign
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.source.MediaSource
@@ -20,6 +21,7 @@ class HandSignDetailActivity : BaseActivity<ActivityHandSignDetailBinding>(R.lay
     private var videoPlayer: SimpleExoPlayer? = null
     private var sampleUrl = ""
     private var handSignInfo: HandSignInfo? = null
+    private var isAddedWord = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +35,23 @@ class HandSignDetailActivity : BaseActivity<ActivityHandSignDetailBinding>(R.lay
         handSignViewModel = ViewModelProvider(this, HandSignViewModelFactory(HandSignRepository()))
             .get(HandSignViewModel::class.java)
 
+        handSignViewModel.getbookmarkList().observe(this) {
+            if(handSignInfo != null && it.contains(handSignInfo)) {
+                isAddedWord = true
+                updateBookmarkState()
+            }
+        }
+
         handSignViewModel.getAddBookmark().observe(this) {
             showToastMessage("내 단어장에 추가하였습니다")
+            isAddedWord = true
+            updateBookmarkState()
+        }
+
+        handSignViewModel.getDeleteBookmark().observe(this) {
+            showToastMessage("내 단어장에서 삭제하였습니다")
+            isAddedWord = false
+            updateBookmarkState()
         }
     }
 
@@ -55,19 +72,36 @@ class HandSignDetailActivity : BaseActivity<ActivityHandSignDetailBinding>(R.lay
         buildMediaSource()?.let {
             videoPlayer?.prepare(it)
         }
+
+        handSignViewModel.loadBookmarkList(sSharedPreferences.getUserId())
     }
 
     private fun initEvent() {
         binding.ivBookmark.setOnClickListener {
-            if(handSignInfo == null) {
-                showToastMessage("데이터를 불러오지 못했습니다")
-            } else {
-                handSignViewModel.addBookmark(handSignInfo!!.handcontent_key.toString(), sSharedPreferences.getUserId().toString())
+            when(handSignInfo) {
+                null -> showToastMessage("데이터를 불러오지 못했습니다")
+                else -> {
+                    when(isAddedWord) {
+                        true -> handSignViewModel.deleteBookmark(handSignInfo!!.handcontent_key.toString(), sSharedPreferences.getUserId())
+                        false ->{
+                            Log.d("테스트", "initEvent: 들어오는건가")
+                            handSignViewModel.addBookmark(handSignInfo!!.handcontent_key.toString(), sSharedPreferences.getUserId())
+
+                        }
+                    }
+                }
             }
         }
 
         binding.btnClose.setOnClickListener {
             finish()
+        }
+    }
+
+    private fun updateBookmarkState() {
+        when(isAddedWord) {
+            true -> binding.ivBookmark.setImageResource(R.drawable.ic_my_note_bookmark)
+            false -> binding.ivBookmark.setImageResource(R.drawable.ic_bookmark_add)
         }
     }
 

@@ -44,10 +44,7 @@ class UserRepository {
                 req["type"] = "none"
                 req["uid"] = uid
                 req["password"] = password
-                req["token"] = "string"
 
-                Log.d(TAG, "login: ${uid}")
-                Log.d(TAG, "login: ${password}")
                 RetrofitUtil.userService.login(req)
             }
 
@@ -108,8 +105,6 @@ class UserRepository {
 
         } catch (e: Exception) {
             Log.d(TAG, e.message ?: "onFailure")
-            Log.d(TAG, "loadUserInfo: ${e.stackTrace}")
-            Log.d(TAG, "loadUserInfo: ${e.message}")
         }
     }
 

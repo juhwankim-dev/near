@@ -218,7 +218,7 @@ class EditUserInfoActivity :
         if (id == DEFAULT_ID)
             requestLogin()
         else {
-            userViewModel.updateUser(id.toString(), nickname, email, pw)
+            userViewModel.updateUser(id, nickname, email, pw)
         }
     }
 
