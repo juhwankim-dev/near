@@ -16,6 +16,7 @@ import com.ssafy.near.src.login.LoginActivity
 import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_ID
 import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_TOKEN
 import com.ssafy.near.util.Validation
+import com.ssafy.near.util.Validation.textViewSetting
 
 class EditUserInfoActivity :
     BaseActivity<ActivityEditUserInfoBinding>(R.layout.activity_edit_user_info) {
@@ -41,74 +42,66 @@ class EditUserInfoActivity :
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
 
-        userViewModel.getUserInfo().observe(this, {
+        userViewModel.getUserInfo().observe(this) {
             if (it == null) {
                 requestLogin()
             } else {
-                binding.etNickname.editText!!.setText(it.nickname)
-                binding.etEmail.editText!!.setText(it.email)
+                binding.etNickname.setText(it.nickname)
+                binding.etEmail.setText(it.email)
                 oldInfo = it
             }
-        })
+        }
 
-        userViewModel.getCheckedNickname().observe(this, {
+        userViewModel.getCheckedNickname().observe(this) {
             isCheckedNickname = when (it) {
                 true -> {
-                    if (binding.etNickname.editText?.text.toString() == oldInfo.nickname) {
-                        binding.etNickname.error = ""
-                        binding.etNickname.helperText = ""
+                    if (binding.etNickname.text.toString() == oldInfo.nickname) {
+                        textViewSetting(true, "", binding.tvNickNameError)
                         true
                     } else {
-                        binding.etNickname.error = "이미 존재하는 닉네임입니다."
-                        binding.etNickname.helperText = ""
+                        textViewSetting(false, "이미 존재하는 닉네임입니다.", binding.tvNickNameError)
                         false
                     }
                 }
                 false -> {
-                    binding.etNickname.error = ""
-                    binding.etNickname.helperText = "사용 가능한 닉네임입니다."
+                    textViewSetting(true, "", binding.tvNickNameError)
                     true
                 }
             }
-        })
+        }
 
-        userViewModel.getCheckedEmail().observe(this, {
+        userViewModel.getCheckedEmail().observe(this) {
             isCheckedEmail = when (it) {
                 true -> {
-                    if (binding.etEmail.editText?.text.toString() == oldInfo.email) {
-                        binding.etEmail.error = ""
-                        binding.etEmail.helperText = "   "
+                    if (binding.etEmail.text.toString() == oldInfo.email) {
+                        textViewSetting(true, "", binding.tvEmailError)
                         true
                     } else {
-                        binding.etEmail.error = "이미 존재하는 이메일입니다."
-                        binding.etEmail.helperText = ""
+                        textViewSetting(false, "이미 존재하는 이메일입니다.", binding.tvEmailError)
                         false
                     }
                 }
                 false -> {
-                    binding.etEmail.error = ""
-                    binding.etEmail.helperText = "사용 가능한 이메일입니다."
+                    textViewSetting(true, "", binding.tvEmailError)
                     true
                 }
             }
-        })
+        }
 
-        userViewModel.getCheckedPw().observe(this, {
+        userViewModel.getCheckedPw().observe(this) {
             isCheckedOldPw = when (it) {
                 true -> {
-                    binding.etOldPw.error = ""
-                    binding.etOldPw.helperText = "비밀번호가 일치합니다."
+                    textViewSetting(true, "", binding.tvOldPwError)
                     true
                 }
                 false -> {
-                    binding.etOldPw.error = "비밀번호가 일치하지 않습니다."
-                    binding.etOldPw.helperText = ""
+                    textViewSetting(false, "비밀번호가 일치하지 않습니다.", binding.tvOldPwError)
                     false
                 }
             }
-        })
+        }
 
-        userViewModel.getUpdatedUser().observe(this, {
+        userViewModel.getUpdatedUser().observe(this) {
             when (it) {
                 true -> {
                     showToastMessage("회원정보가 수정되었습니다.")
@@ -118,7 +111,7 @@ class EditUserInfoActivity :
                     showToastMessage("회원정보 수정에 실패했습니다. 다시 시도해주세요.")
                 }
             }
-        })
+        }
     }
 
     private fun initData() {
@@ -131,34 +124,34 @@ class EditUserInfoActivity :
     }
 
     private fun initValidation() {
-        binding.etNickname.editText?.addTextChangedListener {
+        binding.etNickname.addTextChangedListener {
             when {
                 Validation.validateNickname(it.toString(),
-                    binding.etNickname) -> checkDuplicatedNickname(it.toString())
+                    binding.tvNickNameError) -> checkDuplicatedNickname(it.toString())
                 else -> isCheckedNickname = false
             }
         }
 
-        binding.etEmail.editText?.addTextChangedListener {
+        binding.etEmail.addTextChangedListener {
             when {
                 Validation.validateEmail(it.toString(),
-                    binding.etEmail) -> checkDuplicatedEmail(it.toString())
+                    binding.tvEmailError) -> checkDuplicatedEmail(it.toString())
                 else -> isCheckedEmail = false
             }
         }
 
-        binding.etOldPw.editText?.addTextChangedListener {
+        binding.etOldPw.addTextChangedListener {
             when {
-                Validation.validatePw(it.toString(), binding.etOldPw) -> checkPw(it.toString(),
+                Validation.validatePw(it.toString(), binding.tvOldPwError) -> checkPw(it.toString(),
                     sSharedPreferences.getUserToken())
                 else -> isCheckedOldPw = false
             }
         }
 
-        binding.etNewPw.editText?.addTextChangedListener {
+        binding.etNewPw.addTextChangedListener {
             isCheckedNewPw = when {
-                it.toString() == binding.etOldPw.editText?.text.toString() -> {
-                    binding.etNewPw.error = "다른 비밀번호를 사용하세요."
+                it.toString() == binding.etOldPw.text.toString() -> {
+                    textViewSetting(false, "다른 비밀번호를 사용하세요.", binding.tvOldPwError)
                     false
                 }
                 else -> {
@@ -166,39 +159,39 @@ class EditUserInfoActivity :
                 }
             }
             isCheckedConfirmNewPw =
-                Validation.confirmPw(binding.etConfirmNewPw.editText?.text.toString(),
+                Validation.confirmPw(binding.etConfirmNewPw.text.toString(),
                     it.toString(),
-                    binding.etConfirmNewPw)
+                    binding.tvConfirmNewPwError)
         }
 
-        binding.etConfirmNewPw.editText?.addTextChangedListener {
+        binding.etConfirmNewPw.addTextChangedListener {
             isCheckedConfirmNewPw = Validation.confirmPw(it.toString(),
-                binding.etNewPw.editText?.text.toString(),
-                binding.etConfirmNewPw)
+                binding.etNewPw.text.toString(),
+                binding.tvConfirmNewPwError)
         }
     }
 
     private fun initEvent() {
         binding.btnSave.setOnClickListener {
-            if (binding.etNewPw.editText?.text.toString().trim().isEmpty()
-                && binding.etConfirmNewPw.editText?.text.toString().trim().isEmpty()) {
+            if (binding.etNewPw.text.toString().trim().isEmpty()
+                && binding.etConfirmNewPw.text.toString().trim().isEmpty()) {
                 isCheckedNewPw = true
                 isCheckedConfirmNewPw = true
             }
 
             when {
-                isCheckedNickname == false -> binding.etNickname.editText?.requestFocus()
-                isCheckedEmail == false -> binding.etEmail.editText?.requestFocus()
-                isCheckedOldPw == false -> binding.etOldPw.editText?.requestFocus()
-                isCheckedNewPw == false -> binding.etNewPw.editText?.requestFocus()
-                isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.editText?.requestFocus()
+                isCheckedNickname == false -> binding.etNickname.requestFocus()
+                isCheckedEmail == false -> binding.etEmail.requestFocus()
+                isCheckedOldPw == false -> binding.etOldPw.requestFocus()
+                isCheckedNewPw == false -> binding.etNewPw.requestFocus()
+                isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.requestFocus()
                 else -> {
-                    val nickname = binding.etNickname.editText?.text.toString()
-                    val email = binding.etEmail.editText?.text.toString()
-                    val pw = if (binding.etNewPw.editText?.text.toString().trim().isEmpty()) {
-                        binding.etOldPw.editText?.text.toString()
+                    val nickname = binding.etNickname.text.toString()
+                    val email = binding.etEmail.text.toString()
+                    val pw = if (binding.etNewPw.text.toString().trim().isEmpty()) {
+                        binding.etOldPw.text.toString()
                     } else {
-                        binding.etNewPw.editText?.text.toString()
+                        binding.etNewPw.text.toString()
                     }
 
                     updateUserInfo(nickname, email, pw)
@@ -225,7 +218,7 @@ class EditUserInfoActivity :
         if (id == DEFAULT_ID)
             requestLogin()
         else {
-            userViewModel.updateUser(id.toString(), nickname, email, pw)
+            userViewModel.updateUser(id, nickname, email, pw)
         }
     }
 

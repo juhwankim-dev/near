@@ -36,7 +36,7 @@
             style="@style/body_text"
             android:layout_marginTop="@dimen/activity_margin_narrow"
             android:text="가게"
-            android:textColor="@color/temp_green"
+            android:textColor="@color/temp_blue"
             app:layout_constraintStart_toStartOf="@+id/iv_content_preview"
             app:layout_constraintTop_toBottomOf="@+id/iv_content_preview" />
 

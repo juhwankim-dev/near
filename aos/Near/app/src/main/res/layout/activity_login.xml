@@ -2,83 +2,160 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_margin_default"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_marginHorizontal="@dimen/activity_margin_default">
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/et_id"
+            style="@style/body_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:shapeAppearance="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_person_24">
+            android:layout_marginTop="80dp"
+            android:ems="10"
+            android:hint="아이디를 입력해주세요."
+            android:inputType="textPersonName"
+            android:textStyle="bold"
+            android:paddingBottom="20dp"
+            android:backgroundTint="@color/gray_low_emphasis"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="ID" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <EditText
             android:id="@+id/et_pw"
+            style="@style/body_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:passwordToggleEnabled="true"
-            app:shapeAppearance="@style/rounded_edittext"
-            app:startIconDrawable="@drawable/ic_outline_lock_24">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="PW" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="@dimen/activity_margin_default"
+            android:ems="10"
+            android:hint="비밀번호를 입력해주세요."
+            android:inputType="textPassword"
+            android:textStyle="bold"
+            android:paddingBottom="20dp"
+            android:backgroundTint="@color/gray_low_emphasis"
+            app:layout_constraintTop_toBottomOf="@+id/et_id" />
 
         <Button
             android:id="@+id/btn_login"
+            style="@style/body_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_margin_wide"
-            android:background="@drawable/btn_background"
-            android:text="로그인"
-            android:textSize="@dimen/header_text_size" />
+            android:text="N:ear ID로 로그인"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:clickable="false"
+            android:background="@drawable/bg_blue_round"
+            app:backgroundTint="@color/gray_btn_disabled"
+            app:layout_constraintTop_toBottomOf="@+id/et_pw" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_find_id"
+            style="@style/body_text"
+            android:paddingVertical="@dimen/activity_margin_default"
+            android:paddingLeft="@dimen/activity_margin_default"
+            android:paddingRight="@dimen/activity_margin_narrow"
+            android:text="아이디 찾기"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/tv_dot"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+
+        <TextView
+            android:id="@+id/tv_dot"
+            style="@style/body_text"
+            android:text="·"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_find_pw"
+            app:layout_constraintEnd_toStartOf="@+id/tv_find_pw"
+            app:layout_constraintTop_toTopOf="@+id/tv_find_pw" />
+
+        <TextView
+            android:id="@+id/tv_find_pw"
+            style="@style/body_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:paddingVertical="@dimen/activity_margin_default"
+            android:paddingLeft="@dimen/activity_margin_narrow"
+            android:paddingRight="@dimen/activity_margin_narrow"
+            android:text="비밀번호 찾기"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
-            <Button
-                android:id="@+id/btn_sign_up"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:text="회원가입"
-                android:textSize="@dimen/body_text_size" />
+        <ImageView
+            android:id="@+id/iv_facebook"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:paddingHorizontal="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_naver"
+            app:layout_constraintEnd_toStartOf="@+id/iv_naver"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_naver"
+            app:srcCompat="@drawable/ic_facebook" />
 
-            <Button
-                android:id="@+id/btn_find_id_pw"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:text="아이디/비밀번호 찾기"
-                android:textSize="@dimen/body_text_size" />
+        <ImageView
+            android:id="@+id/iv_naver"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:paddingHorizontal="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_kakao"
+            app:layout_constraintEnd_toStartOf="@+id/iv_kakao"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_facebook"
+            app:layout_constraintTop_toTopOf="@+id/iv_kakao"
+            app:srcCompat="@drawable/ic_naver" />
 
-        </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_kakao"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:paddingHorizontal="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_google"
+            app:layout_constraintEnd_toStartOf="@+id/iv_google"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_naver"
+            app:layout_constraintTop_toTopOf="@+id/iv_google"
+            app:srcCompat="@drawable/ic_kakao" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/iv_google"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="@dimen/activity_margin_narrow"
+            android:paddingHorizontal="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toTopOf="@+id/tv_sign_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/iv_kakao"
+            app:srcCompat="@drawable/ic_google" />
+
+        <TextView
+            android:id="@+id/tv_guide"
+            style="@style/body_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 N:ear 아이디가 없으신가요?"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_sign_up"
+            app:layout_constraintEnd_toStartOf="@+id/tv_sign_up"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_sign_up" />
+
+        <TextView
+            android:id="@+id/tv_sign_up"
+            style="@style/body_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_margin_default"
+            android:paddingHorizontal="@dimen/activity_margin_narrow"
+            android:paddingVertical="@dimen/activity_margin_default"
+            android:text="회원가입"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_guide" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
