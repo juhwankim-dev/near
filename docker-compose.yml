@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  
+  dev-db:
+    image: mariadb:10.6.5
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+    # 실전에서는 비밀번호 등을 이곳에 입력하지 말 것!
+    # 서버의 환경변수 등을 활용하세요.
+    environment:
+      MYSQL_ROOT_PASSWORD: ssafy
+    volumes:
+      - ./dev/db_data:/var/lib/mysql
+    ports:
+      - 3308:3306
+  
+  dev-be:
+    depends_on:
+      - near/dev-db
+    build: ./server
+    volumes:
+      - ./dev/be:/usr/src/app
+    restart: always
+    ports:
+      - 8185:8185
+
+  dev-fe:
+    build: ./client
+    volumes:
+      - ./dev/fe:/home/node/app
+    restart: always
+    ports:
+      - 80:80
