@@ -96,11 +96,8 @@ object Validation {
 
     fun textViewSetting(isValid: Boolean, errorMessage: String, textView: TextView) {
         when(isValid) {
-            true -> textView.visibility = View.GONE
-            false -> {
-                textView.text = errorMessage
-                textView.visibility = View.VISIBLE
-            }
+            true -> textView.text = ""
+            false -> textView.text = errorMessage
         }
     }
 }

@@ -58,7 +58,7 @@
                 style="@style/explain_text"
                 android:id="@+id/tv_nick_name_error"
                 android:layout_marginStart="20dp"
-                android:visibility="gone"
+                android:text=""
                 tools:text="이미 존재하는 닉네임입니다."
                 android:textColor="@color/red_error_message" />
 
@@ -88,7 +88,6 @@
                 style="@style/body_text"
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/activity_margin_default"
-                android:layout_marginBottom="@dimen/activity_margin_default"
                 android:backgroundTint="@color/gray_low_emphasis"
                 android:ems="10"
                 android:hint="이메일 주소를 입력해주세요"
@@ -99,13 +98,14 @@
                 style="@style/explain_text"
                 android:id="@+id/tv_email_error"
                 android:layout_marginStart="20dp"
-                android:visibility="gone"
+                android:text=""
                 tools:text="올바른 이메일 형식이 아닙니다."
                 android:textColor="@color/red_error_message" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/activity_margin_default"
                 android:orientation="horizontal">
 
                 <TextView
@@ -139,7 +139,7 @@
                 style="@style/explain_text"
                 android:id="@+id/tv_old_pw_error"
                 android:layout_marginStart="20dp"
-                android:visibility="gone"
+                android:text=""
                 tools:text="비밀번호는 8~20자입니다."
                 android:textColor="@color/red_error_message" />
 
@@ -180,7 +180,7 @@
                 style="@style/explain_text"
                 android:id="@+id/tv_new_pw_error"
                 android:layout_marginStart="20dp"
-                android:visibility="gone"
+                android:text=""
                 tools:text="비밀번호는 8~20자입니다."
                 android:textColor="@color/red_error_message" />
 
@@ -221,7 +221,7 @@
                 style="@style/explain_text"
                 android:id="@+id/tv_confirm_new_pw_error"
                 android:layout_marginStart="20dp"
-                android:visibility="gone"
+                android:text=""
                 tools:text="비밀번호는 8~20자입니다."
                 android:textColor="@color/red_error_message" />
         </LinearLayout>
