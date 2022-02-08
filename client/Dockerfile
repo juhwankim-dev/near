@@ -1,4 +1,4 @@
-FROM node:14-alpine as builder
+FROM node:14.17.5 as builder
 
 # 작업 폴더를 만들고 npm 설치
 RUN mkdir /usr/src/app
