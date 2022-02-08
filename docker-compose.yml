@@ -15,7 +15,7 @@ services:
   
   dev-be:
     depends_on:
-      - near/dev-db
+      - dev-db
     build: ./server
     volumes:
       - ./dev/be:/usr/src/app
