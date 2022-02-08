@@ -8,6 +8,7 @@ services:
     # 서버의 환경변수 등을 활용하세요.
     environment:
       MYSQL_ROOT_PASSWORD: ssafy
+      MYSQL_DATABASE: neardb
       TZ: Asia/Seoul
     volumes:
       - ./dev/db_data:/var/lib/mysql
