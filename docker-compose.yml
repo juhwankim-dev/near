@@ -12,7 +12,7 @@ services:
     volumes:
       - ./dev/db_data:/var/lib/mysql
     ports:
-      - 8806:3306
+      - 3306:3306
   
   dev-be:
     depends_on:
