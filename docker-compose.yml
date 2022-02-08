@@ -8,10 +8,11 @@ services:
     # 서버의 환경변수 등을 활용하세요.
     environment:
       MYSQL_ROOT_PASSWORD: ssafy
+      TZ: Asia/Seoul
     volumes:
       - ./dev/db_data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 8806:3306
   
   dev-be:
     depends_on:
