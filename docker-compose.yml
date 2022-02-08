@@ -11,7 +11,7 @@ services:
     volumes:
       - ./dev/db_data:/var/lib/mysql
     ports:
-      - 3308:3306
+      - 3306:3306
   
   dev-be:
     depends_on:
@@ -19,7 +19,6 @@ services:
     build: ./server
     volumes:
       - ./dev/be:/usr/src/app
-    restart: always
     ports:
       - 8185:8185
 
@@ -27,6 +26,5 @@ services:
     build: ./client
     volumes:
       - ./dev/fe:/home/node/app
-    restart: always
     ports:
       - 80:80
