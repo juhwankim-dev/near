@@ -36,7 +36,7 @@ spring:
 
   # 데이터 베이스 연결 설정
   datasource:
-    url: jdbc:mariadb://dev-db:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
+    url: jdbc:mariadb://near_dev-db_1:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: ssafy
