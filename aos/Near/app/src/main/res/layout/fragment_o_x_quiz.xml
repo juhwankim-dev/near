@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="header"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_ox_game"
+        tools:context=".src.main.game.oxquiz.OXQuizFragment">
+
+        <TextView
+            android:id="@+id/tv_round"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{header}"
+            android:textSize="16sp"
+            android:textColor="#4b4746"
+            android:fontFamily="@font/bm_jua_ttf"
+            tools:text="1번째 라운드 퀴즈"
+            app:layout_constraintBottom_toTopOf="@+id/lottieView_hourglass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_exit_game" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#a9a9a9"
+            app:layout_constraintTop_toBottomOf="@+id/iv_exit_game"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView_readygo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:elevation="12dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/readygo" />
+
+        <ProgressBar
+            android:id="@+id/pb_timer"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:max="300"
+            android:progress="300"
+            android:progressDrawable="@drawable/progress_drawable"
+            app:layout_constraintBottom_toBottomOf="@+id/lottieView_hourglass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lottieView_hourglass"
+            app:layout_constraintTop_toTopOf="@+id/lottieView_hourglass" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView_hourglass"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_exit_game"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/hourglass" />
+
+        <LinearLayout
+            android:id="@+id/layout_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="16dp"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/lottieView_hourglass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_opaque_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B3000000"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_exit_game"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_exit_game" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_setting_game" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="100dp"
+            android:layout_weight="1"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/previewView"
+                android:layout_width="match_parent"
+                android:layout_height="500dp"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
