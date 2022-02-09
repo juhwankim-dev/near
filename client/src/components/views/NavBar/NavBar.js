@@ -14,7 +14,7 @@ function NavBar() {
         {/* <Nav.Link href="#home">Home</Nav.Link> */}
         {/* <Nav.Link href="login">Link</Nav.Link> */}
         <NavDropdown title="학습컨텐츠" id="basic-nav-dropdown">
-          <NavDropdown.Item as={Link} to='/finger'>지어</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to='/finger/1'>지어</NavDropdown.Item>
           <NavDropdown.Item as={Link} to='/sign'>수어</NavDropdown.Item>
         </NavDropdown>
         <NavDropdown title="학습게임" id="basic-nav-dropdown">
@@ -24,9 +24,9 @@ function NavBar() {
         <Nav.Link as={Link} to='/myvoca'>단어장</Nav.Link>
         
         {/* 로그인 상태 */}
-        <NavDropdown title="마이페이지(icon)" id="basic-nav-dropdown">
-          <NavDropdown.Item href="#action/3.1">나의학습</NavDropdown.Item>
-          <NavDropdown.Item href="#action/3.2">회원정보</NavDropdown.Item>
+        <NavDropdown title="마이페이지" id="basic-nav-dropdown">
+          <NavDropdown.Item href="/mystudy">나의학습</NavDropdown.Item>
+          <NavDropdown.Item href="/profile">회원정보</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#action/3.4">로그아웃</NavDropdown.Item>
         </NavDropdown>
