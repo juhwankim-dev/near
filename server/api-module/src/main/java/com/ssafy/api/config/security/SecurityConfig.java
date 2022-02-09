@@ -27,12 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception
-    {
+    public void configure(WebSecurity web) throws Exception {
         // static 디렉터리의 하위 파일 목록은 인증 무시 ( = 항상통과 )
         web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/lib/**");
         web.ignoring().antMatchers("/v2/api-docs", "/swagger-resources/**",
-                "/swagger-ui.html", "/webjars/**", "/swagger/**");
+                "/swagger-ui.html", "/webjars/**", "/swagger/**","/ws-game/**");
     }
 
 
@@ -50,15 +49,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
-                    // permitAll() 처리한 경로의 API는 JWT 값이 없어도 실행 가능
-                    .antMatchers("/api/sign/**", "/api/auth/**","/api/modify/**","/api/finger/**", "/api/hand/**").permitAll()
-                    .antMatchers("/docs/**").permitAll()
-                    .anyRequest().hasRole("USER")
+                // permitAll() 처리한 경로의 API는 JWT 값이 없어도 실행 가능
+                .antMatchers("/api/sign/**", "/api/auth/**", "/api/modify/**", "/api/finger/**", "/api/hand/**","/api/modify/**", "/api/game/**").permitAll()
+                .antMatchers("/docs/**").permitAll()
+                .anyRequest().hasRole("USER")
                 .and()
-                    // 403 예외처리 핸들링
-                    .exceptionHandling().accessDeniedPage("/user/denied")
+                // 403 예외처리 핸들링
+                .exceptionHandling().accessDeniedPage("/user/denied")
                 .and()
-                    .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
     }
 
 
