@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   
-  dev-db:
+  database:
     image: mariadb:10.6.5
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     # 실전에서는 비밀번호 등을 이곳에 입력하지 말 것!
@@ -17,7 +17,7 @@ services:
     networks:
       - db_network
   
-  dev-be:
+  backend:
     depends_on:
       - dev-db
     build: ./server
@@ -28,7 +28,7 @@ services:
     networks:
       - db_network
 
-  dev-fe:
+  frontend:
     build: ./client
     volumes:
       - ./dev/fe:/home/node/app
