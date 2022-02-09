@@ -19,7 +19,7 @@ services:
   
   backend:
     depends_on:
-      - dev-db
+      - database
     build: ./server
     volumes:
       - ./dev/be:/usr/src/app
