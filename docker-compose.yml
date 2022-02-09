@@ -14,6 +14,8 @@ services:
       - ./dev/db_data:/var/lib/mysql
     ports:
       - 3306:3306
+    networks:
+      - db_network
   
   dev-be:
     depends_on:
@@ -23,6 +25,8 @@ services:
       - ./dev/be:/usr/src/app
     ports:
       - 8185:8185
+    networks:
+      - db_network
 
   dev-fe:
     build: ./client
@@ -30,3 +34,6 @@ services:
       - ./dev/fe:/home/node/app
     ports:
       - 80:80
+
+networks:
+  db_network:
