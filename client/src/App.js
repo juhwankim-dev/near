@@ -8,9 +8,14 @@ import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/RegisterPage/RegisterPage';
 import MainPage from './components/views/MainPage/MainPage';
 import SignPage from './components/views/ContentPage/SignPage/SignPage';
-import SignPageTwo from './components/views/ContentPage/SignPage/SignPage2';
-import SignDetail from './components/views/ContentPage/SignPage/SignDetail';
+
+import SignDetail3 from './components/views/ContentPage/SignPage/SignDetail3';
 import FingerPage from './components/views/ContentPage/FingerPage/FingerPage';
+import FingerPage2 from './components/views/ContentPage/FingerPage/FingerPage2';
+import MyVoca from './components/views/MyVocaPage/MyVoca';
+import MyStudy from './components/views/MyProfilePage.js/MyStudy';
+import Profile from './components/views/MyProfilePage.js/MyProfile';
+import VocaDetail from './components/views/MyVocaPage/VocaDetail3';
 
 // import NavBar from './components/views/NavBar/NavBar';
 import OXQuizStart from './components/views/OXQuiz/OXQuizStart';
@@ -29,15 +34,19 @@ function App() {
         <Route path="/" element={<LandingPage /> } />
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
-        <Route path="/sign" element={<SignPage />} />
-        <Route path="/sign2" element={<SignPageTwo />} />
-        <Route path ="/sign/detail" element={<SignDetail />} />
-        <Route path ="/finger" element={<FingerPage />} />
-
         <Route path ="/oxquiz/start" element={<OXQuizStart />} />
         <Route path ="/oxquiz/start/cnt" element={<OXQuizStartCnt />} />
+        <Route path="/sign" element={<SignPage />} />
+        <Route path ="/sign/:i" element={<SignDetail3 />} />
+        <Route path ="/finger/1" element={<FingerPage />} />
+        <Route path ="/finger/2" element={<FingerPage2 />} />
+        {/* <Route path ="/finger/:i" element={<FingerDetail />} /> */}
+        <Route path ="/myvoca" element={<MyVoca />} />
+        <Route path ="/myvoca/:i" element={<VocaDetail />} />
+        <Route path ="/mystudy" element={<MyStudy />} />
+        <Route path ="/profile" element={<Profile />} />
         <Route path ="/oxquiz" element={<OXQuiz />} />
-
+        <Route path ="/oxquiz" element={<OXQuiz />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         {/* <Route exact path="/" element={Auth(<LandingPage />, null) } />
