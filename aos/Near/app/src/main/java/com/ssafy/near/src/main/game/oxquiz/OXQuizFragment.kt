@@ -64,7 +64,8 @@ class OXQuizFragment : BaseFragment<FragmentOXQuizBinding>(R.layout.fragment_o_x
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        oxQuizViewModel = ViewModelProvider(requireActivity()).get(OXQuizViewModel::class.java)
+        oxQuizViewModel = ViewModelProvider(requireActivity(), OXQuizViewModelFactory())
+            .get(OXQuizViewModel::class.java)
 
         if (requireActivity().checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             openCamera()

@@ -16,7 +16,8 @@ class WrongFragment : BaseFragment<FragmentWrongBinding>(R.layout.fragment_wrong
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        oxQuizViewModel = ViewModelProvider(requireActivity()).get(OXQuizViewModel::class.java)
+        oxQuizViewModel = ViewModelProvider(requireActivity(), OXQuizViewModelFactory())
+            .get(OXQuizViewModel::class.java)
 
         initView()
         initEvent()

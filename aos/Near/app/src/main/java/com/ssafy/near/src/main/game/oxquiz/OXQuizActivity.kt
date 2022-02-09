@@ -8,12 +8,8 @@ import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityOxquizBinding
 
 class OXQuizActivity : BaseActivity<ActivityOxquizBinding>(R.layout.activity_oxquiz) {
-    private lateinit var oxQuizViewModel: OXQuizViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        oxQuizViewModel = ViewModelProvider(this).get(OXQuizViewModel::class.java)
 
         //초기 실행화면 설정
         val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_ox_quiz)

@@ -13,7 +13,8 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(R.layout.fragment_res
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        oxQuizViewModel = ViewModelProvider(requireActivity()).get(OXQuizViewModel::class.java)
+        oxQuizViewModel = ViewModelProvider(requireActivity(), OXQuizViewModelFactory())
+            .get(OXQuizViewModel::class.java)
 
         initView()
         initEvent()
