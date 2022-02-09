@@ -36,7 +36,7 @@ spring:
 
   # 데이터 베이스 연결 설정
   datasource:
-    url: jdbc:mariadb://near_dev-db_1:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
+    url: jdbc:mariadb://dev-db:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: ssafy
@@ -71,7 +71,7 @@ spring:
 server:
   # 프로젝트 환경의 포트 설정
   port: 8185
-  domain: http://i6d203.p.ssafy.io
+  domain: http:127.0.0.1
   servlet:
     session:
       timeout: 43200m      # 60m * 24h * 30d
