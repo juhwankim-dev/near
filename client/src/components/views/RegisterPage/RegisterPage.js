@@ -112,14 +112,8 @@ function RegisterPage(props) {
     .then((res) => {
       console.log(res);
     });
-      
-
 		}
 	};
-
-
-
-
 
   const onSubmitHandler = (e) => {
     e.preventDefault(); 
@@ -156,7 +150,6 @@ function RegisterPage(props) {
         navigate("/login");
         
       });
-
     
     }else {
       toast.error('비밀번호가 일치하지 않습니다');
@@ -164,11 +157,11 @@ function RegisterPage(props) {
    };
 
    return (
-  <div >
-
-  <form
-        onSubmit={onSubmitHandler}
-      >
+  <div>
+  <form style={{
+    display:'flex', justifyContent: 'center', alignItems: 'center'
+    ,width: '100%', height: '100vh'}}
+        onSubmit={onSubmitHandler}>
   <div class="login-wrap">
 	<div class="login-html">
     <div><h1>N:ear</h1></div>
@@ -177,12 +170,8 @@ function RegisterPage(props) {
 		<input id="tab-2" type="radio" name="tab" class="sign-up" checked /><label for="tab-2" class="tab">Sign Up</label>
 	 
 
-    
-
-
      <div class="login-form">
    
-
         <div class="sign-up-htm">
           <div class="group">
             <label for="user" class="label">ID</label>
@@ -214,12 +203,8 @@ function RegisterPage(props) {
           {/* Already Member? 버튼 누를 경우 login페이지로 랜더링되게 변경 */}
           </div>
         </div>
-
-        
 		</div>
-    
     </div>
-    
   </div>
   </form>
  

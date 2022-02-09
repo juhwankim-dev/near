@@ -73,7 +73,9 @@ function LoginPage(props) {
 
   return (
     <div>
-      <form
+      <form style={{
+    display:'flex', justifyContent: 'center', alignItems: 'center'
+    ,width: '100%', height: '100vh'}}
         onSubmit={onSubmitHandler}
       >
   <div class="login-wrap">
