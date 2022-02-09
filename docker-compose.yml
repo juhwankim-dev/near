@@ -25,6 +25,10 @@ services:
       - ./dev/be:/usr/src/app
     ports:
       - 8185:8185
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://database:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
+      SPRING_DATABOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ssafy
     networks:
       - db_network
 
