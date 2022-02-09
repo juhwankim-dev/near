@@ -7,59 +7,56 @@
 
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fafafa"
         tools:context=".src.main.home.HomeFragment">
 
-        <TextView
-            android:id="@+id/tv_typing_text"
-            style="@style/header_text"
-            android:text="당신의 곁에"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.25" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieView_wave"
-            android:layout_width="500dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/guideline"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/wave"
-            app:lottie_speed="1.5" />
-
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lottieView_whale"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
-            app:layout_constraintBottom_toBottomOf="@+id/lottieView_wave"
-            app:layout_constraintStart_toStartOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/whale" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="530dp"
-            android:layout_marginTop="80dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/lottieView_wave">
-        </androidx.cardview.widget.CardView>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_typing_small_text"
+                style="@style/header_text"
+                android:text="당신의 곁에"
+                android:textColor="#646B6F"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_typing_large_text"
+                style="@style/header_text"
+                android:text="당신의 곁에"
+                android:textSize="32sp"
+                android:textColor="#646B6F"
+                app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.25" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.76" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/modal_bottom_sheet" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

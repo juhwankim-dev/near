@@ -231,7 +231,7 @@
             style="@style/body_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_blue_round"
+            android:background="@drawable/bg_button_round_4"
             android:paddingVertical="12dp"
             android:text="저장"
             android:textColor="@color/white"
