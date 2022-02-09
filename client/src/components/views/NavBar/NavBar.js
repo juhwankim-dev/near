@@ -18,7 +18,7 @@ function NavBar() {
           <NavDropdown.Item as={Link} to='/sign'>수어</NavDropdown.Item>
         </NavDropdown>
         <NavDropdown title="학습게임" id="basic-nav-dropdown">
-          <NavDropdown.Item as={Link} to='/oxquiz'>OX퀴즈</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to='/oxquiz/start'>OX퀴즈</NavDropdown.Item>
           <NavDropdown.Item as={Link} to='/teamplay'>팀플레이</NavDropdown.Item>
         </NavDropdown>
         <Nav.Link as={Link} to='/myvoca'>단어장</Nav.Link>
