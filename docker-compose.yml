@@ -7,15 +7,13 @@ services:
     # 실전에서는 비밀번호 등을 이곳에 입력하지 말 것!
     # 서버의 환경변수 등을 활용하세요.
     environment:
-      MYSQL_ROOT_PASSWORD: ssafy
-      MYSQL_DATABASE: neardb
-      TZ: Asia/Seoul
+      - MYSQL_ROOT_PASSWORD=ssafy
+      - MYSQL_DATABASE=neardb
+      - TZ=Asia/Seoul
     volumes:
       - ./dev/db_data:/var/lib/mysql
     ports:
       - 3306:3306
-    networks:
-      - db_network
   
   backend:
     depends_on:
@@ -25,12 +23,6 @@ services:
       - ./dev/be:/usr/src/app
     ports:
       - 8185:8185
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mariadb://database:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
-      SPRING_DATABOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ssafy
-    networks:
-      - db_network
 
   frontend:
     build: ./client
@@ -38,6 +30,3 @@ services:
       - ./dev/fe:/home/node/app
     ports:
       - 80:80
-
-networks:
-  db_network:
