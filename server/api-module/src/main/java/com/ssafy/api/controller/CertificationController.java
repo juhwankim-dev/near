@@ -29,7 +29,6 @@ public class CertificationController {
     private final ModifyService modifyService;
     private final SignService signService;
 
-    //TODO: test
     @PostMapping("/mail")
     @ApiOperation(value = "메일 전송", notes = "주소, 제목, 메시지 내용을 받아와서 전송한다")
     public SingleResult<String> execMail(@RequestBody MailDto mailDto) {
@@ -68,8 +67,7 @@ public class CertificationController {
             throw new ApiMessageException("비밀번호 변경 실패");
         }
 
-        mailService.sendHtmlMail(email, "Near 비밀번호 변경안내", ramdomPassword + "로 변경되었습니다");
-
+        mailService.sendHtmlMail(email, "Near 비밀번호 변경안내", "회원님의 비밀번호가 " + ramdomPassword + "로 변경되었습니다");
         return responseService.getSingleResult(true);
     }
 
@@ -80,7 +78,7 @@ public class CertificationController {
 
         String CertificationCode = mailService.getRamdomPassword(5);
 
-        mailService.sendSimpleMail(email, "Near 가입 인증", "Near 가입 인증 번호 : " + CertificationCode + " 입니다");
+        mailService.sendSimpleMail(email, "Near 회원가입 인증번호안내", "Near 가입 인증 번호 : " + CertificationCode + " 입니다");
 
         return responseService.getSingleResult(CertificationCode);
     }
