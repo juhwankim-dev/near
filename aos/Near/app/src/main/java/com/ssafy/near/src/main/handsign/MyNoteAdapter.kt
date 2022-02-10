@@ -1,7 +1,6 @@
-package com.ssafy.near.src.main.mynote
+package com.ssafy.near.src.main.handsign
 
 import android.content.res.ColorStateList
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
