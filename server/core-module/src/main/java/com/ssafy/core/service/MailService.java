@@ -11,6 +11,7 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.freemarker.FreeMarkerTemplateUtils;
 
@@ -39,16 +40,17 @@ public class MailService {
     private String toEmailAddr;
 
 
-
     /**
      * Email 전송 (받는 주소, 제목, 내용)
      * 보내는 주소는 설정값으로 고정
+     *
      * @param to
      * @param subject
      * @param content
      */
+    @Async
     public void sendSimpleMail(String to, String subject, String content) {
-        if ( to.indexOf("@test.com") >= 0 ) return ;
+        if (to.indexOf("@test.com") >= 0) return;
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(senderEmailAddr);
         message.setTo(to);
@@ -66,11 +68,13 @@ public class MailService {
     /**
      * Email 전송 (보내는 주소, 제목, 내용)
      * 받는 주소는 설정값으로 고정
+     *
      * @param from
      * @param subject
      * @param content
      * @return
      */
+    @Async
     public String sendSimpleMailFrom(String from, String subject, String content) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(from);
@@ -89,12 +93,14 @@ public class MailService {
 
     /**
      * Email HTML 전송
+     *
      * @param to
      * @param subject
      * @param content
      */
+    @Async
     public void sendHtmlMail(String to, String subject, String content) {
-        if ( to.indexOf("@test.com") >= 0 ) return ;
+        if (to.indexOf("@test.com") >= 0) return;
         MimeMessage message = mailSender.createMimeMessage();
         try {
             //true表示需要创建一个multipart message
@@ -113,13 +119,15 @@ public class MailService {
 
     /**
      * Email 첨부파일 추가 전송
+     *
      * @param to
      * @param subject
      * @param content
      * @param filename
      */
+    @Async
     public void sendAttachmentsMail(String to, String subject, String content, String filename) {
-        if ( to.indexOf("@test.com") >= 0 ) return ;
+        if (to.indexOf("@test.com") >= 0) return;
         MimeMessage message = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -141,15 +149,15 @@ public class MailService {
     }
 
     /**
-     *
      * @param to
      * @param subject
      * @param content
      * @param rscPath
      * @param rscId
      */
+    @Async
     public void sendInlineResourceMail(String to, String subject, String content, String rscPath, String rscId) {
-        if ( to.indexOf("@test.com") >= 0 ) return ;
+        if (to.indexOf("@test.com") >= 0) return;
         MimeMessage message = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -169,14 +177,14 @@ public class MailService {
     }
 
     /**
-     *
      * @param to
      * @param subject
      * @param templateName
      * @param model
      */
+    @Async
     public void sendFreeMarkerTemplateMail(String to, String subject, String templateName, @SuppressWarnings("rawtypes") Map model) {
-        if ( to.indexOf("@test.com") >= 0 ) return ;
+        if (to.indexOf("@test.com") >= 0) return;
         Template t;
         try {
             t = configuration.getTemplate(templateName); // freeMarker template
@@ -189,13 +197,12 @@ public class MailService {
         }
     }
 
-    /**
-     *
-     * @param to
-     * @param subject
-     * @param templateName
-     * @param model
-     */
+//    /**
+//     * @param to
+//     * @param subject
+//     * @param templateName
+//     * @param model
+//     */
     /*public void sendThymeleafTemplateMail(String to, String subject, String templateName, @SuppressWarnings("rawtypes") Map model){
         if ( to.indexOf("@test.com") >= 0 ) return ;
         try {
@@ -209,4 +216,19 @@ public class MailService {
             e.printStackTrace();
         }
     }*/
+
+    //랜덤 비밀번호 생성 or 임시 비밀번호 발급
+    public String getRamdomPassword(int len) {
+        char[] charSet = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        int idx = 0;
+        StringBuffer sb = new StringBuffer();
+        System.out.println("charSet.length :::: " + charSet.length);
+        for (int i = 0; i < len; i++) {
+            idx = (int) (charSet.length * Math.random()); // 36 * 생성된 난수를 Int로 추출 (소숫점제거)
+            System.out.println("idx :::: " + idx);
+            sb.append(charSet[idx]);
+        }
+        return sb.toString();
+    }
+
 }
