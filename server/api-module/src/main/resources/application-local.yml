@@ -35,11 +35,11 @@ spring:
     checkTemplateLocation: false
 
   # 데이터 베이스 연결 설정
-#  datasource:
-#    url: jdbc:mariadb://database:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    username: root
-#    password: ssafy
+  datasource:
+    url: jdbc:mariadb://database:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: ssafy
   flyway:
     enabled: false
   config:
