@@ -25,6 +25,9 @@
             android:name=".src.main.game.wordquiz.WordQuizActivity"
             android:exported="false" />
         <activity
+            android:name=".src.main.game.wordquiz.RoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".src.main.mynote.MyNoteActivity"
             android:exported="false" />
         <activity

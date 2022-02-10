@@ -1,38 +1,33 @@
 package com.ssafy.near.src.main.game.wordquiz
 
-import android.app.Activity
 import android.os.Bundle
-import androidx.lifecycle.ViewModelProvider
-import com.bumptech.glide.Glide
+import androidx.fragment.app.Fragment
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityWordQuizeBinding
-import java.util.*
+
 
 class WordQuizActivity : BaseActivity<ActivityWordQuizeBinding>(R.layout.activity_word_quize) {
-    private lateinit var wordQuizeViewModel: WordQuizViewModel
-    private var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        wordQuizeViewModel = ViewModelProvider(this).get(WordQuizViewModel::class.java)
-        val quizNum = wordQuizeViewModel.questionNum
-        val images = wordQuizeViewModel.images[quizNum]
-        var imgIndex = 0
+        //초기 실행화면 설정
+        val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_word_quiz)
 
-        timer.schedule(object: TimerTask() {
-            override fun run() {
-                if (imgIndex == images.size) {
-                    imgIndex = 0
-                }
+        if (currentFragment == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragment_container_word_quiz, WaitingRoomFragment())
+                .commit()
+        }
+    }
 
-                runOnUiThread {
-                    Glide.with(this@WordQuizActivity)
-                        .load(images[imgIndex++])
-                        .into(binding.ivQuestion)
-                }
-            }
-        }, 1, 300)
+    fun onChangeFragment(fragment: Fragment) {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_word_quiz, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
