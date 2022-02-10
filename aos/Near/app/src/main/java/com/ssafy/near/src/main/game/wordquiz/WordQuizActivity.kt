@@ -2,6 +2,7 @@ package com.ssafy.near.src.main.game.wordquiz
 
 import android.app.Activity
 import android.os.Bundle
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
@@ -9,26 +10,29 @@ import com.ssafy.near.databinding.ActivityWordQuizeBinding
 import java.util.*
 
 class WordQuizActivity : BaseActivity<ActivityWordQuizeBinding>(R.layout.activity_word_quize) {
+    private lateinit var wordQuizeViewModel: WordQuizViewModel
     private var timer = Timer()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val images = arrayOf(R.drawable.ic_bookmark, R.drawable.ic_award, R.drawable.ic_bookmark_add, R.drawable.ic_edu)
-        var index = 0
+        wordQuizeViewModel = ViewModelProvider(this).get(WordQuizViewModel::class.java)
+        val quizNum = wordQuizeViewModel.questionNum
+        val images = wordQuizeViewModel.images[quizNum]
+        var imgIndex = 0
 
         timer.schedule(object: TimerTask() {
             override fun run() {
-                if (index == images.size) {
-                    index = 0
+                if (imgIndex == images.size) {
+                    imgIndex = 0
                 }
 
                 runOnUiThread {
                     Glide.with(this@WordQuizActivity)
-                        .load(images[index++])
+                        .load(images[imgIndex++])
                         .into(binding.ivQuestion)
                 }
             }
-        }, 0, 300)
+        }, 1, 300)
     }
 }
