@@ -108,7 +108,6 @@ function LoginPage() {
     ,width: '100%', height: '100vh'}}
         onSubmit={onSubmitHandler}
       >
-
   <div className="login-wrap">
 	<div className="login-html">
     <div><h1>N:ear</h1></div>
