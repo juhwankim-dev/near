@@ -12,7 +12,11 @@
     setTimeout("locateNextRound()",20000);
      }
     function locateNextRound(){
+      if (check)
+     localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+     console.log(localStorage.getItem("score"));
      location.replace("http://localhost:3000/oxquiz/end");
+     check = false
     }
     </SCRIPT>
     <script language='javascript'>
@@ -48,9 +52,10 @@
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
-  <p style="font-size: 3vh;">1Round</p>
+  <p style="font-size: 3vh;">5Round</p>
     <div id="webcam-container"></div>
     <img id="o-container" src=""></img>
+    <img id="x-container" src=""></img>
     <div id="label-container"></div>
     <div id="choonDiv"></div>
  
@@ -134,6 +139,7 @@
 
       // run the webcam image through the image model
       var status = "one"
+      var check = false
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
@@ -144,14 +150,16 @@
               const myTimeout = setTimeout(myGreeting, 10000);
               function myGreeting() {
               document.getElementById("o-container").innerHTML = "O";
-            document.getElementById("o-container").src="https://c.tenor.com/mux0op1RGDkAAAAC/kpop-korean.gif";
-
+              document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+              if (!check){
+                    check = true
+                  }
             }
-          // } else {
-          //   const myTimeout = setTimeout(myGreeting, 10000);
-          //     function myGreeting() {
-          //     document.getElementById("ox-container").innerHTML = "X";
-          // }
+          } else {
+            const myTimeout = setTimeout(myGreeting, 10000);
+              function myGreeting() {
+                document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
+          }
           for (let i = 0; i < maxPredictions; i++) {
               const classPrediction =
                   prediction[i].className + ": " + prediction[i].probability.toFixed(2);

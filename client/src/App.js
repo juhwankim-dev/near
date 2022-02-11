@@ -25,7 +25,7 @@ import OXQuiz2 from './components/views/OXQuiz/OXQuiz2';
 import OXQuiz3 from './components/views/OXQuiz/OXQuiz3';
 import OXQuiz4 from './components/views/OXQuiz/OXQuiz4';
 import OXQuiz5 from './components/views/OXQuiz/OXQuiz5';
-import OXOuizEnd from './components/views/OXQuiz/OXOuizEnd';
+import OXQuizEnd from './components/views/OXQuiz/OXQuizEnd';
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
@@ -45,7 +45,7 @@ function App() {
         <Route path ="/oxquiz3" element={<OXQuiz3 />} />
         <Route path ="/oxquiz4" element={<OXQuiz4 />} />
         <Route path ="/oxquiz5" element={<OXQuiz5 />} />
-        <Route path ="/oxquiz/end" element={<OXOuizEnd />} />
+        <Route path ="/oxquiz/end" element={<OXQuizEnd />} />
 
         <Route path="/sign" element={<SignPage />} />
         <Route path ="/sign/:i" element={<SignDetail3 />} />
