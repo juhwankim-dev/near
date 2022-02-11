@@ -38,11 +38,10 @@ public class GameService {
 
     public GameRoom createRoom(String name){
         //TODO : roomId == Summoner MatchId + blue/red Team code + Summoner Name
-        String roomId = name;
-        GameRoom result = GameRoom.builder().roomId(roomId).build();
-        gameRooms.put(roomId, result);
+        GameRoom gameRoom = GameRoom.create(name);
+        gameRooms.put(gameRoom.getRoomId(), gameRoom);
 
-        return result;
+        return gameRoom;
     }
 
 

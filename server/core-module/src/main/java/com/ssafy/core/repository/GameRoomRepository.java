@@ -28,8 +28,8 @@ public class GameRoomRepository {
     }
 
     public GameRoom createGameRoom(String name) {
-        GameRoom room = GameRoom.builder().roomId(name).build();
-        gameRoomMap.put(room.getRoomId(), room);
-        return room;
+        GameRoom gameRoom = GameRoom.create(name);
+        gameRoomMap.put(gameRoom.getRoomId(), gameRoom);
+        return gameRoom;
     }
 }

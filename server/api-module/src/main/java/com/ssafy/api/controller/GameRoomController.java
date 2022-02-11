@@ -24,16 +24,18 @@ public class GameRoomController {
     // 게임방 리스트 화면
     @GetMapping("/room")
     public String room(Model model) {
-        return "/game/room";
+        return "/api/game/room";
     }
 
     // 모든 채팅방 목록
+    @ApiOperation(value = "채팅방 목록", notes = "모든 채팅방 목록을 반환한다")
     @GetMapping("/rooms")
     public List<GameRoom> rooms() {
         return gameService.findAllRoom();
     }
 
     //게임방 생성
+    @ApiOperation(value = "게임방 생성", notes = "만들고 싶은 게임방을 생성한다")
     @PostMapping("/room")
     @ResponseBody
     public GameRoom createRoom(@RequestParam String name){
@@ -42,7 +44,7 @@ public class GameRoomController {
 
     // 게임방 입장 화면
     @ApiOperation(value = "방 입장", notes = "room ID를 통해서 방에 입장합니다")
-    @GetMapping("/room/eneter/{roomId}")
+    @GetMapping("/room/enter/{roomId}")
     public String roomEnter(Model model, @ApiParam(value = "방 ID", required = true) @PathVariable String roomId) {
 
         model.addAttribute("roomId", roomId);

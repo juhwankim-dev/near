@@ -1,17 +1,19 @@
 package com.ssafy.api.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Message {
 
-    public enum MessageType{
+    public enum Type{
         ENTER, COMM, START, END
     }
 
-    private MessageType messageType;
+    private Type Type;
     private String roomId;
     private String sender;
     private String message;

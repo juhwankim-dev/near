@@ -8,15 +8,18 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @RequiredArgsConstructor
-public class GameContoller {
+public class GameController {
 
-    private SimpMessageSendingOperations messageSendingOperations;
+    private SimpMessageSendingOperations messageSendingOperations; //특정 Broker로 메세지를 전달
 
+    //Client가 SEND할 수 있는 경로
+    //stompConfig에서 설정한 applicationDestinationPrefixes와 @MessageMapping 경로가 병합됨
+    //"/pub/chat/enter"
     @MessageMapping("/room/message")
     public void message(Message message) {
-        if (Message.MessageType.ENTER.equals(message.getMessageType())) {
+        if (Message.Type.ENTER.equals(message.getType())) {
             message.setMessage(message.getSender() + "님이 입장하셨습니다");
         }
-        messageSendingOperations.convertAndSend("/sub/game/room/" + message);
+        messageSendingOperations.convertAndSend("/sub/game/room/" + message.getRoomId() + message);
     }
 }
