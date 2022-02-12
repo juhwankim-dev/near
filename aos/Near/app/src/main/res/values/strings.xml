@@ -3,4 +3,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="sign_up_guide">지금 회원가입 하고 멀티플레이와 내 단어장 등 혜택을 누려보세요!</string>
+    <string name="introduce_our_service">수어를 재밌게 배울 수는 없을까요?\n\n게임을 통해서 친구들과 수어를 배워보세요!\n\n코로나로 모두가 마스크를 쓰는 지금\n단절된 소통을 해결하기 위해\nN:ear가 한 발 가까이 다가서겠습니다</string>
 </resources>

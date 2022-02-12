@@ -295,7 +295,7 @@
                     android:text="본인인증"
                     android:textColor="@color/white"
                     android:clickable="false"
-                    android:background="@drawable/bg_blue_round"
+                    android:background="@drawable/bg_button_round_4"
                     app:backgroundTint="@color/gray_btn_disabled"
                     app:layout_constraintBottom_toBottomOf="parent" />
             </LinearLayout>
@@ -309,7 +309,7 @@
             android:paddingVertical="12dp"
             android:text="가입완료"
             android:textColor="@color/white"
-            android:background="@drawable/bg_blue_round"
+            android:background="@drawable/bg_button_round_4"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
