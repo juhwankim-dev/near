@@ -105,5 +105,25 @@
                     android:layout_height="match_parent"/>
             </LinearLayout>
         </ScrollView>
+
+        <View
+            android:id="@+id/alpha"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            tools:visibility="gone" />
+
+        <com.ssafy.near.src.main.handsign.detail.DraggableSource
+            android:id="@+id/draggablePanel"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:height_when_max="300dp"
+            app:height_when_min="58dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:state="MIN"
+            tools:visibility="gone"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

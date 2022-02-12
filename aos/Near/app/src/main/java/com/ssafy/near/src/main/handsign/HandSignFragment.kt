@@ -14,20 +14,28 @@ import com.ssafy.near.config.ApplicationClass
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentHandSignBinding
 import com.ssafy.near.dto.HandSignInfo
+import com.ssafy.near.lib.DraggablePanel
 import com.ssafy.near.repository.HandSignRepository
 import com.ssafy.near.src.main.MainActivity
+import com.ssafy.near.src.main.handsign.detail.BottomFragment
+import com.ssafy.near.src.main.handsign.detail.TopFragment
 
 class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment_hand_sign) {
-    private lateinit var handSignViewModel: HandSignViewModel
+    lateinit var handSignViewModel: HandSignViewModel
     lateinit var handSignAdapter: HandSignAdapter
     lateinit var myNoteAdapter: MyNoteAdapter
     private var isChecked = false
+
+    lateinit var shadow: View
+    lateinit var topFragment: TopFragment
+    lateinit var bottomFragment: BottomFragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         initViewModel()
         initView()
+        initDraggablePanel()
         initEvent()
     }
 
@@ -58,6 +66,24 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
         var spinnerAdapter = ArrayAdapter(requireContext(), R.layout.list_item_spinner, R.id.tv_spinner_item, arrayOf("오름차순", "내림차순"))
         spinnerAdapter.setDropDownViewResource(R.layout.list_item_spinner)
         binding.spinner.adapter = spinnerAdapter
+    }
+
+    private fun initDraggablePanel() {
+        shadow = requireActivity().findViewById(R.id.shadow)
+
+        binding.alpha.visibility = View.GONE
+        binding.draggablePanel.visibility = View.GONE
+
+        binding.draggablePanel.setDraggableListener(object : DraggablePanel.DraggableListener {
+            override fun onChangeState(state: DraggablePanel.State) {
+            }
+
+            override fun onChangePercent(percent: Float) {
+                binding.alpha.alpha = 1 - percent
+                shadow.alpha = percent
+            }
+
+        })
     }
 
     private fun initEvent() {
@@ -91,9 +117,12 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
 
         handSignAdapter.setItemClickListener(object : HandSignAdapter.ItemClickListener{
             override fun onClick(handSignInfo: HandSignInfo) {
-                val intent = Intent((context as MainActivity), HandSignDetailActivity::class.java)
-                intent.putExtra("handSignInfo", handSignInfo)
-                (context as MainActivity).startActivity(intent)
+//                val intent = Intent((context as MainActivity), HandSignDetailActivity::class.java)
+//                intent.putExtra("handSignInfo", handSignInfo)
+//                (context as MainActivity).startActivity(intent)
+                handSignViewModel.selectedHandSignInfo = handSignInfo
+                binding.draggablePanel.maximize()
+                openDetailPage()
             }
         })
 
@@ -125,9 +154,12 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
 
         myNoteAdapter.setItemClickListener(object : MyNoteAdapter.ItemClickListener{
             override fun onClick(handSignInfo: HandSignInfo) {
-                var intent = Intent(requireActivity(), HandSignDetailActivity::class.java)
-                intent.putExtra("handSignInfo", handSignInfo)
-                startActivity(intent)
+//                var intent = Intent(requireActivity(), HandSignDetailActivity::class.java)
+//                intent.putExtra("handSignInfo", handSignInfo)
+//                startActivity(intent)
+                handSignViewModel.selectedHandSignInfo = handSignInfo
+                binding.draggablePanel.maximize()
+                openDetailPage()
             }
         })
     }
@@ -144,5 +176,27 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
                 isChecked = true
             }
         }
+    }
+
+    private fun openDetailPage() {
+        binding.alpha.visibility = View.VISIBLE
+        binding.draggablePanel.visibility = View.VISIBLE
+
+        topFragment = TopFragment()
+        bottomFragment = BottomFragment()
+
+        childFragmentManager.beginTransaction().replace(R.id.frameTop, topFragment).commit()
+        childFragmentManager.beginTransaction().replace(R.id.frameBottom, bottomFragment).commit()
+    }
+
+    fun removeFragment() {
+        binding.draggablePanel.close()
+        childFragmentManager.beginTransaction()
+            .remove(bottomFragment)
+            .commit()
+
+        childFragmentManager.beginTransaction()
+            .remove(topFragment)
+            .commit()
     }
 }
