@@ -18,7 +18,7 @@ const OXQuizStart = () => {
     <span>play</span>
     </a>
     <span className="ok">play</span>
-    </div></div>
+    </div></div> 
     </Container>
      
   </div>

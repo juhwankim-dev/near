@@ -23,7 +23,7 @@
               locateNextRound();
        }else {
              // 시간이 남았을 경우 카운트다운을 지속한다.
-            document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
+            // document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
             setTimeout("countdown()",1000);
       cnt--;
        }
@@ -44,7 +44,7 @@
   </div>
 
   <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
-  <p class="word">1번째 제시어</p>
+  <p class="word">반갑습니다</p>
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
@@ -149,6 +149,7 @@
               localStorage.setItem("score",0);
               localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
               console.log(localStorage.getItem("score"));
+              
             }
           } else {
             const myTimeout = setTimeout(myGreeting, 10000);
