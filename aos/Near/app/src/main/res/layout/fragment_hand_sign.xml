@@ -95,7 +95,7 @@
                         android:text="단어 삭제"
                         android:visibility="gone"
                         android:layout_marginEnd="@dimen/activity_margin_default"
-                        android:background="@drawable/bg_blue_round"
+                        android:background="@drawable/bg_button_round_4"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
