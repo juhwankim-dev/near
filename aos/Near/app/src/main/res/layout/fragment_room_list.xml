@@ -51,16 +51,6 @@
                 app:tint="@color/gray_unchecked" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_room"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="방입장"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fb_create"
             android:layout_width="wrap_content"

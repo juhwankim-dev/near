@@ -54,10 +54,6 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
             wordQuizViewModel.loadRooms()
         }
 
-//        binding.btnRoom.setOnClickListener {
-//            startActivity(Intent(requireActivity(), WordQuizActivity::class.java))
-//        }
-
         binding.fbCreate.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
