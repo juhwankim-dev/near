@@ -1,18 +1,16 @@
 import React from 'react';
 import './MainGame.scss';
+import { Container } from 'react-bootstrap';
 
 const MainGame = () => {
 
 
 
   return (
-  <div >
-    {/* <h1>Play with Me</h1> */}
+  <div>
     <div class="background_game">
     <button class="oxquiz">
     
-
-
     </button>
     <button class="fingerquiz"></button>
 

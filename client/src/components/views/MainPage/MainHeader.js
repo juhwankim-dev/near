@@ -98,8 +98,8 @@ $(document).ready(function(){
     </div>
     </div>
     
-    <div class="content flex">
-    </div>
+    {/* <div class="content flex">
+    </div> */}
     </div>
   );
 };
