@@ -1,10 +1,10 @@
 import React from 'react';
 
-const OXQuiz = () => {
+const OXQuiz2 = () => {
 
     const iframepart = () => {
         return {
-            __html: '<iframe height="1320" width="2560" flex-justify-content: "center" frameborder="0" scrolling="no" src="test1.html" width="100%" heigth="100%"</iframe>',
+            __html: '<iframe height="1320" width="2560" flex-justify-content: "center" frameborder="0" scrolling="no" src="test2.html" width="100%" heigth="100%"</iframe>',
         };
     };
   
@@ -17,4 +17,4 @@ const OXQuiz = () => {
     );
 };
 
-export default OXQuiz;
+export default OXQuiz2;

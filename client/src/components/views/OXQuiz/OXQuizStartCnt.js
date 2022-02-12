@@ -2,13 +2,13 @@ import React from 'react';
 import './OXQuizStartCnt.scss'
 
 const OXQuizStartCnt = () => {
+  
+  alert("카메라 권한을 허용하시겠습니까?");
 
   setTimeout(function() {
     window.location.href = 'http://localhost:3000/oxquiz';
   },3500);
  
-  // alert("Hello");
-
   return (
   <div>
 <div className="count">

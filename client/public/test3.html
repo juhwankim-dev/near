@@ -12,7 +12,11 @@
     setTimeout("locateNextRound()",15000);
      }
     function locateNextRound(){
-     location.replace("http://localhost:3000/oxquiz2");
+      if (check)
+     localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+     console.log(localStorage.getItem("score"));
+     location.replace("http://localhost:3000/oxquiz4");
+     check = false
     }
     </SCRIPT>
     <script language='javascript'>
@@ -44,11 +48,11 @@
   </div>
 
   <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
-  <p class="word">1번째 제시어</p>
+  <p class="word">3번째 제시어</p>
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
-  <p style="font-size: 3vh;">1Round</p>
+  <p style="font-size: 3vh;">3Round</p>
     <div id="webcam-container"></div>
     <img id="o-container" src=""></img>
     <img id="x-container" src=""></img>
@@ -85,7 +89,7 @@
           await webcam.setup(); // request access to the webcam
           await webcam.play();
           window.requestAnimationFrame(loop);
-  
+
           // append elements to the DOM
           document.getElementById("webcam-container").appendChild(webcam.canvas);
           labelContainer = document.getElementById("label-container");
@@ -135,25 +139,29 @@
 
       // run the webcam image through the image model
       var status = "one"
+      var check = false
+      
       async function predict() {
-          // predict can take in an image, video or canvas html element
-          const prediction = await model.predict(webcam.canvas);
-          if(prediction[0].probability.toFixed(2) > 0.8) {
-              status = "one"
-              document.querySelector('body').style.backgroundColor = 'green';
-            //   console.log(status)
-              const myTimeout = setTimeout(myGreeting, 10000);
-              function myGreeting() {
-              // document.getElementById("o-container").innerHTML = "O";
-              document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
-              localStorage.setItem("score",0);
-              localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
-              console.log(localStorage.getItem("score"));
-            }
-          } else {
+        // predict can take in an image, video or canvas html element
+        const prediction = await model.predict(webcam.canvas);
+        if(prediction[0].probability.toFixed(2) > 0.8) {
+          status = "one"
+          document.querySelector('body').style.backgroundColor = 'green';
+          //   console.log(status)
+          const myTimeout = setTimeout(myGreeting, 10000);
+          function myGreeting() {
+                  document.getElementById("o-container").innerHTML = "O";
+                  document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+                  // localStorage.setItem("score",0);
+                  if (!check){
+                    check = true
+                  } 
+                }
+        } else {
             const myTimeout = setTimeout(myGreeting, 10000);
               function myGreeting() {
-              document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
+                check = false
+                document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
           }
           for (let i = 0; i < maxPredictions; i++) {
               const classPrediction =

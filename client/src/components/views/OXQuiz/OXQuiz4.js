@@ -4,7 +4,7 @@ const OXQuiz = () => {
 
     const iframepart = () => {
         return {
-            __html: '<iframe height="1320" width="2560" flex-justify-content: "center" frameborder="0" scrolling="no" src="test1.html" width="100%" heigth="100%"</iframe>',
+            __html: '<iframe height="1320" width="2560" flex-justify-content: "center" frameborder="0" scrolling="no" src="test4.html" width="100%" heigth="100%"</iframe>',
         };
     };
   
