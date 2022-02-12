@@ -50,6 +50,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="@dimen/activity_margin_default"
+            android:layout_marginStart="@dimen/activity_margin_default"
             app:layout_constraintBottom_toBottomOf="@+id/view_bg"
             app:layout_constraintStart_toStartOf="@+id/view_bg"
             app:srcCompat="@drawable/img_handsign_sample_2" />
