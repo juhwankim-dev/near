@@ -12,5 +12,6 @@ interface GameApi {
     @POST("api/game/room")
     suspend fun createRoom(@FieldMap req: MutableMap<String, String>): Response<RoomInfo>
 
-
+    @GET("api/game/rooms")
+    suspend fun loadRooms(): Response<MutableList<RoomInfo>>
 }

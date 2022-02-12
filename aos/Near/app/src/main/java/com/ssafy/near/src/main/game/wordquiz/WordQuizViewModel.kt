@@ -1,5 +1,7 @@
 package com.ssafy.near.src.main.game.wordquiz
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel() {
     private val roomInfo = gameRepository._roomInfo
-
+    private val roomList = gameRepository._roomList
 
     val question = arrayOf("서울시", "삼성")
     val images = arrayOf(
@@ -25,7 +27,9 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
         return roomInfo
     }
 
-
+    fun getRoomList(): LiveData<MutableList<RoomInfo>> {
+        return roomList
+    }
 
     fun createRoom(name: String) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -33,5 +37,9 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
         }
     }
 
-
+    fun loadRooms() {
+        viewModelScope.launch(Dispatchers.IO) {
+            gameRepository.loadRooms()
+        }
+    }
 }
