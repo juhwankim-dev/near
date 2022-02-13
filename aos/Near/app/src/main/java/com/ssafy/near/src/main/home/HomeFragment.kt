@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         sheetBehavior= BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
-                Log.d("테스트", "onSlide: 테스트")
+
             }
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when(newState) {
@@ -54,13 +54,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
                 }
             }
         })
-
-//        binding.tvTypingText.setOnClickListener {
-//            sheetBehavior.state=BottomSheetBehavior.STATE_EXPANDED
-//        }
-//        button_close.setOnClickListener {
-//            sheetBehavior.state=BottomSheetBehavior.STATE_HIDDEN
-//        }
     }
 
     private fun initView() {
@@ -70,11 +63,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
             var index = 0
             var sequence = 0
             override fun run() {
-                sequence = if((cnt / 2) % 2 == 0) {
-                    0
-                } else {
-                    1
-                }
+                sequence = if((cnt / 2) % 2 == 0) 0 else 1
 
                 var fullStr = introduceStr[sequence]
                 when(cnt % 2) {

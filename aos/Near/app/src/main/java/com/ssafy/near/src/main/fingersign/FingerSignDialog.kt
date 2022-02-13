@@ -25,7 +25,7 @@ class FingerSignDialog(context: Context) {
 
         dialog.setContentView(binding.root)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setLayout((size.x * 0.9).toInt(), (size.y * 0.7).toInt())
+        dialog.window!!.setLayout((size.x * 0.9).toInt(), (size.y * 0.5).toInt())
         dialog.setCanceledOnTouchOutside(true)
         dialog.setCancelable(true)
 
