@@ -6,7 +6,8 @@ const OXQuizStartCnt = () => {
   alert("카메라 권한을 허용하시겠습니까?");
 
   setTimeout(function() {
-    window.location.href = 'http://localhost:3000/oxquiz';
+    // window.location.href = 'http://localhost:3000/oxquiz';
+    window.location.href = 'http://i6d203.p.ssafy.io:3000/oxquiz';
   },3500);
  
   return (
