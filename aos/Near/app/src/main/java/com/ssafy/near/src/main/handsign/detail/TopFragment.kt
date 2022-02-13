@@ -49,22 +49,6 @@ class TopFragment : BaseFragment<FragmentTopBinding>(R.layout.fragment_top), Pla
     }
 
     fun initView() {
-//        simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(requireContext())
-//
-//        mediaDataSourceFactory = DefaultDataSourceFactory(context, Util.getUserAgent(requireContext(), "mediaPlayerSample"))
-//
-//        val mediaSource = ProgressiveMediaSource.Factory(mediaDataSourceFactory).createMediaSource(Uri.parse(sampleUrl))
-//        simpleExoPlayer.addListener(this)
-//        simpleExoPlayer.prepare(mediaSource, false, false)
-//        simpleExoPlayer.playWhenReady = true
-//
-//        binding.pvHandSign.setShutterBackgroundColor(Color.TRANSPARENT)
-//        binding.pvHandSign.player = simpleExoPlayer
-//        binding.pvHandSign.requestFocus()
-//
-//        binding.aspectRatioFrameLayout.resizeMode = AspectRatioFrameLayout.RESIZE_MODE_FIXED_WIDTH
-//        binding.aspectRatioFrameLayout.setAspectRatio(16f / 9)
-
         // ExoPlayer 인스턴스를 생성하고 소스를 플레이에 할당하여 비디오 플레이어 초기화
         videoPlayer = SimpleExoPlayer.Builder(requireContext()).build()
         binding.pvHandSign.player = videoPlayer

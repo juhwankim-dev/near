@@ -84,6 +84,8 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
             }
 
         })
+
+        binding.draggablePanel.mWidthWhenMiddle = 200
     }
 
     private fun initEvent() {
@@ -106,20 +108,12 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
                 }
             }
 
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-
-            }
-
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-
-            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {}
+            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
         handSignAdapter.setItemClickListener(object : HandSignAdapter.ItemClickListener{
             override fun onClick(handSignInfo: HandSignInfo) {
-//                val intent = Intent((context as MainActivity), HandSignDetailActivity::class.java)
-//                intent.putExtra("handSignInfo", handSignInfo)
-//                (context as MainActivity).startActivity(intent)
                 handSignViewModel.selectedHandSignInfo = handSignInfo
                 binding.draggablePanel.maximize()
                 openDetailPage()
@@ -154,9 +148,6 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
 
         myNoteAdapter.setItemClickListener(object : MyNoteAdapter.ItemClickListener{
             override fun onClick(handSignInfo: HandSignInfo) {
-//                var intent = Intent(requireActivity(), HandSignDetailActivity::class.java)
-//                intent.putExtra("handSignInfo", handSignInfo)
-//                startActivity(intent)
                 handSignViewModel.selectedHandSignInfo = handSignInfo
                 binding.draggablePanel.maximize()
                 openDetailPage()

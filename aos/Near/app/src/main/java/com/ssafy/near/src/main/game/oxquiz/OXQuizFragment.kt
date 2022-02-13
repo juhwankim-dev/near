@@ -40,8 +40,8 @@ class OXQuizFragment : BaseFragment<FragmentOXQuizBinding>(R.layout.fragment_o_x
     private var imageCapture: ImageCapture? = null
     private val IMAGE_SIZE = 224
 
-    private val classes = arrayOf("네", "아니오", "싫어요", "고맙습니다")
-    private var detectCnt = IntArray(4)
+    private val classes = arrayOf("반갑습니다", "감사합니다", "아니요", "그립다", "좋다")
+    private var detectCnt = IntArray(classes.size)
 
     private val GIVEN_TIME = 3.0 // 주어진 시간
     private val CHECK_CNT = 10 // GIVEN_TIME 동안 검사할 횟수
