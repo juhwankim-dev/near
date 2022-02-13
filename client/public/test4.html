@@ -27,7 +27,7 @@
               locateNextRound();
        }else {
              // 시간이 남았을 경우 카운트다운을 지속한다.
-            document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
+            // document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
             setTimeout("countdown()",1000);
       cnt--;
        }
@@ -48,7 +48,7 @@
   </div>
 
   <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
-  <p class="word">4번째 제시어</p>
+  <p class="word">그립다</p>
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
@@ -143,7 +143,7 @@
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
-          if(prediction[0].probability.toFixed(2) > 0.8) {
+          if(prediction[3].probability.toFixed(2) > 0.8) {
               status = "one"
               document.querySelector('body').style.backgroundColor = 'green';
             //   console.log(status)
@@ -161,11 +161,11 @@
               function myGreeting() {
                 document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
           }
-          for (let i = 0; i < maxPredictions; i++) {
-              const classPrediction =
-                  prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-              labelContainer.childNodes[i].innerHTML = classPrediction;
-          }
+          // for (let i = 0; i < maxPredictions; i++) {
+          //     const classPrediction =
+          //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+          //     labelContainer.childNodes[i].innerHTML = classPrediction;
+          // }
       }
     }
   </script>
