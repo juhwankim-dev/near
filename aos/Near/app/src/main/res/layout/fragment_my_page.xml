@@ -11,7 +11,8 @@
         <TextView
             android:id="@+id/tv_app_bar"
             style="@style/appbar_text"
-            android:layout_margin="@dimen/activity_margin_default"
+            android:paddingVertical="@dimen/activity_margin_default"
+            android:paddingStart="@dimen/activity_margin_wide"
             android:text="마이페이지"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

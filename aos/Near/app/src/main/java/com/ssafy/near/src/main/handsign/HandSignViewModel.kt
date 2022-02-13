@@ -9,6 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HandSignViewModel(private val handSignRepository : HandSignRepository) : ViewModel() {
+    var selectedHandSignInfo: HandSignInfo? = null
+
     private val handSignList = handSignRepository._handSignList
     private val bookmarkList = handSignRepository._bookmarkList
     private val isAddBookmark = handSignRepository._isAddBookmark

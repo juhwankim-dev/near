@@ -23,8 +23,7 @@
             android:layout_marginBottom="6dp"
             android:background="@drawable/bg_my_note_white_round"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="16dp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/iv_bookmark"
