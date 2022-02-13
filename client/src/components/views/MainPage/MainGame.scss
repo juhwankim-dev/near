@@ -12,6 +12,7 @@
   position: relative;
   }
 
+  
 
 .oxquiz {
   background: url('./ox퀴즈.png') #fff no-repeat 8px 8px;
@@ -19,7 +20,7 @@
   //버튼 내부 이미지 사이즈 조정
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 750px;
-  right:13%;
+  right:15%;
   position: absolute;
   top: 300px;
   width: 575px;
@@ -34,7 +35,7 @@
 }
 
 .fingerquiz {
-  background: url('./ox퀴즈.png') #fff no-repeat 8px 8px;
+  background: url('./지문자퀴즈.png') #fff no-repeat 8px 8px;
   background-size: 550px;
   //버튼 내부 이미지 사이즈 조정
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
@@ -104,7 +105,7 @@
     font-size: 2rem;
     //버튼 가로 사이즈
     color: #fff;
-    background-color: #d38af0;
+    background-color: #7391f3;
     // background-color: #acc7ed;
     border-radius: 10rem;
     padding: 1.5rem 4rem 2rem;
@@ -164,12 +165,12 @@
 }
 
 .playrightbtn {
-  // position: absolute;
+  position: absolute;
   height: 80vh;
   width: 100vh;
   overflow: hidden;
   top: 35%;
-  right: -26%;
+  right: 0%;
 
   canvas {
     position: absolute;
@@ -204,7 +205,7 @@
     font-size: 2rem;
     //버튼 가로 사이즈
     color: #fff;
-    background-color: #d38af0;
+    background-color: #be76f8;
     // background-color: #acc7ed;
     border-radius: 10rem;
     padding: 1.5rem 4rem 2rem;
