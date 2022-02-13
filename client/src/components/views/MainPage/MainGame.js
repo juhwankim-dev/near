@@ -18,7 +18,6 @@ const MainGame = () => {
 
   {/* ox퀴즈 위치 버튼 4k화면 사이즈 기준으로 맞춤 추후 다시 수정해야할듯*/}
     <div class="playleftbtn">
-      // <a href="http://localhost:3000/oxquiz/start/cnt">
       <a href="http://i6d203.p.ssafy.io:3000/oxquiz/start/cnt">
     <span>play</span>
     </a>
