@@ -29,7 +29,7 @@ function SignDetail3(props){
 
  const addBookmark = () => {
   axios
-  .post(`https://hoonycode.loca.lt/api/hand/bookmark`,
+  .post(`https://hoonycode2.loca.lt/api/hand/bookmark`,
    {handcontent_key: parseInt(i)+1,
    id: realId}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
@@ -39,7 +39,7 @@ function SignDetail3(props){
 
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode.loca.lt/api/hand/`)
+      await fetch(`https://hoonycode2.loca.lt/api/hand/`)
     ).json();
     setHandDatas(json.data);
     setHandKey(json.data[i])
