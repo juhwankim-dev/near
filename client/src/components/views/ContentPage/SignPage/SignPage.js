@@ -11,7 +11,7 @@ import Paging from './Paging.js';
 function SignPage(){
 
   useEffect(() => {
-    getHandDatas();
+    getHandDatas(); 
   }, []); 
   
   const [handDatas, setHandDatas] = useState([]);
@@ -20,10 +20,14 @@ function SignPage(){
   // const dispatch = useDispatch();
   let navigate = useNavigate();
 
+
+
+  
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode.loca.lt/api/hand/`)
+      await fetch(`https://hoonycode2.loca.lt/api/hand/`)
     ).json();
+    console.log(json.data);
     setHandDatas(json.data);
   };
 

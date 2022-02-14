@@ -11,7 +11,7 @@ function MyProfile(){
 
 
 
-  axios.post(`https://hoonycode.loca.lt/api/sign/userInfo/`,
+  axios.post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
            {token: token})
           .then((res)=> {
             setMyProfile(res.data.data);
