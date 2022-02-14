@@ -34,7 +34,7 @@ function SignDetail3(props){
    id: realId}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   .then(response => {
-    })
+    console.log(response)})
   }
 
   const getHandDatas = async () => {
