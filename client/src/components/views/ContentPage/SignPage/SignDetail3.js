@@ -23,7 +23,7 @@ function SignDetail3(props){
   const id = JSON.parse(localStorage.getItem('user'));
   // const id = JSON.parse(localStorage.getItem('user'));
   const realId = id.id
-  console.log(id);
+  console.log(realId);
   
 
 
@@ -61,11 +61,10 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     <div className="flex-container row">
 
       <div className="flex-container"  style={{ width:'1500px' }} >
-      <h1 style={ {  paddingLeft:'20px', fontWeight:'bold', }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
-      <button style={ {marginTop:'20px', height:'60px', width:'60px', fontSize:'35px'} } className="btn btn-danger"
+      <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1000px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
+      <button style={ {paddingTop:'0px', marginTop:'30px', marginLeft:'0px', height:'52px', width:'60px', fontSize:'35px', } } className="btn btn-danger"
       onClick={ ()=>{addBookmark()}} >❤</button> 
-      <h3 className='meaning' style={ {paddingTop: '30px', paddingLeft:'15px', fontWeight:'bolder', } }>
-      {(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
+      
       
       <div className='buttons'>
           <button className="btn btn-primary btn1"> &lt; </button> 
@@ -73,6 +72,9 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
           {/* <button className="btn btn-primary btn1"   onClick={ ()=>{navigate(`/sign`)}} > 목록 </button>  */}
           <button className="btn btn-primary btn1"> &gt;  </button> 
     </div>
+    </div>
+    <div>
+    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
     
     <div className="flex-container "> 
@@ -86,9 +88,9 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     </div>
 
     <div style={{ width:'1320px' }} className="description" >
-    <div style={{ fontSize:'27px'}}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
     <br />
-    <div style={{ fontSize:'27px'}}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
     </div>
     </div>
     </div>
