@@ -65,7 +65,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 isCheckedEmail = true
                 Validation.textViewSetting(true, "", binding.tvEmailError)
 
-                binding.btnEmailAuth.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.temp_blue))
+                binding.btnEmailAuth.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
                 binding.btnEmailAuth.isClickable = true
             }
         }

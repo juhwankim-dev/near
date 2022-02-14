@@ -10,35 +10,30 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_create_room"
         tools:context=".src.main.game.GameFragment">
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/appbar_text"
-            android:text="게임"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btn_temp"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/btn_ox"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="OX 퀴즈"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:adjustViewBounds="true"
+            android:layout_marginTop="130dp"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
+            android:src="@drawable/img_ox_quiz_banner"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
 
-        <Button
+        <ImageView
             android:id="@+id/btn_word"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="낱말 퀴즈"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_temp" />
+            android:adjustViewBounds="true"
+            android:layout_marginTop="60dp"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
+            android:src="@drawable/img_word_quiz_banner"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ox"
+            tools:layout_editor_absoluteX="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

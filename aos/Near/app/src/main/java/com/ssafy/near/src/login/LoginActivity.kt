@@ -92,7 +92,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
 
     private fun updateBtnState() {
         if(isIdEmpty == false && isPwEmpty == false) {
-            binding.btnLogin.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.temp_blue))
+            binding.btnLogin.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
             binding.btnLogin.isClickable = true
         } else {
             binding.btnLogin.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))

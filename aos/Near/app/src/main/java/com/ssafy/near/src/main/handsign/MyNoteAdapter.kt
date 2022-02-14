@@ -81,7 +81,7 @@ class MyNoteAdapter : RecyclerView.Adapter<MyNoteAdapter.MyNoteViewHolder>() {
     private fun updateCheckState(isChecked: Boolean, imageView: ImageView) {
         when(isChecked) {
             true -> {
-                imageView.imageTintList = ColorStateList.valueOf(imageView.resources.getColor(R.color.temp_blue))
+                imageView.imageTintList = ColorStateList.valueOf(imageView.resources.getColor(R.color.main_color))
             }
 
             false -> {
