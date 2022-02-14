@@ -6,15 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_ox_game"
         tools:context=".src.main.game.wordquiz.RoomListFragment">
-
 
         <LinearLayout
             android:id="@+id/lv_header"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="52dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -22,10 +20,9 @@
 
             <ImageView
                 android:id="@+id/iv_exit_game"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="@dimen/activity_margin_default"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_exit_game"
@@ -36,6 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:textColor="#4b4746"
                 android:fontFamily="@font/bm_jua_ttf"
                 android:gravity="center"
                 android:text="퀴즈방 목록"
@@ -43,13 +41,18 @@
 
             <ImageView
                 android:id="@+id/iv_refresh"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:padding="@dimen/activity_margin_default"
                 android:src="@android:drawable/ic_popup_sync"
                 app:tint="@color/gray_unchecked" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#a9a9a9"
+            app:layout_constraintTop_toBottomOf="@+id/lv_header"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fb_create"
@@ -57,9 +60,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="32dp"
-            android:backgroundTint="@color/temp_blue"
+            app:backgroundTint="#4b4746"
+            app:tint="@null"
             android:clickable="true"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
