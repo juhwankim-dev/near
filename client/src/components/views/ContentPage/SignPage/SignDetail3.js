@@ -61,11 +61,7 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     <div className="flex-container row">
 
       <div className="flex-container"  style={{ width:'1500px' }} >
-<<<<<<< HEAD
       <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1070px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
-=======
-      <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1000px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
->>>>>>> b8460f1d55e7200519fd9cc5583674d5ab4cec9b
       <button style={ {paddingTop:'0px', marginTop:'30px', marginLeft:'0px', height:'52px', width:'60px', fontSize:'35px', } } className="btn btn-danger"
       onClick={ ()=>{addBookmark()}} >❤</button> 
       
@@ -76,6 +72,9 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
           {/* <button className="btn btn-primary btn1"   onClick={ ()=>{navigate(`/sign`)}} > 목록 </button>  */}
           <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &gt;  </button> 
     </div>
+    </div>
+    <div>
+    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
     <div>
     <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
