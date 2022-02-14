@@ -73,9 +73,7 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
           <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &gt;  </button> 
     </div>
     </div>
-    <div>
-    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
-    </div>
+    
     <div>
     <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
