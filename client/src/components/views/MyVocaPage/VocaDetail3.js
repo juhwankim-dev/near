@@ -32,7 +32,7 @@ function VocaDetail(props){
     setHandDatas(json.data);
     // setHandKey(JSON.stringify(handDatas[i]?.handcontent_key));
     // console.log(handKey)
-    
+
     // console.log(json)
     // setHandDatas(json.data);
     console.log(handDatas);
@@ -68,7 +68,6 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
   useEffect(() => {
     getHandDatas();
   }, []); 
-
 
 
   return (
