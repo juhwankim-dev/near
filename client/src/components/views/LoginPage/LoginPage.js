@@ -71,7 +71,7 @@ function LoginPage() {
           localStorage.setItem('userid', JSON.stringify(res.payload.data.id));
           console.log(JSON.stringify(res.payload.data));
           // localStorage.setItem('user', JSON.stringify(res.payload));
-          // navigate('/main');
+          navigate('/main');
 
           axios
           .post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
