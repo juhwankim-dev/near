@@ -21,10 +21,13 @@ import VocaDetail from './components/views/MyVocaPage/VocaDetail3';
 import OXQuizStart from './components/views/OXQuiz/OXQuizStart';
 import OXQuizStartCnt from './components/views/OXQuiz/OXQuizStartCnt';
 import OXQuiz from './components/views/OXQuiz/OXQuiz';
-
+// import Game from './components/views/FingerGame/Game';
+// import GameRoom from './components/views/FingerGame/GameRoom';
+import FingerQuiz from './components/views/FingerGame/FingerQuiz';
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
+// import Game1 from './components/views/FingerGame/Game1';
 
 function App() {
   return ( 
@@ -34,6 +37,9 @@ function App() {
         <Route path="/" element={<LandingPage /> } />
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
+        {/* <Route path="/game" element={<Game />} />
+        <Route path="/gameroom" element={<GameRoom />} /> */}
+        <Route path="/fingerquiz" element={<FingerQuiz />} />
         <Route path ="/oxquiz/start" element={<OXQuizStart />} />
         <Route path ="/oxquiz/start/cnt" element={<OXQuizStartCnt />} />
         <Route path="/sign" element={<SignPage />} />

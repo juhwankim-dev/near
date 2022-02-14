@@ -1,0 +1,153 @@
+/* body {
+    background-color: #ccb9bc;
+    margin: 0;
+    padding: 0;
+    height: 0;
+  } */
+ 
+
+
+  .oxquizstartbg2{
+    background-color: hsla(214, 100%, 74%, 0.479);
+    border-radius: 20px;
+    top: 20px;
+    position: relative;
+    height:85vh;
+    margin: 10px auto;
+  }
+  
+  
+  
+  
+  .oxquizstartimg2 {
+    background: url('./지문자.png') #fff no-repeat 3px 6px;
+    background-size: 99%; 
+    box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+    height: 75vh;
+    position: absolute;
+    width: 65vh;
+    margin-top: 4vh;
+    padding-top: 20vh;
+    border: 5px solid #737894;
+    box-shadow: 
+      0 2px 0 6px rgba(0, 0, 0, .2),
+      inset 0 0 0 2px #b3afc9;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border-bottom-left-radius: 25px;
+    margin-left: 10vh;
+  
+    
+  }
+    
+  .container2 {
+    display: flex;
+    width: 95%;
+    height: 650px;
+    background-color: #ffebee;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2.5%;
+  }
+  
+  .startBtn {
+    /* display: flex;
+    width: 100px;
+    height: 100px; */
+    margin: auto;
+  }
+  
+  .startBtn button {
+    height: 110px;
+    width: 250px;
+    margin-top: 250px;
+    margin-left: 700px;
+    font-family: "bw";
+    text-decoration: none;
+    top: 20%;
+    left: 60%;
+    /* background-color: #d38af0; */
+    border-radius: 10rem;
+    /* padding: 2.5rem 4rem 2rem; */
+    /* padding: 2rem 2rem 2rem; */
+      font-size: 3rem;
+      color: #fff;
+      pointer-events: painted;
+    border-color: none;
+    border: none;
+    font-weight: bolder;
+    /* font-size: 30px; */
+    background-color: rgb(65, 136, 254);
+    /* background: linear-gradient(56deg, #61dafb 0%, #d6cbf6 46%, #f2056f 100%); */
+  }
+  
+  .teamBtn button {
+    height: 110px;
+    width: 250px;
+    margin-top: 50px;
+    margin-left: 700px;
+    font-family: "bw";
+    text-decoration: none;
+    top: 20%;
+    left: 60%;
+    /* background-color: #d38af0; */
+    border-radius: 10rem;
+    /* padding: 2.5rem 4rem 2rem; */
+    /* padding: 2rem 2rem 2rem; */
+      font-size: 3.3rem;
+      color: #fff;
+      pointer-events: painted;
+    border-color: none;
+    border: none;
+    font-weight: bolder;
+    /* font-size: 30px; */
+    background-color: rgb(65, 136, 254);
+  }
+  
+  .gameContainer {
+    margin: auto;
+  }
+  
+  .showing {
+    display: block;
+  }
+  
+  .hiding {
+    display: none;
+  }
+  
+  .outLine {
+    outline-color: red;
+  }
+
+
+  
+.sip {
+    font-family: "bw";
+    text-decoration: none;
+    top: 20%;
+    left: 60%;
+    /* background-color: #d38af0; */
+    border-radius: 10rem;
+    padding: 2.5rem 4rem 2rem;
+      font-size: 4rem;
+      color: #fff;
+      pointer-events: painted;
+  }
+  
+
+.a3 {
+    font-family: "bw";
+    text-decoration: none;
+  
+    top: 60%;
+    left: 60%;
+
+    background-color: #d38af0;
+    border-radius: 10rem;
+    padding: 2.5rem 4rem 2rem;
+      font-size: 4rem;
+      color: #fff;
+      pointer-events: none;
+  }
