@@ -30,6 +30,7 @@ import OXQuizEnd from './components/views/OXQuiz/OXQuizEnd';
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
+
 // import Game1 from './components/views/FingerGame/Game1';
 
 function App() {
