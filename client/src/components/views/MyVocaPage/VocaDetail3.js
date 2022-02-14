@@ -40,7 +40,6 @@ function VocaDetail(props){
   };
   
   
-  
   const deleteBookmark = () => {
     axios
     .delete(`https://hoonycode2.loca.lt/api/hand/bookmark`,
@@ -56,8 +55,6 @@ function VocaDetail(props){
         // commit("loginSuccess", userInfo)
       })
     }
-
-
   
 
 var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
