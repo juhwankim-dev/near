@@ -76,6 +76,9 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     <div>
     <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
+    <div>
+    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
+    </div>
     
     <div className="flex-container "> 
     {/* <video className="flex-item-video" src={vid} type="video/mp4"  autoPlay loop muted /> */}
