@@ -66,8 +66,8 @@ const MainStudy = () => {
   
   <button class="finger"></button>
   <button class="sign"></button>
-  <button class="fingerbtn"></button>
-  <button class="signbtn"></button>
+  <button class="fingerbtn" style={{fontSize:'2vh', color:'white'}}>학습하기</button>
+  <button class="signbtn" style={{fontSize:'2vh', color:'white'}}>학습하기</button>
   
   <div class="glasses">
       <div class="glasses-left"></div>

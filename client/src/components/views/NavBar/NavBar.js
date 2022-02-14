@@ -5,11 +5,11 @@ import { Router, Link, Route, Switch } from 'react-router-dom';
 function NavBar() {
   return(
     <div>
-    <Navbar bg="light" expand="lg">
+    <Navbar bg="light" expand="lg" >
     <Container>   
-    <Navbar.Brand as={Link} to='/main'>로고</Navbar.Brand>
+    <Navbar.Brand as={Link} to='/main' style={{fontSize:'2.5vh'}}> 🤟N:ear</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar.Collapse id="basic-navbar-nav" style={{flexDirection:'column',alignContent:'flex-end',flexWrap: 'wrap'}}>
       <Nav className="me-auto">
         {/* <Nav.Link href="#home">Home</Nav.Link> */}
         {/* <Nav.Link href="login">Link</Nav.Link> */}

@@ -6,78 +6,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <META http-equiv="content-type" content="text/html; charset=utf8">
     
-    <TITLE> 50초후에 다음 라운드(페이지)로 이동이 됩니다</TITLE>
+    <TITLE> 14초후에 다음 라운드(페이지)로 이동이 됩니다</TITLE>
     <SCRIPT LANGUAGE="JavaScript">
     function Timer() {
-    setTimeout("locateNextRound()",50000);
+    setTimeout("locateNextRound()",14000);
      }
     function locateNextRound(){
-     location.replace("http://localhost:3000/oxquiz/start");
+     location.replace("http://i6d203.p.ssafy.io/oxquiz2");
     }
     </SCRIPT>
     <script language='javascript'>
-      cnt = 50; // 카운트다운 시간 초단위로 표시
+      cnt = 14; // 카운트다운 시간 초단위로 표시
       function countdown() {
        if(cnt == 0){
               // 시간이 0일경우
               locateNextRound();
        }else {
              // 시간이 남았을 경우 카운트다운을 지속한다.
-            document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
+            // document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
             setTimeout("countdown()",1000);
       cnt--;
        }
       }
       </script>
-
-  <title>Document</title>
-  <style>
-    .oxquizbg{
-    background-color: hsla(214, 100%, 74%, 0.479);
-    border-radius: 50px;
-    top: 5vh;
-    position: relative;
-    height:85vh;
-    width: 130vh;
-    margin: auto;
-    }
-
-.timer-wrapper {
-  height: 70px;
-  width: 100%;
-  line-height: 70px;
-  background: #000;
-  position: relative;
-}
-.timer-txt {
-  width: 100%;
-  margin: 0;
-  color: #fff;
-  font-size: 5vh;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.timer-bar {
-  width: 100%;
-  height: 70px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  transition: all 0.3s;
-  background: #28c684;
-}
-.timer-warn {
-  background: #d0863a;
-}
-.timer-almost {
-  background: #d03a49;
-}
-
-  </style>
+  <link rel="stylesheet" href="./test.css">
 </head>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
 <!-- onLoad에 init(); 넣어서 캠 바로 띄우기 해결 -->
 <body style="justify-content: center;" onLoad="Timer(); init();">
   <!-- timer html -->
@@ -88,10 +43,15 @@
     </div>
   </div>
 
+  <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
+  <p class="word">반갑습니다</p>
+  </div>
+
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
-  <h1>Teachable Machine Image Model</h1>
+  <p style="font-size: 3vh;">1Round</p>
     <div id="webcam-container"></div>
     <img id="o-container" src=""></img>
+    <img id="x-container" src=""></img>
     <div id="label-container"></div>
     <div id="choonDiv"></div>
  
@@ -133,7 +93,7 @@
               labelContainer.appendChild(document.createElement("div"));
           }
           //게임 타이머
-          var fullTime = 6;
+          var fullTime = 5;
           var warn     = 3;
           var almost   = 1;
 
@@ -167,15 +127,10 @@
           window.requestAnimationFrame(loop);
       }
 
-//     function hidebtn() {
-//     document.getElementById("btn").style.display="none";
-// }
-//     self.setTimeout("hidebtn()",4000); // 1초: 1000 4초 후 btn안보이게
-
     function hidecam() {
         document.getElementById("webcam-container").style.display="none";
 }
-        self.setTimeout("hidecam()",10000); // 1초: 1000 10초 후 cam안보이게
+        self.setTimeout("hidecam()",9000); // 1초: 1000 10초 후 cam안보이게
    
 
       // run the webcam image through the image model
@@ -187,17 +142,20 @@
               status = "one"
               document.querySelector('body').style.backgroundColor = 'green';
             //   console.log(status)
-              const myTimeout = setTimeout(myGreeting, 10000);
+              const myTimeout = setTimeout(myGreeting, 9000);
               function myGreeting() {
-            //   document.getElementById("ox-container").innerHTML = "O";
-            document.getElementById("o-container").src="https://c.tenor.com/mux0op1RGDkAAAAC/kpop-korean.gif";
-
+              // document.getElementById("o-container").innerHTML = "O";
+              document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+              localStorage.setItem("score",0);
+              localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+              console.log(localStorage.getItem("score"));
+              
             }
-          // } else {
-          //   const myTimeout = setTimeout(myGreeting, 10000);
-          //     function myGreeting() {
-          //     document.getElementById("ox-container").innerHTML = "X";
-          // }
+          } else {
+            const myTimeout = setTimeout(myGreeting, 9000);
+              function myGreeting() {
+              document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
+          }
           for (let i = 0; i < maxPredictions; i++) {
               const classPrediction =
                   prediction[i].className + ": " + prediction[i].probability.toFixed(2);

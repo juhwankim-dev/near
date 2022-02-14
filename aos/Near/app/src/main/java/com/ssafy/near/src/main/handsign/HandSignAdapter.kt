@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.near.databinding.ListItemHandSignBinding
 import com.ssafy.near.dto.HandSignInfo
 
-class HandSignAdapter() : RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
+class HandSignAdapter: RecyclerView.Adapter<HandSignAdapter.HandSignViewHolder>() {
     private lateinit var itemClickListener: ItemClickListener
     var handSignList = ArrayList<HandSignInfo>()
 

@@ -21,9 +21,12 @@ import VocaDetail from './components/views/MyVocaPage/VocaDetail3';
 import OXQuizStart from './components/views/OXQuiz/OXQuizStart';
 import OXQuizStartCnt from './components/views/OXQuiz/OXQuizStartCnt';
 import OXQuiz from './components/views/OXQuiz/OXQuiz';
-// import Game from './components/views/FingerGame/Game';
-// import GameRoom from './components/views/FingerGame/GameRoom';
 import FingerQuiz from './components/views/FingerGame/FingerQuiz';
+import OXQuiz2 from './components/views/OXQuiz/OXQuiz2';
+import OXQuiz3 from './components/views/OXQuiz/OXQuiz3';
+import OXQuiz4 from './components/views/OXQuiz/OXQuiz4';
+import OXQuiz5 from './components/views/OXQuiz/OXQuiz5';
+import OXQuizEnd from './components/views/OXQuiz/OXQuizEnd';
 
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
@@ -42,6 +45,13 @@ function App() {
         <Route path="/fingerquiz" element={<FingerQuiz />} />
         <Route path ="/oxquiz/start" element={<OXQuizStart />} />
         <Route path ="/oxquiz/start/cnt" element={<OXQuizStartCnt />} />
+        <Route path ="/oxquiz" element={<OXQuiz />} />
+        <Route path ="/oxquiz2" element={<OXQuiz2 />} />
+        <Route path ="/oxquiz3" element={<OXQuiz3 />} />
+        <Route path ="/oxquiz4" element={<OXQuiz4 />} />
+        <Route path ="/oxquiz5" element={<OXQuiz5 />} />
+        <Route path ="/oxquiz/end" element={<OXQuizEnd />} />
+
         <Route path="/sign" element={<SignPage />} />
         <Route path ="/sign/:i" element={<SignDetail3 />} />
         <Route path ="/finger/1" element={<FingerPage />} />
@@ -51,8 +61,6 @@ function App() {
         <Route path ="/myvoca/:i" element={<VocaDetail />} />
         <Route path ="/mystudy" element={<MyStudy />} />
         <Route path ="/profile" element={<Profile />} />
-        <Route path ="/oxquiz" element={<OXQuiz />} />
-        <Route path ="/oxquiz" element={<OXQuiz />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         {/* <Route exact path="/" element={Auth(<LandingPage />, null) } />
