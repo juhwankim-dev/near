@@ -24,7 +24,7 @@ const MainGame = () => {
 
   {/* 낱말퀴즈 위치 버튼 4k화면 사이즈 기준으로 맞춤 추후 다시 수정해야할듯*/}
     <div class="playrightbtn">
-      <a href="http://localhost:3000/teamplay">
+      <a href="http://i6d203.p.ssafy.io/teamplay">
     <span>play</span>
     </a>
     <span class="ok">play</span>
