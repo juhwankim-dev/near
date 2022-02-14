@@ -27,11 +27,12 @@ function VocaDetail(props){
   
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode.loca.lt/api/hand/`)
+      await fetch(`https://hoonycode2.loca.lt/api/hand/bookmark/${realId}`)
     ).json();
     setHandDatas(json.data);
-    setHandKey(JSON.stringify(handDatas[i]?.handcontent_key));
-    console.log(handKey)
+    // setHandKey(JSON.stringify(handDatas[i]?.handcontent_key));
+    // console.log(handKey)
+
     // console.log(json)
     // setHandDatas(json.data);
     console.log(handDatas);
@@ -39,10 +40,9 @@ function VocaDetail(props){
   };
   
   
-  
   const deleteBookmark = () => {
     axios
-    .delete(`https://hoonycode.loca.lt/api/hand/bookmark`,
+    .delete(`https://hoonycode2.loca.lt/api/hand/bookmark`,
     { data: 
       {handcontent_key: handDatas[i]?.handcontent_key,
      id: realId}
@@ -55,8 +55,6 @@ function VocaDetail(props){
         // commit("loginSuccess", userInfo)
       })
     }
-
-
   
 
 var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
@@ -69,24 +67,26 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
   }, []); 
 
 
-
   return (
-    <div className='detail'> 
+    <div style={{ width:'1400px' }} className='detail'> 
     <div className="flex-container row">
 
-      <div className="flex-container" >
-      <h1 style={ {paddingLeft:'20px', fontWeight:'bold'}} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "")}</h1>
-      <button style={ {marginTop:'20px', height:'60px', width:'60px', fontSize:'35px'} } className="btn btn-danger"
+
+    <div className="flex-container"  style={{ width:'1500px' }} >
+      <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1070px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
+      <button style={ {paddingTop:'0px', marginTop:'30px', marginLeft:'0px', height:'52px', width:'60px', fontSize:'35px', } } className="btn btn-danger"
       onClick={ ()=>{deleteBookmark()}} >❤</button> 
-      <h3 className='meaning' style={ {paddingTop: '33px', paddingLeft:'15px', fontWeight:'bold', fontSize:'30px'} }>
-      {(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
       
       <div className='buttons'>
-          <button className="btn btn-primary btn1"> &lt; </button> 
-          <button className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/sign`)}}> 목록 </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &lt; </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'70px',}} className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/myvoca`)}}> 목록 </button> 
           {/* <button className="btn btn-primary btn1"   onClick={ ()=>{navigate(`/sign`)}} > 목록 </button>  */}
-          <button className="btn btn-primary btn1"> &gt;  </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &gt;  </button> 
     </div>
+    </div>
+
+    <div>
+    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
     
     <div className="flex-container "> 
@@ -99,10 +99,10 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
       </div>
     </div>
 
-    <div className="description" >
-    <div>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
+    <div style={{ width:'1320px' }} className="description" >
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
     <br />
-    <div>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
     </div>
    
     </div>
