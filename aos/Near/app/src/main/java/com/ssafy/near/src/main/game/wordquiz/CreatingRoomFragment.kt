@@ -1,6 +1,5 @@
 package com.ssafy.near.src.main.game.wordquiz
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
@@ -31,9 +30,7 @@ class CreatingRoomFragment : BaseFragment<FragmentCreatingRoomBinding>(R.layout.
             GameRepository())).get(WordQuizViewModel::class.java)
 
         wordQuizViewModel.getRoomInfo().observe(viewLifecycleOwner) {
-            val intent = Intent(requireActivity(), WordQuizActivity::class.java)
-            intent.putExtra("roomId", it.roomId)
-            startActivity(intent)
+            (context as RoomActivity).enterRoom(it)
         }
     }
 }
