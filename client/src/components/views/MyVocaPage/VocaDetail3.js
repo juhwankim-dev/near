@@ -27,7 +27,7 @@ function VocaDetail(props){
   
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode2.loca.lt//api/hand/bookmark/${realId}`)
+      await fetch(`https://hoonycode2.loca.lt/api/hand/bookmark/${realId}`)
     ).json();
     setHandDatas(json.data);
     // setHandKey(JSON.stringify(handDatas[i]?.handcontent_key));
