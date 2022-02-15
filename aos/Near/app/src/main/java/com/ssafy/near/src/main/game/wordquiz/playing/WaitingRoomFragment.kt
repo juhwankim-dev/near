@@ -23,8 +23,8 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
     private lateinit var userViewModel: UserViewModel
     private lateinit var wordQuizViewModel: WordQuizViewModel
     private lateinit var userListAdapter: UserListAdapter
-
-
+    lateinit var avatarDialog: AvatarDialog
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -78,6 +78,8 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         binding.gvWaitingUser.apply {
             adapter = userListAdapter
         }
+
+        avatarDialog = AvatarDialog(requireContext())
     }
 
     override fun onDestroy() {
@@ -100,9 +102,14 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         }
 
         binding.ivSetting.setOnClickListener {
-            var avatarDialog = AvatarDialog(requireContext())
             avatarDialog.createDialog()
         }
+
+        avatarDialog.setItemClickListener(object : AvatarDialog.ItemClickListener {
+            override fun onClick(selectedAvatar: Int) {
+                // TODO: selectedAvatar에 숫자값이 들어있습니다. 0, 1, 2 이렇게 3종류니까 그에 맞춰서 img_avatar 이미지를 사용하는 로직을 작성하면 됩니다.
+            }
+        })
     }
 
     companion object {

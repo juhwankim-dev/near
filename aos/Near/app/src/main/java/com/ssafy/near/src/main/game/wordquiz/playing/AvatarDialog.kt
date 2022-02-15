@@ -13,6 +13,7 @@ import com.ssafy.near.R
 import com.ssafy.near.databinding.DialogAvatarBinding
 
 class AvatarDialog(context: Context) {
+    private lateinit var itemClickListner: ItemClickListener
     private val context = context
     private val dialog = Dialog(context)
 
@@ -38,25 +39,29 @@ class AvatarDialog(context: Context) {
         dialog.setCancelable(true)
 
         binding.btnConfirm.setOnClickListener {
+            itemClickListner.onClick(binding.vpAvatar.currentItem)
             dialog.dismiss()
         }
 
         dialog.show()
     }
 
-    /* 공식문서에 있는 코드 긁어온거임 */
+    interface ItemClickListener {
+        fun onClick(selectedAvatar: Int)
+    }
+
+    fun setItemClickListener(itemClickListener: ItemClickListener) {
+        this.itemClickListner = itemClickListener
+    }
+
     inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
         override fun transformPage(view: View, position: Float) {
             view.apply {
                 val pageWidth = width
                 val pageHeight = height
                 when {
-                    position < -1 -> { // [-Infinity,-1)
-                        // This page is way off-screen to the left.
-                        alpha = 0f
-                    }
-                    position <= 1 -> { // [-1,1]
-                        // Modify the default slide transition to shrink the page as well
+                    position < -1 -> alpha = 0f
+                    position <= 1 -> {
                         val scaleFactor = Math.max(MIN_SCALE, 1 - Math.abs(position))
                         val vertMargin = pageHeight * (1 - scaleFactor) / 2
                         val horzMargin = pageWidth * (1 - scaleFactor) / 2
@@ -66,18 +71,12 @@ class AvatarDialog(context: Context) {
                             horzMargin + vertMargin / 2
                         }
 
-                        // Scale the page down (between MIN_SCALE and 1)
                         scaleX = scaleFactor
                         scaleY = scaleFactor
 
-                        // Fade the page relative to its size.
-                        alpha = (MIN_ALPHA +
-                                (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                        alpha = (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
                     }
-                    else -> { // (1,+Infinity]
-                        // This page is way off-screen to the right.
-                        alpha = 0f
-                    }
+                    else -> alpha = 0f
                 }
             }
         }
