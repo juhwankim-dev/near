@@ -14,11 +14,10 @@ a{color:inherit;text-decoration:none}
 	width:100%;
 	margin:auto;
 	max-width:625px;
-	min-height:870px;
+	min-height:790px;
 	position:relative;
 	border-radius:50px;
-	background:url(https://item.kakaocdn.net/do/0d5b18d1f9a27a6d5c388941379a278ff43ad912ad8dd55b04db6a64cddaf76d) no-repeat center;
-	/* https://pbs.twimg.com/media/DzIEI88UcActRTw?format=jpg&name=large 임시 배경이미지 */
+	background:url(./로그인.gif) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
@@ -60,7 +59,7 @@ a{color:inherit;text-decoration:none}
 }
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
-	color:#fff;
+	color:rgb(204, 204, 204);
 	border-color:#1162ee93;
 }
 .login-form{
