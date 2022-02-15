@@ -78,6 +78,133 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_setting_game" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_question"
+            app:layout_constraintEnd_toStartOf="@+id/iv_question"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_question">
+
+            <ImageView
+                android:id="@+id/iv_crown1"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/img_crown" />
+
+            <TextView
+                android:id="@+id/tv_user1_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nickname" />
+
+            <ImageView
+                android:id="@+id/iv_user1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_face" />
+
+            <TextView
+                android:id="@+id/tv_user1_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
+            <ImageView
+                android:id="@+id/iv_crown3"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/img_crown" />
+
+            <TextView
+                android:id="@+id/tv_user3_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="nickname"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_user3"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_face" />
+
+            <TextView
+                android:id="@+id/tv_user3_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_question"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_question"
+            app:layout_constraintTop_toTopOf="@+id/iv_question">
+
+            <ImageView
+                android:id="@+id/iv_crown2"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/img_crown" />
+
+            <TextView
+                android:id="@+id/tv_user2_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="nickname" />
+
+            <ImageView
+                android:id="@+id/iv_user2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_face" />
+
+            <TextView
+                android:id="@+id/tv_user2_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+
+            <ImageView
+                android:id="@+id/iv_crown4"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"
+                android:visibility="visible"
+                app:srcCompat="@drawable/img_crown" />
+
+            <TextView
+                android:id="@+id/tv_user4_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="nickname" />
+
+            <ImageView
+                android:id="@+id/iv_user4"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                app:srcCompat="@drawable/ic_face" />
+
+            <TextView
+                android:id="@+id/tv_user4_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0" />
+        </LinearLayout>
 
         <ImageView
             android:id="@+id/iv_question"
