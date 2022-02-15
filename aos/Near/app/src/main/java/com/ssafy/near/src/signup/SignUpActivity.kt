@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivitySignUpBinding
+import com.ssafy.near.repository.CertRepository
 import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
@@ -16,11 +17,14 @@ import com.ssafy.near.util.Validation
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     lateinit var userViewModel: UserViewModel
+    lateinit var certViewModel: CertViewModel
     var isCheckedId = false
     var isCheckedNickname = false
     var isCheckedEmail = false
     var isCheckedPw = false
     var isCheckedConfirmPw = false
+    var isCheckedCertNum = false
+    var certNumber = "default"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +37,8 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     private fun initViewModel() {
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
+        certViewModel = ViewModelProvider(this, CertViewModelFactory(CertRepository()))
+            .get(CertViewModel::class.java)
 
         userViewModel.getCheckedId().observe(this) {
             if (it) {
@@ -59,14 +65,14 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 isCheckedEmail = false
                 Validation.textViewSetting(false, "이미 존재하는 이메일입니다.", binding.tvEmailError)
 
-                binding.btnEmailAuth.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
-                binding.btnEmailAuth.isClickable = false
+                binding.btnSendCertMail.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
+                binding.btnSendCertMail.isClickable = false
             } else {
                 isCheckedEmail = true
                 Validation.textViewSetting(true, "", binding.tvEmailError)
 
-                binding.btnEmailAuth.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
-                binding.btnEmailAuth.isClickable = true
+                binding.btnSendCertMail.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
+                binding.btnSendCertMail.isClickable = true
             }
         }
 
@@ -78,6 +84,23 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                     showToastMessage("회원가입 성공")
                     finish()
                 }
+            }
+        }
+
+        certViewModel.getCertNumber().observe(this) {
+            when(it.output) {
+                0 -> showToastMessage("서버로부터 인증번호를 받아오지 못했습니다.")
+                1 -> {
+                    certNumber = it.data
+                    certViewModel.sendMail(binding.etEmail.text.toString(), "인증번호: " + it.data, "인증번호를 확인하여 N:ear 앱에 인증해주세요.")
+                }
+            }
+        }
+
+        certViewModel.getmailedResult().observe(this) {
+            when(it.output) {
+                0 -> showToastMessage("이메일 발송에 실패하였습니다.")
+                1 -> showToastMessage("인증번호를 전송하였습니다.")
             }
         }
     }
@@ -129,6 +152,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 isCheckedEmail == false     -> binding.etEmail.requestFocus()
                 isCheckedPw == false        -> binding.etPw.requestFocus()
                 isCheckedConfirmPw == false -> binding.etConfirmPw.requestFocus()
+                isCheckedCertNum == false   -> binding.etCert.requestFocus()
                 else -> {
                     val id = binding.etId.text.toString()
                     val nickname = binding.etNickname.text.toString()
@@ -136,6 +160,20 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                     val pw = binding.etPw.text.toString()
 
                     signUp(id, nickname, email, pw)
+                }
+            }
+        }
+
+        binding.btnSendCertMail.setOnClickListener {
+            certViewModel.sendCertNumber(binding.etEmail.text.toString())
+        }
+
+        binding.btnCert.setOnClickListener {
+            when(binding.etCert.text.toString()) {
+                certNumber -> isCheckedCertNum = true
+                else -> {
+                    isCheckedCertNum = false
+                    binding.tvCertError.text = "인증번호를 확인해주세요."
                 }
             }
         }
