@@ -8,7 +8,7 @@
     <item
         android:id="@+id/fragment_finger_sign"
         android:icon="@drawable/ic_navi_finger_sign_state"
-        android:title="지어교육"
+        android:title="지문자교육"
         />
     <item
         android:id="@+id/fragment_home"
