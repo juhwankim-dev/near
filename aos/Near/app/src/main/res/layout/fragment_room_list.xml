@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bg_ox_game"
-        tools:context=".src.main.game.wordquiz.RoomListFragment">
+        tools:context=".src.main.game.wordquiz.room.RoomListFragment">
 
         <LinearLayout
             android:id="@+id/lv_header"

@@ -1,4 +1,4 @@
-package com.ssafy.near.src.main.game.wordquiz
+package com.ssafy.near.src.main.game.wordquiz.playing
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

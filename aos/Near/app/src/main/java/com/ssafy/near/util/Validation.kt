@@ -1,8 +1,6 @@
 package com.ssafy.near.util
 
-import android.view.View
 import android.widget.TextView
-import com.google.android.material.textfield.TextInputLayout
 import java.util.regex.Pattern
 
 object Validation {

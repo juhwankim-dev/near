@@ -1,4 +1,4 @@
-package com.ssafy.near.src.main.game.wordquiz
+package com.ssafy.near.src.main.game.wordquiz.playing
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

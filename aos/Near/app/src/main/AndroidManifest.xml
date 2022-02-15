@@ -22,13 +22,11 @@
             android:name=".src.main.game.oxquiz.OXQuizActivity"
             android:exported="false" />
         <activity
-            android:name=".src.main.game.wordquiz.WordQuizActivity"
+            android:name=".src.main.game.wordquiz.playing.WordQuizActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".src.main.game.wordquiz.RoomActivity"
-            android:exported="false" />
-        <activity
-            android:name=".src.main.mynote.MyNoteActivity"
+            android:name=".src.main.game.wordquiz.room.RoomActivity"
             android:exported="false" />
         <activity
             android:name=".src.edituserinfo.EditUserInfoActivity"
