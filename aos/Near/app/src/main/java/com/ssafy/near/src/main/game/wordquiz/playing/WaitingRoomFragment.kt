@@ -7,21 +7,22 @@ import com.ssafy.near.R
 import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWaitingRoomBinding
+import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
-import com.ssafy.near.repository.UserRepository
-import com.ssafy.near.src.UserViewModel
-import com.ssafy.near.src.UserViewModelFactory
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
 import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_TOKEN
 
 
 class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fragment_waiting_room) {
+    private val wordQuizViewModel: WordQuizViewModel by lazy {
+        ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
+            .get(WordQuizViewModel::class.java)
+    }
+
     private lateinit var roomInfo: RoomInfo
     private lateinit var nickname: String
-    private lateinit var userViewModel: UserViewModel
-    private lateinit var wordQuizViewModel: WordQuizViewModel
     private lateinit var userListAdapter: UserListAdapter
 
 
@@ -30,6 +31,7 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         arguments?.let {
             roomInfo = it.getSerializable("roomInfo") as RoomInfo
         }
+        nickname = sSharedPreferences.getNickname()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -41,27 +43,36 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
     }
 
     private fun initViewModel() {
-        userViewModel = ViewModelProvider(requireActivity(), UserViewModelFactory(UserRepository()))
-            .get(UserViewModel::class.java)
-        wordQuizViewModel = ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
-            .get(WordQuizViewModel::class.java)
-
-        wordQuizViewModel.apply {
-            connectSocket()
-            connect(roomInfo.roomId)
-        }
-
-        userViewModel.getUserInfo().observe(viewLifecycleOwner) {
-            nickname = it!!.nickname
-            wordQuizViewModel.sendEntrance(roomInfo.roomId, it.nickname)
-        }
-
         wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
-            userListAdapter.apply {
-                userList.add(it.sender)
-                notifyDataSetChanged()
+            when (it.type) {
+                MsgType.ENTER -> {
+                    userListAdapter.apply {
+                        if (userList.contains(it.sender) == false){
+                            userList.add(it.sender)
+                            notifyDataSetChanged()
+                        }
+                    }
+                    showToastMessage(it.message)
+                }
+                MsgType.START -> {
+                    val userList = ArrayList<String>()
+                    userListAdapter.userList.forEach { name -> userList.add(name) }
+                    (context as WordQuizActivity)
+                        .onChangeFragment(WordQuizFragment.newInstance(roomInfo, userList, nickname))
+                }
+                MsgType.OUT -> {
+                    if (it.sender == roomInfo.host) {
+                        showToastMessage("방장이 퇴장하였습니다.")
+                        requireActivity().finish()
+                    } else {
+                        userListAdapter.apply {
+                            userList.remove(it.sender)
+                            notifyDataSetChanged()
+                        }
+                        showToastMessage(it.message)
+                    }
+                }
             }
-            showToastMessage(it.message)
         }
     }
 
@@ -71,32 +82,28 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
             requireActivity().finish()
         }
 
-        userViewModel.loadUserInfo(sSharedPreferences.getUserToken())
         binding.roomInfo = roomInfo
 
-        userListAdapter = UserListAdapter()
+        if (nickname == roomInfo.host) {
+            binding.btnPlayGame.visibility = View.VISIBLE
+        } else {
+            binding.btnPlayGame.visibility = View.GONE
+        }
+        val list = mutableListOf(nickname)
+        list.addAll(roomInfo.userList)
+        userListAdapter = UserListAdapter(list)
         binding.gvWaitingUser.apply {
             adapter = userListAdapter
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        wordQuizViewModel.disconnect()
-    }
-
     private fun initEvent() {
         binding.ivExitGame.setOnClickListener {
-            requireActivity().finish()
+            (context as WordQuizActivity).exitRoom()
         }
 
         binding.btnPlayGame.setOnClickListener {
-            val userList = ArrayList<String>()
-            userListAdapter.userList.forEach { userList.add(it) }
-
-//            (context as WordQuizActivity).onChangeFragment(WordQuizFragment.newInstance(roomInfo, userList, nickname))
-            (context as WordQuizActivity).onChangeFragment(WordQuizFragment())
-
+            wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, roomInfo.host, "")
         }
     }
 
