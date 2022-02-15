@@ -9,6 +9,7 @@ class SharedPreferencesUtil(context: Context) {
     companion object {
         const val DEFAULT_ID = "-1"
         const val DEFAULT_TOKEN = "default"
+        const val DEFAULT_NICKNAME = "로그인이 필요합니다."
     }
 
     private var preferences: SharedPreferences =
@@ -21,12 +22,22 @@ class SharedPreferencesUtil(context: Context) {
         editor.apply()
     }
 
+    fun setNickname(nickname: String) {
+        val editor = preferences.edit()
+        editor.putString("nickName", nickname)
+        editor.apply()
+    }
+
     fun getUserId(): String {
         return preferences.getString("id", DEFAULT_ID)!!
     }
 
     fun getUserToken(): String {
         return preferences.getString("token", DEFAULT_TOKEN)!!
+    }
+
+    fun getNickname(): String {
+        return preferences.getString("nickName", DEFAULT_NICKNAME)!!
     }
 
     fun deleteUser() {
