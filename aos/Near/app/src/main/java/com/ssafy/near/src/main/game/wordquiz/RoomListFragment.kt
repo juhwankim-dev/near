@@ -64,9 +64,7 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
 
         roomListAdapter.setItemClickListener(object : RoomListAdapter.ItemClickListener {
             override fun onClick(roomInfo: RoomInfo) {
-                val intent = Intent(requireActivity(), WordQuizActivity::class.java)
-                intent.putExtra("roomId", roomInfo.roomId)
-                startActivity(intent)
+                (context as RoomActivity).enterRoom(roomInfo)
             }
         })
     }

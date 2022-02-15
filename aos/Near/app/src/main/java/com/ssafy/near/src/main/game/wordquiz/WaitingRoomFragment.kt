@@ -1,41 +1,72 @@
 package com.ssafy.near.src.main.game.wordquiz
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWaitingRoomBinding
+import com.ssafy.near.dto.RoomInfo
+import com.ssafy.near.repository.GameRepository
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [WaitingRoomFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fragment_waiting_room) {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var roomInfo: RoomInfo
+    private lateinit var wordQuizVm: WordQuizViewModel
+    private lateinit var userListAdapter: UserListAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            roomInfo = it.getSerializable("roomInfo") as RoomInfo
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.button.setOnClickListener {
+        initViewModel()
+        initView()
+        initEvent()
+    }
+
+    private fun initViewModel() {
+        wordQuizVm = ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
+            .get(WordQuizViewModel::class.java)
+
+        wordQuizVm.apply {
+            connectSocket()
+            connect(roomInfo.roomId)
+            sendMessage(roomInfo.roomId)
+        }
+
+        wordQuizVm.getMessage().observe(viewLifecycleOwner) {
+            userListAdapter.apply {
+                userList.add(it.sender)
+                notifyDataSetChanged()
+            }
+            showToastMessage(it.message)
+        }
+    }
+
+    private fun initView() {
+        binding.roomInfo = roomInfo
+
+        userListAdapter = UserListAdapter()
+        binding.gvWaitingUser.apply {
+            adapter = userListAdapter
+        }
+    }
+
+    private fun initEvent() {
+        binding.ivExitGame.setOnClickListener {
+            requireActivity().finish()
+        }
+
+        binding.btnPlayGame.setOnClickListener {
             requireActivity().supportFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container_word_quiz, WordQuizFragment())
@@ -45,11 +76,10 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(roomInfo: RoomInfo) =
             WaitingRoomFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putSerializable("roomInfo", roomInfo)
                 }
             }
     }

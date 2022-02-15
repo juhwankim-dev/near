@@ -1,9 +1,11 @@
 package com.ssafy.near.src.main.game.wordquiz
 
+import android.content.Intent
 import android.os.Bundle
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityRoomBinding
+import com.ssafy.near.dto.RoomInfo
 
 
 class RoomActivity : BaseActivity<ActivityRoomBinding>(R.layout.activity_room) {
@@ -29,5 +31,11 @@ class RoomActivity : BaseActivity<ActivityRoomBinding>(R.layout.activity_room) {
                 .replace(R.id.fragment_container_room, RoomListFragment())
                 .commit()
         }
+    }
+
+    fun enterRoom(roomInfo: RoomInfo) {
+        val intent = Intent(this, WordQuizActivity::class.java)
+        intent.putExtra("roomInfo", roomInfo)
+        startActivity(intent)
     }
 }
