@@ -51,6 +51,7 @@
                 app:tint="#135561" />
 
             <ImageView
+                android:id="@+id/imageView3"
                 android:layout_width="match_parent"
                 android:layout_height="275dp"
                 android:background="@drawable/dialog_gray_round_bottom_border"
@@ -65,40 +66,39 @@
                 android:src="@drawable/img_create_room_banner"
                 app:layout_constraintTop_toBottomOf="@+id/iv_header" />
 
-            <ImageView
-                android:id="@+id/iv_edit_text_bg"
+            <LinearLayout
+                android:id="@+id/ll_edit_text_bg"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginHorizontal="@dimen/activity_margin_default"
-                android:layout_marginVertical="@dimen/activity_margin_wide"
-                android:src="@drawable/img_create_room_edit"
-                app:layout_constraintTop_toBottomOf="@+id/iv_banner"
-                tools:layout_editor_absoluteX="16dp" />
-
-            <ImageView
-                android:id="@+id/iv_change"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_marginStart="@dimen/activity_margin_wide"
+                android:layout_marginTop="@dimen/activity_margin_wide"
                 android:layout_marginEnd="@dimen/activity_margin_default"
-                android:adjustViewBounds="true"
-                android:src="@drawable/img_button_change"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_edit_text_bg"
+                android:background="@drawable/img_create_room_edit"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_edit_text_bg" />
-
-            <EditText
-                android:id="@+id/et_room_name"
-                style="@style/header_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:maxWidth="240dp"
-                android:text="나랑 같이 공부할 사람!"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_edit_text_bg"
-                app:layout_constraintEnd_toEndOf="@+id/iv_edit_text_bg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_edit_text_bg" />
+                app:layout_constraintTop_toBottomOf="@id/iv_banner">
+
+                <EditText
+                    android:id="@+id/et_room_name"
+                    style="@style/header_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:maxWidth="240dp"
+                    android:text="나랑 같이 공부할 사람!" />
+
+                <ImageView
+                    android:id="@+id/iv_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/img_button_change" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
