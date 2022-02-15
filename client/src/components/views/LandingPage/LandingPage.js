@@ -1,7 +1,5 @@
 // rfce
-import axios from 'axios';
 import React from 'react';
-// import anime from 'animejs/lib/anime.es.js'
 import { anime } from 'react-anime';
 import { Link } from 'react-router-dom';
 import './LandingPage.css'
@@ -197,43 +195,40 @@ function LandingPage(props) {
     // }}
     >
       <div className="layout">
-  <div className="layout__backdrop"></div>
-  <div className="layout__frontdrop"></div>
+      <div className='hicat'></div>
+      <div className='clapcat'></div>
+      <div className='heartcat'></div>
+  <div className="layout__backdrop" style={{ backgroundColor:'rgba(92, 89, 255, 0.198)'}}></div>
+  <div className="layout__frontdrop" style={{ backgroundColor:'rgba(92, 89, 255, 0.198)'}}></div>
   <div className="layout__wrapper">
     <header className="layout__header">
       <nav>
-        <ul className="nav nav--header nav--header-1">
-          <li className="nav__item nav__item--home">
-            <a className="nav__link" href="#0">Home</a>
-          </li>
+        <ul className="nav nav--header nav--header-1" >
+          
           <li className="nav__item nav__item--about">
-            <Link className="nav__link" to="/main">Home</Link>
+            <Link className="nav__link" to="/main">N:ear</Link>
           </li>
           <li className="nav__item nav__item--clients">
             <a className="nav__link" href="#0">Study</a>
-            <ul className="nav nav--header nav--header-2">
+            <ul className="nav nav--header nav--header-2" style={{ backgroundColor:'rgba(92, 89, 255, 0.198)'}}>
               <li className="nav__item">
-                <a className="nav__link" href="#0">Burger King</a>
+                <Link className="nav__link" to="/finger/1">Finger language</Link>
               </li>
               <li className="nav__item">
-                <a className="nav__link" href="#0">Southwest Airlines</a>
+                <Link className="nav__link" to="/sign">Sign language</Link>
               </li>
-              <li className="nav__item">
-                <a className="nav__link"  href="#0">Levi Strauss</a>
-              </li>
+              
             </ul>
           </li>
           <li className="nav__item nav__item--services">
             <a className="nav__link" href="#0">Game</a>
-            <ul className="nav nav--header nav--header-2">
+            <ul className="nav nav--header nav--header-2" style={{ backgroundColor:'rgba(92, 89, 255, 0.198)'}}>
+           
               <li className="nav__item">
-                <a className="nav__link" href="#0">Print Design</a>
+                <Link className="nav__link" to="/fingerquiz">Finger language / Word quiz</Link>
               </li>
               <li className="nav__item">
-                <a className="nav__link" href="#0">Web Design</a>
-              </li>
-              <li className="nav__item">
-                <a className="nav__link" href="#0">Mobile App Development</a>
+                <Link className="nav__link" to="/oxquiz/start">Sign language / OX quiz</Link>
               </li>
             </ul>
           </li>
@@ -247,10 +242,11 @@ function LandingPage(props) {
       <section className='hero'>
         <div className="hero-block hero-block--header">
           <h1 className="hero-title">
-            Fork It <em>Navigation with Sub-navigation, a Codepen Challenge, Aug 2019.</em>
+            N:ear <em> Challenge, Feb 2022.</em>
             
           </h1>
-          <p className="hero-text">The idea was to fork <a href="https://codepen.io/pen?template=PMbwKb" target="_blank">a pretty basic navigation</a> and make something nice with it. The content inspired me some kind of advertising adgency with a bold navigation and a little content. Made me work on my hover and active state more than what I'm used to in those weekly challenges.</p>
+          <p className="hero-text">
+Our project is to help you learn sign language<a href="https://www.notion.so/SSAFY-N-ear-47fb5acbc6a5445b9668a5d1e1b04d5e" target="_blank">You can contact us</a> and we provide fingerprint games and sign language OX games for easier and more fun learning.</p>
         </div>
       </section>
     </main>
