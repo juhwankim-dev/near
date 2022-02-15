@@ -7,25 +7,24 @@
 }
 
 .oxquizstartimg {
-background: url('./ox퀴즈.png') #fff no-repeat 3px 6px;
-background-size: 99%; 
-//버튼 내부 이미지 사이즈 조정
-box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-height: 60vh;
-position: absolute;
-// top: 0px;
-width: 57vh;
-margin-top: 5vh;
-padding-top: 20vh;
-border: 5px solid #737894;
-box-shadow: 
-  0 2px 0 6px rgba(0, 0, 0, .2),
-  inset 0 0 0 2px #b3afc9;
-border-top-right-radius: 25px;
-border-top-left-radius: 25px;
-border-bottom-right-radius: 25px;
-border-bottom-left-radius: 25px;
-
+  background: url('../MainPage/ox퀴즈.png') #fff no-repeat 3px 6px;
+  background-size: 99%; 
+  //버튼 내부 이미지 사이즈 조정
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+  height: 60vh;
+  position: absolute;
+  // top: 0px;
+  width: 57vh;
+  margin-top: 5vh;
+  padding-top: 20vh;
+  border: 5px solid #737894;
+  box-shadow: 
+    0 2px 0 6px rgba(0, 0, 0, .2),
+    inset 0 0 0 2px #b3afc9;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
 
 }
 

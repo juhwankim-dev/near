@@ -14,7 +14,7 @@ const OXQuizStart = () => {
 
     <div className='oxquizstartimg'>
     <div className='playbtn'>
-      <a href="http://localhost:3000/oxquiz/start/cnt">
+      <a href="https://i6d203.p.ssafy.io/oxquiz/start/cnt">
     <span>play</span>
     </a>
     <span className="ok">play</span>
