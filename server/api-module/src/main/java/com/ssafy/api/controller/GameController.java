@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@Api(tags = {"08. 메세지 보내기"})
+@Api(tags = {"07. 메세지 보내기"})
 public class GameController {
 
     private final SimpMessagingTemplate template; //특정 Broker로 메세지를 전달
