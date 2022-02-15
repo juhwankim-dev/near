@@ -18,4 +18,5 @@
     <color name="gray_btn_disabled">#cfcfd9</color>
     <color name="gray_unchecked">#929293</color>
     <color name="red_error_message">#b00020</color>
+    <color name="room_list_bg_color">#dfe0d0</color>
 </resources>

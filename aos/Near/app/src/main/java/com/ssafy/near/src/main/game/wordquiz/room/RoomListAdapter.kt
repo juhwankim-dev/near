@@ -1,8 +1,11 @@
 package com.ssafy.near.src.main.game.wordquiz.room
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.ssafy.near.R
 import com.ssafy.near.databinding.ListItemGameRoomBinding
 import com.ssafy.near.dto.RoomInfo
 
@@ -17,6 +20,14 @@ class RoomListAdapter : RecyclerView.Adapter<RoomListAdapter.RoomInfoHolder>() {
     inner class RoomInfoHolder(private val binding: ListItemGameRoomBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(roomInfo: RoomInfo) {
             binding.rooomInfo = roomInfo
+
+            binding.root.apply {
+                isEnabled = roomInfo.userCount < 4
+                backgroundTintList = when (isEnabled) {
+                    true  -> ColorStateList.valueOf(ContextCompat.getColor(context, R.color.room_list_bg_color))
+                    false -> ColorStateList.valueOf(ContextCompat.getColor(context, R.color.gray_unchecked))
+                }
+            }
         }
     }
 
