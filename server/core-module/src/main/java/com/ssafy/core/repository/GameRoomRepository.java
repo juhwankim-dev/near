@@ -27,9 +27,11 @@ public class GameRoomRepository {
         return gameRoomMap.get(roomId);
     }
 
-    public GameRoom createGameRoom(String name) {
-        GameRoom gameRoom = GameRoom.create(name);
+    public GameRoom createGameRoom(String name, String host) {
+        GameRoom gameRoom = GameRoom.create(name, host);
         gameRoomMap.put(gameRoom.getRoomId(), gameRoom);
         return gameRoom;
     }
+
+
 }

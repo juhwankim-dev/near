@@ -5,6 +5,7 @@ import com.ssafy.core.entity.GameRoom;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 
@@ -36,14 +37,31 @@ public class GameService {
         return gameRooms.get(roomId);
     }
 
-    public GameRoom createRoom(String name){
-        //TODO : roomId == Summoner MatchId + blue/red Team code + Summoner Name
-        GameRoom gameRoom = GameRoom.create(name);
+    public GameRoom createRoom(String name, String host){
+        GameRoom gameRoom = GameRoom.create(name, host);
         gameRooms.put(gameRoom.getRoomId(), gameRoom);
-
         return gameRoom;
     }
 
+    @Transactional(readOnly = false)
+    public void deleteGameRoom(String roomId){
+        gameRooms.remove(roomId);
+    }
+
+    public GameRoom updateUserCount(String roomId, int count, String userNickName){
+        GameRoom gameRoom = gameRooms.get(roomId);
+        List<String> userList = gameRoom.getUserList();
+        if (count == 1){
+            userList.add(userNickName);
+        }else {
+            userList.remove(userNickName);
+        }
+        gameRoom.setUserCount(gameRoom.getUserCount() + count);
+        gameRoom.setUserList(userList);
+        gameRooms.replace(roomId, gameRoom);
+
+        return gameRoom;
+    }
 
     public <T> void sendMessage(WebSocketSession session, T message){
         try {
