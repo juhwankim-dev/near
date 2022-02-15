@@ -20,7 +20,7 @@
             android:background="@color/white"
             android:paddingVertical="@dimen/activity_margin_default"
             android:paddingStart="@dimen/activity_margin_wide"
-            android:text="지어"
+            android:text="지문자"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

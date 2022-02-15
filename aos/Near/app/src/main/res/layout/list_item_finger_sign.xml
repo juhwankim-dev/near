@@ -33,7 +33,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_bg"
             app:layout_constraintStart_toStartOf="@+id/view_bg"
             app:layout_constraintTop_toTopOf="@+id/view_bg"
-            app:srcCompat="@drawable/img_fingersign_sample" />
+            bindImageUrl="@{fingerSignInfo.image_path}"
+            tools:srcCompat="@drawable/img_fingersign_sample" />
 
         <TextView
             style="@style/header_text"

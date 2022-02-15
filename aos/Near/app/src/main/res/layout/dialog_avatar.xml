@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_brown_round_border">
+
+        <TextView
+            android:id="@+id/tv_round"
+            style="@style/header_text"
+            android:fontFamily="@font/bm_jua_ttf"
+            android:text="아바타 선택"
+            android:textColor="#4b4746"
+            android:textSize="30sp"
+            android:layout_marginTop="@dimen/activity_margin_default"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_back" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_avatar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <ImageView
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_next" />
+
+        <ImageView
+            android:id="@+id/btn_confirm"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_confirm_button"
+            android:layout_marginBottom="@dimen/activity_margin_default"
+            app:layout_constraintBottom_toBottomOf="@+id/vp_avatar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

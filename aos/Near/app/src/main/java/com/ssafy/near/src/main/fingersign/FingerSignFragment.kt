@@ -60,9 +60,9 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
         binding.tlFingerSign.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 when(tab!!.position) {
-                    -1 -> fingerSignAdapter.filter?.filter("-1")
-                    0 -> fingerSignAdapter.filter?.filter("0")
-                    1 -> fingerSignAdapter.filter?.filter("1")
+                    0 -> fingerSignAdapter.filter?.filter("9")
+                    1 -> fingerSignAdapter.filter?.filter("0")
+                    2 -> fingerSignAdapter.filter?.filter("1")
                 }
             }
 
