@@ -279,18 +279,77 @@
                     style="@style/explain_text"
                     android:id="@+id/tv_email_error"
                     android:layout_marginStart="20dp"
-                    android:layout_marginBottom="@dimen/activity_margin_default"
                     android:text=""
                     tools:text="올바른 이메일 형식이 아닙니다."
                     android:textColor="@color/red_error_message" />
 
                 <Button
                     style="@style/body_text"
-                    android:id="@+id/btn_email_auth"
+                    android:id="@+id/btn_send_cert_mail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/activity_margin_default"
-                    android:layout_marginTop="@dimen/activity_margin_default"
+                    android:layout_marginTop="@dimen/activity_margin_wide"
+                    android:text="인증번호 전송"
+                    android:textColor="@color/white"
+                    android:clickable="false"
+                    android:background="@drawable/bg_button_round_4"
+                    app:backgroundTint="@color/gray_btn_disabled"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:layout_marginVertical="@dimen/activity_margin_wide"
+                    android:background="#e7e7ef" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/body_text"
+                        android:layout_marginStart="@dimen/activity_margin_default"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="*"
+                        android:textColor="#ff786a" />
+
+                    <TextView
+                        style="@style/explain_text"
+                        android:layout_marginEnd="@dimen/activity_margin_default"
+                        android:text="인증번호"
+                        android:textColor="@color/gray_low_emphasis" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_cert"
+                    style="@style/body_text"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:backgroundTint="@color/gray_low_emphasis"
+                    android:ems="10"
+                    android:hint="인증번호를 입력해주세요"
+                    android:inputType="textPassword"
+                    android:paddingBottom="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    style="@style/explain_text"
+                    android:id="@+id/tv_cert_error"
+                    android:layout_marginStart="20dp"
+                    android:text=""
+                    tools:text="인증번호가 일치하지 않습니다."
+                    android:textColor="@color/red_error_message" />
+
+                <Button
+                    style="@style/body_text"
+                    android:id="@+id/btn_cert"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/activity_margin_default"
+                    android:layout_marginTop="@dimen/activity_margin_wide"
                     android:layout_marginBottom="80dp"
                     android:text="본인인증"
                     android:textColor="@color/white"
