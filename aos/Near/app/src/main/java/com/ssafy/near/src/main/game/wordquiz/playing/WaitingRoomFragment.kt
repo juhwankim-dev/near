@@ -98,6 +98,11 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
             (context as WordQuizActivity).onChangeFragment(WordQuizFragment())
 
         }
+
+        binding.ivSetting.setOnClickListener {
+            var avatarDialog = AvatarDialog(requireContext())
+            avatarDialog.createDialog()
+        }
     }
 
     companion object {
