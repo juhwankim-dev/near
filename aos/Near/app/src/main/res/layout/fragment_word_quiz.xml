@@ -6,7 +6,78 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_ox_game"
         tools:context=".src.main.game.wordquiz.WordQuizFragment">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#a9a9a9"
+            app:layout_constraintTop_toBottomOf="@+id/iv_exit_game"/>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView_readygo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:elevation="12dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/readygo" />
+
+        <ProgressBar
+            android:id="@+id/pb_timer"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:max="300"
+            android:progress="300"
+            android:progressDrawable="@drawable/progress_drawable"
+            app:layout_constraintBottom_toBottomOf="@+id/lottieView_hourglass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/lottieView_hourglass"
+            app:layout_constraintTop_toTopOf="@+id/lottieView_hourglass" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lottieView_hourglass"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_exit_game"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/hourglass" />
+
+        <View
+            android:id="@+id/view_opaque_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#B3000000"
+            android:elevation="10dp"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/iv_exit_game"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_exit_game" />
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_setting_game" />
 
         <ImageView
             android:id="@+id/iv_question"
@@ -19,38 +90,42 @@
             app:layout_constraintVertical_bias="0.35"
             app:srcCompat="@drawable/ma_006" />
 
+        <ImageView
+            android:id="@+id/iv_edit_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_chat_edit"
+            app:layout_constraintBottom_toTopOf="@id/iv_bottom" />
+
+        <ImageView
+            android:id="@+id/iv_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="#78a0a0"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.13"/>
+
         <EditText
             android:id="@+id/et_your_answer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            style="@style/header_text"
+            android:background="@android:color/transparent"
             android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_question" />
+            android:fontFamily="@font/bm_jua_ttf"
+            android:hint="채팅입력"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_edit_bg"
+            app:layout_constraintStart_toStartOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@+id/iv_edit_bg" />
 
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_your_answer" />
-
-        <ProgressBar
-            android:id="@+id/pb_timer"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="0dp"
-            android:layout_height="8dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
