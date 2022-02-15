@@ -4,49 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="rooomInfo"
             type="com.ssafy.near.dto.RoomInfo" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_face" />
+        android:layout_height="100dp"
+        android:paddingStart="16dp"
+        android:gravity="center"
+        android:elevation="2dp"
+        android:background="@drawable/bg_my_note_white_round"
+        android:backgroundTint="#dfe0d0"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_room_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            style="@style/header_text"
+            android:fontFamily="@font/bm_jua_ttf"
             android:text="@{rooomInfo.name}"
-            tools:text="방 이름"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_room_owner"
-            app:layout_constraintStart_toEndOf="@+id/imageView6"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="#4b4746"
+            android:layout_gravity="left"
+            tools:text="방 이름" />
 
-        <TextView
-            android:id="@+id/tv_room_owner"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="방장"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView6"
-            app:layout_constraintTop_toBottomOf="@+id/tv_room_name" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="@dimen/activity_margin_narrow"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                app:tint="#4b4746"
+                app:srcCompat="@drawable/ic_face" />
+
+            <TextView
+                style="@style/header_text"
+                android:id="@+id/tv_room_owner"
+                android:layout_marginStart="@dimen/activity_margin_narrow"
+                android:text="방장"
+                android:textColor="#4b4746"/>
+        </LinearLayout>
+    </LinearLayout>
 
 </layout>
