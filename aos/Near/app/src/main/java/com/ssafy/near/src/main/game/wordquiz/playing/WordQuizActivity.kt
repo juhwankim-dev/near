@@ -32,6 +32,7 @@ class WordQuizActivity : BaseActivity<ActivityWordQuizeBinding>(R.layout.activit
 
         roomInfo = intent.getSerializableExtra("roomInfo") as RoomInfo
         if (roomInfo == null) {
+            showToastMessage("존재하지 않는 방입니다.")
             finish()
         }
 

@@ -84,7 +84,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     }
 
     private fun initViewModel() {
-        wordQuizViewModel.initUSer(userList)
+        wordQuizViewModel.initUser(userList)
 
         wordQuizViewModel.getQNum().observe(viewLifecycleOwner) {
             startQuiz(wordQuizViewModel.images[it])
@@ -118,7 +118,6 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         tvUserScoreList.add(binding.tvUser3Score)
         tvUserScoreList.add(binding.tvUser4Score)
 
-
         for (i in tvUserNameList.indices) {
             if (i < userList.size) {
                 ivCrownList[i].visibility = View.INVISIBLE
@@ -130,6 +129,12 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 ivUserList[i].visibility = View.GONE
                 tvUserScoreList[i].visibility = View.GONE
             }
+        }
+
+        when(wordQuizViewModel.selectedAvatar) {
+            0 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_1)
+            1 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_2)
+            2 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_3)
         }
     }
 
@@ -154,7 +159,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     private fun startQuiz(images: Array<Int>) {
         var imgIndex = 0
         var timerStart = true
-        binding.pbTimer.progress = 10000
+        binding.pbTimer.progress = 1000
         binding.etYourAnswer.setText("")
         binding.etYourAnswer.isEnabled = true
 
@@ -163,11 +168,10 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 imgIndex = 0
 
                 if (timerStart) {
-                    // 로티로 바꿈?
                     Handler(Looper.getMainLooper()).postDelayed({
                         showToastMessage("start!!")
                     }, 0)
-                    pbTimer = timer(period = 100) {
+                    pbTimer = timer(period = 30) {
                         binding.pbTimer.incrementProgressBy(-1)
                         if (binding.pbTimer.progress == 0) {
                             moveNextQuiz()
@@ -196,14 +200,14 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
             wordQuizViewModel.nextQuiz()
         } else {
             // 결과화면
-            Handler(Looper.getMainLooper()).postDelayed({
-                showToastMessage("${wordQuizViewModel.getUserScore(nickname)}")
-            }, 0)
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                showToastMessage("${wordQuizViewModel.getUserScore(nickname)}")
+//            }, 0)
             CoroutineScope(Dispatchers.Main).launch {
-                wordQuizViewModel.sendMessage(MsgType.END, roomInfo.roomId, "", "")
-                delay(3000)
-                // 동작을 안 하고 이 프래그먼트를 재시작해요ㅠ 원인을 모르겠으나 결과페이지로 수정해야하니 주석처리만 합니다.
-                 (context as WordQuizActivity).onChangeFragment(WaitingRoomFragment.newInstance(roomInfo))
+               // wordQuizViewModel.sendMessage(MsgType.END, roomInfo.roomId, "", "")
+                //delay(3000)
+
+                (context as WordQuizActivity).onChangeFragment(WordResultFragment())
             }
         }
     }

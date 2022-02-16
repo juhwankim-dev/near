@@ -10,8 +10,4 @@ import retrofit2.http.*
 interface CertApi {
     @GET("api/certification/{email}")
     suspend fun sendCertNumber(@Path("email") @NotNull email: String): Response<Model<String>>
-
-    @FormUrlEncoded
-    @POST("api/certification/mail")
-    suspend fun sendMail(@FieldMap req: MutableMap<String, String>): Response<Model<String>>
 }

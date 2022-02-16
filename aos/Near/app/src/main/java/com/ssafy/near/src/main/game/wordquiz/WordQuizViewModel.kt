@@ -18,10 +18,10 @@ import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 
-
 class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel() {
     private val TAG = "WordQuizViewModel"
-    private val socketUrl = "wss://hoonycode2.loca.lt/ws-stomp/websocket"
+    //private val socketUrl = "wss://hoonycode2.loca.lt/ws-stomp/websocket"
+    private val socketUrl = "ws://i6d203.p.ssafy.io:8185/ws-stomp/websocket"
     private val sendUrl = "/pub/room/message"
     private val client = Stomp.over(Stomp.ConnectionProvider.OKHTTP, socketUrl)
 
@@ -39,6 +39,7 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
     private val qNum = MutableLiveData(0)
     private val message = MutableLiveData<Message>()
 
+    var selectedAvatar = 0
 
     fun getRoomInfo(): LiveData<RoomInfo> {
         return roomInfo
@@ -54,6 +55,10 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
 
     fun getUserScore(username: String): Int? {
         return scoreMap[username]
+    }
+
+    fun getScoreMap(): HashMap<String, Int> {
+        return scoreMap
     }
 
     fun getQNum(): MutableLiveData<Int> {
@@ -88,7 +93,7 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
         }
     }
 
-    fun initUSer(userList: List<String>) {
+    fun initUser(userList: List<String>) {
         userList.forEach { name ->
             scoreMap[name] = 0
         }
