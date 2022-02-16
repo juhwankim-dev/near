@@ -29,7 +29,11 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            roomInfo = it.getSerializable("roomInfo") as RoomInfo
+            if(it.isEmpty) {
+                showToastMessage("존재하지 않는 방입니다")
+            } else {
+                roomInfo = it.getSerializable("roomInfo") as RoomInfo
+            }
         }
         nickname = sSharedPreferences.getNickname()
     }
@@ -105,6 +109,7 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         }
 
         binding.btnPlayGame.setOnClickListener {
+            wordQuizViewModel.selectedAvatar = userListAdapter.myAvatar
             wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, roomInfo.host, "")
         }
 
@@ -114,7 +119,8 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
 
         avatarDialog.setItemClickListener(object : AvatarDialog.ItemClickListener {
             override fun onClick(selectedAvatar: Int) {
-                // TODO: selectedAvatar에 숫자값이 들어있습니다. 0, 1, 2 이렇게 3종류니까 그에 맞춰서 img_avatar 이미지를 사용하는 로직을 작성하면 됩니다.
+                userListAdapter.myAvatar = selectedAvatar
+                userListAdapter.notifyDataSetChanged()
             }
         })
     }

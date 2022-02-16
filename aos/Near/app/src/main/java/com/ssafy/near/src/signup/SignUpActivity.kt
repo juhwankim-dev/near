@@ -81,7 +81,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 signResponse == null -> showToastMessage("통신에 문제가 발생하였습니다.")
                 signResponse.output != 1 -> showToastMessage(signResponse.msg)
                 else -> {
-                    showToastMessage("회원가입 성공")
+                    showToastMessage("가입이 완료되었습니다.")
                     finish()
                 }
             }
@@ -89,18 +89,11 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
         certViewModel.getCertNumber().observe(this) {
             when(it.output) {
-                0 -> showToastMessage("서버로부터 인증번호를 받아오지 못했습니다.")
+                0 -> showToastMessage("이메일 발송에 실패하였습니다.")
                 1 -> {
                     certNumber = it.data
-                    certViewModel.sendMail(binding.etEmail.text.toString(), "인증번호: " + it.data, "인증번호를 확인하여 N:ear 앱에 인증해주세요.")
+                    showToastMessage("인증번호를 전송하였습니다.")
                 }
-            }
-        }
-
-        certViewModel.getmailedResult().observe(this) {
-            when(it.output) {
-                0 -> showToastMessage("이메일 발송에 실패하였습니다.")
-                1 -> showToastMessage("인증번호를 전송하였습니다.")
             }
         }
     }
@@ -142,6 +135,16 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 binding.etPw.text.toString(),
                 binding.tvConfirmPwError)
         }
+
+        binding.etCert.addTextChangedListener {
+            if(it == null || it.isEmpty()) {
+                binding.btnCert.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
+                binding.btnCert.isClickable = false
+            } else {
+                binding.btnCert.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
+                binding.btnCert.isClickable = true
+            }
+        }
     }
 
     private fun initEvent() {
@@ -152,7 +155,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 isCheckedEmail == false     -> binding.etEmail.requestFocus()
                 isCheckedPw == false        -> binding.etPw.requestFocus()
                 isCheckedConfirmPw == false -> binding.etConfirmPw.requestFocus()
-                isCheckedCertNum == false   -> binding.etCert.requestFocus()
+                //isCheckedCertNum == false   -> binding.etCert.requestFocus()
                 else -> {
                     val id = binding.etId.text.toString()
                     val nickname = binding.etNickname.text.toString()
@@ -170,7 +173,10 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
 
         binding.btnCert.setOnClickListener {
             when(binding.etCert.text.toString()) {
-                certNumber -> isCheckedCertNum = true
+                certNumber -> {
+                    isCheckedCertNum = true
+                    showToastMessage("인증이 완료되었습니다.")
+                }
                 else -> {
                     isCheckedCertNum = false
                     binding.tvCertError.text = "인증번호를 확인해주세요."

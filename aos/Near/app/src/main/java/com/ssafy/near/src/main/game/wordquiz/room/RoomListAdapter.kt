@@ -51,4 +51,10 @@ class RoomListAdapter : RecyclerView.Adapter<RoomListAdapter.RoomInfoHolder>() {
     fun setItemClickListener(itemClickListener: ItemClickListener) {
         this.itemClickListener = itemClickListener
     }
+
+    fun updateList(list: MutableList<RoomInfo>) {
+        roomList.clear()
+        roomList.addAll(list)
+        notifyDataSetChanged()
+    }
 }
