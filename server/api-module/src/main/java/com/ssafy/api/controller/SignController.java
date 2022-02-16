@@ -45,8 +45,6 @@ public class SignController {
      * 회원가입 후 프로필등록 : post /regProfile
      * 소셜 가입 여부 체크 : get /exists/social
      */
-
-
     // 회원가입
     @ApiOperation(value = "회원가입", notes = "회원가입")
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -91,10 +89,10 @@ public class SignController {
 
 
     //로그인 for Android
-    @ApiOperation(value = "회원가입", notes = "회원가입")
+    @ApiOperation(value = "회원가입 안드로이드", notes = "회원가입 안드로이드")
     @PostMapping(value = "/signup", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<UserIdResDTO> userSignUpForAndroid(@Valid @RequestBody SignUpReqDTO req) throws Exception {
+    SingleResult<UserIdResDTO> userSignUpForAndroid(@Valid SignUpReqDTO req) throws Exception {
         // uid 중복되는 값이 존재하는지 확인 (uid = 고유한 값)
         User uidChk = signService.findByUid(req.getUid(), YNCode.Y);
         if (uidChk != null)

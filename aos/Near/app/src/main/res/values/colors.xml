@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <!-- 추가 색상 -->
+    <color name="main_color">#78BED3</color>
     <color name="black_high_emphasis">#D9000000</color>
     <color name="black_medium_emphasis">#99000000</color>
     <color name="gray_low_emphasis">#66000000</color>
@@ -16,7 +17,6 @@
     <color name="gray_divider">#f4f4f3</color>
     <color name="gray_btn_disabled">#cfcfd9</color>
     <color name="gray_unchecked">#929293</color>
-    <color name="temp_blue">#3465e7</color>
-    <color name="temp_gray_light">#f4f4f3</color>
     <color name="red_error_message">#b00020</color>
+    <color name="room_list_bg_color">#dfe0d0</color>
 </resources>

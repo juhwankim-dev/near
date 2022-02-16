@@ -1,6 +1,6 @@
 body{
 	margin:0;
-	color:#6a6f8c;
+	color:#6e7abe;
 	background:#c3d7f8;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
@@ -9,15 +9,15 @@ body{
 .clearfix:after{clear:both;display:block}
 a{color:inherit;text-decoration:none}
 
+
 .login-wrap{
 	width:100%;
 	margin:auto;
 	max-width:625px;
-	min-height:870px;
+	min-height:790px;
 	position:relative;
 	border-radius:50px;
-	/* background:url(https://mblogthumb-phinf.pstatic.net/MjAxODA4MjFfMjcy/MDAxNTM0ODYxMzEyMzc5.vPiP47GeKt4pqRi7e6QRVIwfY5qoGBZsitdwpjjEd9og.ub2zGQF4gpb5kHRXaevINvOFO4f-EP2w018HflKAjTUg.JPEG.mumurat/%EB%B3%B4%EB%85%B8%EB%B3%B4%EB%85%B8_%EB%B0%B0%EA%B2%BD%ED%99%94%EB%A9%B43.jpg?type=w800) no-repeat center; */
-	/* https://pbs.twimg.com/media/DzIEI88UcActRTw?format=jpg&name=large 임시 배경이미지 */
+	background:url(./로그인.gif) no-repeat center;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
@@ -26,7 +26,7 @@ a{color:inherit;text-decoration:none}
 	position:absolute;
 	border-radius:50px;
 	padding:90px 70px 50px 70px;
-	background:rgba(107, 107, 107, 0.4);
+	background:rgba(255, 255, 255, 0.2);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -59,8 +59,8 @@ a{color:inherit;text-decoration:none}
 }
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab{
-	color:#fff;
-	border-color:#1161ee;
+	color:rgb(204, 204, 204);
+	border-color:#1162ee93;
 }
 .login-form{
 	min-height:345px;
@@ -83,7 +83,7 @@ a{color:inherit;text-decoration:none}
 	border:none;
 	padding:15px 20px;
 	border-radius:25px;
-	background:rgba(255,255,255,.1);
+	background:rgba(24, 21, 172, 0.1);
 }
 .login-form .group input[data-type="password"]{
 	text-security:circle;
@@ -94,7 +94,7 @@ a{color:inherit;text-decoration:none}
 	font-size:12px;
 }
 .login-form .group .button{
-	background:#1161ee;
+	background:#1162ee8f;
 }
 .login-form .group label .icon{
 	width:15px;

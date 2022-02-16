@@ -71,10 +71,10 @@ function LoginPage() {
           localStorage.setItem('userid', JSON.stringify(res.payload.data.id));
           console.log(JSON.stringify(res.payload.data));
           // localStorage.setItem('user', JSON.stringify(res.payload));
-          // navigate('/main');
+          navigate('/main');
 
           axios
-          .post(`https://hoonycode.loca.lt/api/sign/userInfo/`,
+          .post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
            {token:config.replace(/\"/gi, "")}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           .then(response => {
@@ -108,10 +108,9 @@ function LoginPage() {
     ,width: '100%', height: '100vh'}}
         onSubmit={onSubmitHandler}
       >
-
   <div className="login-wrap">
 	<div className="login-html">
-    <div><h1>N:ear</h1></div>
+    <div><h1 style={{ fontWeight:'bold' }}>N:ear</h1></div>
 		<input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
 		<input id="tab-2" type="radio" name="tab" className="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" className="tab">Sign Up</label>
     {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}

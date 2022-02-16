@@ -192,7 +192,6 @@ function RegisterPage(props) {
           <div class="group">
             <label for="pass" class="label">Email Address</label>
             <input id="pass" type="email" class="input" placeholder="메일주소를 입력해주세요." onChange={onEmailHandler}/>
-            <button onClick={emailCheck}>메일 중복 확인</button>
           </div>
           <div class="group">
             <input type="submit" class="button" value="Sign Up" />

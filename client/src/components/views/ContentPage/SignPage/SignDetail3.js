@@ -23,23 +23,23 @@ function SignDetail3(props){
   const id = JSON.parse(localStorage.getItem('user'));
   // const id = JSON.parse(localStorage.getItem('user'));
   const realId = id.id
-  console.log(id);
+  console.log(realId);
   
 
 
  const addBookmark = () => {
   axios
-  .post(`https://hoonycode.loca.lt/api/hand/bookmark`,
+  .post(`https://hoonycode2.loca.lt/api/hand/bookmark`,
    {handcontent_key: parseInt(i)+1,
    id: realId}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   .then(response => {
-    })
+    console.log(response)})
   }
 
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode.loca.lt/api/hand/`)
+      await fetch(`https://hoonycode2.loca.lt/api/hand/`)
     ).json();
     setHandDatas(json.data);
     setHandKey(json.data[i])
@@ -61,18 +61,21 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     <div className="flex-container row">
 
       <div className="flex-container"  style={{ width:'1500px' }} >
-      <h1 style={ {  paddingLeft:'20px', fontWeight:'bold', }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
-      <button style={ {marginTop:'20px', height:'60px', width:'60px', fontSize:'35px'} } className="btn btn-danger"
+      <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1070px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
+      <button style={ {paddingTop:'0px', marginTop:'30px', marginLeft:'0px', height:'52px', width:'60px', fontSize:'35px', } } className="btn btn-danger"
       onClick={ ()=>{addBookmark()}} >❤</button> 
-      <h3 className='meaning' style={ {paddingTop: '30px', paddingLeft:'15px', fontWeight:'bolder', } }>
-      {(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
+      
       
       <div className='buttons'>
-          <button className="btn btn-primary btn1"> &lt; </button> 
-          <button className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/sign`)}}>  </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &lt; </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'70px',}} className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/sign`)}}> 목록 </button> 
           {/* <button className="btn btn-primary btn1"   onClick={ ()=>{navigate(`/sign`)}} > 목록 </button>  */}
-          <button className="btn btn-primary btn1"> &gt;  </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &gt;  </button> 
     </div>
+    </div>
+    
+    <div>
+    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
     
     <div className="flex-container "> 
@@ -86,9 +89,9 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
     </div>
 
     <div style={{ width:'1320px' }} className="description" >
-    <div style={{ fontSize:'27px'}}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
     <br />
-    <div style={{ fontSize:'27px'}}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
+    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
     </div>
     </div>
     </div>

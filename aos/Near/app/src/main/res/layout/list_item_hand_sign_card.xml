@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="handSignInfo"
+            type="com.ssafy.near.dto.HandSignInfo" />
+        <variable
+            name="isFirstCard"
+            type="Boolean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
+            android:layout_marginTop="@dimen/activity_margin_wide"
+            android:layout_marginBottom="@dimen/activity_margin_default"
+            android:background="@drawable/bg_my_note_white_round"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingVertical="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="32dp">
+
+            <ImageView
+                android:id="@+id/iv_hand_sign"
+                bindImageUrl="@{handSignInfo.image_path}"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:visibility="@{isFirstCard ? View.VISIBLE : View.GONE}"
+                tools:srcCompat="@drawable/img_handsign_sample_2" />
+
+            <TextView
+                style="@style/appbar_text"
+                android:text="@{handSignInfo.name}"
+                android:textSize="28sp"
+                android:visibility="@{isFirstCard ? View.VISIBLE : View.GONE}"
+                tools:text="입원" />
+
+            <TextView
+                style="@style/explain_text"
+                android:text="@{handSignInfo.movement}"
+                android:textSize="14sp"
+                android:visibility="@{isFirstCard ? View.VISIBLE : View.GONE}"
+                tools:text="[진찰+눕다]" />
+
+            <TextView
+                style="@style/body_text"
+                android:layout_marginHorizontal="@dimen/activity_margin_wide"
+                android:layout_marginTop="@dimen/activity_margin_default"
+                android:text="@{handSignInfo.mean}"
+                android:visibility="@{isFirstCard ? View.VISIBLE : View.GONE}"
+                tools:text="환자가 병을 고치기 위하여 일정한 기간 동안 병원에 들어가 머무는 것" />
+        </LinearLayout>
+
+        <TextView
+            style="@style/body_text"
+            android:paddingHorizontal="60dp"
+            android:layout_marginTop="@dimen/activity_margin_default"
+            android:text="@{handSignInfo.explanation}"
+            android:visibility="@{isFirstCard ? View.GONE : View.VISIBLE}"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="@+id/layout"
+            app:layout_constraintBottom_toBottomOf="@+id/layout"
+            app:layout_constraintStart_toStartOf="@+id/layout"
+            app:layout_constraintEnd_toEndOf="@+id/layout"
+            tools:visibility="gone"
+            tools:text="오른 주먹의 1지를 펴서 반쯤 구부려 오른쪽 귀 가까이서 좌우로 두 번 움직인 다음, 왼손을 펴서 손끝이 위로 손바닥이 밖으로 향하게 세우고, 그 바닥에 약간 굽힌 오른 손끝을 댄 다음 밖으로 밀어낸다." />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:visibility="@{isFirstCard ? View.GONE : View.VISIBLE}"
+            android:layout_marginStart="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="@+id/layout"
+            app:layout_constraintStart_toStartOf="@+id/layout"
+            app:layout_constraintTop_toTopOf="@+id/layout"
+            app:srcCompat="@drawable/ic_back" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:visibility="@{isFirstCard ? View.VISIBLE : View.GONE}"
+            android:layout_marginStart="@dimen/activity_margin_narrow"
+            app:layout_constraintBottom_toBottomOf="@+id/layout"
+            app:layout_constraintEnd_toEndOf="@+id/layout"
+            app:layout_constraintTop_toTopOf="@+id/layout"
+            app:srcCompat="@drawable/ic_next" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

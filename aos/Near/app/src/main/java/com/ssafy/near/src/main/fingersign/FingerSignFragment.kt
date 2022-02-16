@@ -2,8 +2,10 @@ package com.ssafy.near.src.main.fingersign
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.tabs.TabLayout
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentFingerSignBinding
@@ -33,6 +35,10 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
         fingerSignDialog = FingerSignDialog(requireContext())
 
         fingerSignViewModel.loadFingerSignList()
+
+        var spinnerAdapter = ArrayAdapter(requireContext(), R.layout.list_item_spinner, R.id.tv_spinner_item, arrayOf("오름차순", "내림차순"))
+        spinnerAdapter.setDropDownViewResource(R.layout.list_item_spinner)
+        binding.spinner.adapter = spinnerAdapter
     }
 
     private fun initViewModel() {
@@ -51,16 +57,22 @@ class FingerSignFragment : BaseFragment<FragmentFingerSignBinding>(R.layout.frag
             }
         })
 
-        binding.rbAllFingerSign.setOnClickListener {
-            fingerSignAdapter.filter?.filter("-1")
-        }
+        binding.tlFingerSign.addOnTabSelectedListener(object: TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                when(tab!!.position) {
+                    0 -> fingerSignAdapter.filter?.filter("9")
+                    1 -> fingerSignAdapter.filter?.filter("0")
+                    2 -> fingerSignAdapter.filter?.filter("1")
+                }
+            }
 
-        binding.rbConsonant.setOnClickListener {
-            fingerSignAdapter.filter?.filter("0")
-        }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
 
-        binding.rbVowel.setOnClickListener {
-            fingerSignAdapter.filter?.filter("1")
-        }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+
+            }
+        })
     }
 }

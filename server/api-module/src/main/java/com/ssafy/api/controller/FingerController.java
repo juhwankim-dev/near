@@ -26,7 +26,6 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class FingerController {
     private final FingerService fingerService;
-    private final PasswordEncoder passwordEncoder;
     private final ResponseService responseService;
 
 

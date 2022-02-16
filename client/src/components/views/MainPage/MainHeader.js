@@ -11,7 +11,7 @@ const MainHeader = () => {
 
   // text js
 var
-  words = ['당신의 곁에', 'N:ear','Communication Intelligence'],
+  words = ['당신의 곁에', '🤟N:ear','Communication Intelligence'],
   part,
   i = 0,
   offset = 0,
@@ -98,8 +98,8 @@ $(document).ready(function(){
     </div>
     </div>
     
-    <div class="content flex">
-    </div>
+    {/* <div class="content flex">
+    </div> */}
     </div>
   );
 };
