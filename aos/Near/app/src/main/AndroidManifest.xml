@@ -3,6 +3,11 @@
     package="com.ssafy.near">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:name=".config.ApplicationClass"
@@ -14,6 +19,16 @@
         android:theme="@style/Theme.Near"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".src.main.game.oxquiz.OXQuizActivity"
+            android:exported="false" />
+        <activity
+            android:name=".src.main.game.wordquiz.playing.WordQuizActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
+            android:name=".src.main.game.wordquiz.room.RoomActivity"
+            android:exported="false" />
+        <activity
             android:name=".src.edituserinfo.EditUserInfoActivity"
             android:exported="true" />
         <activity
@@ -21,12 +36,10 @@
             android:exported="true" />
         <activity
             android:name=".src.login.LoginActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".src.main.handsign.HandSignDetailActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".src.main.MainActivity"
             android:exported="true">

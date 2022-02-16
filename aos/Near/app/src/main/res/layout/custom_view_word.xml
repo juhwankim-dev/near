@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_word"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginHorizontal="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/word_space" />
+
+        <TextView
+            android:id="@+id/tv_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bm_jua_ttf"
+            android:textSize="24sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
+            android:textColor="#4b4746"
+            tools:text="짠"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_word"
+            app:layout_constraintEnd_toEndOf="@+id/iv_word"
+            app:layout_constraintStart_toStartOf="@+id/iv_word"
+            app:layout_constraintTop_toTopOf="@+id/iv_word" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

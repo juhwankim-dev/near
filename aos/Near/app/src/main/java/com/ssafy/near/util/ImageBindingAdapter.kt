@@ -11,7 +11,7 @@ object ImageBindingAdapter {
     fun bindImageUrl(view: ImageView, src: String){
         Glide.with(view.context)
             .load(src)
-            .error(R.drawable.img_thumbnail_sample_2)
+            .error(R.drawable.img_handsign_sample_2)
             .into(view)
     }
 }

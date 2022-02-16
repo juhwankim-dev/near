@@ -1,0 +1,129 @@
+.oxquizstartbg{
+  background-color: hsla(214, 100%, 74%, 0.479);
+  border-radius: 20px;
+  top: 60px;
+  position: relative;
+  height:85vh;
+}
+
+.oxquizstartimg {
+  background: url('../MainPage/ox퀴즈.png') #fff no-repeat 3px 6px;
+  background-size: 99%; 
+  //버튼 내부 이미지 사이즈 조정
+  box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
+  height: 60vh;
+  position: absolute;
+  // top: 0px;
+  width: 57vh;
+  margin-top: 5vh;
+  padding-top: 20vh;
+  border: 5px solid #737894;
+  box-shadow: 
+    0 2px 0 6px rgba(0, 0, 0, .2),
+    inset 0 0 0 2px #b3afc9;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  border-bottom-left-radius: 25px;
+
+}
+
+.playbtn {
+position: relative;
+height: 100vh;
+width: auto;
+overflow: hidden;
+// top: 35%;
+// left: -24%;
+
+canvas {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+span {
+  position: relative;
+  z-index: 6;
+  font-family: "bw";
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  font-size: 4rem;
+  color: #fff;
+  pointer-events: none;
+}
+
+a {
+  font-family: "bw";
+  text-decoration: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  font-size: 1rem;
+  //버튼 가로 사이즈
+  color: #fff;
+  background-color: #d38af0;
+  // background-color: #acc7ed;
+  border-radius: 10rem;
+  padding: 2.5rem 4rem 2rem;
+
+  transform-style: preserve-3d;
+  transition: all 0.6s ease;
+
+  span {
+    position: relative;
+    opacity: 0;
+  }
+
+  &:after {
+    content: "";
+    background: linear-gradient(56deg, #61dafb 0%, #d6cbf6 46%, #f2056f 100%);
+    width: 80%;
+    height: 20%;
+    position: absolute;
+    bottom: -4px;
+    left: 10%;
+    opacity: 0;
+    filter: blur(15px);
+    border-radius: 10rem;
+    transform: translateZ(-1px);
+    transition: opacity 0.6s ease;
+  }
+
+  &:before {
+    content: "";
+    background: linear-gradient(56deg, #61dafb 0%, #d6cbf6 46%, #f2056f 100%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 10rem;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    transition: all 0.6s ease;
+    transform: translate(-50%, -50%) scale(1.35);
+    transform-origin: center;
+
+    &:after {
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    &:before {
+      opacity: 1;
+      transition: opacity 0.6s linear;
+    }
+  }
+}
+}
