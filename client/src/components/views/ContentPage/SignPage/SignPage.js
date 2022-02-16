@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import SignDetail3 from './SignDetail3.js'
 import Paging from './Paging.js';
+import {Pagination} from 'react-bootstrap';
 
 function SignPage(){
 
@@ -14,11 +15,14 @@ function SignPage(){
     getHandDatas(); 
   }, []); 
   
+  let navigate = useNavigate();
   const [handDatas, setHandDatas] = useState([]);
   const [modal, setModal] = useState(false);
 
+
+
   // const dispatch = useDispatch();
-  let navigate = useNavigate();
+
 
 
 
@@ -31,6 +35,7 @@ function SignPage(){
     setHandDatas(json.data);
   };
 
+    
 
   return (
     <div>
