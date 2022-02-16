@@ -110,7 +110,7 @@ function LoginPage() {
       >
   <div className="login-wrap">
 	<div className="login-html">
-    <div><h1 style={{ fontWeight:'bold' }}>N:ear</h1></div>
+    <div><h1 className='headerst'>N:ear</h1></div>
 		<input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
 		<input id="tab-2" type="radio" name="tab" className="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" className="tab">Sign Up</label>
     {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}
@@ -124,10 +124,7 @@ function LoginPage() {
 					<label for="pass" className="label">Password</label>
 					<input id="pass" type="password" className="input" data-type="password"  onChange={onPasswordHanlder}/>
 				</div>
-				<div className="group">
-					<input id="check" type="checkbox" className="check" />
-					<label for="check"><span className="icon"></span> Keep me Signed in</label>
-				</div>
+				
 				<div className="group">
 					<input type="submit" className="button" value="Sign In"/>
 				</div>

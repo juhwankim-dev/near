@@ -38,7 +38,7 @@ function App() {
     <Router>
       
       <Routes>
-        <Route path="/" element={<LandingPage /> } />
+        {/* <Route path="/" element={<LandingPage /> } /> */}
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
         {/* <Route path="/game" element={<Game />} />

@@ -259,33 +259,6 @@
     width: 56px;
     z-index: 3;
   }
-  //버블
-  // &:after {
-  //   background: #8e6e44;
-  //   border-radius: 50%;
-  //   box-shadow:
-  //     8px 0 0 0 #8e6e44,
-  //     16px 0 0 0 #8e6e44,
-  //     24px 0 0 0 #8e6e44,
-  //     32px 0 0 0 #8e6e44,
-  //     40px 0 0 0 #8e6e44,
-  //     0 8px 0 0 #8e6e44,
-  //     8px 8px 0 0 #8e6e44,
-  //     16px 8px 0 0 #8e6e44,
-  //     24px 8px 0 0 #8e6e44,
-  //     32px 8px 0 0 #8e6e44,
-  //     40px 8px 0 0 #8e6e44,
-  //     5px 16px 0 0 #8e6e44,
-  //     13px 16px 0 0 #8e6e44,
-  //     21px 16px 0 0 #8e6e44,
-  //     29px 16px 0 0 #8e6e44,
-  //     37px 16px 0 0 #8e6e44;
-  //   height: 7px;
-  //   left: 1px;
-  //   width: 7px;
-  //   position: absolute;
-  //   top: 35px;
-  // }
 }
 
 .cup-straw {
@@ -856,14 +829,14 @@
 }
 
 .sign {
-  background: url(./수어학습.gif) #fff no-repeat 0px 0px;
-  background-size:420px;
+  background: url(./수어학습.gif) #fff no-repeat 5px 5px;
+  background-size:500px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-  height: 420px;
-  right:19%;
+  height: 650px;
+  right:15%;
   position: absolute;
   top: 130px;
-  width: 420px;
+  width: 525px;
   border: 5px solid #737894;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
@@ -878,9 +851,9 @@
   background-color: #be76f8;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 70px;
-  right:22%;
+  right:20%;
   position: absolute;
-  top: 600px;
+  top: 670px;
   width: 250px;
   border: 5px solid #737894;
   box-shadow: 

@@ -11,7 +11,7 @@ const MainHeader = () => {
 
   // text js
 var
-  words = ['당신의 곁에', 'N:ear','Communication Intelligence'],
+  words = ['당신의 곁에', 'N:ear', 'AI 수어 학습'],
   part,
   i = 0,
   offset = 0,

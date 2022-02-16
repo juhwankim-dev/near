@@ -18,17 +18,18 @@ function MainPage(props) {
       <NavBar></NavBar>
       <MainHeader></MainHeader>
       <div style={{ 
-      display:'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
-      ,width: '100%', height: '11vh'
+      display:'flex', flexDirection:'column-reverse',justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
+      ,width: '100%', height: '14vh'
     }}>
-      <a class="mouses" onClick={() => scroll.scrollMore(1200)}></a><p onClick={() => scroll.scrollMore(1200)}>Play with Me</p>
+      <a class="mouses" onClick={() => scroll.scrollMore(1400)}></a>
+      <p onClick={() => scroll.scrollMore(1400)}>Play!</p>
       </div>
       <MainGame></MainGame>
       <div style={{ 
-      display:'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
-      ,width: '100%', height: '11vh'
+      display:'flex', flexDirection:'column-reverse', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
+      ,width: '100%', height: '15vh'
     }}>
-      <a class="mouses" onClick={() => scroll.scrollMore(1150)}></a><p onClick={() => scroll.scrollMore(1150)}>Study with Me</p>
+      <a class="mouses" onClick={() => scroll.scrollMore(1150)}></a><p onClick={() => scroll.scrollMore(1150)}>Study!</p>
       </div>
       <MainStudy></MainStudy>
     </div>

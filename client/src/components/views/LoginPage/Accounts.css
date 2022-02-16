@@ -17,7 +17,7 @@ a{color:inherit;text-decoration:none}
 	min-height:790px;
 	position:relative;
 	border-radius:50px;
-	background:url(./로그인.gif) no-repeat center;
+	background:white;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 .login-html{
@@ -150,4 +150,9 @@ a{color:inherit;text-decoration:none}
 }
 .foot-lnk{
 	text-align:center;
+}
+
+.headerst{
+	font-weight:bold;
+	margin-bottom: 14%;
 }

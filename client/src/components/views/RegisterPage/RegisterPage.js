@@ -164,7 +164,7 @@ function RegisterPage(props) {
         onSubmit={onSubmitHandler}>
   <div class="login-wrap">
 	<div class="login-html">
-    <div><h1>N:ear</h1></div>
+    <div><h1 className='headerst'>N:ear</h1></div>
 		<input id="tab-1" type="radio" name="tab" class="sign-in" onClick={()=>{ navigate('/login')}} /><label for="tab-1" class="tab">Sign In</label>
     {/* SIGN IN버튼 누를 경우 login페이지로 랜더링되게 변경 */}
 		<input id="tab-2" type="radio" name="tab" class="sign-up" checked /><label for="tab-2" class="tab">Sign Up</label>
