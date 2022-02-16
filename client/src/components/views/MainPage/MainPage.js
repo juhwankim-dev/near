@@ -19,7 +19,7 @@ function MainPage(props) {
       <MainHeader></MainHeader>
       <div style={{ 
       display:'flex', flexDirection:'column-reverse',justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
-      ,width: '100%', height: '14vh'
+      ,width: '100%', height: '15.5vh'
     }}>
       <a class="mouses" onClick={() => scroll.scrollMore(1400)}></a>
       <p onClick={() => scroll.scrollMore(1400)}>Play!</p>
@@ -27,9 +27,9 @@ function MainPage(props) {
       <MainGame></MainGame>
       <div style={{ 
       display:'flex', flexDirection:'column-reverse', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'
-      ,width: '100%', height: '15vh'
+      ,width: '100%', height: '16vh'
     }}>
-      <a class="mouses" onClick={() => scroll.scrollMore(1150)}></a><p onClick={() => scroll.scrollMore(1150)}>Study!</p>
+      <a class="mouses" onClick={() => scroll.scrollMore(1400)}></a><p onClick={() => scroll.scrollMore(1400)}>Study!</p>
       </div>
       <MainStudy></MainStudy>
     </div>

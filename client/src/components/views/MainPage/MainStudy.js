@@ -12,12 +12,6 @@ const MainStudy = () => {
 {/* <Container> */}
 <div class="background">
 
-  <div class="dressor">
-    <div class="dressor-drawer drawer-1"></div>
-    <div class="dressor-drawer drawer-2"></div>
-    <div class="dressor-drawer drawer-3"></div>
-  </div>
-  
   <div class="board">
     <div class="board-eiffel"></div>
     <div class="board-tree"></div>
@@ -43,11 +37,7 @@ const MainStudy = () => {
   </div>
   
   <div class="notebook"></div>
-  
-  <div class="iphone">
-    <div class="iphone-audio"></div>
-  </div>
-  
+    
   <div class="pencil"></div>
   
   <div class="eraser"></div>

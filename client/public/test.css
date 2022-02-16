@@ -1,9 +1,9 @@
 .oxquizbg{
   background-color: hsla(214, 100%, 74%, 0.479);
   border-radius: 50px;
-  top: 0;
+  top: -1vh;
   position: relative;
-  height:75vh;
+  height:73vh;
   width: 130vh;
   margin: auto;
   }

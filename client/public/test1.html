@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <META http-equiv="content-type" content="text/html; charset=utf8">
     
-    <TITLE> 14초후에 다음 라운드(페이지)로 이동이 됩니다</TITLE>
+    <TITLE> 12초후에 다음 라운드(페이지)로 이동이 됩니다</TITLE>
     <SCRIPT LANGUAGE="JavaScript">
     function Timer() {
-    setTimeout("locateNextRound()",14000);
+    setTimeout("locateNextRound()",11000);
      }
     function locateNextRound(){
     //  location.replace("https://i6d203.p.ssafy.io/oxquiz2");
@@ -18,17 +18,17 @@
     }
     </SCRIPT>
     <script language='javascript'>
-      cnt = 14; // 카운트다운 시간 초단위로 표시
+      cnt = 11; // 카운트다운 시간 초단위로 표시
       function countdown() {
        if(cnt == 0){
               // 시간이 0일경우
               locateNextRound();
-       }else if(cnt == 5){
+       }else if(cnt == 4){
           if(check){
               document.getElementById("o-container").innerHTML = "O";
               document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
               localStorage.setItem("score",0);
-              localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+              localStorage.setItem("score",parseInt(localStorage.getItem("score"))+30);
               console.log(localStorage.getItem("score"))
           }else{
             document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif"
@@ -61,10 +61,10 @@
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
-  <p style="font-size: 3vh;">1Round</p>
+  <p style="font-size: 3vh; font-weight: bold;">1Round</p>
     <div id="webcam-container"></div>
-    <img id="o-container" src=""></img>
-    <img id="x-container" src=""></img>
+    <img id="o-container" style="width: 750px;" src=""></img>
+    <img id="x-container" style="width: 750px;" src=""></img>
     <div id="label-container"></div>
     <div id="choonDiv"></div>
  
@@ -94,7 +94,7 @@
   
           // Convenience function to setup a webcam
           const flip = true; // whether to flip the webcam
-          webcam = new tmImage.Webcam(700, 700, flip); // width, height, flip
+          webcam = new tmImage.Webcam(750, 570, flip); // width, height, flip
           await webcam.setup(); // request access to the webcam
           await webcam.play();
           window.requestAnimationFrame(loop);
@@ -106,8 +106,8 @@
               labelContainer.appendChild(document.createElement("div"));
           }
           //게임 타이머
-          var fullTime = 5;
-          var warn     = 3;
+          var fullTime = 3;
+          var warn     = 2;
           var almost   = 1;
 
           var currTime = fullTime;
@@ -143,7 +143,7 @@
     function hidecam() {
         document.getElementById("webcam-container").style.display="none";
 }
-        self.setTimeout("hidecam()",9000); // 1초: 1000 10초 후 cam안보이게
+        self.setTimeout("hidecam()",5000); // 1초: 1000 10초 후 cam안보이게
    
       // run the webcam image through the image model
       var status = "one"
@@ -152,7 +152,7 @@
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
-          if(prediction[0].probability.toFixed(2) > 0.7) {
+          if(prediction[0].probability.toFixed(2) > 0.85) {
               check = true;
               document.querySelector('body').style.backgroundColor = 'green';
           }
