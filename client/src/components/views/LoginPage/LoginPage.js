@@ -131,8 +131,6 @@ function LoginPage() {
 					<input type="submit" className="button" value="Sign In"/>
 				</div>
 				<div className="hr"></div>
-        
-				
 			</div>
 		</div>
 	</div>
