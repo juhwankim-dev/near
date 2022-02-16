@@ -156,31 +156,9 @@
           if(prediction[0].probability.toFixed(2) > 0.7) {
               check = true;
               document.querySelector('body').style.backgroundColor = 'green';
-            //   console.log(status)
-            //   const myTimeout = setTimeout(myGreeting, 9000);
-            //   function myGreeting() {
-            //   predictScore += 1;
-            //   console.log(predictScore);
-            //   // document.getElementById("o-container").innerHTML = "O";
-            //   document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
-            //   localStorage.setItem("score",0);
-            //   localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
-            //   console.log(localStorage.getItem("score"));
-              
-            // }
-          } else {
-            document.querySelector('body').style.backgroundColor = 'red';
-            // const myTimeout = setTimeout(myGreeting, 9000);
-            //   function myGreeting() {
-            //   document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
-          // }
-          // for (let i = 0; i < maxPredictions; i++) {
-          //     const classPrediction =
-          //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
-          //     labelContainer.childNodes[i].innerHTML = classPrediction;
-          // }
-      }
+          }
     }
+    document.querySelector('body').style.backgroundColor = 'red';
   </script>
     </div>
 </body>
