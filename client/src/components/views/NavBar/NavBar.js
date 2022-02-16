@@ -1,8 +1,22 @@
-import React, {useState} from 'react';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import { Navbar, Container, Nav, NavDropdown} from 'react-bootstrap';
 import { Router, Link, Route, Switch } from 'react-router-dom';
 
-function NavBar() {
+function NavBar(props) {
+
+  // const onClickHandler = () => {
+  //   axios.get('/api/sign/logout')
+  //   .then(response => {
+  //     if (response.data.success) {
+  //       props.history.push('/login');
+  //     } else {
+  //       alert('로그아웃에 실패');
+  //     }
+  //   })
+  // }
+
+  // onClick={ ()=>{navigate(`/sign`)}}>
   return(
     <div>
     <Navbar bg="light" expand="lg" >
@@ -26,12 +40,11 @@ function NavBar() {
         {/* 로그인 상태 */}
         <NavDropdown title="마이페이지" id="basic-nav-dropdown">
           <NavDropdown.Item href="/mystudy">나의학습</NavDropdown.Item>
-          <NavDropdown.Item href="/profile">회원정보</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to='/login'>로그인</NavDropdown.Item>
+          <NavDropdown.Item as={Link} to='/register'>회원가입</NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action/3.4">로그아웃</NavDropdown.Item>
+          <NavDropdown.Item><button>로그아웃</button></NavDropdown.Item>
         </NavDropdown>
-        {/* 로그아웃 상태 */}
-        <Nav.Link as={Link} to='/login'>로그인</Nav.Link>
       </Nav>
     </Navbar.Collapse>
     </Container>

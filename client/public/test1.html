@@ -12,7 +12,8 @@
     setTimeout("locateNextRound()",14000);
      }
     function locateNextRound(){
-     location.replace("https://i6d203.p.ssafy.io/oxquiz2");
+    //  location.replace("https://i6d203.p.ssafy.io/oxquiz2");
+     location.replace("http://localhost:3000/oxquiz2");
     }
     </SCRIPT>
     <script language='javascript'>
@@ -44,7 +45,8 @@
   </div>
 
   <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
-  <p class="word">반갑습니다</p>
+  <!-- <p class="word">반갑습니다</p> -->
+  <p class="word">배고프다</p>
   </div>
 
   <div class="oxquizbg" style= "display:flex;flex-direction: column;flex-wrap: wrap; justify-content: center; align-items: center; align-content: center;" >
@@ -138,7 +140,7 @@
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
-          if(prediction[0].probability.toFixed(2) > 0.8) {
+          if(prediction[0].probability.toFixed(2) > 0.7) {
               status = "one"
               document.querySelector('body').style.backgroundColor = 'green';
             //   console.log(status)

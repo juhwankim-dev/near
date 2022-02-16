@@ -16,6 +16,7 @@
      localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
      console.log(localStorage.getItem("score"));   
       location.replace("https://i6d203.p.ssafy.io/oxquiz3");
+      location.replace("http://localhost:3000/oxquiz3");
       check = false
     }
     </SCRIPT>
@@ -150,7 +151,7 @@
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
-          if(prediction[1].probability.toFixed(2) > 0.8) {
+          if(prediction[1].probability.toFixed(2) > 0.7) {
               status = "one"
               document.querySelector('body').style.backgroundColor = 'green';
             //   console.log(status)

@@ -11,7 +11,7 @@ const MainHeader = () => {
 
   // text js
 var
-  words = ['당신의 곁에', '🤟N:ear','Communication Intelligence'],
+  words = ['당신의 곁에', 'N:ear','Communication Intelligence'],
   part,
   i = 0,
   offset = 0,
@@ -55,7 +55,7 @@ var wordflick = function(){
   },speed);
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
   wordflick();
 });
 
