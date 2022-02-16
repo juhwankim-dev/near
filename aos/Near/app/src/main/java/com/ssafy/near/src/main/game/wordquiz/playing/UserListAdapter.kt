@@ -8,10 +8,7 @@ import android.widget.BaseAdapter
 import com.ssafy.near.databinding.ListItemWaitingUserBinding
 
 
-class UserListAdapter : BaseAdapter() {
-    var userList = mutableListOf<String>()
-
-
+class UserListAdapter(val userList: MutableList<String>) : BaseAdapter() {
     override fun getCount(): Int = userList.size
 
     override fun getItem(position: Int): Any {

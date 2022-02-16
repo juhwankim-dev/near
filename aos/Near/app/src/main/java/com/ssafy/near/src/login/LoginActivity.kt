@@ -9,6 +9,8 @@ import android.text.TextWatcher
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
+import com.ssafy.near.config.ApplicationClass
+import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivityLoginBinding
 import com.ssafy.near.repository.UserRepository
@@ -39,11 +41,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 signResponse == null        -> showToastMessage("통신에 문제가 발생하였습니다.")
                 signResponse.output != 1    -> showToastMessage(signResponse.msg)
                 else -> {
-                    val intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    userViewModel.loadUserInfo(signResponse.data.token)
                 }
             }
+        }
+
+        userViewModel.getUserInfo().observe(this) { userInfo ->
+            sSharedPreferences.setNickname(userInfo!!.nickname)
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 

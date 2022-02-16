@@ -29,29 +29,24 @@ public class HandService {
 
     @Transactional(readOnly = true)
     public List<Handcontent> handList() throws Exception {
-        List<Handcontent> result = handRepository.findAll();
-        return result;
+        return handRepository.findAll();
     }
 
     @Transactional(readOnly = true)
     public List<Handcontent> bookmarkList(Long userId) throws Exception {
 
-        List<Handcontent> result = bookmarkRepository.handContentList(userId);
-
-        return result;
+        return bookmarkRepository.handContentList(userId);
     }
 
     @Transactional(readOnly = false)
     public Bookmark save(Bookmark bookmark) {
-        Bookmark saveBookmark = bookmarkRepository.save(bookmark);
-        return saveBookmark;
+        return bookmarkRepository.save(bookmark);
     }
 
     @Transactional(readOnly = true)
     public Handcontent findById(Long id) throws Exception {
-        Handcontent handcontent = handRepository.findById(id).orElseThrow(
+        return handRepository.findById(id).orElseThrow(
                 () -> new ApiMessageException("존재하지 않는 수어 입니다."));
-        return handcontent;
     }
 
     @Transactional(readOnly = false)

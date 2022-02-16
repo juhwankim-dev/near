@@ -1,6 +1,7 @@
 package com.ssafy.near.src.main.game.wordquiz.room
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager

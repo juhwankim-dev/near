@@ -15,7 +15,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_my_note_white_round"
-        android:backgroundTint="#dfe0d0"
+        android:backgroundTint="@color/room_list_bg_color"
         android:elevation="2dp"
         android:gravity="center"
         android:orientation="vertical"
@@ -47,8 +47,24 @@
                 android:id="@+id/tv_room_owner"
                 style="@style/header_text"
                 android:layout_marginStart="@dimen/activity_margin_narrow"
-                android:text="방장"
+                android:text="@{rooomInfo.host}"
+                tools:text="방장"
+                android:layout_weight="1"
                 android:textColor="#4b4746" />
+
+            <TextView
+                style="@style/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_margin_narrow"
+                android:text="@{String.valueOf(rooomInfo.userCount)}"/>
+
+            <TextView
+                style="@style/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_margin_default"
+                android:text="/ 4"/>
         </LinearLayout>
     </LinearLayout>
 

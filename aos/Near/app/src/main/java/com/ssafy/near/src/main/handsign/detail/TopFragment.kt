@@ -20,10 +20,12 @@ import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentTopBinding
 import com.ssafy.near.src.main.handsign.HandSignFragment
+import com.ssafy.near.src.main.handsign.HandSignViewModel
 
 class TopFragment : BaseFragment<FragmentTopBinding>(R.layout.fragment_top), Player.EventListener {
+    private lateinit var handSignViewModel: HandSignViewModel
     private var videoPlayer: SimpleExoPlayer? = null
-    private var sampleUrl = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
+    private var videoUrl = "https://d2o6fwxt8bq04z.cloudfront.net/video/NIA_SL_WORD0001_SYN01_F.mp4"
 
     val ivPlay: ImageView by lazy {
         requireActivity().findViewById(R.id.iv_play)
@@ -44,8 +46,14 @@ class TopFragment : BaseFragment<FragmentTopBinding>(R.layout.fragment_top), Pla
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        initViewModel()
         initView()
         initEvent()
+    }
+
+    private fun initViewModel() {
+        handSignViewModel = (parentFragment as HandSignFragment).handSignViewModel
+        videoUrl = handSignViewModel.selectedHandSignInfo!!.video_path
     }
 
     fun initView() {
@@ -82,7 +90,7 @@ class TopFragment : BaseFragment<FragmentTopBinding>(R.layout.fragment_top), Pla
     private fun buildMediaSource(): MediaSource? {
         val dataSourceFactory = DefaultDataSourceFactory(requireContext(), "sample")
         return ProgressiveMediaSource.Factory(dataSourceFactory)
-            .createMediaSource(Uri.parse(sampleUrl))
+            .createMediaSource(Uri.parse(videoUrl))
     }
 
     // 일시중지

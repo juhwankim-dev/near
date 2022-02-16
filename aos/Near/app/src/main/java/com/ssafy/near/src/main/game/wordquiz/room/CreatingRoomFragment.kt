@@ -2,11 +2,13 @@ package com.ssafy.near.src.main.game.wordquiz.room
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
+import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentCreatingRoomBinding
 import com.ssafy.near.repository.GameRepository
@@ -20,12 +22,12 @@ class CreatingRoomFragment : BaseFragment<FragmentCreatingRoomBinding>(R.layout.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initVieModel()
+        initViewModel()
         initEvent()
     }
 
-    private fun initVieModel() {
-        wordQuizViewModel = ViewModelProvider(requireActivity(), WordQuizViewModelFactory(
+    private fun initViewModel() {
+        wordQuizViewModel = ViewModelProvider(this, WordQuizViewModelFactory(
             GameRepository())).get(WordQuizViewModel::class.java)
 
         wordQuizViewModel.getRoomInfo().observe(viewLifecycleOwner) {
@@ -37,7 +39,7 @@ class CreatingRoomFragment : BaseFragment<FragmentCreatingRoomBinding>(R.layout.
         binding.btnSave.setOnClickListener {
             val roomName = binding.etRoomName.text.toString().trim()
             if (roomName != "") {
-                wordQuizViewModel.createRoom(roomName)
+                wordQuizViewModel.createRoom(sSharedPreferences.getNickname(), roomName)
             }
         }
 

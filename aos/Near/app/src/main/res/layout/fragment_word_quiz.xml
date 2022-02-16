@@ -124,14 +124,14 @@
 
             <TextView
                 android:id="@+id/tv_user3_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nickname"
                 android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/iv_user3"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_face" />
 
@@ -170,7 +170,7 @@
 
             <ImageView
                 android:id="@+id/iv_user2"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_face" />
 
@@ -189,13 +189,13 @@
 
             <TextView
                 android:id="@+id/tv_user4_name"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="nickname" />
 
             <ImageView
                 android:id="@+id/iv_user4"
-                android:layout_width="match_parent"
+                android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_face" />
 
