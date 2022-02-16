@@ -12,12 +12,9 @@
     setTimeout("locateNextRound()",14000);
      }
     function locateNextRound(){
-      if (check)
-     localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
-     console.log(localStorage.getItem("score"));
-     location.replace("https://i6d203.p.ssafy.io/oxquiz5");
+    //  location.replace("https://i6d203.p.ssafy.io/oxquiz5");
      location.replace("http://localhost:3000/oxquiz5");
-     check = false
+     check = false;
     }
     </SCRIPT>
     <script language='javascript'>
@@ -26,6 +23,16 @@
        if(cnt == 0){
               // 시간이 0일경우
               locateNextRound();
+       }else if(cnt == 5){
+          if(check){
+              document.getElementById("o-container").innerHTML = "O";
+              document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+              // localStorage.setItem("score",0);
+              localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+              console.log(localStorage.getItem("score"))
+          }else{
+            document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif"
+          }
        }else {
              // 시간이 남았을 경우 카운트다운을 지속한다.
             // document.all.choonDiv.innerHTML = cnt + "초후에 다음 라운드로 이동 됩니다.";
@@ -49,6 +56,7 @@
   </div>
 
   <div style="display:flex; flex-direction: column;flex-wrap:wrap; align-items: center; border-radius: 30%;">
+  <!-- <p class="word">반갑습니다</p> -->
   <p class="word">그립다</p>
   </div>
 
@@ -140,28 +148,32 @@
 
       // run the webcam image through the image model
       var status = "one"
-      var check = false
+      var check = false;
+      var predictScore = 0;
       async function predict() {
           // predict can take in an image, video or canvas html element
           const prediction = await model.predict(webcam.canvas);
-          if(prediction[3].probability.toFixed(2) > 0.8) {
-              status = "one"
+          if(prediction[0].probability.toFixed(2) > 0.7) {
+              check = true;
               document.querySelector('body').style.backgroundColor = 'green';
             //   console.log(status)
-              const myTimeout = setTimeout(myGreeting, 9000);
-              function myGreeting() {
-              document.getElementById("o-container").innerHTML = "O";
-              document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+            //   const myTimeout = setTimeout(myGreeting, 9000);
+            //   function myGreeting() {
+            //   predictScore += 1;
+            //   console.log(predictScore);
+            //   // document.getElementById("o-container").innerHTML = "O";
+            //   document.getElementById("o-container").src="https://i.pinimg.com/originals/f0/e3/6b/f0e36b1a3bc1b35d9895a40381ceade7.gif";
+            //   localStorage.setItem("score",0);
+            //   localStorage.setItem("score",parseInt(localStorage.getItem("score"))+20);
+            //   console.log(localStorage.getItem("score"));
               
-              if (!check){
-                    check = true
-                  }
-            }
+            // }
           } else {
-            const myTimeout = setTimeout(myGreeting, 9000);
-              function myGreeting() {
-                document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
-          }
+            document.querySelector('body').style.backgroundColor = 'red';
+            // const myTimeout = setTimeout(myGreeting, 9000);
+            //   function myGreeting() {
+            //   document.getElementById("x-container").src = "https://i.pinimg.com/originals/82/8e/41/828e4167c7729b0156aff84d5642d99e.gif";
+          // }
           // for (let i = 0; i < maxPredictions; i++) {
           //     const classPrediction =
           //         prediction[i].className + ": " + prediction[i].probability.toFixed(2);
