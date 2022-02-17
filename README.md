@@ -12,23 +12,23 @@
 <br/><br/>
 
 <div align="center">
-<h2> 🖥 Fornt-End </h2> 
+<h3> 🖥 Fornt-End </h3> 
 </br></br>
 </div>
 
-<p align="center">
+<div align="center">
 <img width="1000px" src="https://user-images.githubusercontent.com/44612896/154493119-289e4aca-54f7-4a47-ac3e-d468643ad605.gif">
-</p>
+</div>
 </br></br>
 
 <div align="center">
-<h2> 📱 Android </h2>
+<h3> 📱 Android </h3>
 </br></br>
 </div>
 
-<p align="center">
+<div align="center">
 <img  width="500px" alt="Front-end" src="https://user-images.githubusercontent.com/44612896/154488061-61a3e81b-8d70-4f71-9b50-c6c24aa7591a.gif">
-</p>
+</div>
 </br></br>
 
 ## 💡 Description
@@ -74,7 +74,7 @@
 <br/><br/>
 
 <div align="center">
-<h2> 🖥 Fornt-End </h2> 
+<h3> 🖥 Fornt-End </h3> 
 
 </br></br>
 </div>
@@ -83,7 +83,7 @@
 
 <br/><br/>
 <div align="center">
-<h2> 📱 Android </h2>
+<h3> 📱 Android </h3>
 </br></br>
 </div>
 
