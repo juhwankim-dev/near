@@ -103,4 +103,4 @@ app:
 
 # swagger에서 테스트 할 때의 host
 swagger:
-  host: i6d203.p.ssafy.io:8185/api
+  host: hoonycode2.loca.lt
