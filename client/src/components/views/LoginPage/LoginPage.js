@@ -74,7 +74,7 @@ function LoginPage() {
           navigate('/main');
 
           axios
-          .post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
+          .post(`https://i6d203.p.ssafy.io:8185/api/sign/userInfo/`,
            {token:config.replace(/\"/gi, "")}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           .then(response => {

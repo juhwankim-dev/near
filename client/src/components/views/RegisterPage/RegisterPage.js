@@ -72,7 +72,7 @@ function RegisterPage(props) {
    const idCheck = () => {
     axios({
       method: 'get',
-      url: `http://i6d203.p.ssafy.io:8185/api/sign/checkid/?uid=${Id}`,
+      url: `https://i6d203.p.ssafy.io:8185/api/sign/checkid/?uid=${Id}`,
     })
       .then((res) => {
         console.log(res.data);
@@ -92,7 +92,7 @@ function RegisterPage(props) {
    const emailCheck = () => {
     axios({
       method: 'get',
-      url: `http://i6d203.p.ssafy.io:8185/api/sign/checkemail?email=${Email}`,
+      url: `https://i6d203.p.ssafy.io:8185/api/sign/checkemail?email=${Email}`,
     })
     .then((res) => {
       console.log(res.data);
@@ -112,7 +112,7 @@ function RegisterPage(props) {
   const nicknameCheck = () => {
     axios({
       method: 'get',
-      url: `http://i6d203.p.ssafy.io:8185/api/sign/nickname?nickname=${Nickname}`,
+      url: `https://i6d203.p.ssafy.io:8185/api/sign/nickname?nickname=${Nickname}`,
     })
     .then((res) => {
       console.log(res.data);
@@ -141,7 +141,7 @@ function RegisterPage(props) {
 
 		if (Password === ConfirmPasword) {
 
-      axios.post('http://i6d203.p.ssafy.io:8185/api/sign/signup', 
+      axios.post('https://i6d203.p.ssafy.io:8185/api/sign/signup', 
       JSON.stringify({  
         email: Email,
         uid: Id,

@@ -39,7 +39,7 @@ function SignPage(){
   
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`http://i6d203.p.ssafy.io:8185/api/hand/`)
+      await fetch(`https://i6d203.p.ssafy.io:8185/api/hand/`)
     ).json();
     console.log(json.data);
     setHandDatas(json.data);
