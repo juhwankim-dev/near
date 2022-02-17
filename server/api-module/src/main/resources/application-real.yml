@@ -62,7 +62,7 @@ spring:
     port: 587
     username: ssafy.dev@gmail.com # 구글 아이디
     to-name:  ssafy.dev@gmail.com
-    password: sldjchlrh! # 구글 비밀번호
+    password: ljufsapoguewlufk # 비밀번호
     properties:
       mail:
         smtp:
@@ -73,7 +73,7 @@ spring:
 server:
   # 프로젝트 환경의 포트 설정
   port: 8185
-  domain: https:127.0.0.1
+  domain: http:127.0.0.1
   servlet:
     session:
       timeout: 43200m      # 60m * 24h * 30d
