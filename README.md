@@ -91,7 +91,7 @@
 
 <br/>
 
-> [<h3>🔗<font color="green"> Functional Specification</font></h3>](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)
+> <h3>🔗<font color="green"> [Functional Specification](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)</font></h3>
 
 </br>
 
