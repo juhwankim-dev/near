@@ -16,7 +16,7 @@ const MainGame = () => {
 
   {/* 낱말퀴즈 위치 버튼 4k화면 사이즈 기준으로 맞춤 추후 다시 수정해야할듯*/}
     <div class="playleftbtn">
-      <a style={{ marginLeft='20px'}} href="https://i6d203.p.ssafy.io/fingerquiz">
+      <a style={{ marginLeft:'20px'}} href="https://i6d203.p.ssafy.io/fingerquiz">
     <span>play</span>
     </a>
     <span class="ok">play</span>
@@ -24,7 +24,7 @@ const MainGame = () => {
 
   {/* ox퀴즈 위치 버튼 4k화면 사이즈 기준으로 맞춤 추후 다시 수정해야할듯*/}
     <div class="playrightbtn">
-      <a style={{ marginLeft='20px'}} href="https://i6d203.p.ssafy.io/oxquiz/start/cnt">
+      <a style={{ marginLeft:'20px'}} href="https://i6d203.p.ssafy.io/oxquiz/start/cnt">
     <span>play</span>
     </a>
     <span  class="ok">play</span>
