@@ -50,17 +50,22 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
             when (it.type) {
                 MsgType.ENTER -> {
+                    var isNew = true
                     userListAdapter.apply {
-                        if (userList.contains(it.sender) == false){
-                            userList.add(it.sender)
+                        userList.forEach { user ->
+                            if (user.first == it.sender)
+                                isNew = false
+                        }
+                        if (isNew) {
+                            userList.add(Pair(it.sender, 0))
                             notifyDataSetChanged()
+                            showToastMessage(it.message)
                         }
                     }
-                    showToastMessage(it.message)
                 }
                 MsgType.START -> {
-                    val userList = ArrayList<String>()
-                    userListAdapter.userList.forEach { name -> userList.add(name) }
+                    val userList = ArrayList<Pair<String, Int>>()
+                    userListAdapter.userList.forEach { user -> userList.add(user) }
                     (context as WordQuizActivity)
                         .onChangeFragment(WordQuizFragment.newInstance(roomInfo, userList, nickname))
                 }
@@ -70,10 +75,24 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                         requireActivity().finish()
                     } else {
                         userListAdapter.apply {
-                            userList.remove(it.sender)
+                            userList.forEachIndexed { index, user ->
+                                if (user.first == it.sender) {
+                                    userList.removeAt(index)
+                                }
+                            }
                             notifyDataSetChanged()
                         }
                         showToastMessage(it.message)
+                    }
+                }
+                MsgType.CHANGE -> {
+                    userListAdapter.apply {
+                        userList.forEachIndexed { index, user ->
+                            if (user.first == it.sender) {
+                                userList[index] = Pair(it.sender, it.message.toInt())
+                            }
+                        }
+                        notifyDataSetChanged()
                     }
                 }
             }
@@ -93,8 +112,11 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         } else {
             binding.btnPlayGame.visibility = View.GONE
         }
-        val list = mutableListOf(nickname)
-        list.addAll(roomInfo.userList)
+
+        val list = mutableListOf(Pair(nickname, 0))
+        roomInfo.userList.forEach {
+            list.add(Pair(it, 0))
+        }
         userListAdapter = UserListAdapter(list)
         binding.gvWaitingUser.apply {
             adapter = userListAdapter
@@ -109,7 +131,7 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         }
 
         binding.btnPlayGame.setOnClickListener {
-            wordQuizViewModel.selectedAvatar = userListAdapter.myAvatar
+//            wordQuizViewModel.selectedAvatar = userListAdapter.myAvatar
             wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, roomInfo.host, "")
         }
 
@@ -119,8 +141,7 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
 
         avatarDialog.setItemClickListener(object : AvatarDialog.ItemClickListener {
             override fun onClick(selectedAvatar: Int) {
-                userListAdapter.myAvatar = selectedAvatar
-                userListAdapter.notifyDataSetChanged()
+                wordQuizViewModel.sendMessage(MsgType.CHANGE, roomInfo.roomId, nickname, selectedAvatar.toString())
             }
         })
     }

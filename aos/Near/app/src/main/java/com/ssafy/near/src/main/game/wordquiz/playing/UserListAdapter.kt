@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import com.bumptech.glide.Glide
 import com.ssafy.near.R
 import com.ssafy.near.databinding.ListItemWaitingUserBinding
 
-class UserListAdapter(val userList: MutableList<String>) : BaseAdapter() {
-    var myAvatar = 0
+class UserListAdapter(val userList: MutableList<Pair<String, Int>>) : BaseAdapter() {
+//    var myAvatar = 0
 
     override fun getCount(): Int = userList.size
 
@@ -24,21 +25,28 @@ class UserListAdapter(val userList: MutableList<String>) : BaseAdapter() {
     @SuppressLint("ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val listItemBinding = ListItemWaitingUserBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        listItemBinding.tvUserName.text = userList[position]
-
-        if(position == 0) {
-
-        }
-
-        when(position) {
-            0 -> {
-                when(myAvatar) {
-                    0 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_1)
-                    1 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_2)
-                    2 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_3)
-                }
+        listItemBinding.apply {
+            tvUserName.text = userList[position].first
+            when(userList[position].second) {
+                0 -> ivProfile.setImageResource(R.drawable.img_avatar_1)
+                1 -> ivProfile.setImageResource(R.drawable.img_avatar_2)
+                2 -> ivProfile.setImageResource(R.drawable.img_avatar_3)
             }
         }
+
+//        if(position == 0) {
+//
+//        }
+//
+//        when(position) {
+//            0 -> {
+//                when(myAvatar) {
+//                    0 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_1)
+//                    1 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_2)
+//                    2 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_3)
+//                }
+//            }
+//        }
 
         return listItemBinding.root
     }

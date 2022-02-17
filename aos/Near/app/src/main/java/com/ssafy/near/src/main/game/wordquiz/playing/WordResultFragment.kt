@@ -1,15 +1,14 @@
 package com.ssafy.near.src.main.game.wordquiz.playing
 
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWordResultBinding
 import com.ssafy.near.dto.Result
+import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
@@ -20,10 +19,18 @@ import kotlinx.coroutines.launch
 
 class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.fragment_word_result) {
     lateinit var wordResultAdapter: WordResultAdapter
+    lateinit var userList: ArrayList<Pair<String, Int>>
 
     private val wordQuizViewModel: WordQuizViewModel by lazy {
         ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
             .get(WordQuizViewModel::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            userList = it.getStringArrayList("userList") as ArrayList<Pair<String, Int>>
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +49,8 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
 
         list.sortByDescending { it.score }
 
-        wordResultAdapter = WordResultAdapter(list, wordQuizViewModel.selectedAvatar)
+//        wordResultAdapter = WordResultAdapter(list, wordQuizViewModel.selectedAvatar)
+        wordResultAdapter = WordResultAdapter(list, userList)
         binding.rvResult.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = wordResultAdapter
@@ -59,5 +67,15 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
         binding.btnExit.setOnClickListener {
             (context as WordQuizActivity).exitRoom()
         }
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(userList: ArrayList<Pair<String, Int>>) =
+            WordResultFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable("userList", userList)
+                }
+            }
     }
 }
