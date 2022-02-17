@@ -30,12 +30,9 @@ function NavBar(props) {
 
         
         {/* 로그인 상태 */}
-<<<<<<< HEAD
         <NavDropdown style={{fontSize:'1.5vh', fontWeight:'bold', marginRight:'5px',  }} title="마이페이지" id="basic-nav-dropdown">
           <NavDropdown.Item href="/mystudy">나의학습</NavDropdown.Item>
-=======
         <NavDropdown title="마이페이지" id="basic-nav-dropdown">
->>>>>>> 4edc16e9f0712a56d5f0e53868f79dc22898165f
           <NavDropdown.Item as={Link} to='/login'>로그인</NavDropdown.Item>
           <NavDropdown.Item as={Link} to='/register'>회원가입</NavDropdown.Item>
           <NavDropdown.Divider />
