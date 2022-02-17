@@ -1,9 +1,9 @@
-## 🌐 N:ear ?
-
-<div align="center">
+<div align="left">
 <img width="200" src="https://user-images.githubusercontent.com/44612896/154493835-6f5a22ba-24dc-4f9c-af63-8b766e1cfcdf.png">
 </div>
 <br/>
+
+## 🌐 N:ear ?
 
 <font size="5" color="orange">**_N:ear_**</font> 프로젝트는 지문자 및 수어 게임을 통한 학습 프로젝트입니다. 또한 모바일 및 웹 서비스를 제공하고 있습니다. 주요 기획 의도는 <strong>개발진의 역량 향상</strong>과 <strong>인공지능 영상처리 및 학습 서비스 개발 경험</strong>이였습니다. 그래서 클론 코딩을 하기보다는 자체적으로 개발을 하고 다양한 학습 서비스를 분석하면서 최대한 사용자의 편의성을 생각한 지문자 및 수어 서비스를 제공하고자 하였습니다.
 
