@@ -32,8 +32,12 @@
 <br />
 
 ## 1. 빌드 및 배포 방법
-### Docker 설치
+### 프로젝트 clone
+```bash
+$ git clone https://lab.ssafy.com/s06-webmobile4-sub2/S06P12D203.git
+```
 
+### Docker 설치
 
 자세한 사항은 [공식문서](https://docs.docker.com/engine/install/ubuntu/)를 참조해주세요.
 <br /><br />
@@ -120,13 +124,6 @@ $ javac -version
 ```
 <br />
 
-**gradle 설치 및 빌드**
-```bash
-$ sdk install gradle 6.8
-$ ./gradlew build ./server/build.gradle
-```
-<br />
-
 ### ssl 인증서 발급
 ✅ `./client/nginx.conf` 파일에서 server_name을 각자의 도메인 주소로 바꿔주세요.<br />
 Docker로 인증서를 발급받습니다.
@@ -170,6 +167,45 @@ If you like Certbot, please consider supporting our work by:
  * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
  * Donating to EFF:                    https://eff.org/donate-le
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+
+chain.pem과 fullchain.pem으로 keystore.p12 파일을 생성합니다.
+```bash
+$ cd /home/ubuntu/certbot/conf/live/[도메인주소]/
+$ openssl pkcs12 -export -in fullchain.pem -inkey privkey.pem -out keystore.p12 -name [이름] -CAfile chain.pem -caname root
+# Enter Export Password: # 비밀번호 설정
+# Verifying - Enter Export Password: # 비밀번호 재확인
+```
+
+keystore.p12파일을 server 프로젝트에 저장합니다.
+```bash
+$ cd /home/ubuntu/
+$ cp /keystore.p12 /server/api-module/src/main/resources
+```
+<br />
+
+> 🚨 application-real.yml 파일 수정
+> `/server/api-module/src/main/resources` 내 application-real.yml 파일의 ssl 설정을 수정해줍니다.
+> ```bash
+> server:
+>
+>   # ...
+>
+>   ssl:
+>     enabled: true
+>     key-store-type: PKCS12
+>     key-store: classpath:/keystore.p12
+>     key-store-password: [비밀번호]
+>     key-alias: [이름]
+>   trust:
+>     store: classpath:/keystore.p12
+>     store.password: [비밀번호]
+> ```
+
+**gradle 설치 및 빌드**
+```bash
+$ sdk install gradle 6.8
+$ ./gradlew build ./server/build.gradle
 ```
 <br />
 
