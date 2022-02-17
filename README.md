@@ -9,7 +9,6 @@
 
 - `N:ear` : '가까운'을 의미하는 'Near' 그리고 '소리를 듣는 기관인 귀'를 의미하는 'ear'의 합성어
 
-<br/><br/>
 
 <h3> 🖥 Fornt-End </h3> 
 </br></br>
@@ -67,8 +66,6 @@
 
 > <h3><font color="red">WireFrame</font></h3>  
 
-<br/><br/>
-
 <h3> 🖥 Fornt-End </h3> 
 
 </br></br>
@@ -94,7 +91,7 @@
 
 <br/>
 
-> [<h3>🔗<font color="green"> Functional Specification</font></h3>](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)
+> <h3>🔗<font color="green"> [Functional Specification](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)</font></h3>
 
 </br>
 
