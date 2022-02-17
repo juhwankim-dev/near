@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class ApplicationClass : Application() {
-    private val baseUrl = "http://i6d203.p.ssafy.io:8185/"
+    private val baseUrl = "https://i6d203.p.ssafy.io/"
     companion object {
         lateinit var sSharedPreferences: SharedPreferencesUtil
         const val SHARED_PREFERENCES_NAME = "SSAFY_APP"

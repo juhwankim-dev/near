@@ -9,20 +9,30 @@ import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.databinding.ListItemWordResultBinding
 import com.ssafy.near.dto.Result
 
-class WordResultAdapter(var list: MutableList<Result>, val selectedAvatar: Int) : RecyclerView.Adapter<WordResultAdapter.WordViewHolder>() {
+class WordResultAdapter(var list: MutableList<Result>, val userList: ArrayList<Pair<String, Int>>) : RecyclerView.Adapter<WordResultAdapter.WordViewHolder>() {
 
     inner class WordViewHolder(private val binding: ListItemWordResultBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(result: Result) {
             binding.result = result
 
-            if(result.name == sSharedPreferences.getNickname()) {
-                binding.ivAvatar
-                when(selectedAvatar) {
-                    0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
-                    1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
-                    2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
+            userList.forEach {
+                if (result.name == it.first) {
+                    when(it.second) {
+                        0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
+                        1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
+                        2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
+                    }
                 }
             }
+
+//            if(result.name == sSharedPreferences.getNickname()) {
+//                binding.ivAvatar
+//                when(selectedAvatar) {
+//                    0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
+//                    1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
+//                    2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
+//                }
+//            }
 
             when(layoutPosition) {
                 0 -> binding.ivMedal.setImageResource(R.drawable.img_1st)
