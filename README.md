@@ -54,7 +54,7 @@
 
 2. **AOS**  
 
-<img width="800" alt="안드로이드" src="https://user-images.githubusercontent.com/44612896/154423335-5974ab55-64b3-4d87-b248-4b65d01b4586.png">
+<img style = "width: 800px" alt="안드로이드" src="https://user-images.githubusercontent.com/44612896/154423335-5974ab55-64b3-4d87-b248-4b65d01b4586.png">
 
 <br/>
 
@@ -62,7 +62,7 @@
 
 <br/>
 
-<img width="800" alt="데이터베이스ERD" src="https://user-images.githubusercontent.com/44612896/154421616-1c0a13a8-6071-4147-86db-f3fa418151d9.png">
+<img style = "width: 800px" alt="데이터베이스ERD" src="https://user-images.githubusercontent.com/44612896/154421616-1c0a13a8-6071-4147-86db-f3fa418151d9.png">
 
 <br/>
 
