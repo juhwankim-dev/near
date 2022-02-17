@@ -94,11 +94,12 @@
 
 <br/>
 
-> <h3><font color="green">Functional Specification</font></h3>  
+> [<h3>🔗<font color="green"> Functional Specification</font></h3>](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)
 
 </br>
 
-![요구사항명세서](https://user-images.githubusercontent.com/44612896/154471334-064b7509-896c-4279-9411-3c93ab5f451a.gif)
+
+<img width=1000 alt="요구사항명세서" src=https://user-images.githubusercontent.com/44612896/154471334-064b7509-896c-4279-9411-3c93ab5f451a.gif >
 
 
 </br>
@@ -214,6 +215,12 @@ cd frontend/
 yarn run serve
 -------------------------
 npm run start
+```
+
+**Android**
+```bash
+# aos 폴더로 이동
+휴대폰에서 near.apk 파일 실행
 ```
 
 
