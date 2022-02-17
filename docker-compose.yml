@@ -29,22 +29,12 @@ services:
     volumes:
       - /app/node_modules
       - ./dev/fe:/home/node/app
-      - ../certbot/conf:/etc/letsencrypt
-      - ../certbot/www:/var/www/certbot
+      - /home/ubuntu/certbot/conf:/etc/letsencrypt
+      - /home/ubuntu/certbot/www:/var/www/certbot
     depends_on:
       - backend
     ports:
       - 80:80
       - 443:443
-    expose:
-      - '80'
-      - '443'
-    command: '/bin/sh -c''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot_service
-    volumes:
-      - ../certbot/conf:/etc/letsencrypt
-      - ../certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh - c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    
+    
