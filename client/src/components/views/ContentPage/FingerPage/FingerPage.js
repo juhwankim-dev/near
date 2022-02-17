@@ -18,11 +18,13 @@ function FingerPage(){
   return (
     <div>
      <NavBar></NavBar>
-     <button className="btn btn-primary btn1"  style={{marginTop: '30px',marginLeft: '180px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px',}} onClick={ ()=>{navigate(`/finger/1`)}}> 자음 </button> 
+     <div  >
+     <button className="btn btn-primary btn1"  style={{marginTop: '30px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px', marginLeft: '670px'}} onClick={ ()=>{navigate(`/finger/1`)}}> 자음 </button> 
      <button className="btn btn-primary btn1"  style={{marginTop: '30px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px',}} onClick={ ()=>{navigate(`/finger/2`)}}> 모음 </button> 
+     </div>
      <hr />
 {/* 자음  */}    
-<div className="container" style={{marginTop: '30px',}} >
+<div className="container" style={{marginTop: '30px',}} > 
       <div className='nemo' style={{marginTop: '30px',}}> 
         <div className="button-effect flex-container row" style={ {paddingTop: '33px'} } >
           {ja.map((data,i) => {

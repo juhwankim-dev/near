@@ -18,7 +18,7 @@ function FingerPage2() {
     <div>
       <NavBar></NavBar>
       <div>
-      <button className="btn btn-primary btn1"  style={{marginTop: '30px',marginLeft: '180px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px',}} onClick={ ()=>{navigate(`/finger/1`)}}> 자음 </button> 
+      <button className="btn btn-primary btn1"  style={{marginTop: '30px', marginLeft: '670px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px',}} onClick={ ()=>{navigate(`/finger/1`)}}> 자음 </button> 
       <button className="btn btn-primary btn1"  style={{marginTop: '30px', paddingLeft: '15px',  paddingRight: '15px',  marginBottom: '0px',}} onClick={ ()=>{navigate(`/finger/2`)}}> 모음 </button> 
       <hr />
       </div>

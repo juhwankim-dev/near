@@ -27,7 +27,7 @@ import OXQuiz3 from './components/views/OXQuiz/OXQuiz3';
 import OXQuiz4 from './components/views/OXQuiz/OXQuiz4';
 import OXQuiz5 from './components/views/OXQuiz/OXQuiz5';
 import OXQuizEnd from './components/views/OXQuiz/OXQuizEnd';
-
+import FingerQuiz2 from './components/views/FingerGame/FingerQuiz2';
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
 
@@ -38,12 +38,13 @@ function App() {
     <Router>
       
       <Routes>
-        <Route path="/" element={<LandingPage /> } />
+        <Route path="/" element={<MainPage /> } />
         {/* <Route exact path="/" element={<LandingPage /> } /> */}
         <Route path="/main" element={<MainPage />} />
         {/* <Route path="/game" element={<Game />} />
         <Route path="/gameroom" element={<GameRoom />} /> */}
         <Route path="/fingerquiz" element={<FingerQuiz />} />
+        <Route path="/fingerquiz2" element={<FingerQuiz2 />} />
         <Route path ="/oxquiz/start" element={<OXQuizStart />} />
         <Route path ="/oxquiz/start/cnt" element={<OXQuizStartCnt />} />
         <Route path ="/oxquiz" element={<OXQuiz />} />
