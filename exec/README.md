@@ -35,8 +35,9 @@
 ### Docker 설치
 
 
-자세한 사항은 [공식문서](https://docs.docker.com/engine/install/ubuntu/)를 참조해주세요.<br />
-**repository index 갱신하기**
+자세한 사항은 [공식문서](https://docs.docker.com/engine/install/ubuntu/)를 참조해주세요.
+<br /><br />
+**repository index 갱신하기**<br />
 `apt` 패키지를 업데이트 한 후 도커 다운을 위해 필요한 패키지를 설치합니다.
 
 ```bash
@@ -60,7 +61,7 @@ $ echo \
 ```
 <br />
 
-**Docker Engine 설치**
+**Docker Engine 설치**<br />
 `apt` 패키지를 업데이트하고 Docker 최신 버전을 설치합니다.
 ```bash
 $ sudo apt-get update
@@ -73,10 +74,10 @@ $ sudo docker run hello-world
 <br />
 
 ### Docker compose 설치
-Linux는 docker-compose를 따로 설치해줘야합니다.
+Linux는 docker-compose를 따로 설치해줘야합니다.<br />
 이 프로젝트에서는 v1을 설치할 예정입니다. 자세한 사항은 [공식문서](https://docs.docker.com/compose/install/)를 참조해주세요.
-<br />
-**Docker compose 다운**
+<br /><br />
+**Docker compose 다운**<br />
 최신의 안정적 배포 버전을 다운로드 합니다.
 ```bash
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -101,13 +102,12 @@ $ docker-compose --version
 ### gradle 설치 및 build
 spring의 jar 파일을 생성하기 위해 gradle을 설치 및 빌드해주어야 합니다.
 
-**openjdk 11 설치**
+**openjdk 11 설치**<br />
 `apt` 패키지를 업데이트하고 `openjdk-11-jdk`를 설치합니다.
 ```bash
 $ sudo apt-get update && sudo apt-get upgrade
 $ sudo apt-get install openjdk-11-jdk
 ```
-
 설치되었는지 확인합니다.
 ```bash
 $ java -version
@@ -118,6 +118,7 @@ $ java -version
 $ javac -version
 # javac 11.0.9.1
 ```
+<br />
 
 **gradle 설치 및 빌드**
 ```bash
@@ -126,35 +127,78 @@ $ ./gradlew build ./server/build.gradle
 ```
 <br />
 
-### Docker-compose 실행
+### ssl 인증서 발급
+✅ `./client/nginx.conf` 파일에서 server_name을 각자의 도메인 주소로 바꿔주세요.<br />
+Docker로 인증서를 발급받습니다.
+```bash
+docker run -it --rm --name cert_tmp -p 80:80 -v ../certbot/conf:/etc/letsencrypt certbot/certbot certonly --standalone -d [도메인 주소] -m [이메일]
+```
 
+두 번 y를 입력해주세요. 다음과 같이 뜨면 인증서 발급에 성공하였습니다.
+``` bash
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Please read the Terms of Service at
+https://letsencrypt.org/documents/LE-SA-v1.2-November-15-2017.pdf. You must
+agree in order to register with the ACME server. Do you agree?
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+Would you be willing, once your first certificate is successfully issued, to
+share your email address with the Electronic Frontier Foundation, a founding
+partner of the Let's Encrypt project and the non-profit organization that
+develops Certbot? We'd like to send you email about our work encrypting the web,
+EFF news, campaigns, and ways to support digital freedom.
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+(Y)es/(N)o: y
+Account registered.
+Requesting a certificate for [도메인주소]
+
+Successfully received certificate.
+Certificate is saved at: /etc/letsencrypt/live/[도메인주소]/fullchain.pem
+Key is saved at:         /etc/letsencrypt/live/[도메인주소]/privkey.pem
+This certificate expires on 2022-05-18.
+These files will be updated when the certificate renews.
+
+NEXT STEPS:
+- The certificate will need to be renewed before it expires. Certbot can automatically renew the certificate in the background, but you may need to take steps to enable that functionality. See https://certbot.org/renewal-setup for instructions.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+If you like Certbot, please consider supporting our work by:
+ * Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+ * Donating to EFF:                    https://eff.org/donate-le
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+```
+<br />
+
+### Docker-compose 실행
+docker compose로 애플리케이션을 실행합니다.
+```bash
+docker-compose up -d
+```
+<br />
 
 ## 2. 배포 시 특이사항
-http://[도메인주소]/main 페이지가 시작페이지입니다.
+`https://[도메인주소]/main`이 시작페이지입니다.
 
 
 ## 3. DB 접속 정보 등 프로젝트(ERD)에 활용되는 주요 계정 및 프로퍼티가 정의된 파일 목록
-- DB 생성 파일
+- DB 생성 파일<br />
   ./docker-compose.yml
 <br />
 
-- 주요 계정 및 프로퍼티 정의 파일
+- 주요 계정 및 프로퍼티 정의 파일<br />
   ./server/api-module/src/main/resources/application-real.yml
 
+<br /><br /><br />
+
+***
 
 
-//////////////////////////////////////////////////////////////////////////////////
 # 프로젝트에서 사용된 외부 서비스
-1. Teachable Machine
+### Teachable Machine
 
-///////////////////////////////
-2. Stomp
-3. 비디오
-4. AI Hub
+### AI Hub
 
-
-
-할 거
-DB 덤프파일 최신본
-시연 시나리오(PPT로?)
- -> 시연 순서에 따른 site 화면별, 실행별(클릭위치 등) 상세설명
