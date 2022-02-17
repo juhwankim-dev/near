@@ -10,7 +10,7 @@ import {
 
 export function loginUser(body) { //body에 넣어준 값들을 파라미터를 통해서 받아준다.
 
-  const request = axios.post(`https://hoonycode2.loca.lt/api/sign/login`, body)
+  const request = axios.post(`http://i6d203.p.ssafy.io:8185/api/sign/login`, body)
     .then((res) => res.data) //서버(백엔드)에서 받은 data를 request에 저장해준다.
     console.log(request);
 
@@ -22,7 +22,7 @@ export function loginUser(body) { //body에 넣어준 값들을 파라미터를 
 
 export function registerUser(body) { //body에 넣어준 값들을 파라미터를 통해서 받아준다.
 
-  const request = axios.post(`https://hoonycode2.loca.lt/api/sign/signup`, body)
+  const request = axios.post(`http://i6d203.p.ssafy.io:8185/api/sign/signup`, body)
 
     .then((res) => res.data); //서버(백엔드)에서 받은 data를 request에 저장해준다.
     console.log(request);
@@ -60,13 +60,13 @@ export function registerUser(body) { //body에 넣어준 값들을 파라미터�
 //   };
 // }
 
-export function auth() { 
+// export function auth() { 
 
-  const request = axios.get('/api/users/auth')
-    .then(response => response.data)
+//   const request = axios.get('/api/users/auth')
+//     .then(response => response.data)
 
-    return {
-      type: AUTH_USER, 
-      payload: request 
-  } 
-}
+//     return {
+//       type: AUTH_USER, 
+//       payload: request 
+//   } 
+// }

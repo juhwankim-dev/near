@@ -40,7 +40,7 @@ const changeColor = () => {
 
  const addBookmark = () => {
   axios
-  .post(`https://hoonycode2.loca.lt/api/hand/bookmark`,
+  .post(`http://i6d203.p.ssafy.io:8185/api/hand/bookmark`,
    {handcontent_key: parseInt(i)+151,
    id: realId}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
@@ -51,7 +51,7 @@ const changeColor = () => {
 
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode2.loca.lt/api/hand/`)
+      await fetch(`http://i6d203.p.ssafy.io:8185/api/hand/`)
     ).json();
     setHandDatas(json.data);
     setHandKey(json.data[i])
