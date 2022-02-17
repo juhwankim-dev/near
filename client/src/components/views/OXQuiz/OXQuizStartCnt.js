@@ -6,8 +6,8 @@ const OXQuizStartCnt = () => {
   alert("❤카메라 권한을 허용해주세요~ ❤ \n ❤해당 동작을 최소 5번 이상 반복 연습 해주세요❤ ");
   
   setTimeout(function() {
-    // window.location.href = 'https://i6d203.p.ssafy.io/oxquiz';
-    window.location.href = 'http://localhost:3000/oxquiz';
+    window.location.href = 'https://i6d203.p.ssafy.io/oxquiz';
+    // window.location.href = 'http://localhost:3000/oxquiz';
   },3500);
  
   return (

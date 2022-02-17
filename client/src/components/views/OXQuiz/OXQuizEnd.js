@@ -215,7 +215,7 @@ const OXOuizEnd = () => {
   <div class="star"></div>
   <div class="star"></div>
 </div>
-<Button style={{backgroundColor:'#0b4dae;'}} href='http://localhost:3000/oxquiz/start'>다시하기</Button>
+<Button style={{backgroundColor:'#0b4dae;'}} href='https://i6d203.p.ssafy.io/oxquiz/start'>다시하기</Button>
     </div>
   )
 }
