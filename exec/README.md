@@ -192,7 +192,11 @@ docker-compose up -d
 - 주요 계정 및 프로퍼티 정의 파일<br />
   ./server/api-module/src/main/resources/application-real.yml
 
+- DB dump.sql  
+  [Near_Dump.sql](Near_Dump.sql)
+
 <br /><br /><br />
+
 
 ***
 
