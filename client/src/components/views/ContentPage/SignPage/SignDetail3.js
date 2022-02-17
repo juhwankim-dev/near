@@ -22,11 +22,13 @@ function SignDetail3(props){
   const {i} = useParams();
   const handkeyyy = parseInt(i)+1
   const handkeyy = parseInt(i)-1
+  const [id, setId] = useState(0);
   let navigate = useNavigate();
-  const id = JSON.parse(localStorage.getItem('user'));
   // const id = JSON.parse(localStorage.getItem('user'));
-  const realId = id.id
-  console.log(realId);
+  // const id = JSON.parse(localStorage.getItem('user'));
+  // const realId = id.id
+  // console.log(realId);
+  console.log(id);
   
 
 
@@ -39,10 +41,12 @@ const changeColor = () => {
 
 
  const addBookmark = () => {
+  //  setId(JSON.parse(localStorage.getItem('user')).id);
+   
   axios
   .post(`https://i6d203.p.ssafy.io:8185/api/hand/bookmark`,
    {handcontent_key: parseInt(i)+1,
-   id: realId}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
+   id: JSON.parse(localStorage.getItem('user')).id}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
   .then(response => {
     console.log(response)})
