@@ -141,7 +141,7 @@ function RegisterPage(props) {
 
 		if (Password === ConfirmPasword) {
 
-      axios.post('https://hoonycode2.loca.lt/api/sign/signup', 
+      axios.post('http://i6d203.p.ssafy.io:8185/api/sign/signup', 
       JSON.stringify({  
         email: Email,
         uid: Id,
