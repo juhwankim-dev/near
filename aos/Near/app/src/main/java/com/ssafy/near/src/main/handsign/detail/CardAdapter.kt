@@ -1,5 +1,6 @@
 package com.ssafy.near.src.main.handsign.detail
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +12,7 @@ class CardAdapter(var list: Array<HandSignInfo?>) : RecyclerView.Adapter<CardAda
     inner class CardViewHolder(private val binding: ListItemHandSignCardBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(handSignInfo: HandSignInfo) {
             binding.handSignInfo = handSignInfo
-            binding.isFirstCard = layoutPosition == 0
+            binding.isFirstCard = (layoutPosition == 0)
         }
     }
 

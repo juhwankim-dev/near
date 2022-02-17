@@ -34,7 +34,8 @@
             app:layout_constraintBottom_toBottomOf="@+id/view_bg"
             app:layout_constraintStart_toStartOf="@+id/view_bg"
             app:layout_constraintTop_toTopOf="@+id/view_bg"
-            app:srcCompat="@drawable/img_handsign_sample_2" />
+            bindImageUrl="@{handSignInfo.image_path}"
+            tools:srcCompat="@drawable/img_handsign_sample_2" />
 
         <TextView
             style="@style/header_text"

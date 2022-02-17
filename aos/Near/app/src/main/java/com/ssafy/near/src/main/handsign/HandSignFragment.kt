@@ -163,7 +163,7 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
             }
 
             false -> {
-                imageView.imageTintList = ColorStateList.valueOf(imageView.resources.getColor(R.color.temp_blue))
+                imageView.imageTintList = ColorStateList.valueOf(imageView.resources.getColor(R.color.main_color))
                 isChecked = true
             }
         }

@@ -55,7 +55,7 @@ var wordflick = function(){
   },speed);
 };
 
-$(document).ready(function(){
+$(document).ready(function() {
   wordflick();
 });
 

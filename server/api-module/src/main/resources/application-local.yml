@@ -58,9 +58,9 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: happyhouse.gumi@gmail.com
-    to-name:  happyhouse.gumi@gmail.com
-    password: ssafygumi04
+    username: ssafy.dev@gmail.com # 구글 아이디
+    to-name:  ssafy.dev@gmail.com
+    password: sldjchlrh! # 구글 비밀번호
     properties:
       mail:
         smtp:

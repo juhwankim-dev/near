@@ -6,15 +6,19 @@ import './VocaPage.scss';
 // import abc from '../../../../assets/abc.PNG';
 // import def from '../../../../assets/def.png';
 import axios from 'axios';
+import { Button } from 'react-bootstrap';
 
 
 
 function VocaDetail(props){
 
+
   const [handDatas, setHandDatas] = useState([]);
   const [handKey, setHandKey] = useState(null);
+  const [heart, setHeart] = useState('🖤');
   const {i} = useParams();
-  const handkeyy = parseInt(i)+1
+  const handkeyyy = parseInt(i)+1
+  const handkeyy = parseInt(i)-1
   let navigate = useNavigate();
   const id = JSON.parse(localStorage.getItem('user'));
   const realId = id.id
@@ -54,6 +58,7 @@ function VocaDetail(props){
         console.log(response)
         // commit("loginSuccess", userInfo)
       })
+      setHeart('🤍')
     }
   
 
@@ -68,41 +73,36 @@ var name = (JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "");
 
 
   return (
-    <div style={{ width:'1400px' }} className='detail'> 
-    <div className="flex-container row">
+    <div style={{ width:'1700px', marginTop:'20px',  }} className='detail'> 
+    <div style={{marginTop: '100px', height:'1100px' }} className="flex-container row">
 
 
-    <div className="flex-container"  style={{ width:'1500px' }} >
-      <h1 style={ {  paddingTop:'5px', paddingLeft:'35px', fontWeight:'bold', color:'black', width:'1070px' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
-      <button style={ {paddingTop:'0px', marginTop:'30px', marginLeft:'0px', height:'52px', width:'60px', fontSize:'35px', } } className="btn btn-danger"
-      onClick={ ()=>{deleteBookmark()}} >❤</button> 
-      
+    <div className="flex-container"  style={{ width:'1700px' }} >
+      <h1 style={ {  paddingTop:'10px', paddingLeft:'30px', fontWeight:'bold', color:'black', width:'82%' }} className="title">{(JSON.stringify(handDatas[i]?.name)||'').replace(/\"/gi, "").split('(')[0]}</h1>
+      <Button style={{paddingTop:'0px', marginTop:'30px', marginLeft:'0px', paddingLeft:'7px', height:'52px', width:'60px', fontSize:'35px', }} className="btn btn-danger"
+      onClick={ ()=>{deleteBookmark()}} >{heart}</Button> 
+
       <div className='buttons'>
-          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &lt; </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/myvoca/${handkeyy}`)}}> &lt; </button> 
           <button style={{paddingTop:'0px',  height:'52px', width:'70px',}} className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/myvoca`)}}> 목록 </button> 
-          {/* <button className="btn btn-primary btn1"   onClick={ ()=>{navigate(`/sign`)}} > 목록 </button>  */}
-          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"> &gt;  </button> 
+          <button style={{paddingTop:'0px',  height:'52px', width:'60px',}} className="btn btn-primary btn1"  onClick={ ()=>{navigate(`/myvoca/${handkeyyy}`)}}> &gt;  </button> 
     </div>
     </div>
 
     <div>
-    <h3 className='meaning' style={{ paddingLeft:'35px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
+    <h3 className='meaning' style={{ width:'1400px', paddingLeft:'30px', fontWeight:'bolder', color:'black'  } }>{(JSON.stringify(handDatas[i]?.mean)||'').replace(/\"/gi, "")}</h3>
     </div>
     
     <div className="flex-container "> 
-    {/* <video className="flex-item-video" src={vid} type="video/mp4"  autoPlay loop muted /> */}
-      {/* <img className="flex-item-img" src={abc} alt="" /> */}
-      <div >
-        {/* <img className='flex-item-img2' src={def} alt="" /> */}
-      {/* <img className='flex-item-img' src="https://wis.seoul.go.kr/rest/file/download/p93598vytek4exoub5pirn8ehjnjjl40/1" alt="" />
-      <img className='flex-item-img' src="https://wis.seoul.go.kr/rest/file/download/p93598vytek4exoub5pirn8ehjnjjl40/2" alt="" /> */}
+    <video style={{  marginTop:'10px', height: '700px', width:'65%' }} className="flex-item-video" src={(JSON.stringify(handDatas[i]?.video_path)||'').replace(/\"/gi, "")} type="video/mp4"  autoPlay loop muted />
+      <div>
+      <img style={{  marginTop:'10px', marginLeft:'15px', height: '700px', width:'93%' }} className='flex-item-img' src={(JSON.stringify(handDatas[i]?.image_path)||'').replace(/\"/gi, "")}/>
       </div>
     </div>
 
-    <div style={{ width:'1320px' }} className="description" >
+    <div style={{ marginTop:'15px', width:'1650px' }} className="description" >
     <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.movement)||'').replace(/\"/gi, "")}</div>
-    <br />
-    <div style={{ fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
+    <div style={{ marginTop:'10px', fontSize:'27px', color:'black' }}>{(JSON.stringify(handDatas[i]?.explanation)||'').replace(/\"/gi, "")}</div>
     </div>
    
     </div>

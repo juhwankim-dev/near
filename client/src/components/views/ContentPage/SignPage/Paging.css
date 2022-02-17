@@ -1,45 +1,35 @@
-.pagination { 
-    display: flex; 
-    justify-content: center; 
-    margin-top: 20px; } 
+.react-hooks-paginator .page-item:last-child .page-link {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px; }
 
-  ul { 
-    list-style: none; 
-    padding: 0; } 
+.react-hooks-paginator .page-item:hover .page-link, .react-hooks-paginator .page-item.active .page-link
+ { background-color: #5b9cff;
+  border-color: #5b9cff;      
+  color: #fff; }
+  
+  .react-hooks-paginator .page-link {border: 1px solid #dee2e6;   color: #4a4a4a;  margin-left: -1px;
+       outline: none;  padding: 0.5rem 0.75rem; text-decoration: none;  transition: all 0.2s; }
 
-  ul.pagination li { 
-    display: inline-block;
-    width: 37px; 
-    height: 37px; 
-    border: 1px solid #e2e2e2; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 1rem; } 
+.page-item .active { 
+  background-color: #e924df; } 
 
-  ul.pagination li:first-child{ 
-    border-radius: 5px 0 0 5px; } 
+.page-selection {
+  background-color: #b7335b;
+}
 
-  ul.pagination li:last-child{ 
-    border-radius: 0 5px 5px 0; } 
+.page-link {
+  margin-top: 0px;
+  width: 60px; 
+    height: 60px; 
+    background-color: #ffffff;
+    font-size: x-large;
+    font-weight: bold;
+}
 
-  ul.pagination li a { 
-    text-decoration: none; 
-    color: #337ab7; 
-    font-size: 1rem; } 
+.page-item.active .page-link {
+  background-color: #d33838;
+  border-color: #3895d3;
+  color: #fff;
+}
 
-  ul.pagination li.active a { 
-    color: white; } 
-
-  ul.pagination li.active { 
-    background-color: #248de9; } 
-
-  ul.pagination li a:hover, 
-  ul.pagination li a.active { 
-    color: blue; } 
-    
-  .page-selection { 
-    width: 48px; 
-    height: 30px; 
-    color: #337ab7; }
 

@@ -3,29 +3,69 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" >
 
+    <data>
+        <variable
+            name="roomInfo"
+            type="com.ssafy.near.dto.RoomInfo" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_ox_game"
         tools:context=".src.main.game.wordquiz.WaitingRoomFragment">
 
+        <ImageView
+            android:id="@+id/iv_exit_game"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_exit_game" />
+
         <TextView
-            android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="대기"
+            android:text="대기방"
+            android:textSize="16sp"
+            android:textColor="#4b4746"
+            android:fontFamily="@font/bm_jua_ttf"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_exit_game"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_exit_game"/>
+
+        <ImageView
+            android:id="@+id/iv_setting"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_setting_game" />
+
+        <GridView
+            android:id="@+id/gv_waiting_user"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:numColumns="2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_exit_game" />
 
-        <Button
-            android:id="@+id/button"
+        <ImageView
+            android:id="@+id/btn_play_game"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="게임 시작"
+            android:layout_height="68dp"
+            android:adjustViewBounds="true"
+            android:layout_marginBottom="@dimen/activity_margin_default"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
+            app:srcCompat="@drawable/img_button_game_start" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
