@@ -8,7 +8,7 @@ const FingerQuiz2 = () => {
  
   var imgArray= new Array();
   imgArray[0]="game/코로나.gif";  //사진
-  imgArray[1]="game/코로나.gif";   //사진
+  imgArray[1]="game/삼성.gif";   //사진
   imgArray[2]="game/코로나.gif";   //사진
   imgArray[3]="game/코로나.gif";   //사진
 
@@ -17,7 +17,7 @@ const FingerQuiz2 = () => {
   {
     var imgNum=Math.round(Math.random()*3);
     var objImg=document.getElementById("introImg");
-    objImg.src=imgArray[imgNum];
+    objImg.src=imgArray[0];
   }
 
 
@@ -69,6 +69,7 @@ function timer() {
 
     const wordArray ={ 
       코로나: 'game/코로나.gif',
+      삼성: 'game/삼성.gif',
     };
 
     let count = 0; // 틀린 횟수 확인용 변수
@@ -82,11 +83,24 @@ function timer() {
       // console.log(wordArray);
       // console.log(Object.keys(wordArray));
       newWordArray.push(Object.keys(wordArray));
-      let randomWord = newWordArray;
-      word.innerText = randomWord;
+      let randomWord = newWordArray[0];
+      console.log(randomWord);
+      word.innerText = randomWord[0];
     }
 
-   
+   function change() {
+    var objImg=document.getElementById("introImg");
+    objImg.src=imgArray[1];
+
+    let newWordArray = [];
+    // console.log(wordArray);
+    // console.log(Object.keys(wordArray));
+    newWordArray.push(Object.keys(wordArray));
+    let randomWord = newWordArray[0];
+    console.log(randomWord);
+    word.innerText = randomWord[1];
+    
+   }
   
     // 틀린단어
     function validation() {
@@ -111,7 +125,7 @@ function timer() {
       let score = 0;
       scoreText.innerText = parseInt(scoreText.innerText) + 20;
       
-      if (scoreText.innerText >= 20) {
+      if (scoreText.innerText >=80) {
           alert('정답👏');
           window.location.reload();
       }
@@ -125,9 +139,9 @@ function timer() {
       randomWord();
       inputText.value = "";   
       if (currentValue === innerTextWord) {
-          
+          alert('정답👏');
           addScore();
-    
+          change();
       } else {
         alert("틀렸어요😅");
 

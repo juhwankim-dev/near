@@ -20,7 +20,7 @@ function Myvoca() {
 
   const getMyVocas = async () => {
     const json = await (
-      await fetch(`/api/hand/bookmark/${realId}`)
+      await fetch(`https://i6d203.p.ssafy.io:8185/api/hand/bookmark/${realId}`)
     ).json();
     setVocas(json.data);
   };
