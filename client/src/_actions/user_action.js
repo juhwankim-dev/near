@@ -60,13 +60,13 @@ export function registerUser(body) { //body에 넣어준 값들을 파라미터�
 //   };
 // }
 
-// export function auth() { 
+export function auth() { 
 
-//   const request = axios.get('/api/users/auth')
-//     .then(response => response.data)
+  const request = axios.get('/api/users/auth')
+    .then(response => response.data)
 
-//     return {
-//       type: AUTH_USER, 
-//       payload: request 
-//   } 
-// }
+    return {
+      type: AUTH_USER, 
+      payload: request 
+  } 
+}
