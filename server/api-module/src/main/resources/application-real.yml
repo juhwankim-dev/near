@@ -83,6 +83,16 @@ server:
         http-only: true
         secure: true
   max-http-header-size: 3145728
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:/keystore.p12
+    key-store-password: near0204!
+    key-alias: near
+  trust:
+    store: classpath:/keystore.p12
+    store.password: near0204!
+
 
 aes256:
   key: WZsExuBV3GSQ55Uf
