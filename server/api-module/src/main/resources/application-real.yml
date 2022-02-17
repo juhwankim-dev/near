@@ -62,7 +62,7 @@ spring:
     port: 587
     username: ssafy.dev@gmail.com # 구글 아이디
     to-name:  ssafy.dev@gmail.com
-    password: sldjchlrh! # 구글 비밀번호
+    password: ljufsapoguewlufk # 비밀번호
     properties:
       mail:
         smtp:
@@ -83,6 +83,16 @@ server:
         http-only: true
         secure: true
   max-http-header-size: 3145728
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:/keystore.p12
+    key-store-password: near0204!
+    key-alias: near
+  trust:
+    store: classpath:/keystore.p12
+    store.password: near0204!
+
 
 aes256:
   key: WZsExuBV3GSQ55Uf
@@ -93,4 +103,4 @@ app:
 
 # swagger에서 테스트 할 때의 host
 swagger:
-  host: i6d203.p.ssafy.io:8185
+  host: hoonycode2.loca.lt
