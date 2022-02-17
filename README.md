@@ -35,9 +35,29 @@
 
 > <h3><font color="red">WireFrame</font></h3>
 
+<br>
+
+**안드로이드**
+
+<img width="1513" alt="안드로이드" src="https://user-images.githubusercontent.com/44612896/154423335-5974ab55-64b3-4d87-b248-4b65d01b4586.png">
+
+<br>
+
+**웹**
+
+![웹디자인](https://user-images.githubusercontent.com/44612896/154429378-ecebe906-77fa-40dd-b660-18926425c9a6.png)
+
+
+
+
 
 > <h3><font color="blue">ERD</font></h3>
 
+<br>
+
+<img width="1572" alt="데이터베이스ERD" src="https://user-images.githubusercontent.com/44612896/154421616-1c0a13a8-6071-4147-86db-f3fa418151d9.png">
+
+<br>
 
 > <h3><font color="green">Functional Specification</font></h3>
 
@@ -206,6 +226,8 @@ npm run start
   </a>
 </p>
 <p align="center">
+  <a href="https://docs.aws.amazon.com/s3/index.html?nc2=h_ql_doc_ec2">
+    <img src="https://img.shields.io/badge/AWS-S3-orange?style=plastic&logo=amazon">
   <a href="https://docs.aws.amazon.com/ec2/index.html?nc2=h_ql_doc_ec2">
     <img src="https://img.shields.io/badge/AWS-EC2-orange?style=plastic&logo=amazon">
   </a> 
@@ -250,7 +272,7 @@ npm run start
 
 - 개발 파트 : **Backend**
 - MBTI : ESTJ
-- 담당 개발 : **REST API 개발**, DB 설계 및 구축, JPA 처리 (유저,이메일,비밀번호,변경 수어/지문자 API 구현)
+- 담당 개발 : **REST API 개발**, DB 설계 및 구축, JPA 처리 (유저,이메일,비밀번호,변경 수어/지문자 API 구현,Socket 통신 구현)
 - 팀내 역할 : 도라에몽
 - 개발 각오 : 프로젝트를 하면서 여러 가지 문제들을 겪을 텐데 이 문제를 해결하기 위해 끊임없이 학습하고, 새로운 시도와 개선을 하며 팀과 함께 하루하루 성장하고 싶어요
 
