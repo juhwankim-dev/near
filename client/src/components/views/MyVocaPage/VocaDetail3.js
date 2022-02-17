@@ -31,7 +31,7 @@ function VocaDetail(props){
   
   const getHandDatas = async () => {
     const json = await (
-      await fetch(`https://hoonycode2.loca.lt/api/hand/bookmark/${realId}`)
+      await fetch(`http://i6d203.p.ssafy.io:8185/api/hand/bookmark/${realId}`)
     ).json();
     setHandDatas(json.data);
     // setHandKey(JSON.stringify(handDatas[i]?.handcontent_key));
@@ -46,7 +46,7 @@ function VocaDetail(props){
   
   const deleteBookmark = () => {
     axios
-    .delete(`https://hoonycode2.loca.lt/api/hand/bookmark`,
+    .delete(`http://i6d203.p.ssafy.io:8185/api/hand/bookmark`,
     { data: 
       {handcontent_key: handDatas[i]?.handcontent_key,
      id: realId}

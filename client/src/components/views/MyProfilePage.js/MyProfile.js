@@ -9,7 +9,7 @@ function MyProfile(){
   const loginUser = JSON.parse(localStorage.getItem('user'));
   const token = (JSON.parse(localStorage.getItem('user'))).token;
 
-  axios.post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
+  axios.post(`http://i6d203.p.ssafy.io:8185/api/sign/userInfo/`,
            {token: token})
           .then((res)=> {
             setMyProfile(res.data.data);

@@ -5,7 +5,7 @@ import axios from "axios";
 export function getHandDataAction() {
   const data = request(
     'GET',
-    `https://hoonycode.loca.lt/api/hand/`,
+    `http://i6d203.p.ssafy.io:8185/api/hand/`,
     {},
   );
 
