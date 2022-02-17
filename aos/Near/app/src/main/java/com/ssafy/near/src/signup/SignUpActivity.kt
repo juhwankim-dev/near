@@ -2,6 +2,7 @@ package com.ssafy.near.src.signup
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
@@ -155,7 +156,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 isCheckedEmail == false     -> binding.etEmail.requestFocus()
                 isCheckedPw == false        -> binding.etPw.requestFocus()
                 isCheckedConfirmPw == false -> binding.etConfirmPw.requestFocus()
-                //isCheckedCertNum == false   -> binding.etCert.requestFocus()
+                isCheckedCertNum == false   -> binding.etCert.requestFocus()
                 else -> {
                     val id = binding.etId.text.toString()
                     val nickname = binding.etNickname.text.toString()
@@ -176,6 +177,7 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
                 certNumber -> {
                     isCheckedCertNum = true
                     showToastMessage("인증이 완료되었습니다.")
+                    binding.tvCertError.text = ""
                 }
                 else -> {
                     isCheckedCertNum = false
