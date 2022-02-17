@@ -40,7 +40,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     private lateinit var callback: OnBackPressedCallback
 
     private lateinit var roomInfo: RoomInfo
-    private lateinit var userList: ArrayList<String>
+    private lateinit var userList: ArrayList<Pair<String, Int>>
     private lateinit var nickname: String
 
     private lateinit var pbTimer: Timer
@@ -65,7 +65,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         super.onCreate(savedInstanceState)
         arguments?.let {
             roomInfo = it.getSerializable("roomInfo") as RoomInfo
-            userList = it.getStringArrayList("userList") as ArrayList<String>
+            userList = it.getStringArrayList("userList") as ArrayList<Pair<String, Int>>
             nickname = it.getString("nickname") as String
         }
     }
@@ -121,21 +121,26 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         for (i in tvUserNameList.indices) {
             if (i < userList.size) {
                 ivCrownList[i].visibility = View.INVISIBLE
-                tvUserNameList[i].text = userList[i]
+                tvUserNameList[i].text = userList[i].first
                 tvUserScoreList[i].text = "0 점"
+                when (userList[i].second) {
+                    0 -> ivUserList[i].setImageResource(R.drawable.img_avatar_1)
+                    1 -> ivUserList[i].setImageResource(R.drawable.img_avatar_2)
+                    2 -> ivUserList[i].setImageResource(R.drawable.img_avatar_3)
+                }
             } else {
                 ivCrownList[i].visibility = View.GONE
                 tvUserNameList[i].visibility = View.GONE
-                ivUserList[i].visibility = View.GONE
                 tvUserScoreList[i].visibility = View.GONE
+                ivUserList[i].visibility = View.GONE
             }
         }
 
-        when(wordQuizViewModel.selectedAvatar) {
-            0 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_1)
-            1 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_2)
-            2 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_3)
-        }
+//        when(wordQuizViewModel.selectedAvatar) {
+//            0 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_1)
+//            1 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_2)
+//            2 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_3)
+//        }
     }
 
     private fun initEvent() {
@@ -147,7 +152,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 val answer = binding.etYourAnswer.text.toString().replace(" ", "")
                 if (answer == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
-                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, "100")
+                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo!!.roomId, nickname!!, "100")
                 }
                 binding.etYourAnswer.setText("")
                 binding.etYourAnswer.isEnabled = false
@@ -207,7 +212,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                // wordQuizViewModel.sendMessage(MsgType.END, roomInfo.roomId, "", "")
                 //delay(3000)
 
-                (context as WordQuizActivity).onChangeFragment(WordResultFragment())
+                (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(userList))
             }
         }
     }
@@ -216,7 +221,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         var max = 0
         var maxIdx = -1
         for (i in userList.indices) {
-            val score = wordQuizViewModel.getUserScore(userList[i])!!
+            val score = wordQuizViewModel.getUserScore(userList[i].first)!!
             tvUserScoreList[i].text = "$score 점"
 
             if (score > max) {
@@ -236,7 +241,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
 
     companion object {
         @JvmStatic
-        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<String>, nickname: String) =
+        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<Pair<String, Int>>, nickname: String) =
             WordQuizFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable("roomInfo", roomInfo)

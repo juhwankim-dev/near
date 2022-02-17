@@ -1,8 +1,30 @@
+<div align="left">
+<img width="200" src="https://user-images.githubusercontent.com/44612896/154493835-6f5a22ba-24dc-4f9c-af63-8b766e1cfcdf.png">
+</div>
+<br/>
+
 ## 🌐 N:ear ?
 
 <font size="5" color="orange">**_N:ear_**</font> 프로젝트는 지문자 및 수어 게임을 통한 학습 프로젝트입니다. 또한 모바일 및 웹 서비스를 제공하고 있습니다. 주요 기획 의도는 <strong>개발진의 역량 향상</strong>과 <strong>인공지능 영상처리 및 학습 서비스 개발 경험</strong>이였습니다. 그래서 클론 코딩을 하기보다는 자체적으로 개발을 하고 다양한 학습 서비스를 분석하면서 최대한 사용자의 편의성을 생각한 지문자 및 수어 서비스를 제공하고자 하였습니다.
 
 - `N:ear` : '가까운'을 의미하는 'Near' 그리고 '소리를 듣는 기관인 귀'를 의미하는 'ear'의 합성어
+
+
+<h3> 🖥 Fornt-End </h3> 
+</br></br>
+
+<img width="1000px" src="https://user-images.githubusercontent.com/44612896/154493119-289e4aca-54f7-4a47-ac3e-d468643ad605.gif">
+</br></br>
+
+<h3> 📱 Android </h3>
+</br></br>
+
+
+<img  width="500px" alt="Front-end" src="https://user-images.githubusercontent.com/44612896/154488061-61a3e81b-8d70-4f71-9b50-c6c24aa7591a.gif">
+
+</br></br>
+
+</br>
 
 ## 💡 Description
 
@@ -17,10 +39,15 @@
     <li>✔️애니메이션 동영상과 이미지, 그리고 뜻 제공까지 한큐에 학습 가능하게 처리</li>
 </ul>
 
+<br/>
+
 > <h3><font color="blue">프로젝트 서비스 요약</font></h3>
 
 <p>
 서비스를 간단히 요약하자면, "<font color=orange>지문자 및 수어 게임을 통한 학습 프로젝트</font>"입니다. 학습 서비스의 구조를 최대한 따라가되, 리액트 등 좀 더 진보된 기술들을 활용함으로써 역량 향상 및 학습 서비스를 개발하고자 하였습니다. 기존에 존재하는 지문자/수어 학습 서비스와 달리 게임이라는 방식을 도입해 학습자는 좀 더 쉽고 재미있는 '학습게임', '동작 인식'을 제공하여 비대면이지만 학습자가 옳은 방향으로 학습을 진행할 수 있도록 가이드라인을 제공해주고자 하였습니다.</p>
+
+<br/>
+
 
 >  <h3><font color="green">주요 서비스 기능</font></h3>
 
@@ -30,20 +57,49 @@
 	<li>⭐️지문자/수어 학습한 내용을 좀 더 쉽고 재밌게 복습하고자 만든 게임 시스템</li>
 	<li>⭐️마이 캐릭터 시스템을 도입한 게임 학습 활성화</li>
 </ul>
+<br/>
+
 
 ## 🧩 Design
 
-> <h3><font color="red">WireFrame</font></h3>
 
+
+> <h3><font color="red">WireFrame</font></h3>  
+
+<h3> 🖥 Fornt-End </h3> 
+
+</br></br>
+
+
+<img width="1000px" alt="Front-end" src="https://user-images.githubusercontent.com/44612896/154429378-ecebe906-77fa-40dd-b660-18926425c9a6.png">
+
+<br/><br/>
+
+<h3> 📱 Android </h3>
+</br></br>
+
+
+<img width="1000px" alt="안드로이드" src="https://user-images.githubusercontent.com/44612896/154423335-5974ab55-64b3-4d87-b248-4b65d01b4586.png">
+
+<br/><br/>
 
 > <h3><font color="blue">ERD</font></h3>
 
+<br/>
 
-> <h3><font color="green">Functional Specification</font></h3>
+<img width="1000px" alt="데이터베이스ERD" src="https://user-images.githubusercontent.com/44612896/154421616-1c0a13a8-6071-4147-86db-f3fa418151d9.png">
+
+<br/>
+
+> <h3>🔗<font color="green"> [Functional Specification](https://www.notion.so/280683b15ad84c9eb85ca17cf6f159d2?v=0cd541c3a61e44ce8ba64f2404d5b602)</font></h3>
+
+</br>
 
 
-> <h3><font color="purple">Sequence Diagram</font></h3>
+<img width=1000 alt="요구사항명세서" src=https://user-images.githubusercontent.com/44612896/154471334-064b7509-896c-4279-9411-3c93ab5f451a.gif >
 
+
+</br>
 
 ## 🌎 Browser Support
 
@@ -71,21 +127,32 @@
 
 2. **Back-end**
 
+   | Name            | Description                                                                                                 |
+   | --------------- | ----------------------------------------------------------------------------------------------------------- |
+   | QueryDSL        | SQL 등의 쿼리를 생성해주는 프레임워크                                                                       |
+   | jpa             | 구현된 클래스와 매핑을 해주기 위해 사용되는 프레임워크                                                      |
+   | Spring Security | Spring Security는 Spring 기반의 애플리케이션의 보안(인증과 권한, 인가 등)을 담당하는 스프링 하위 프레임워크 |
+   | freemarker      | 템플릿 엔진이며 템플릿을 사용하여 (어떠한 포맷이라도)텍스트를 출력하는 역할                                 |
+   | Lombok          | 메소드를 Annotation을 사용해서 자동으로 작성해주는 라이브러리                                               |
+   | SockJS          | 브라우저에서 사용되는 클라이언트 라이브러리                                                                 |
+   | Stomp           | 웹소켓 구현 라이브러리                                                                                      |
+   | WebSocket       | 웹 상에서 쉡게 소켓통신을 하게 해주는 라이브러리                                                            |
+
 3. **AOS**
 
-   | Name                  | Description                                                                          |
-   | --------------------- | ------------------------------------------------------------------------------------ |
-   | Retrofit              | HTTP 통신을 도와주는 라이브러리                                                        |
-   | Coroutine             | 비동기 처리 라이브러리                                                                 |
-   | ViewModel             | UI 컨트롤러에서 데이터를 다루는 로직을 분리하기 위해 사용한 라이브러리                     |
-   | LiveData              | 관찰 가능한 데이터 홀더 클래스                                                          |
-   | Glide                 | 이미지 로딩 라이브러리                                                                 |
-   | ExoPlayer             | 미디어 재생 라이브러리                                                                 |
-   | Lottie                | 애니메이션 라이브러리                                                                  |
-   | CameraX               | Camera API 기능을 쉽게 사용할 수 있도록 도와주는 JetPack 지원 라이브러리                 |
-   | Tensorflow Lite       | 모바일과 임베디드 환경에 적합한 머신러닝 모델 학습, 테스트 및 배포 라이브러리              |
-   | Stomp                 | 웹소켓 구현 라이브러리                                                                 |
-   | rxJava                | 반응형 프로그래밍 라이브러리                                                           |
+   | Name            | Description                                                                   |
+   | --------------- | ----------------------------------------------------------------------------- |
+   | Retrofit        | HTTP 통신을 도와주는 라이브러리                                               |
+   | Coroutine       | 비동기 처리 라이브러리                                                        |
+   | ViewModel       | UI 컨트롤러에서 데이터를 다루는 로직을 분리하기 위해 사용한 라이브러리        |
+   | LiveData        | 관찰 가능한 데이터 홀더 클래스                                                |
+   | Glide           | 이미지 로딩 라이브러리                                                        |
+   | ExoPlayer       | 미디어 재생 라이브러리                                                        |
+   | Lottie          | 애니메이션 라이브러리                                                         |
+   | CameraX         | Camera API 기능을 쉽게 사용할 수 있도록 도와주는 JetPack 지원 라이브러리      |
+   | Tensorflow Lite | 모바일과 임베디드 환경에 적합한 머신러닝 모델 학습, 테스트 및 배포 라이브러리 |
+   | Stomp           | 웹소켓 구현 라이브러리                                                        |
+   | rxJava          | 반응형 프로그래밍 라이브러리                                                  |
 
 ## 📚 준비하기
 
@@ -147,6 +214,12 @@ yarn run serve
 npm run start
 ```
 
+**Android**
+```bash
+# aos 폴더로 이동
+휴대폰에서 near.apk 파일 실행
+```
+
 
 ## 💻 서비스 주요 기능
 
@@ -175,6 +248,18 @@ npm run start
 <p align="center">
   <a href="https://ko.reactjs.org/">
     <img src="https://img.shields.io/badge/React-17.0.2-blue?style=plastic&logo=react">
+  </a>
+  <a href="https://ko.reactjs.org/">
+    <img src="https://img.shields.io/badge/javascript-6.0.0-yellow?style=plastic&logo=javascript">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/Redux-7.2.6-blue?style=plastic&logo=redux">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/axios-0.25.0-red?style=plastic&logo=axios">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/tensorflow-3.13.0-blue?style=plastic&logo=tensorflow">
   </a>
  </p>
  <p align="center">
@@ -206,6 +291,8 @@ npm run start
   </a>
 </p>
 <p align="center">
+  <a href="https://docs.aws.amazon.com/s3/index.html?nc2=h_ql_doc_ec2">
+    <img src="https://img.shields.io/badge/AWS-S3-orange?style=plastic&logo=amazon">
   <a href="https://docs.aws.amazon.com/ec2/index.html?nc2=h_ql_doc_ec2">
     <img src="https://img.shields.io/badge/AWS-EC2-orange?style=plastic&logo=amazon">
   </a> 
@@ -250,7 +337,7 @@ npm run start
 
 - 개발 파트 : **Backend**
 - MBTI : ESTJ
-- 담당 개발 : **REST API 개발**, DB 설계 및 구축, JPA 처리 (유저,이메일,비밀번호,변경 수어/지문자 API 구현)
+- 담당 개발 : **REST API 개발**, DB 설계 및 구축, JPA 처리 (유저,이메일,비밀번호,변경 수어/지문자 API 구현,Socket 통신 구현)
 - 팀내 역할 : 도라에몽
 - 개발 각오 : 프로젝트를 하면서 여러 가지 문제들을 겪을 텐데 이 문제를 해결하기 위해 끊임없이 학습하고, 새로운 시도와 개선을 하며 팀과 함께 하루하루 성장하고 싶어요
 

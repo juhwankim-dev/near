@@ -74,7 +74,7 @@ function LoginPage() {
           navigate('/main');
 
           axios
-          .post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
+          .post(`https://i6d203.p.ssafy.io:8185/api/sign/userInfo/`,
            {token:config.replace(/\"/gi, "")}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
           .then(response => {
@@ -112,25 +112,26 @@ function LoginPage() {
 	<div className="login-html">
     <div><h1 className='headerst'>N:ear</h1></div>
     
-		<input id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
-		<input id="tab-2" type="radio" name="tab" className="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" className="tab">Sign Up</label>
+    <input  id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
+    <input id="tab-2" type="radio" name="tab" className="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" className="tab">Sign Up</label>
     {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}
 		<div className="login-form">
 			<div className="sign-in-htm">
 				<div className="group">
 					<label for="user" className="label">ID</label>
-					<input id="user" type="text" className="input" onChange={onIdHandler}/>
+					<input style={{ color:'black'}} id="user" type="text" className="input" onChange={onIdHandler}/>
 				</div>
         <br></br>
 				<div className="group">
 					<label for="pass" className="label">Password</label>
-					<input id="pass" type="password" className="input" data-type="password"  onChange={onPasswordHanlder}/>
+					<input style={{ color:'black'}} id="pass" type="password" className="input" data-type="password"  onChange={onPasswordHanlder}/>
 				</div>
-				<br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-				<div className="group">
-					<input type="submit" className="button" value="Sign In"/>
+				<br></br><br></br>
+        <div  style={{ marginTop: '30px'}}class="hr"></div>
+        <div className="group">
+					<input style={{ fontSize:'21px' }} type="submit" className="button" value="Sign In"/>
 				</div>
-				<div className="hr"></div>
+
 			</div>
 		</div>
 	</div>

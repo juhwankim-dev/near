@@ -1,6 +1,5 @@
 package com.ssafy.api.controller;
 
-import com.ssafy.api.dto.MailDto;
 import com.ssafy.api.service.ModifyService;
 import com.ssafy.api.service.SignService;
 import com.ssafy.api.service.common.ResponseService;
@@ -28,15 +27,6 @@ public class CertificationController {
     private final MailService mailService;
     private final ModifyService modifyService;
     private final SignService signService;
-
-    @PostMapping("/mail")
-    @ApiOperation(value = "메일 전송", notes = "주소, 제목, 메시지 내용을 받아와서 전송한다")
-    public SingleResult<String> execMail(@RequestBody MailDto mailDto) {
-
-        mailService.sendSimpleMail(mailDto.getAddress(), mailDto.getTitle(), mailDto.getMessage());
-
-        return responseService.getSingleResult("성공");
-    }
 
     @GetMapping("/id/{email}")
     @ApiOperation(value = "아이디 찾기", notes = "유저의 이메일에 따른 아이디를 반환한다")
