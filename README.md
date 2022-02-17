@@ -1,35 +1,31 @@
 ## 🌐 N:ear ?
 
-<br/>
-<p align="center">
+<div align="center">
 <img width="200" src="https://user-images.githubusercontent.com/44612896/154493835-6f5a22ba-24dc-4f9c-af63-8b766e1cfcdf.png">
-</p>
+</div>
 <br/>
 
 <font size="5" color="orange">**_N:ear_**</font> 프로젝트는 지문자 및 수어 게임을 통한 학습 프로젝트입니다. 또한 모바일 및 웹 서비스를 제공하고 있습니다. 주요 기획 의도는 <strong>개발진의 역량 향상</strong>과 <strong>인공지능 영상처리 및 학습 서비스 개발 경험</strong>이였습니다. 그래서 클론 코딩을 하기보다는 자체적으로 개발을 하고 다양한 학습 서비스를 분석하면서 최대한 사용자의 편의성을 생각한 지문자 및 수어 서비스를 제공하고자 하였습니다.
 
 - `N:ear` : '가까운'을 의미하는 'Near' 그리고 '소리를 듣는 기관인 귀'를 의미하는 'ear'의 합성어
+
 <br/><br/>
 
-<div align="center">
 <h3> 🖥 Fornt-End </h3> 
 </br></br>
-</div>
 
-<div align="center">
 <img width="1000px" src="https://user-images.githubusercontent.com/44612896/154493119-289e4aca-54f7-4a47-ac3e-d468643ad605.gif">
-</div>
 </br></br>
 
-<div align="center">
 <h3> 📱 Android </h3>
 </br></br>
-</div>
 
-<div align="center">
+
 <img  width="500px" alt="Front-end" src="https://user-images.githubusercontent.com/44612896/154488061-61a3e81b-8d70-4f71-9b50-c6c24aa7591a.gif">
-</div>
+
 </br></br>
+
+</br>
 
 ## 💡 Description
 
@@ -67,25 +63,24 @@
 
 ## 🧩 Design
 
-<div align="center">
+
 
 > <h3><font color="red">WireFrame</font></h3>  
 
 <br/><br/>
 
-<div align="center">
 <h3> 🖥 Fornt-End </h3> 
 
 </br></br>
-</div>
+
 
 <img width="1000px" alt="Front-end" src="https://user-images.githubusercontent.com/44612896/154429378-ecebe906-77fa-40dd-b660-18926425c9a6.png">
 
 <br/><br/>
-<div align="center">
+
 <h3> 📱 Android </h3>
 </br></br>
-</div>
+
 
 <img width="1000px" alt="안드로이드" src="https://user-images.githubusercontent.com/44612896/154423335-5974ab55-64b3-4d87-b248-4b65d01b4586.png">
 
@@ -93,7 +88,7 @@
 
 > <h3><font color="blue">ERD</font></h3>
 
-<br/><br/>
+<br/>
 
 <img width="1000px" alt="데이터베이스ERD" src="https://user-images.githubusercontent.com/44612896/154421616-1c0a13a8-6071-4147-86db-f3fa418151d9.png">
 
@@ -105,7 +100,6 @@
 
 ![요구사항명세서](https://user-images.githubusercontent.com/44612896/154471334-064b7509-896c-4279-9411-3c93ab5f451a.gif)
 
-</div>
 
 </br>
 
@@ -250,6 +244,18 @@ npm run start
 <p align="center">
   <a href="https://ko.reactjs.org/">
     <img src="https://img.shields.io/badge/React-17.0.2-blue?style=plastic&logo=react">
+  </a>
+  <a href="https://ko.reactjs.org/">
+    <img src="https://img.shields.io/badge/javascript-6.0.0-yellow?style=plastic&logo=javascript">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/Redux-7.2.6-blue?style=plastic&logo=redux">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/axios-0.25.0-red?style=plastic&logo=axios">
+  </a>
+  <a href="https://ko.redux.js.org/">
+    <img src="https://img.shields.io/badge/tensorflow-3.13.0-blue?style=plastic&logo=tensorflow">
   </a>
  </p>
  <p align="center">
