@@ -1,7 +1,6 @@
 package com.ssafy.near.src.main.game.wordquiz.room
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,10 +29,7 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
             GameRepository())).get(WordQuizViewModel::class.java)
         
         wordQuizViewModel.getRoomList().observe(viewLifecycleOwner) {
-            roomListAdapter.apply {
-                roomList = it
-                notifyDataSetChanged()
-            }
+            roomListAdapter.updateList(it)
         }
     }
 

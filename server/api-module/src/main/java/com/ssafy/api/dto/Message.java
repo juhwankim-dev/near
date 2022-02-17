@@ -12,7 +12,7 @@ public class Message {
 
     //입장, 나감, 이야기, 게임시작, 게임종료
     public enum Type {
-        ENTER, OUT, TALK, START, END
+        ENTER, OUT, TALK, START, END, CHANGE
     }
 
     private Type type; // 메시지 타입

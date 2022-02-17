@@ -2,6 +2,7 @@ package com.ssafy.api.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ssafy.core.entity.GameRoom;
+import com.ssafy.core.exception.ApiMessageException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -50,6 +51,9 @@ public class GameService {
 
     public GameRoom updateUserCount(String roomId, int count, String userNickName){
         GameRoom gameRoom = gameRooms.get(roomId);
+        if (gameRoom == null){
+            throw new ApiMessageException("방이 존재하지 않습니다.");
+        }
         List<String> userList = gameRoom.getUserList();
         if (count == 1){
             userList.add(userNickName);

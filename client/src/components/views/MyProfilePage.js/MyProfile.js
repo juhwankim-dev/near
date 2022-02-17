@@ -9,8 +9,6 @@ function MyProfile(){
   const loginUser = JSON.parse(localStorage.getItem('user'));
   const token = (JSON.parse(localStorage.getItem('user'))).token;
 
-
-
   axios.post(`https://hoonycode2.loca.lt/api/sign/userInfo/`,
            {token: token})
           .then((res)=> {

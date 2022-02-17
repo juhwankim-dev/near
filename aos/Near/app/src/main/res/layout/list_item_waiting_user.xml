@@ -19,12 +19,12 @@
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            app:srcCompat="@drawable/ic_face" />
+            app:srcCompat="@drawable/img_avatar_1" />
 
         <TextView
+            style="@style/header_text"
             android:id="@+id/tv_user_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/bm_jua_ttf"
             android:gravity="center"
             android:text="김싸피"
             android:textSize="24sp" />
