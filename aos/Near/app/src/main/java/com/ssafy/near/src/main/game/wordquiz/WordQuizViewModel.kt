@@ -20,7 +20,6 @@ import ua.naiksoftware.stomp.dto.LifecycleEvent
 
 class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel() {
     private val TAG = "WordQuizViewModel"
-    //private val socketUrl = "wss://hoonycode2.loca.lt/ws-stomp/websocket"
     private val socketUrl = "wss://i6d203.p.ssafy.io:8185/ws-stomp/websocket"
     private val sendUrl = "/pub/room/message"
     private val client = Stomp.over(Stomp.ConnectionProvider.OKHTTP, socketUrl)

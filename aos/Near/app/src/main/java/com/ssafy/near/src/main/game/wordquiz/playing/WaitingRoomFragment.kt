@@ -131,7 +131,6 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         }
 
         binding.btnPlayGame.setOnClickListener {
-//            wordQuizViewModel.selectedAvatar = userListAdapter.myAvatar
             wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, roomInfo.host, "")
         }
 

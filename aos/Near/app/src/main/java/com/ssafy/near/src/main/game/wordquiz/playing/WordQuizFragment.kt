@@ -135,12 +135,6 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 ivUserList[i].visibility = View.GONE
             }
         }
-
-//        when(wordQuizViewModel.selectedAvatar) {
-//            0 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_1)
-//            1 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_2)
-//            2 -> binding.ivUser1.setImageResource(R.drawable.img_avatar_3)
-//        }
     }
 
     private fun initEvent() {
@@ -205,13 +199,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
             wordQuizViewModel.nextQuiz()
         } else {
             // 결과화면
-//            Handler(Looper.getMainLooper()).postDelayed({
-//                showToastMessage("${wordQuizViewModel.getUserScore(nickname)}")
-//            }, 0)
             CoroutineScope(Dispatchers.Main).launch {
-               // wordQuizViewModel.sendMessage(MsgType.END, roomInfo.roomId, "", "")
-                //delay(3000)
-
                 (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(userList))
             }
         }
