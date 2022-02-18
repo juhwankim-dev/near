@@ -10,8 +10,6 @@ import com.ssafy.near.R
 import com.ssafy.near.databinding.ListItemWaitingUserBinding
 
 class UserListAdapter(val userList: MutableList<Pair<String, Int>>) : BaseAdapter() {
-//    var myAvatar = 0
-
     override fun getCount(): Int = userList.size
 
     override fun getItem(position: Int): Any {
@@ -33,20 +31,6 @@ class UserListAdapter(val userList: MutableList<Pair<String, Int>>) : BaseAdapte
                 2 -> ivProfile.setImageResource(R.drawable.img_avatar_3)
             }
         }
-
-//        if(position == 0) {
-//
-//        }
-//
-//        when(position) {
-//            0 -> {
-//                when(myAvatar) {
-//                    0 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_1)
-//                    1 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_2)
-//                    2 -> listItemBinding.ivProfile.setImageResource(R.drawable.img_avatar_3)
-//                }
-//            }
-//        }
 
         return listItemBinding.root
     }

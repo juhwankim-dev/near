@@ -49,7 +49,6 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
 
         list.sortByDescending { it.score }
 
-//        wordResultAdapter = WordResultAdapter(list, wordQuizViewModel.selectedAvatar)
         wordResultAdapter = WordResultAdapter(list, userList)
         binding.rvResult.apply {
             layoutManager = LinearLayoutManager(context)

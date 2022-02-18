@@ -25,15 +25,6 @@ class WordResultAdapter(var list: MutableList<Result>, val userList: ArrayList<P
                 }
             }
 
-//            if(result.name == sSharedPreferences.getNickname()) {
-//                binding.ivAvatar
-//                when(selectedAvatar) {
-//                    0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
-//                    1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
-//                    2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
-//                }
-//            }
-
             when(layoutPosition) {
                 0 -> binding.ivMedal.setImageResource(R.drawable.img_1st)
                 1 -> binding.ivMedal.setImageResource(R.drawable.img_2nd)
