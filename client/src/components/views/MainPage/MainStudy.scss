@@ -18,67 +18,19 @@
   // #8d90ff
   // #bebfff;
   // #aeb0fa
-  height: 1007px;
+  height: 1157px;
   position: relative;
   
-  &:after {
-    background: #5f5f5f;
-    bottom: -266px;
-    height: 266px;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
 }
 
-.dressor {
-  background: #aab0b2;
-  border-left: 5px solid #8e9394;
-  border-right: 5px solid #b7bcbe;
-  box-shadow: -2px 0 2px 3px rgba(0, 0, 0, .1);
-  bottom: 0;
-  height: 250px;
-  left: 10%;
-  position: absolute;  
-  width: 148px;
-  
-  &:before {
-    background: #8e9394;
-    border-left: 11px solid #767b7b;
-    border-right: 11px solid #9fa4a4;
-    height: 8px;
-    left: -7px;
-    position: absolute;    
-    top: -8px;
-    width: 153px;
-  }
+.backgrounddesk{
+  background: #5f5f5f;
+  top: 1156px;
+  height: 216px;
+  left: 0;
+  position: relative;
+  width: 100%;
 }
-
-.dressor-drawer {
-  border: 1px solid #898e90;
-  box-shadow:
-    inset 9px 0 0 0 #8e9394,
-    inset 123px 0 0 0 #aab0b2,
-    inset 9px 67px 0 0 #b7bcbe;
-  height: 69px;
-  left: 2px;
-  position: absolute;
-  width: 134px;
-  
-  &:before {
-    background: #c4c8ca;
-    border-left: 7px solid #a3a7a8;
-    border-right: 7px solid #cdd0d2;
-    height: 4px;
-    left: calc(50% - 45px/2);
-    position: absolute;
-    top: calc(50% - 4px/2);
-    width: 45px;
-  }
-}
-.drawer-1 {top: 13px;}
-.drawer-2 {top: 88px;}
-.drawer-3 {top: 163px;}
 
 
 .thunderbolt {
@@ -92,8 +44,8 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   position: absolute;
-  left:45%;
-  top:728px;
+  left:43.5%;
+  top:877px;
   width: 361px;
   height: 215px;
   z-index: 40;
@@ -152,7 +104,7 @@
       #947b7e, #7d8589, #878f92, #91989b, #a3898c
     );
   bottom: 0;
-  height: 350px;
+  height: 270px;
   left: 89%;
   position: absolute;
   width: 9px;
@@ -258,33 +210,6 @@
     width: 56px;
     z-index: 3;
   }
-  //버블
-  // &:after {
-  //   background: #8e6e44;
-  //   border-radius: 50%;
-  //   box-shadow:
-  //     8px 0 0 0 #8e6e44,
-  //     16px 0 0 0 #8e6e44,
-  //     24px 0 0 0 #8e6e44,
-  //     32px 0 0 0 #8e6e44,
-  //     40px 0 0 0 #8e6e44,
-  //     0 8px 0 0 #8e6e44,
-  //     8px 8px 0 0 #8e6e44,
-  //     16px 8px 0 0 #8e6e44,
-  //     24px 8px 0 0 #8e6e44,
-  //     32px 8px 0 0 #8e6e44,
-  //     40px 8px 0 0 #8e6e44,
-  //     5px 16px 0 0 #8e6e44,
-  //     13px 16px 0 0 #8e6e44,
-  //     21px 16px 0 0 #8e6e44,
-  //     29px 16px 0 0 #8e6e44,
-  //     37px 16px 0 0 #8e6e44;
-  //   height: 7px;
-  //   left: 1px;
-  //   width: 7px;
-  //   position: absolute;
-  //   top: 35px;
-  // }
 }
 
 .cup-straw {
@@ -323,8 +248,8 @@
   box-shadow:
     -1px 2px 0 0 rgba(0, 0, 0, .2);
   height: 90px;
-  left: 43%;
-  top: 1053px;
+  left: 28%;
+  top: 1203px;
   position: absolute;
   width: 66px;
   z-index: 1;
@@ -351,84 +276,32 @@
   }
 }
 
-.iphone {
-  background: #3d3d3d;
-  border: 1px solid #3d3d3d;
-  border-radius: 5px;
-  box-shadow: 0 2px 0 0 rgba(255, 255, 255, 0.3);
-  height: 59px;
-  position: absolute;
-  left: 35%;
-  top: 1055px;
-  width: 34px;
-  z-index: 1;
-  
-  &:before {
-    background:
-      linear-gradient(
-        120deg,
-        #828282 50%,
-        #6b6b6b 50%
-      );
-    border: 1px solid #373737;
-    box-shadow:
-      inset 0 0 0 1px #646464,
-      inset 0 0 0 2px rgba(0, 0, 0, .1);
-    height: 46px;
-    left: 0;
-    width: 32px;    
-    position: absolute;
-    top: 6px;
-  }
-  
-  &:after {
-    background: #636363;
-    border-radius: 50%;
-    box-shadow: 
-      -4px -51px 0 -1px #6e7879;
-    left: 14px;
-    position: absolute;
-    bottom: 1px;
-    width: 4px;
-    height: 4px;
-    z-index: 2;
-  }
-}
-
-.iphone-audio {
-  background: rgba(101, 109, 110, .5);
-  height: 2px;
-  left: 16px;
-  position: absolute;
-  top: 2px;
-  width: 6px;
-}
 
 .pencil {
   background:
     linear-gradient(
       to bottom,
-      #ec3434 1px,
-      #d11515 1px,
-      #ec3434 3px,
-      #d11515 4px,
-      #ec3434 4px
+      #ca8ddd 1px,
+      #e482df 1px,
+      #c37de4 3px,
+      #c866d4 4px,
+      #d16ce2 4px
     );
   border-top-left-radius: 1px;
   border-bottom-left-radius: 1px;
   box-shadow:
-    inset 5px 0 0 0 #f19191,
-    inset 6px 0 0 0 #d99595,
+    inset 5px 0 0 0 #eaddee,
+    inset 6px 0 0 0 #ddbfbf,
     inset 8px 0 0 0 #c9c9c9,
     inset 9px 0 0 0 #b6b6b6,
     inset 10px 0 0 0 #c9c9c9,
     inset 11px 0 0 0 #b6b6b6,
     inset 13px 0 0 0 #c9c9c9,
-    inset 14px 0 0 0 #d55353,
+    inset 14px 0 0 0 #d553d5,
     0 2px 0 0 rgba(193, 144, 117, .5);
   height: 6px;
   position: absolute;
-  top: 1110px;
+  top: 1240px;
   left:39%;
   width: 73px;
   z-index: 1;
@@ -489,7 +362,7 @@
   width: 22px;
   position: absolute;
   left: 40%;
-  top: 1083px;
+  top: 1183px;
   z-index: 1;
 }
 
@@ -503,9 +376,9 @@
   border-bottom-right-radius: 5px;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, .1);
   height: 0;
-  left: 49%;
+  left: 47.5%;
   position: absolute;
-  top: 1054px;
+  top: 1214px;
   width: 166px;
   z-index: 1;
   
@@ -602,7 +475,7 @@
   height: 46px;
   position: absolute;
   left: 58.5%;
-  top: 1055px;
+  top: 1255px;
   width: 28px;
   z-index: 1;
   
@@ -689,7 +562,7 @@
   border-right: 7px solid #818181;  
   bottom: 0;
   height: 20px;
-  left: 20%;  
+  left: 9%;  
   position: absolute;
   width: 208px;
   z-index: 1;
@@ -855,17 +728,18 @@
 }
 
 .sign {
-  background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background: url(./수어학습.gif) #fff no-repeat 5px 5px;
+  background-size:550px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-  height: 300px;
-  left:70%;
+  height: 700px;
+  right:15%;
   position: absolute;
-  top: 180px;
-  width: 300px;
-  border: 5px solid #948573;
+  top: 130px;
+  width: 575px;
+  border: 5px solid #737894;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
-    inset 0 0 0 2px #c9bdaf;
+    inset 0 0 0 2px #b3afc9;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -873,17 +747,17 @@
 }
 
 .signbtn {
-  background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background-color: #be76f8;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 70px;
-  left:71%;
+  right:21%;
   position: absolute;
-  top: 550px;
+  top: 720px;
   width: 250px;
-  border: 5px solid #948573;
+  border: 5px solid #737894;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
-    inset 0 0 0 2px #c9bdaf;
+    inset 0 0 0 2px #b3afc9;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -891,17 +765,18 @@
 }
 
 .finger {
-  background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background: url(./지문자학습.gif) #fff no-repeat 5px 5px;
+  background-size:550px;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
-  height: 300px;
-  left:24%;
+  height: 700px;
+  left:15%;
   position: absolute;
-  top: 180px;
-  width: 300px;
-  border: 5px solid #948573;
+  top: 130px;
+  width: 575px;
+  border: 5px solid #737894;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
-    inset 0 0 0 2px #c9bdaf;
+    inset 0 0 0 2px #b3afc9;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;
@@ -909,17 +784,17 @@
 }
 
 .fingerbtn {
-  background: url(http://123000.synology.me/xe/files/attach/images/144/478/017/19f16ad850ad8f0b13b414d9a418c984.gif) #fff no-repeat 8px 8px;
+  background-color: #7391f3;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
   height: 70px;
-  left:25%;
+  left:21.5%;
   position: absolute;
-  top: 550px;
+  top: 720px;
   width: 250px;
-  border: 5px solid #948573;
+  border: 5px solid #737894;
   box-shadow: 
     0 2px 0 0 rgba(0, 0, 0, .2),
-    inset 0 0 0 2px #c9bdaf;
+    inset 0 0 0 2px #b3afc9;
   border-top-right-radius: 25px;
   border-top-left-radius: 25px;
   border-bottom-right-radius: 25px;

@@ -3,9 +3,11 @@ import { withRouter, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { loginUser } from '../../../_actions/user_action';
 import toast, { Toaster } from 'react-hot-toast';
-import './Account.css';
+import './Accounts.css';
+import { Container } from 'react-bootstrap';
+import axios from 'axios';
 
-function LoginPage(props) {
+function LoginPage() {
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -36,6 +38,7 @@ function LoginPage(props) {
     }
   };
 
+
   const onSubmitHandler = (e) => {
     e.preventDefault(); //버튼 눌렀을 때 새로고침 방지
     if (!chkPW()) {
@@ -43,67 +46,99 @@ function LoginPage(props) {
     }
 
     const body = {
-      id: Id,
+      uid: Id,
       password: Password,
+      type: 'none',
     };
-
-
-    console.log(body); 
     
     // 기존 코드 
     dispatch(loginUser(body))
-      .then(response => {
-        if(response.payload.loginSuccess) {
-          props.history.push('/') //로그인 성공 했을 경우 메인페이지(홈/처음)으로 이동
-        } else {
-          toast.error('잘못된 정보를 입력하셨습니다.');
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-    };
+    .then((res) => {
+        if(res.payload !== undefined) {
+          toast.success('로그인 성공!')
+          let config = 
+          //  { "token": JSON.stringify(res.payload.data.token)}
+          //  { "token": (JSON.stringify(res.payload.data.token)||'').replace(/\"/gi, "")}
+          //  (JSON.stringify(res.payload.data.token)||'')
+          JSON.stringify(res.payload.data.token);
+        
+          
+        // console.log(res.payload.data);
+        console.log(config);
+          localStorage.clear();
+          // console.log(JSON.stringify(res.payload));
+          localStorage.setItem('user', JSON.stringify(res.payload.data));
+          localStorage.setItem('userid', JSON.stringify(res.payload.data.id));
+          console.log(JSON.stringify(res.payload.data));
+          // localStorage.setItem('user', JSON.stringify(res.payload));
+          navigate('/main');
+
+          axios
+          .post(`https://i6d203.p.ssafy.io:8185/api/sign/userInfo/`,
+           {token:config.replace(/\"/gi, "")}) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
+          //  {token : JSON.stringify(res.payload.data.token)} ) // 두번째 인자로 config가 들어감(보안과 관련된 옵션들)
+          .then(response => {
+              // let userInfo = {
+              //     id: response.data.data.uid,
+              //     email: response.data.data.email,
+              //     password: response.data.data.password,
+              //     nickname: response.data.data.nickname,
+              // }
+              console.log(response)
+              // commit("loginSuccess", userInfo)
+            })
 
 
-    // Axios.post('/api/user/login', body)
-    // .then(Response => {
-    // }) actions로 옮겨준다.
-  
-  
+      } else {
+        toast.error('잘못된 정보를 입력하셨습니다.');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+
+
+  };
+
 
   return (
-    <>
-      <div style={{
-      display:'flex', justifyContent: 'center', alignItems: 'center'
-      ,width: '100%', height: '100vh'}}>
-        <form style={{ display:'flex', flexDirection:'column'}}
-        onSubmit={onSubmitHandler}>
-          <h1>로그인</h1>
-          <span className=""></span>
-          <input
-            className=""
-            type="text"
-            value={Id}
-            placeholder="ID"
-            onChange={onIdHandler}
-          />
-          <input
-            className=""
-            type="password"
-            value={Password}
-            placeholder="Password"
-            onChange={onPasswordHanlder}
-          />
-          <button className="account__button" type="submit">
-            로그인
-          </button>
-        <br />
-        {/* <button onClick={()=>{ history.push('/signup')}} className="btn btn-primary">회원가입</button> */}
-        </form>
-        <button onClick={()=>{ navigate('/register')}} className="btn btn-primary">회원가입</button>
+    <div>
+      <form style={{
+    display:'flex', justifyContent: 'center', alignItems: 'center'
+    ,width: '100%', height: '100vh'}}
+        onSubmit={onSubmitHandler}
+      >
+  <div className="login-wrap">
+	<div className="login-html">
+    <div><h1 className='headerst'>N:ear</h1></div>
+    
+    <input  id="tab-1" type="radio" name="tab" className="sign-in" checked/><label for="tab-1" className="tab">Sign In</label>
+    <input id="tab-2" type="radio" name="tab" className="sign-up" onClick={()=>{ navigate('/register')}} /><label for="tab-2" className="tab">Sign Up</label>
+    {/* SIGN UP버튼 누를 경우 register페이지로 랜더링되게 변경 */}
+		<div className="login-form">
+			<div className="sign-in-htm">
+				<div className="group">
+					<label for="user" className="label">ID</label>
+					<input style={{ color:'black'}} id="user" type="text" className="input" onChange={onIdHandler}/>
+				</div>
+        <br></br>
+				<div className="group">
+					<label for="pass" className="label">Password</label>
+					<input style={{ color:'black'}} id="pass" type="password" className="input" data-type="password"  onChange={onPasswordHanlder}/>
+				</div>
+				<br></br><br></br>
+        <div  style={{ marginTop: '30px'}}class="hr"></div>
+        <div className="group">
+					<input style={{ fontSize:'21px' }} type="submit" className="button" value="Sign In"/>
+				</div>
 
-        <Toaster
-        
+			</div>
+		</div>
+	</div>
+  </div>
+  </form>
+  
+      <Toaster
         position="top-center"
         reverseOrder={true}
         toastOptions={{
@@ -115,48 +150,8 @@ function LoginPage(props) {
             color: '#713200',
           },
         }}
-      />  
-
-      </div>
-    </>
-  );
+      />
+</div>
+);
 }
-  // return (
-  //   <div style={{
-  //     display:'flex', justifyContent: 'center', alignItems: 'center'
-  //     ,width: '100%', height: '100vh'
-  //   }}>
-  //     <form style={{ display:'flex', flexDirection:'column'}}
-  //       onSubmit={onSubmitHandler}
-  //     >
-  //       <label>Email</label>
-  //       <input type="type" value={Id} onChange={onIdHandler} /> 
-  //       {/* 타이핑을 할때 onChange가 바뀌고 State를 바꿔준다 그 후 value를 바꿔준다. */}
-  //       <label>Password</label>
-  //       <input type="password" value={Password} onChange={onPasswordHanlder} />
-  //       <br />
-  //       <button type="submit">
-  //         Login
-  //       </button>
-  //     </form>
-
-  //     <Toaster
-  //       position="top-center"
-  //       reverseOrder={true}
-  //       toastOptions={{
-  //         duration: 1000,
-  //         style: {
-  //           border: '1px solid #713200',
-  //           padding: '16px',
-  //           margin: '10vh',
-  //           color: '#713200',
-  //         },
-  //       }}
-  //     />
-
-  //   </div>
-  // );
-  //     }
-  //   }
-
 export default LoginPage;

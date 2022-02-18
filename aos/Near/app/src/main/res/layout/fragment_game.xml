@@ -10,15 +10,32 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/bg_create_room"
         tools:context=".src.main.game.GameFragment">
 
-        <TextView
-            style="@style/appbar_text"
-            android:text="게임"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/btn_ox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
+            android:layout_marginTop="130dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_ox_quiz_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/btn_word"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/activity_margin_default"
+            android:layout_marginTop="60dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/img_word_quiz_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ox" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

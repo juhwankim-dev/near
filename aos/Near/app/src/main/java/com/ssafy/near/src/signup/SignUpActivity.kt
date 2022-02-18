@@ -1,12 +1,16 @@
 package com.ssafy.near.src.signup
 
+import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseActivity
 import com.ssafy.near.databinding.ActivitySignUpBinding
+import com.ssafy.near.repository.CertRepository
 import com.ssafy.near.repository.UserRepository
 import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
@@ -14,11 +18,14 @@ import com.ssafy.near.util.Validation
 
 class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sign_up) {
     lateinit var userViewModel: UserViewModel
+    lateinit var certViewModel: CertViewModel
     var isCheckedId = false
     var isCheckedNickname = false
     var isCheckedEmail = false
     var isCheckedPw = false
     var isCheckedConfirmPw = false
+    var isCheckedCertNum = false
+    var certNumber = "default"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,111 +38,156 @@ class SignUpActivity : BaseActivity<ActivitySignUpBinding>(R.layout.activity_sig
     private fun initViewModel() {
         userViewModel = ViewModelProvider(this, UserViewModelFactory(UserRepository()))
             .get(UserViewModel::class.java)
+        certViewModel = ViewModelProvider(this, CertViewModelFactory(CertRepository()))
+            .get(CertViewModel::class.java)
 
-        userViewModel.getCheckedId().observe(this, {
+        userViewModel.getCheckedId().observe(this) {
             if (it) {
                 isCheckedId = false
-                binding.etId.error = "이미 존재하는 아이디입니다."
-                binding.etId.helperText = ""
+                Validation.textViewSetting(false, "이미 존재하는 아이디입니다.", binding.tvIdError)
             } else {
                 isCheckedId = true
-                binding.etId.error = ""
-                binding.etId.helperText = "사용 가능한 아이디입니다."
+                Validation.textViewSetting(true, "", binding.tvIdError)
             }
-        })
+        }
 
-        userViewModel.getCheckedNickname().observe(this, {
+        userViewModel.getCheckedNickname().observe(this) {
             if (it) {
                 isCheckedNickname = false
-                binding.etNickname.error = "이미 존재하는 닉네임입니다."
-                binding.etNickname.helperText = ""
+                Validation.textViewSetting(false, "이미 존재하는 닉네임입니다.", binding.tvNickNameError)
             } else {
                 isCheckedNickname = true
-                binding.etNickname.error = ""
-                binding.etNickname.helperText = "사용 가능한 닉네임입니다."
+                Validation.textViewSetting(true, "", binding.tvNickNameError)
             }
-        })
+        }
 
-        userViewModel.getCheckedEmail().observe(this, {
+        userViewModel.getCheckedEmail().observe(this) {
             if (it) {
                 isCheckedEmail = false
-                binding.etEmail.error = "이미 존재하는 이메일입니다."
-                binding.etEmail.helperText = ""
+                Validation.textViewSetting(false, "이미 존재하는 이메일입니다.", binding.tvEmailError)
+
+                binding.btnSendCertMail.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
+                binding.btnSendCertMail.isClickable = false
             } else {
                 isCheckedEmail = true
-                binding.etEmail.error = ""
-                binding.etEmail.helperText = "사용 가능한 이메일입니다."
-            }
-        })
+                Validation.textViewSetting(true, "", binding.tvEmailError)
 
-        userViewModel.getSignResponse().observe(this, { signResponse ->
+                binding.btnSendCertMail.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
+                binding.btnSendCertMail.isClickable = true
+            }
+        }
+
+        userViewModel.getSignResponse().observe(this) { signResponse ->
             when {
-                signResponse == null        -> showToastMessage("통신에 문제가 발생하였습니다.")
-                signResponse.output != 1    -> showToastMessage(signResponse.msg)
+                signResponse == null -> showToastMessage("통신에 문제가 발생하였습니다.")
+                signResponse.output != 1 -> showToastMessage(signResponse.msg)
                 else -> {
-                    showToastMessage("회원가입 성공")
+                    showToastMessage("가입이 완료되었습니다.")
                     finish()
                 }
             }
-        })
+        }
+
+        certViewModel.getCertNumber().observe(this) {
+            when(it.output) {
+                0 -> showToastMessage("이메일 발송에 실패하였습니다.")
+                1 -> {
+                    certNumber = it.data
+                    showToastMessage("인증번호를 전송하였습니다.")
+                }
+            }
+        }
     }
 
     private fun initValidation() {
-        binding.etId.editText?.addTextChangedListener {
-            if (Validation.validateId(it.toString(), binding.etId)) {
+        binding.etId.addTextChangedListener {
+            if (Validation.validateId(it.toString(), binding.tvIdError)) {
                 checkDuplicatedId(it.toString())
             } else {
                 isCheckedId = false
             }
         }
 
-        binding.etNickname.editText?.addTextChangedListener {
-            if (Validation.validateNickname(it.toString(), binding.etNickname)) {
+        binding.etNickname.addTextChangedListener {
+            if (Validation.validateNickname(it.toString(), binding.tvNickNameError)) {
                 checkDuplicatedNickname(it.toString())
             } else {
                 isCheckedNickname = false
             }
         }
 
-        binding.etEmail.editText?.addTextChangedListener {
-            if (Validation.validateEmail(it.toString(), binding.etEmail)) {
+        binding.etEmail.addTextChangedListener {
+            if (Validation.validateEmail(it.toString(), binding.tvEmailError)) {
                 checkDuplicatedEmail(it.toString())
             } else {
                 isCheckedEmail = false
             }
         }
 
-        binding.etPw.editText?.addTextChangedListener {
-            isCheckedPw = Validation.validatePw(it.toString(), binding.etPw)
-            isCheckedConfirmPw = Validation.confirmPw(binding.etConfirmPw.editText?.text.toString(),
+        binding.etPw.addTextChangedListener {
+            isCheckedPw = Validation.validatePw(it.toString(), binding.tvPwError)
+            isCheckedConfirmPw = Validation.confirmPw(binding.etConfirmPw.text.toString(),
                 it.toString(),
-                binding.etConfirmPw)
+                binding.tvConfirmPwError)
         }
 
-        binding.etConfirmPw.editText?.addTextChangedListener {
+        binding.etConfirmPw.addTextChangedListener {
             isCheckedConfirmPw = Validation.confirmPw(it.toString(),
-                binding.etPw.editText?.text.toString(),
-                binding.etConfirmPw)
+                binding.etPw.text.toString(),
+                binding.tvConfirmPwError)
+        }
+
+        binding.etCert.addTextChangedListener {
+            if(it == null || it.isEmpty()) {
+                binding.btnCert.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.gray_btn_disabled))
+                binding.btnCert.isClickable = false
+            } else {
+                binding.btnCert.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.main_color))
+                binding.btnCert.isClickable = true
+            }
         }
     }
 
     private fun initEvent() {
         binding.btnSignUp.setOnClickListener {
             when {
-                isCheckedId == false        -> binding.etId.editText?.requestFocus()
-                isCheckedNickname == false  -> binding.etNickname.editText?.requestFocus()
-                isCheckedEmail == false     -> binding.etEmail.editText?.requestFocus()
-                isCheckedPw == false        -> binding.etPw.editText?.requestFocus()
-                isCheckedConfirmPw == false -> binding.etConfirmPw.editText?.requestFocus()
+                isCheckedId == false        -> binding.etId.requestFocus()
+                isCheckedNickname == false  -> binding.etNickname.requestFocus()
+                isCheckedEmail == false     -> binding.etEmail.requestFocus()
+                isCheckedPw == false        -> binding.etPw.requestFocus()
+                isCheckedConfirmPw == false -> binding.etConfirmPw.requestFocus()
+                isCheckedCertNum == false   -> binding.etCert.requestFocus()
                 else -> {
-                    val id = binding.etId.editText?.text.toString()
-                    val nickname = binding.etNickname.editText?.text.toString()
-                    val email = binding.etEmail.editText?.text.toString()
-                    val pw = binding.etPw.editText?.text.toString()
+                    val id = binding.etId.text.toString()
+                    val nickname = binding.etNickname.text.toString()
+                    val email = binding.etEmail.text.toString()
+                    val pw = binding.etPw.text.toString()
 
                     signUp(id, nickname, email, pw)
                 }
             }
+        }
+
+        binding.btnSendCertMail.setOnClickListener {
+            certViewModel.sendCertNumber(binding.etEmail.text.toString())
+        }
+
+        binding.btnCert.setOnClickListener {
+            when(binding.etCert.text.toString()) {
+                certNumber -> {
+                    isCheckedCertNum = true
+                    showToastMessage("인증이 완료되었습니다.")
+                    binding.tvCertError.text = ""
+                }
+                else -> {
+                    isCheckedCertNum = false
+                    binding.tvCertError.text = "인증번호를 확인해주세요."
+                }
+            }
+        }
+
+        binding.ivBack.setOnClickListener {
+            finish()
         }
     }
 

@@ -58,7 +58,11 @@ public class Handcontent {
     @Column(nullable = true, length = 255)
     private String explanation;
 
-
+    // 수어 동작
+    @Column(nullable = true, length = 100)
+    private String movement;
+    
+    // 생성 날짜
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime register_time;

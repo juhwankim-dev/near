@@ -7,8 +7,9 @@ import com.ssafy.near.dto.UserToken
 
 class SharedPreferencesUtil(context: Context) {
     companion object {
-        const val DEFAULT_ID = -1
+        const val DEFAULT_ID = "-1"
         const val DEFAULT_TOKEN = "default"
+        const val DEFAULT_NICKNAME = "로그인이 필요합니다."
     }
 
     private var preferences: SharedPreferences =
@@ -16,17 +17,27 @@ class SharedPreferencesUtil(context: Context) {
 
     fun addUser(userToken: UserToken) {
         val editor = preferences.edit()
-        editor.putInt("id", userToken.id)
+        editor.putString("id", userToken.id.toString())
         editor.putString("token", userToken.token)
         editor.apply()
     }
 
-    fun getUserId(): Int {
-        return preferences.getInt("id", DEFAULT_ID)
+    fun setNickname(nickname: String) {
+        val editor = preferences.edit()
+        editor.putString("nickName", nickname)
+        editor.apply()
+    }
+
+    fun getUserId(): String {
+        return preferences.getString("id", DEFAULT_ID)!!
     }
 
     fun getUserToken(): String {
         return preferences.getString("token", DEFAULT_TOKEN)!!
+    }
+
+    fun getNickname(): String {
+        return preferences.getString("nickName", DEFAULT_NICKNAME)!!
     }
 
     fun deleteUser() {

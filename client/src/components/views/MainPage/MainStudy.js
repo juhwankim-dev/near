@@ -1,20 +1,17 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import './MainStudy.scss';
 
 
 const MainStudy = () => {
+  
+
   return <div>
 
 {/* <Container> */}
 <div class="background">
 
-  <div class="dressor">
-    <div class="dressor-drawer drawer-1"></div>
-    <div class="dressor-drawer drawer-2"></div>
-    <div class="dressor-drawer drawer-3"></div>
-  </div>
-  
   <div class="board">
     <div class="board-eiffel"></div>
     <div class="board-tree"></div>
@@ -40,11 +37,7 @@ const MainStudy = () => {
   </div>
   
   <div class="notebook"></div>
-  
-  <div class="iphone">
-    <div class="iphone-audio"></div>
-  </div>
-  
+    
   <div class="pencil"></div>
   
   <div class="eraser"></div>
@@ -64,17 +57,17 @@ const MainStudy = () => {
     <div class="desk-book3"></div>
   </div>
   
-  <button class="finger"></button>
-  <button class="sign"></button>
-  <button class="fingerbtn"></button>
-  <button class="signbtn"></button>
-  
+  <Link to="/finger/1" class="finger"></Link>
+  <div class="sign"></div>
+  <Link to="/finger/1" class="fingerbtn" style={{display:'flex', flexDirection:'column-reverse',justifyContent: 'center', alignItems: 'center',fontSize:'2vh', color:'white'}}>학습하기</Link>
+<Link to="/sign" class="signbtn" style={{display:'flex', flexDirection:'column-reverse',justifyContent: 'center', alignItems: 'center',fontSize:'2vh', color:'white'}} >학습하기</Link>
   <div class="glasses">
       <div class="glasses-left"></div>
       <div class="glasses-right"></div>
   </div>
 
 {/* </Container> */}
+<div class="backgrounddesk"></div>
 </div>
 </div>;
 };

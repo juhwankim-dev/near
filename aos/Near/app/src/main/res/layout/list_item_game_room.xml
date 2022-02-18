@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="rooomInfo"
+            type="com.ssafy.near.dto.RoomInfo" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_my_note_white_round"
+        android:backgroundTint="@color/room_list_bg_color"
+        android:elevation="2dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingStart="16dp">
+
+        <TextView
+            android:id="@+id/tv_room_name"
+            style="@style/header_text"
+            android:layout_gravity="left"
+            android:fontFamily="@font/bm_jua_ttf"
+            android:text="@{rooomInfo.name}"
+            android:textColor="#4b4746"
+            tools:text="방 이름" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/activity_margin_narrow"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                app:srcCompat="@drawable/ic_face"
+                app:tint="#4b4746" />
+
+            <TextView
+                android:id="@+id/tv_room_owner"
+                style="@style/header_text"
+                android:layout_marginStart="@dimen/activity_margin_narrow"
+                android:text="@{rooomInfo.host}"
+                android:fontFamily="@font/bm_jua_ttf"
+                android:layout_weight="1"
+                android:textColor="#4b4746"
+                tools:text="방장" />
+
+            <TextView
+                style="@style/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_margin_narrow"
+                android:fontFamily="@font/bm_jua_ttf"
+                android:text="@{String.valueOf(rooomInfo.userCount)}"/>
+
+            <TextView
+                style="@style/header_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/activity_margin_default"
+                android:fontFamily="@font/bm_jua_ttf"
+                android:text="/ 4"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

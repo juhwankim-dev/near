@@ -1,0 +1,50 @@
+.oxquizbg{
+  background-color: hsla(214, 100%, 74%, 0.479);
+  border-radius: 50px;
+  top: -1vh;
+  position: relative;
+  height:73vh;
+  width: 130vh;
+  margin: auto;
+  }
+
+.timer-wrapper {
+height: 70px;
+width: 100%;
+line-height: 70px;
+background: #000;
+position: relative;
+}
+.timer-txt {
+width: 100%;
+margin: 0;
+color: #fff;
+font-size: 5vh;
+text-align: center;
+position: absolute;
+top: 0;
+left: 0;
+}
+.timer-bar {
+width: 100%;
+height: 70px;
+position: absolute;
+top: 0;
+left: 0;
+transition: all 0.3s;
+background: #28c684;
+}
+.timer-warn {
+background: #d0863a;
+}
+.timer-almost {
+background: #d03a49;
+}
+
+.word {
+background: #3a7bd0;
+color: #fff;
+width: 20%;
+text-align:center;
+font-size: 5vh;
+}

@@ -1,4 +1,4 @@
-# 실서버에서 사용할 application yml 설정 파일
+# 로컬에서 사용할 application yml 설정 파일
 # ':' 뒤에 설정값을 입력할 때는 반드시 ':' 다음에 공백이 필요
 # 설정할 값들의 레벨 주의 (ex. spring.datasource.url 을 입력할 경우, datasource: 는 spring: 보다 우측으로 한 탭 이동. url: 은 datasource: 보다 우측으로 한 탭 이동)
 
@@ -6,11 +6,11 @@
 logging:
   level:
     root: warn
-    com.ssafy.api: info
-    org.hibernate.type.descriptor.sql: trace
+    com.ssapy.api: info
+    org.hibernate.type.descriptor.sql: trace   # trace
+
 spring:
   profiles:
-    active: real
     # application-aws.yml 추가 include
     include:
       - aws
@@ -25,29 +25,34 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties.hibernate:
       # 재시작 시 JPA Entity(DB 테이블 데이터)를 새로 생성할지 여부 (create:기존데이터 삭제 후 신규 생성, udpate:신규 데이터만 업데이트, none:아무 실행도 하지 않음)
-      hbm2ddl.auto: none   # !!!!!!!!!!!!!!!!!!!
+      hbm2ddl.auto: create
       format_sql: true
       show_sql: true
       use_sql_comments: true
     generate-ddl: true
     open-in-view: false
+  freemarker:
+    checkTemplateLocation: false
 
   # 데이터 베이스 연결 설정
   datasource:
-    url: 데이터베이스 연결 url
-    driver-class-name: 데이터 베이스 드라이버 (ex. org.mariadb.jdbc.Driver)
-    username: 데이터베이스 연결 name
-    password: 데이터베이스 연결 비밀번호
+    url: jdbc:mariadb://database:3306/neardb?characterEncoding=utf-8&createDatabaseIfNotExist=true
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: root
+    password: ssafy
+    initialization-mode: always
+    data: classpath:data.sql
   flyway:
     enabled: false
   config:
     activate:
-      on-profile: real
+      on-profile: local
+    use-legacy-processing: true
   servlet:
     multipart:
       file-size-threshold: 15MB
       # 프로젝트 환경의 upload 파일을 저장할 경로
-      location: /home/ubuntu/project/ssafy/web/upload
+      location: C:\Develop\projects\ssafy\upload
       max-file-size: 100MB
       max-request-size: 100MB
 
@@ -55,9 +60,9 @@ spring:
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 메일을 전송하는 유저의 이메일 주소 (ex. test@test.com)
-    to-name: 메일을 받을 유저의 이메일 주소 (ex. test@test.com)
-    password: 메일 주소 계정의 비밀번호
+    username: ssafy.dev@gmail.com # 구글 아이디
+    to-name:  ssafy.dev@gmail.com
+    password: ljufsapoguewlufk # 구글 비밀번호
     properties:
       mail:
         smtp:
@@ -65,15 +70,29 @@ spring:
           starttls:
             enable: true
 
-
 server:
   # 프로젝트 환경의 포트 설정
-  port: 80
-  domain: http://127.0.0.1
+  port: 8185
+  domain: http:127.0.0.1
   servlet:
     session:
-      timeout: 1440m
+      timeout: 43200m      # 60m * 24h * 30d
+      cookie:
+        max-age: 43200m    # 60m * 24h * 30d
+        name: SID
+        http-only: true
+        secure: true
   max-http-header-size: 3145728
+  ssl:
+    enabled: true
+    key-store-type: PKCS12
+    key-store: classpath:/keystore.p12
+    key-store-password: near0204!
+    key-alias: near
+  trust:
+    store: classpath:/keystore.p12
+    store.password: near0204!
+
 
 aes256:
   key: WZsExuBV3GSQ55Uf
@@ -84,4 +103,4 @@ app:
 
 # swagger에서 테스트 할 때의 host
 swagger:
-  host: localhost:80
+  host: hoonycode2.loca.lt

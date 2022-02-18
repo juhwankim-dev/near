@@ -1,90 +1,95 @@
-// 구성: SignPage/SignCard/SignCardDetail
-
-import React, { useState } from "react";
-import { Pagination } from 'react-bootstrap';
-import Data from './SignData.js';
-import Paging from './Paging.js';
-import SignCard from './SignCard.js';
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import './SignPage4.scss';
+import { useDispatch } from 'react-redux';
+import NavBar from '../../NavBar/NavBar';
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-// import './SignPage.css';
-import './SignPage.scss';
-import vid from '../../../../assets/NIA_SL_WORD0687_SYN02_F.mp4';
-import abc from '../../../../assets/abc.PNG';
-
+import SignDetail3 from './SignDetail3.js'
+import ReactDOM from 'react-dom';
+import Paginator from 'react-hooks-paginator';
+import './Paging.css'; 
 
 function SignPage(){
-  let [signcards, setsigncard] = useState(Data);
-  let [modal, setmodal] = useState(false);
+
+  useEffect(() => {
+    getHandDatas(); 
+  }, []); 
+
+    
   let navigate = useNavigate();
+  const [handDatas, setHandDatas] = useState([]);
+  const [modal, setModal] = useState(false);
+
+  const pageLimit = 12;
+  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [data, setData] = useState([]);
+  const [currentData, setCurrentData] = useState([]);
+
+
+  useEffect(() => {
+    setCurrentData(data.slice(offset, offset + pageLimit));
+  }, [offset, data]);
+  // const dispatch = useDispatch();
+
+
+
+
   
-  function handleClick() {
-    navigate("/home");
-  }
- 
-  return (
-    <div className="container">
-      {/* <h1>수어 배우기</h1> */}
-      <div className='nemo'> 
-      
-      { 
-          modal === true 
-          ? <Modal  Detail={signcards}/>
-          : null
-      }
+  const getHandDatas = async () => {
+    const json = await (
+      await fetch(`https://i6d203.p.ssafy.io:8185/api/hand/`)
+    ).json();
+    console.log(json.data);
+    const signs = json.data
+    console.log(signs);
+    setHandDatas(json.data);
+    setData(json.data);
+    // console.log(handDatas);
+    // setData(handDatas);
+  };
 
-        <div className="button-effect">
-        { signcards.map((a,i)=>{
-            return (
-        <button className="effect" type="button"  onClick={ ()=>{navigate(`detail`)}}
-        key={i}>{a.name} 
+    
+
+  return (
+    <div>
+      <NavBar></NavBar>  
+
+      <div style={{ width: '100%', height:'830px', marginLeft: '400px' }} className="container">
+      <div style={{ marginTop: '120px', width: '1700px', height:'800px',  }} className='nemo'> 
+      <div style={{ paddingTop: '130px' }} className="button-effect"> 
+      {currentData.map((data, i) => {
+        return (
+        <button style={{width:'24%', height:'100px', fontSize:'40px', margin:'18px'   }} className="effect" key={i} type="button" onClick={() => { navigate(`${i}`); } }> {data.name.split('(')[0]}
         </button>
-        )})}
-        </div> 
-    </div>   
-
-    <Paging></Paging>          
- 
-   </div>
-   )}
-   
-function Modal(props){
-  return (
-
-    <div class='kan'> 
-    
-    <div className="flex-container">
-    <h1 style={ {paddingLeft:'20px'} }>아끼다</h1>
-    <button className="btn btn-danger">단어장추가</button> 
-    <h4 style={ {paddingTop: '33px', paddingLeft:'30px'} }>물건이나 돈, 시간 따위를 함부로 쓰지 아니하다</h4>
-    <button className="btn btn-primary" style={ {marginLeft:'265px'} }>닫기</button> 
-    </div>
+        )}
+      )}
+      </div>
+      </div>
+      </div>
+      {/* <Paging></Paging>   */}
+      <div>
         
-    {/* <video className="flex-item-video" src={  vid} type="video/mp4"  loop muted /> */}
-    {/* autoPlay */}
+      {/* <ul>
+        {currentData.map((data, i) => (
+          <li key={i}>{data.name}</li>
+        ))}
+      </ul> */}
 
-    <div className="flex-container"> 
-    <video className="flex-item-video" src={  vid} type="video/mp4"   loop muted />
-      <img className="flex-item-img" src={abc} alt="" />
+      <Paginator
+        totalRecords={data.length}
+        pageLimit={pageLimit}
+        pageNeighbours={2}
+        setOffset={setOffset}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </div>
-    
-    <div className="flex-container"> 
-
     </div>
-
-    <div className="description">
-    [아깝다+절약]
-    <br />
-오른 손바닥을 왼쪽 뺨에 두 번 댄 다음, 오른 주먹의 1지를 구부려 왼 손바닥에 대고 두 손을 동시에 안으로 당긴다.
-</div>
-    <div style={ {paddingTop:'30px'} }>
-          <button className="btn btn-danger"> 이전 </button> 
-          <button className="btn btn-danger"> 목록 </button> 
-          <button className="btn btn-danger"> 다음  </button> 
-          </div>
-    </div>
-
   )
 }
+
 
 
 export default SignPage;
