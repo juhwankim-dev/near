@@ -42,9 +42,11 @@ function SignPage(){
       await fetch(`https://i6d203.p.ssafy.io:8185/api/hand/`)
     ).json();
     console.log(json.data);
+    const signs = json.data
+    console.log(signs);
     setHandDatas(json.data);
     setData(json.data);
-    console.log(data);
+    // console.log(handDatas);
     // setData(handDatas);
   };
 
