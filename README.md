@@ -216,8 +216,7 @@ npm run start
 
 **Android**
 ```bash
-# aos 폴더로 이동
-휴대폰에서 near.apk 파일 실행
+./app-release.apk 파일을 휴대폰에 다운받아서 사용
 ```
 
 
