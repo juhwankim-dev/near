@@ -58,6 +58,7 @@ const changeColor = () => {
       await fetch(`https://i6d203.p.ssafy.io:8185/api/hand/`)
     ).json();
     setHandDatas(json.data);
+    // console.log(handDatas);
     setHandKey(json.data[i])
   };
 

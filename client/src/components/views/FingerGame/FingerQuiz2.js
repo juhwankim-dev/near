@@ -7,8 +7,8 @@ import { useHistory,  useNavigate, useParams } from 'react-router-dom';
 const FingerQuiz2 = () => {
  
   var imgArray= new Array();
-  imgArray[0]="game/코로나.gif";  //사진
-  imgArray[1]="game/삼성.gif";   //사진
+  imgArray[0]="game/삼성.gif";   //사진
+  imgArray[1]="game/코로나.gif";  //사진
   imgArray[2]="game/코로나.gif";   //사진
   imgArray[3]="game/코로나.gif";   //사진
 
@@ -68,8 +68,9 @@ function timer() {
     startClock();
 
     const wordArray ={ 
-      코로나: 'game/코로나.gif',
       삼성: 'game/삼성.gif',
+      코로나: 'game/코로나.gif',
+  
     };
 
     let count = 0; // 틀린 횟수 확인용 변수
