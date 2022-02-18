@@ -2,6 +2,7 @@ package com.ssafy.near.src.edituserinfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -151,11 +152,11 @@ class EditUserInfoActivity :
         binding.etNewPw.addTextChangedListener {
             isCheckedNewPw = when {
                 it.toString() == binding.etOldPw.text.toString() -> {
-                    textViewSetting(false, "다른 비밀번호를 사용하세요.", binding.tvOldPwError)
+                    textViewSetting(false, "다른 비밀번호를 사용하세요.", binding.tvNewPwError)
                     false
                 }
                 else -> {
-                    Validation.validatePw(it.toString(), binding.etNewPw)
+                    Validation.validatePw(it.toString(), binding.tvNewPwError)
                 }
             }
             isCheckedConfirmNewPw =
