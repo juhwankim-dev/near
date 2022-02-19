@@ -8,9 +8,12 @@ import android.os.Looper
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ssafy.near.R
@@ -19,11 +22,11 @@ import com.ssafy.near.databinding.FragmentWordQuizBinding
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
+import com.ssafy.near.src.main.game.CustomWordTextView
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -73,29 +76,15 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initView()
         initEvent()
         showReady()
-        initView()
     }
 
     override fun onDetach() {
         super.onDetach()
         timer.cancel()
         pbTimer.cancel()
-    }
-
-    private fun initViewModel() {
-        wordQuizViewModel.initUser(userList)
-
-        wordQuizViewModel.getQNum().observe(viewLifecycleOwner) {
-            startQuiz(wordQuizViewModel.images[it])
-        }
-
-        wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
-            if (it.type == MsgType.TALK) {
-                wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
-            }
-        }
     }
 
     private fun initView() {
@@ -180,13 +169,28 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         }
     }
 
-    private fun startQuiz(images: Array<Int>) {
+    private fun initViewModel() {
+        wordQuizViewModel.initUser(userList)
+
+        wordQuizViewModel.getQNum().observe(viewLifecycleOwner) {
+            startQuiz(wordQuizViewModel.images[it], wordQuizViewModel.question[it])
+        }
+
+        wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
+            if (it.type == MsgType.TALK) {
+                wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
+            }
+        }
+    }
+
+    private fun startQuiz(images: Array<Int>, quiz: String) {
         var imgIndex = 0
         var timerStart = true
         binding.lottieViewHourglass.visibility = View.INVISIBLE
         binding.pbTimer.progress = 1000
         binding.etYourAnswer.setText("")
         binding.etYourAnswer.isEnabled = true
+        setWord(quiz)
 
         timer = timer(period = 500) {
             if (imgIndex == images.size) {
@@ -255,6 +259,22 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 ivCrownList[i].visibility = View.INVISIBLE
             }
         }
+    }
+
+    private fun setWord(word: String) {
+        binding.layoutWord.removeAllViews()
+
+        for (i in word.indices) {
+            binding.layoutWord.addView(createWord())
+        }
+    }
+
+    private fun createWord(): View {
+        val customWordTextView = CustomWordTextView(requireContext())
+        val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        customWordTextView.layoutParams = lp
+        customWordTextView.id = ViewCompat.generateViewId()
+        return customWordTextView
     }
 
     companion object {
