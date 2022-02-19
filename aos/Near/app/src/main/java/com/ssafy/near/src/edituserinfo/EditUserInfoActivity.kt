@@ -29,6 +29,8 @@ class EditUserInfoActivity :
     var isCheckedNewPw = false
     var isCheckedConfirmNewPw = false
 
+    var nickname = ""
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -105,6 +107,7 @@ class EditUserInfoActivity :
         userViewModel.getUpdatedUser().observe(this) {
             when (it) {
                 true -> {
+                    sSharedPreferences.setNickname(nickname)
                     showToastMessage("회원정보가 수정되었습니다.")
                     finish()
                 }
@@ -187,7 +190,7 @@ class EditUserInfoActivity :
                 isCheckedNewPw == false -> binding.etNewPw.requestFocus()
                 isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.requestFocus()
                 else -> {
-                    val nickname = binding.etNickname.text.toString()
+                    nickname = binding.etNickname.text.toString()
                     val email = binding.etEmail.text.toString()
                     val pw = if (binding.etNewPw.text.toString().trim().isEmpty()) {
                         binding.etOldPw.text.toString()
