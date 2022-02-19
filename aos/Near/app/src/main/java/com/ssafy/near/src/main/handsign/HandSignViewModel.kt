@@ -13,23 +13,19 @@ class HandSignViewModel(private val handSignRepository : HandSignRepository) : V
 
     private val handSignList = handSignRepository._handSignList
     private val bookmarkList = handSignRepository._bookmarkList
-    private val isAddBookmark = handSignRepository._isAddBookmark
-    private val isDeleteBookmark = handSignRepository._isDeleteBookmark
+    private val isBookmark = handSignRepository._isBookmark
+
 
     fun getHandSignList(): MutableLiveData<List<HandSignInfo>> {
         return handSignList
     }
 
-    fun getbookmarkList(): MutableLiveData<List<HandSignInfo>> {
+    fun getBookmarkList(): MutableLiveData<List<HandSignInfo>> {
         return bookmarkList
     }
 
-    fun getAddBookmark(): MutableLiveData<Boolean> {
-        return isAddBookmark
-    }
-
-    fun getDeleteBookmark(): MutableLiveData<Boolean> {
-        return isDeleteBookmark
+    fun getBookmark(): MutableLiveData<Boolean> {
+        return isBookmark
     }
 
     fun loadHandSignList() {
@@ -44,15 +40,15 @@ class HandSignViewModel(private val handSignRepository : HandSignRepository) : V
         }
     }
 
-    fun addBookmark(handcontent_key: String, id: String) {
+    fun addBookmark(handContentKey: String, id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            handSignRepository.addBookmark(handcontent_key, id)
+            handSignRepository.addBookmark(handContentKey, id)
         }
     }
 
-    fun deleteBookmark(handcontent_key: String, id: String) {
+    fun deleteBookmark(handContentKey: String, id: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            handSignRepository.deleteBookmark(handcontent_key, id)
+            handSignRepository.deleteBookmark(handContentKey, id)
         }
     }
 }
