@@ -7,27 +7,45 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/iv_ready"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="-32dp"
+            android:elevation="1dp"
+            app:layout_constraintStart_toEndOf="@+id/iv_profile"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_ready" />
+
+        <ImageView
             android:id="@+id/iv_profile"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/img_avatar_1" />
 
         <TextView
-            style="@style/header_text"
             android:id="@+id/tv_user_name"
+            style="@style/header_text"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/bm_jua_ttf"
             android:gravity="center"
             android:text="김싸피"
-            android:textSize="24sp" />
-    </LinearLayout>
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
