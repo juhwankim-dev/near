@@ -1,5 +1,6 @@
 package com.ssafy.near.src.main.game.wordquiz.playing
 
+import android.animation.Animator
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -72,9 +73,9 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
-        initView()
         initEvent()
+        showReady()
+        initView()
     }
 
     override fun onDetach() {
@@ -146,18 +147,43 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 val answer = binding.etYourAnswer.text.toString().replace(" ", "")
                 if (answer == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
-                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo!!.roomId, nickname!!, "100")
+                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, "100")
                 }
                 binding.etYourAnswer.setText("")
                 binding.etYourAnswer.isEnabled = false
             }
             true
         }
+
+        binding.lottieViewReadygo.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(p0: Animator?) {}
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.viewOpaqueScreen.visibility = View.GONE
+                binding.lottieViewReadygo.visibility = View.GONE
+                binding.ivQuestion.visibility = View.VISIBLE
+                initViewModel()
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationRepeat(p0: Animator?) {}
+        })
+    }
+
+    private fun showReady() {
+        binding.ivQuestion.visibility = View.INVISIBLE
+        binding.viewOpaqueScreen.visibility = View.VISIBLE
+        binding.lottieViewHourglass.visibility = View.INVISIBLE
+        binding.lottieViewReadygo.apply {
+            visibility = View.VISIBLE
+            playAnimation()
+        }
     }
 
     private fun startQuiz(images: Array<Int>) {
         var imgIndex = 0
         var timerStart = true
+        binding.lottieViewHourglass.visibility = View.INVISIBLE
         binding.pbTimer.progress = 1000
         binding.etYourAnswer.setText("")
         binding.etYourAnswer.isEnabled = true
@@ -169,6 +195,10 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 if (timerStart) {
                     Handler(Looper.getMainLooper()).postDelayed({
                         showToastMessage("start!!")
+                        binding.lottieViewHourglass.apply {
+                            visibility = View.VISIBLE
+                            playAnimation()
+                        }
                     }, 0)
                     pbTimer = timer(period = 30) {
                         binding.pbTimer.incrementProgressBy(-1)
