@@ -15,6 +15,7 @@ import com.ssafy.near.src.main.handsign.HandSignViewModel
 class BottomFragment : BaseFragment<FragmentBottomBinding>(R.layout.fragment_bottom) {
     private lateinit var handSignViewModel: HandSignViewModel
     private var isAddedWord = false
+    private var isBookmarkClicked = false
     private var handSignInfo: HandSignInfo? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,23 +30,28 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>(R.layout.fragment_bot
         handSignViewModel = (parentFragment as HandSignFragment).handSignViewModel
         handSignInfo = handSignViewModel.selectedHandSignInfo
 
-        handSignViewModel.getbookmarkList().observe(viewLifecycleOwner) {
+        handSignViewModel.getBookmarkList().observe(viewLifecycleOwner) {
             if(handSignInfo != null && it.contains(handSignInfo)) {
                 isAddedWord = true
                 updateBookmarkState()
             }
         }
 
-        handSignViewModel.getAddBookmark().observe(viewLifecycleOwner) {
-            showToastMessage("내 단어장에 추가하였습니다")
-            isAddedWord = true
-            updateBookmarkState()
-        }
-
-        handSignViewModel.getDeleteBookmark().observe(viewLifecycleOwner) {
-            showToastMessage("내 단어장에서 삭제하였습니다")
-            isAddedWord = false
-            updateBookmarkState()
+        handSignViewModel.getBookmark().observe(viewLifecycleOwner) {
+            if (isBookmarkClicked) {
+                when(it) {
+                    true -> {
+                        showToastMessage("내 단어장에 추가하였습니다")
+                        isAddedWord = true
+                        updateBookmarkState()
+                    }
+                    false -> {
+                        showToastMessage("내 단어장에서 삭제하였습니다")
+                        isAddedWord = false
+                        updateBookmarkState()
+                    }
+                }
+            }
         }
     }
 
@@ -70,6 +76,8 @@ class BottomFragment : BaseFragment<FragmentBottomBinding>(R.layout.fragment_bot
 
     private fun initEvent() {
         binding.ivBookmark.setOnClickListener {
+            isBookmarkClicked = true
+
             when(handSignInfo) {
                 null -> showToastMessage("데이터를 불러오지 못했습니다")
                 else -> {

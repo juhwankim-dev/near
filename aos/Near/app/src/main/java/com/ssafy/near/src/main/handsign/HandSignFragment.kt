@@ -1,6 +1,5 @@
 package com.ssafy.near.src.main.handsign
 
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.View
@@ -16,7 +15,6 @@ import com.ssafy.near.databinding.FragmentHandSignBinding
 import com.ssafy.near.dto.HandSignInfo
 import com.ssafy.near.lib.DraggablePanel
 import com.ssafy.near.repository.HandSignRepository
-import com.ssafy.near.src.main.MainActivity
 import com.ssafy.near.src.main.handsign.detail.BottomFragment
 import com.ssafy.near.src.main.handsign.detail.TopFragment
 
@@ -47,7 +45,7 @@ class HandSignFragment : BaseFragment<FragmentHandSignBinding>(R.layout.fragment
             handSignAdapter.setInitList(it)
         }
 
-        handSignViewModel.getbookmarkList().observe(viewLifecycleOwner) {
+        handSignViewModel.getBookmarkList().observe(viewLifecycleOwner) {
             myNoteAdapter.updateList(it)
         }
     }
