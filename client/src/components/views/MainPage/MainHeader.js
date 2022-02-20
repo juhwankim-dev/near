@@ -2,58 +2,43 @@
 import React from 'react';
 import './MainHeader.css';
 import './MainHeaderSun.css';
-import './MainHeaderText.scss';
-import jQuery from "jquery";
-import $ from 'jquery'; 
-window.$ = window.jQuery = jQuery;
+import './MainHeaderText.css';
+// import jQuery from "jquery";
+// import $ from 'jquery'; 
+// window.$ = window.jQuery = jQuery;
 
 const MainHeader = () => {
 
-  // text js
-var
-  words = ['당신의 곁에', 'N:ear', 'AI 수어 학습'],
-  part,
-  i = 0,
-  offset = 0,
-  len = words.length,
-  forwards = true,
-  skip_count = 0,
-  skip_delay = 5,
-  speed = 150;
-
-var wordflick = function(){
-  setInterval(function(){
-      if (forwards) {
-        if(offset >= words[i].length){
-          ++skip_count;
-          if (skip_count === skip_delay) {
-            forwards = false;
-            skip_count = 0;
-          }
-        }
+//   // text js
+  document.addEventListener('DOMContentLoaded',function(event){
+    var dataText = [ "당신의 곁에", "N:ear", "AI 수어 학습"];
+    
+    function typeWriter(text, i, fnCallback) {
+      if (i < (text.length)) {
+       document.querySelector("#word").innerHTML = text.substring(0, i+1) +'<span aria-hidden="true"></span>';
+  
+        setTimeout(function() {
+          typeWriter(text, i + 1, fnCallback)
+        }, 100);
       }
-      else {
-         if(offset === 0){
-            forwards = true;
-            i++;
-            offset = 0;
-            if(i >= len){
-              i=0;
-            } 
-         }
+      else if (typeof fnCallback == 'function') {
+        setTimeout(fnCallback, 700);
       }
-      part = words[i].substr(0, offset);
-      if (skip_count === 0) {
-        if (forwards) {
-          offset++;
-        }
-        else {
-          offset--;
-        }
+    }
+     function StartTextAnimation(i) {
+       if (typeof dataText[i] == 'undefined'){
+          setTimeout(function() {
+            StartTextAnimation(0);
+          }, 800);
+       }
+      else if (i < dataText[i].length) {
+       typeWriter(dataText[i], 0, function(){
+         StartTextAnimation(i + 1);
+       });
       }
-    	$('.word').text(part);
-  },speed);
-};
+    }
+    StartTextAnimation(0);
+  });
 
   return (
     
@@ -69,8 +54,8 @@ var wordflick = function(){
 			<div class="mouth"></div>
 		</div>
 	</div>
-    {/* <h2>당신의 곁에</h2> */}
-    <h1 class="word"></h1>
+
+    <h1 id="word" className='h11'><span className='h12'>Hello, Near!</span></h1>
     <div>
     <div>
 </div>
