@@ -20,7 +20,7 @@
             <TextView
                 android:id="@+id/tv_typing_small_text"
                 style="@style/header_text"
-                android:text="당신의 곁에"
+                tools:text="당신의 곁에"
                 android:textColor="#646B6F"
                 android:visibility="invisible"
                 app:layout_constraintBottom_toTopOf="@+id/guideline"
@@ -31,7 +31,7 @@
             <TextView
                 android:id="@+id/tv_typing_large_text"
                 style="@style/header_text"
-                android:text="당신의 곁에"
+                tools:text="당신의 곁에"
                 android:textSize="32sp"
                 android:textColor="#646B6F"
                 app:layout_constraintBottom_toTopOf="@+id/guideline2"
