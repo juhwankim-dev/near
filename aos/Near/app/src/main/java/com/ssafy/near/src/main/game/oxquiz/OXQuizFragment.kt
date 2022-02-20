@@ -23,6 +23,7 @@ import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentOXQuizBinding
 import com.ssafy.near.ml.Model
+import com.ssafy.near.src.main.game.CustomWordTextView
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
