@@ -2,6 +2,7 @@ package com.ssafy.near.src.edituserinfo
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.ViewModelProvider
 import com.ssafy.near.R
@@ -27,6 +28,8 @@ class EditUserInfoActivity :
     var isCheckedOldPw = false
     var isCheckedNewPw = false
     var isCheckedConfirmNewPw = false
+
+    var nickname = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,6 +107,7 @@ class EditUserInfoActivity :
         userViewModel.getUpdatedUser().observe(this) {
             when (it) {
                 true -> {
+                    sSharedPreferences.setNickname(nickname)
                     showToastMessage("회원정보가 수정되었습니다.")
                     finish()
                 }
@@ -151,11 +155,11 @@ class EditUserInfoActivity :
         binding.etNewPw.addTextChangedListener {
             isCheckedNewPw = when {
                 it.toString() == binding.etOldPw.text.toString() -> {
-                    textViewSetting(false, "다른 비밀번호를 사용하세요.", binding.tvOldPwError)
+                    textViewSetting(false, "다른 비밀번호를 사용하세요.", binding.tvNewPwError)
                     false
                 }
                 else -> {
-                    Validation.validatePw(it.toString(), binding.etNewPw)
+                    Validation.validatePw(it.toString(), binding.tvNewPwError)
                 }
             }
             isCheckedConfirmNewPw =
@@ -186,7 +190,7 @@ class EditUserInfoActivity :
                 isCheckedNewPw == false -> binding.etNewPw.requestFocus()
                 isCheckedConfirmNewPw == false -> binding.etConfirmNewPw.requestFocus()
                 else -> {
-                    val nickname = binding.etNickname.text.toString()
+                    nickname = binding.etNickname.text.toString()
                     val email = binding.etEmail.text.toString()
                     val pw = if (binding.etNewPw.text.toString().trim().isEmpty()) {
                         binding.etOldPw.text.toString()

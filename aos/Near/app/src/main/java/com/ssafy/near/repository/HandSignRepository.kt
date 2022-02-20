@@ -14,10 +14,9 @@ class HandSignRepository {
         private set
     var _bookmarkList = MutableLiveData<List<HandSignInfo>>()
         private set
-    var _isAddBookmark = MutableLiveData<Boolean>()
+    var _isBookmark = MutableLiveData<Boolean>()
         private set
-    var _isDeleteBookmark = MutableLiveData<Boolean>()
-        private set
+
 
     suspend fun loadHandSignList() {
         try {
@@ -54,6 +53,7 @@ class HandSignRepository {
             Log.d(TAG, e.message ?: "onFailure")
         }
     }
+
     suspend fun addBookmark(handcontent_key: String, id: String) {
         try {
             val response = withContext(Dispatchers.IO) {
@@ -64,7 +64,7 @@ class HandSignRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    _isAddBookmark.postValue(response.body()!!.data!!)
+                    _isBookmark.postValue(response.body()!!.data!!)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
@@ -74,6 +74,7 @@ class HandSignRepository {
             Log.d(TAG, e.message ?: "onFailure")
         }
     }
+
     suspend fun deleteBookmark(handcontent_key: String, id: String) {
         try {
             val response = withContext(Dispatchers.IO) {
@@ -84,7 +85,7 @@ class HandSignRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    _isDeleteBookmark.postValue(response.body()!!.data!!)
+                    _isBookmark.postValue(!response.body()!!.data!!)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWordResultBinding
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.Result
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
@@ -19,7 +20,8 @@ import kotlinx.coroutines.launch
 
 class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.fragment_word_result) {
     lateinit var wordResultAdapter: WordResultAdapter
-    lateinit var userList: ArrayList<Pair<String, Int>>
+    lateinit var roomInfo: RoomInfo
+    lateinit var userList: ArrayList<GameUser>
 
     private val wordQuizViewModel: WordQuizViewModel by lazy {
         ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
@@ -29,7 +31,8 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            userList = it.getStringArrayList("userList") as ArrayList<Pair<String, Int>>
+            roomInfo = it.getSerializable("roomInfo") as RoomInfo
+            userList = it.getStringArrayList("userList") as ArrayList<GameUser>
         }
     }
 
@@ -49,7 +52,6 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
 
         list.sortByDescending { it.score }
 
-//        wordResultAdapter = WordResultAdapter(list, wordQuizViewModel.selectedAvatar)
         wordResultAdapter = WordResultAdapter(list, userList)
         binding.rvResult.apply {
             layoutManager = LinearLayoutManager(context)
@@ -65,15 +67,17 @@ class WordResultFragment : BaseFragment<FragmentWordResultBinding>(R.layout.frag
 
     private fun initEvent() {
         binding.btnExit.setOnClickListener {
+            wordQuizViewModel.deleteRoom(roomInfo.roomId)
             (context as WordQuizActivity).exitRoom()
         }
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(userList: ArrayList<Pair<String, Int>>) =
+        fun newInstance(roomInfo: RoomInfo,  userList: ArrayList<GameUser>) =
             WordResultFragment().apply {
                 arguments = Bundle().apply {
+                    putSerializable("roomInfo", roomInfo)
                     putSerializable("userList", userList)
                 }
             }

@@ -114,7 +114,7 @@ public class HandController {
     @ApiOperation(value = "북마크 추가", notes = "북마크를 추가 한다")
     @PostMapping(value = "/bookmark", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    SingleResult<Boolean> BookmarkAddForAndroid(@Valid @RequestBody BookmarkReqDTO req) throws Exception {
+    SingleResult<Boolean> BookmarkAddForAndroid(@Valid BookmarkReqDTO req) throws Exception {
 
 
         Bookmark bookmark = Bookmark.builder()

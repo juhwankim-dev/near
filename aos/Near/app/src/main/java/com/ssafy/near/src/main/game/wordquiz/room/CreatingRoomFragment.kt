@@ -31,7 +31,7 @@ class CreatingRoomFragment : BaseFragment<FragmentCreatingRoomBinding>(R.layout.
             GameRepository())).get(WordQuizViewModel::class.java)
 
         wordQuizViewModel.getRoomInfo().observe(viewLifecycleOwner) {
-            (context as RoomActivity).enterRoom(it)
+            (context as RoomActivity).enterRoom(it!!)
         }
     }
 

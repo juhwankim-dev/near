@@ -7,32 +7,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ssafy.near.R
 import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.databinding.ListItemWordResultBinding
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.Result
 
-class WordResultAdapter(var list: MutableList<Result>, val userList: ArrayList<Pair<String, Int>>) : RecyclerView.Adapter<WordResultAdapter.WordViewHolder>() {
+class WordResultAdapter(var list: MutableList<Result>, val userList: ArrayList<GameUser>) : RecyclerView.Adapter<WordResultAdapter.WordViewHolder>() {
 
     inner class WordViewHolder(private val binding: ListItemWordResultBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bindInfo(result: Result) {
             binding.result = result
 
             userList.forEach {
-                if (result.name == it.first) {
-                    when(it.second) {
+                if (result.name == it.name) {
+                    when(it.avatar) {
                         0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
                         1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
                         2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
                     }
                 }
             }
-
-//            if(result.name == sSharedPreferences.getNickname()) {
-//                binding.ivAvatar
-//                when(selectedAvatar) {
-//                    0 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_1)
-//                    1 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_2)
-//                    2 -> binding.ivAvatar.setImageResource(R.drawable.img_avatar_3)
-//                }
-//            }
 
             when(layoutPosition) {
                 0 -> binding.ivMedal.setImageResource(R.drawable.img_1st)
