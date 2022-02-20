@@ -7,6 +7,7 @@ import com.ssafy.near.R
 import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWaitingRoomBinding
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
@@ -53,21 +54,33 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                     var isNew = true
                     userListAdapter.apply {
                         userList.forEach { user ->
-                            if (user.first == it.sender)
+                            if (user.name == it.sender)
                                 isNew = false
                         }
                         if (isNew) {
-                            userList.add(Pair(it.sender, 0))
+                            userList.add(GameUser(it.sender, 0))
                             notifyDataSetChanged()
                             showToastMessage(it.message)
                         }
                     }
                 }
                 MsgType.START -> {
-                    val userList = ArrayList<Pair<String, Int>>()
-                    userListAdapter.userList.forEach { user -> userList.add(user) }
-                    (context as WordQuizActivity)
-                        .onChangeFragment(WordQuizFragment.newInstance(roomInfo, userList, nickname))
+                    userListAdapter.apply {
+                        userList.forEach { user ->
+                            if (user.name == it.sender) {
+                                user.updateStatus()
+                            }
+                        }
+                        notifyDataSetChanged()
+
+                        var isAllReady = true
+                        userList.forEach { user ->
+                            if (user.isReady == false) {
+                                isAllReady = false
+                            }
+                        }
+                        if (isAllReady) startGame()
+                    }
                 }
                 MsgType.OUT -> {
                     if (it.sender == roomInfo.host) {
@@ -75,10 +88,11 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                         requireActivity().finish()
                     } else {
                         userListAdapter.apply {
-                            userList.forEachIndexed { index, user ->
-                                if (user.first == it.sender) {
-                                    userList.removeAt(index)
-                                }
+                            val iterator = userList.iterator()
+                            while (iterator.hasNext()) {
+                                val user = iterator.next()
+                                if (user.name == it.sender)
+                                    iterator.remove()
                             }
                             notifyDataSetChanged()
                         }
@@ -88,8 +102,8 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                 MsgType.CHANGE -> {
                     userListAdapter.apply {
                         userList.forEachIndexed { index, user ->
-                            if (user.first == it.sender) {
-                                userList[index] = Pair(it.sender, it.message.toInt())
+                            if (user.name == it.sender) {
+                                userList[index] = GameUser(it.sender, it.message.toInt())
                             }
                         }
                         notifyDataSetChanged()
@@ -107,15 +121,15 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
 
         binding.roomInfo = roomInfo
 
-        if (nickname == roomInfo.host) {
-            binding.btnPlayGame.visibility = View.VISIBLE
-        } else {
-            binding.btnPlayGame.visibility = View.GONE
-        }
+//        if (nickname == roomInfo.host) {
+//            binding.btnPlayGame.visibility = View.VISIBLE
+//        } else {
+//            binding.btnPlayGame.visibility = View.GONE
+//        }
 
-        val list = mutableListOf(Pair(nickname, 0))
+        val list = mutableListOf(GameUser(nickname, 0))
         roomInfo.userList.forEach {
-            list.add(Pair(it, 0))
+            list.add(GameUser(it, 0))
         }
         userListAdapter = UserListAdapter(list)
         binding.gvWaitingUser.apply {
@@ -131,7 +145,7 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
         }
 
         binding.btnPlayGame.setOnClickListener {
-            wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, roomInfo.host, "")
+            wordQuizViewModel.sendMessage(MsgType.START, roomInfo.roomId, nickname, "")
         }
 
         binding.ivSetting.setOnClickListener {
@@ -143,6 +157,13 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                 wordQuizViewModel.sendMessage(MsgType.CHANGE, roomInfo.roomId, nickname, selectedAvatar.toString())
             }
         })
+    }
+
+    private fun startGame() {
+        val userList = ArrayList<GameUser>()
+        userListAdapter.userList.forEach { user -> userList.add(user) }
+        (context as WordQuizActivity)
+            .onChangeFragment(WordQuizFragment.newInstance(roomInfo, userList, nickname))
     }
 
     companion object {
