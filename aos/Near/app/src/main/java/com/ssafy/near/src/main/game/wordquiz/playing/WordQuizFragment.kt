@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWordQuizBinding
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
@@ -44,7 +45,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     private lateinit var callback: OnBackPressedCallback
 
     private lateinit var roomInfo: RoomInfo
-    private lateinit var userList: ArrayList<Pair<String, Int>>
+    private lateinit var userList: ArrayList<GameUser>
     private lateinit var nickname: String
 
     private lateinit var pbTimer: Timer
@@ -69,7 +70,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         super.onCreate(savedInstanceState)
         arguments?.let {
             roomInfo = it.getSerializable("roomInfo") as RoomInfo
-            userList = it.getStringArrayList("userList") as ArrayList<Pair<String, Int>>
+            userList = it.getStringArrayList("userList") as ArrayList<GameUser>
             nickname = it.getString("nickname") as String
         }
     }
@@ -111,9 +112,9 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         for (i in tvUserNameList.indices) {
             if (i < userList.size) {
                 ivCrownList[i].visibility = View.INVISIBLE
-                tvUserNameList[i].text = userList[i].first
+                tvUserNameList[i].text = userList[i].name
                 tvUserScoreList[i].text = "0 점"
-                when (userList[i].second) {
+                when (userList[i].avatar) {
                     0 -> ivUserList[i].setImageResource(R.drawable.img_avatar_1)
                     1 -> ivUserList[i].setImageResource(R.drawable.img_avatar_2)
                     2 -> ivUserList[i].setImageResource(R.drawable.img_avatar_3)
@@ -234,7 +235,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         } else {
             // 결과화면
             CoroutineScope(Dispatchers.Main).launch {
-                (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(userList))
+                (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(roomInfo, userList))
             }
         }
     }
@@ -243,7 +244,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         var max = 0
         var maxIdx = -1
         for (i in userList.indices) {
-            val score = wordQuizViewModel.getUserScore(userList[i].first)!!
+            val score = wordQuizViewModel.getUserScore(userList[i].name)!!
             tvUserScoreList[i].text = "$score 점"
 
             if (score > max) {
@@ -279,7 +280,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
 
     companion object {
         @JvmStatic
-        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<Pair<String, Int>>, nickname: String) =
+        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<GameUser>, nickname: String) =
             WordQuizFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable("roomInfo", roomInfo)

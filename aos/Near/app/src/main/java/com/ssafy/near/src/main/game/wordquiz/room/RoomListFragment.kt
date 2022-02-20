@@ -1,7 +1,5 @@
 package com.ssafy.near.src.main.game.wordquiz.room
 
-import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.near.R
@@ -14,20 +12,21 @@ import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
 
 
 class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment_room_list) {
-    private lateinit var wordQuizViewModel: WordQuizViewModel
+    private val wordQuizViewModel: WordQuizViewModel by lazy {
+        ViewModelProvider(requireActivity(), WordQuizViewModelFactory(GameRepository()))
+            .get(WordQuizViewModel::class.java)
+    }
     private lateinit var roomListAdapter: RoomListAdapter
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViewModel()
+
+    override fun onResume() {
+        super.onResume()
         initView()
+        initViewModel()
         initEvent()
     }
     
     private fun initViewModel() {
-        wordQuizViewModel = ViewModelProvider(requireActivity(), WordQuizViewModelFactory(
-            GameRepository())).get(WordQuizViewModel::class.java)
-        
         wordQuizViewModel.getRoomList().observe(viewLifecycleOwner) {
             roomListAdapter.updateList(it)
         }
