@@ -39,7 +39,7 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
     private val qNum = MutableLiveData(0)
     private val message = MutableLiveData<Message>()
 
-    fun getRoomInfo(): LiveData<RoomInfo> {
+    fun getRoomInfo(): LiveData<RoomInfo?> {
         return roomInfo
     }
 

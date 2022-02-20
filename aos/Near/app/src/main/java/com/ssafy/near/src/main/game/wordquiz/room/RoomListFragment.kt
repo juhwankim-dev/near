@@ -30,6 +30,22 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
         wordQuizViewModel.getRoomList().observe(viewLifecycleOwner) {
             roomListAdapter.updateList(it)
         }
+
+        wordQuizViewModel.getRoomInfo().observe(viewLifecycleOwner) {
+            when {
+                it == null -> {
+                    showToastMessage("존재하지 않는 방입니다.")
+                    wordQuizViewModel.loadRooms()
+                }
+                it.userCount >= 4 -> {
+                    showToastMessage("정원초과")
+                    wordQuizViewModel.loadRooms()
+                }
+                else -> {
+                    (context as RoomActivity).enterRoom(it)
+                }
+            }
+        }
     }
 
     private fun initView() {
@@ -61,7 +77,7 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
 
         roomListAdapter.setItemClickListener(object : RoomListAdapter.ItemClickListener {
             override fun onClick(roomInfo: RoomInfo) {
-                (context as RoomActivity).enterRoom(roomInfo)
+                wordQuizViewModel.loadRoom(roomInfo.roomId)
             }
         })
     }
