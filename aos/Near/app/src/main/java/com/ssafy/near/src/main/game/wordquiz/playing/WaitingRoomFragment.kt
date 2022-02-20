@@ -69,6 +69,13 @@ class WaitingRoomFragment : BaseFragment<FragmentWaitingRoomBinding>(R.layout.fr
                         userList.forEach { user ->
                             if (user.name == it.sender) {
                                 user.updateStatus()
+
+                                if(it.sender == nickname) {
+                                    when(user.isReady) {
+                                        true -> binding.btnPlayGame.setImageResource(R.drawable.img_button_game_start_cancel)
+                                        false -> binding.btnPlayGame.setImageResource(R.drawable.img_button_game_start)
+                                    }
+                                }
                             }
                         }
                         notifyDataSetChanged()
