@@ -26,8 +26,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initView()
-
         sheetBehavior= BottomSheetBehavior.from(bottomSheet)
         sheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
@@ -56,7 +54,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         })
     }
 
-    private fun initView() {
+    override fun onResume() {
+        super.onResume()
+
+        timer = Timer()
         timer.schedule(object: TimerTask() {
             var newStr = StringBuilder()
             var cnt = 0
@@ -91,9 +92,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
         }, 0, 300)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
 
-        timer.cancel()
+        if(timer != null) {
+            timer.cancel()
+            timer == null
+        }
     }
 }
