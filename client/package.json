@@ -72,6 +72,7 @@
     ]
   },
   "devDependencies": {
+    "@types/stompjs": "^2.3.5",
     "babel-plugin-transform-react-pug": "^7.0.1",
     "file-loader": "^6.2.0"
   }
