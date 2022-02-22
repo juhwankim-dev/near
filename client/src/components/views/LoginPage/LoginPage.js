@@ -8,6 +8,7 @@ import { Container } from 'react-bootstrap';
 import axios from 'axios';
 
 function LoginPage() {
+  
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -69,9 +70,11 @@ function LoginPage() {
           // console.log(JSON.stringify(res.payload));
           localStorage.setItem('user', JSON.stringify(res.payload.data));
           localStorage.setItem('userid', JSON.stringify(res.payload.data.id));
-          console.log(JSON.stringify(res.payload.data));
+          
+          
           // localStorage.setItem('user', JSON.stringify(res.payload));
-          navigate('/main');
+          // navigate('/main');
+          // const loginUser = JSON.parse(localStorage.getItem('user'));
 
           axios
           .post(`https://i6d203.p.ssafy.io:8185/api/sign/userInfo/`,

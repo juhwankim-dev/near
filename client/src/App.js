@@ -29,7 +29,9 @@ import FingerQuiz2 from './components/views/FingerGame/FingerQuiz2';
 import Auth from './hoc/auth' //1.해당페이지에 들어올 수 있는 유저인지 확인
 
 
-// import Game1 from './components/views/FingerGame/Game1';
+import GameRoomList from './components/views/Game/GameRoomList';
+import GameRoom from './components/views/Game/GameRoom';
+import FingerQuiz3 from './components/views/FingerGame/FingerQuiz3';
 
 function App() {
   return ( 
@@ -62,6 +64,12 @@ function App() {
         <Route path ="/profile" element={<Profile />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+
+        <Route path="/gameroomlist" element={<GameRoomList />} />
+        <Route path="/gameroom/:i" element={<GameRoom />} />
+        <Route path="/fingerquiz3" element={<FingerQuiz3 />} />
+
+
         {/* <Route exact path="/" element={Auth(<LandingPage />, null) } />
         <Route path="/login" element={Auth(<LoginPage />,false)} />
         <Route path="/register" element={Auth(<RegisterPage />)} />
