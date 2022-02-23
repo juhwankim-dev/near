@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.ssafy.near.R
 import com.ssafy.near.config.ApplicationClass.Companion.sSharedPreferences
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.Message
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
@@ -38,7 +39,7 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
     private val qNum = MutableLiveData(0)
     private val message = MutableLiveData<Message>()
 
-    fun getRoomInfo(): LiveData<RoomInfo> {
+    fun getRoomInfo(): LiveData<RoomInfo?> {
         return roomInfo
     }
 
@@ -90,9 +91,9 @@ class WordQuizViewModel(private val gameRepository: GameRepository) : ViewModel(
         }
     }
 
-    fun initUser(userList: List<Pair<String, Int>>) {
+    fun initUser(userList: List<GameUser>) {
         userList.forEach {
-            scoreMap[it.first] = 0
+            scoreMap[it.name] = 0
         }
     }
 

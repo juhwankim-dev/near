@@ -1,5 +1,6 @@
 package com.ssafy.near.src.main.game.wordquiz.playing
 
+import android.animation.Animator
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -7,22 +8,26 @@ import android.os.Looper
 import android.util.Log
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWordQuizBinding
+import com.ssafy.near.dto.GameUser
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
+import com.ssafy.near.src.main.game.CustomWordTextView
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.collections.ArrayList
@@ -40,7 +45,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     private lateinit var callback: OnBackPressedCallback
 
     private lateinit var roomInfo: RoomInfo
-    private lateinit var userList: ArrayList<Pair<String, Int>>
+    private lateinit var userList: ArrayList<GameUser>
     private lateinit var nickname: String
 
     private lateinit var pbTimer: Timer
@@ -65,36 +70,22 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         super.onCreate(savedInstanceState)
         arguments?.let {
             roomInfo = it.getSerializable("roomInfo") as RoomInfo
-            userList = it.getStringArrayList("userList") as ArrayList<Pair<String, Int>>
+            userList = it.getStringArrayList("userList") as ArrayList<GameUser>
             nickname = it.getString("nickname") as String
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewModel()
         initView()
         initEvent()
+        showReady()
     }
 
     override fun onDetach() {
         super.onDetach()
         timer.cancel()
         pbTimer.cancel()
-    }
-
-    private fun initViewModel() {
-        wordQuizViewModel.initUser(userList)
-
-        wordQuizViewModel.getQNum().observe(viewLifecycleOwner) {
-            startQuiz(wordQuizViewModel.images[it])
-        }
-
-        wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
-            if (it.type == MsgType.TALK) {
-                wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
-            }
-        }
     }
 
     private fun initView() {
@@ -121,9 +112,9 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         for (i in tvUserNameList.indices) {
             if (i < userList.size) {
                 ivCrownList[i].visibility = View.INVISIBLE
-                tvUserNameList[i].text = userList[i].first
+                tvUserNameList[i].text = userList[i].name
                 tvUserScoreList[i].text = "0 점"
-                when (userList[i].second) {
+                when (userList[i].avatar) {
                     0 -> ivUserList[i].setImageResource(R.drawable.img_avatar_1)
                     1 -> ivUserList[i].setImageResource(R.drawable.img_avatar_2)
                     2 -> ivUserList[i].setImageResource(R.drawable.img_avatar_3)
@@ -146,21 +137,61 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 val answer = binding.etYourAnswer.text.toString().replace(" ", "")
                 if (answer == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
-                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo!!.roomId, nickname!!, "100")
+                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, "100")
                 }
                 binding.etYourAnswer.setText("")
                 binding.etYourAnswer.isEnabled = false
             }
             true
         }
+
+        binding.lottieViewReadygo.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationStart(p0: Animator?) {}
+
+            override fun onAnimationEnd(p0: Animator?) {
+                binding.viewOpaqueScreen.visibility = View.GONE
+                binding.lottieViewReadygo.visibility = View.GONE
+                binding.ivQuestion.visibility = View.VISIBLE
+                initViewModel()
+            }
+
+            override fun onAnimationCancel(p0: Animator?) {}
+            override fun onAnimationRepeat(p0: Animator?) {}
+        })
     }
 
-    private fun startQuiz(images: Array<Int>) {
+    private fun showReady() {
+        binding.ivQuestion.visibility = View.INVISIBLE
+        binding.viewOpaqueScreen.visibility = View.VISIBLE
+        binding.lottieViewHourglass.visibility = View.INVISIBLE
+        binding.lottieViewReadygo.apply {
+            visibility = View.VISIBLE
+            playAnimation()
+        }
+    }
+
+    private fun initViewModel() {
+        wordQuizViewModel.initUser(userList)
+
+        wordQuizViewModel.getQNum().observe(viewLifecycleOwner) {
+            startQuiz(wordQuizViewModel.images[it], wordQuizViewModel.question[it])
+        }
+
+        wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
+            if (it.type == MsgType.TALK) {
+                wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
+            }
+        }
+    }
+
+    private fun startQuiz(images: Array<Int>, quiz: String) {
         var imgIndex = 0
         var timerStart = true
+        binding.lottieViewHourglass.visibility = View.INVISIBLE
         binding.pbTimer.progress = 1000
         binding.etYourAnswer.setText("")
         binding.etYourAnswer.isEnabled = true
+        setWord(quiz)
 
         timer = timer(period = 500) {
             if (imgIndex == images.size) {
@@ -169,6 +200,10 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 if (timerStart) {
                     Handler(Looper.getMainLooper()).postDelayed({
                         showToastMessage("start!!")
+                        binding.lottieViewHourglass.apply {
+                            visibility = View.VISIBLE
+                            playAnimation()
+                        }
                     }, 0)
                     pbTimer = timer(period = 30) {
                         binding.pbTimer.incrementProgressBy(-1)
@@ -200,7 +235,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         } else {
             // 결과화면
             CoroutineScope(Dispatchers.Main).launch {
-                (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(userList))
+                (context as WordQuizActivity).onChangeFragment(WordResultFragment.newInstance(roomInfo, userList))
             }
         }
     }
@@ -209,7 +244,7 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         var max = 0
         var maxIdx = -1
         for (i in userList.indices) {
-            val score = wordQuizViewModel.getUserScore(userList[i].first)!!
+            val score = wordQuizViewModel.getUserScore(userList[i].name)!!
             tvUserScoreList[i].text = "$score 점"
 
             if (score > max) {
@@ -227,9 +262,25 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         }
     }
 
+    private fun setWord(word: String) {
+        binding.layoutWord.removeAllViews()
+
+        for (i in word.indices) {
+            binding.layoutWord.addView(createWord())
+        }
+    }
+
+    private fun createWord(): View {
+        val customWordTextView = CustomWordTextView(requireContext())
+        val lp = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        customWordTextView.layoutParams = lp
+        customWordTextView.id = ViewCompat.generateViewId()
+        return customWordTextView
+    }
+
     companion object {
         @JvmStatic
-        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<Pair<String, Int>>, nickname: String) =
+        fun newInstance(roomInfo: RoomInfo, userList: ArrayList<GameUser>, nickname: String) =
             WordQuizFragment().apply {
                 arguments = Bundle().apply {
                     putSerializable("roomInfo", roomInfo)

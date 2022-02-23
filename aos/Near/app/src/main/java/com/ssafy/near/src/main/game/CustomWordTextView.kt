@@ -1,4 +1,4 @@
-package com.ssafy.near.src.main.game.oxquiz
+package com.ssafy.near.src.main.game
 
 import android.content.Context
 import android.content.res.TypedArray

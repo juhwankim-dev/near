@@ -13,14 +13,12 @@ import com.ssafy.near.src.UserViewModel
 import com.ssafy.near.src.UserViewModelFactory
 import com.ssafy.near.src.edituserinfo.EditUserInfoActivity
 import com.ssafy.near.src.login.LoginActivity
+import com.ssafy.near.util.SharedPreferencesUtil
+import com.ssafy.near.util.SharedPreferencesUtil.Companion.DEFAULT_NICKNAME
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
-    private lateinit var userViewModel: UserViewModel
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        initViewModel()
         initEvent()
     }
 
@@ -29,23 +27,13 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         initView()
     }
 
-    private fun initViewModel() {
-        userViewModel = ViewModelProvider(requireActivity(), UserViewModelFactory(UserRepository()))
-            .get(UserViewModel::class.java)
-
-        userViewModel.getUserInfo().observe(viewLifecycleOwner) {
-            when (it) {
-                null -> setLogoutState()
-                else -> {
-                    binding.tvNickName.text = it.nickname
-                    setLoginState()
-                }
-            }
-        }
-    }
-
     private fun initView() {
-        userViewModel.loadUserInfo(sSharedPreferences.getUserToken())
+        binding.tvNickName.text = sSharedPreferences.getNickname()
+
+        when (sSharedPreferences.getNickname()) {
+            DEFAULT_NICKNAME -> setLogoutState()
+            else             -> setLoginState()
+        }
     }
 
     private fun initEvent() {
@@ -56,7 +44,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         binding.tvLogout.setOnClickListener {
             sSharedPreferences.deleteUser()
             showToastMessage("로그아웃 되었습니다")
-            setLogoutState()
+            initView()
         }
 
         binding.layoutMemberModify.setOnClickListener {
@@ -70,7 +58,6 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
     }
 
     private fun setLogoutState() {
-        binding.tvNickName.text = "로그인이 필요합니다"
         binding.tvLogin.visibility = View.VISIBLE
         binding.tvLogout.visibility = View.GONE
     }

@@ -23,6 +23,7 @@ import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentOXQuizBinding
 import com.ssafy.near.ml.Model
+import com.ssafy.near.src.main.game.CustomWordTextView
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.IOException
@@ -40,7 +41,7 @@ class OXQuizFragment : BaseFragment<FragmentOXQuizBinding>(R.layout.fragment_o_x
     private var imageCapture: ImageCapture? = null
     private val IMAGE_SIZE = 224
 
-    private val classes = arrayOf("반갑습니다", "감사합니다", "아니요", "그립다", "좋다")
+    private val classes = arrayOf("배고프다", "좋다", "감사합니다")
     private var detectCnt = IntArray(classes.size)
 
     private val GIVEN_TIME = 3.0 // 주어진 시간

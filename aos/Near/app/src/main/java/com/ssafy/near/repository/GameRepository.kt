@@ -12,7 +12,7 @@ import java.lang.Exception
 
 class GameRepository {
     private val TAG = "GameRepository"
-    var _roomInfo = MutableLiveData<RoomInfo>()
+    var _roomInfo = MutableLiveData<RoomInfo?>()
         private set
     var _roomList = MutableLiveData<MutableList<RoomInfo>>()
         private set
@@ -68,7 +68,7 @@ class GameRepository {
             }
             if (response.isSuccessful) {
                 if (response.body() != null) {
-                    _roomInfo.postValue(response.body()!!.data!!)
+                    _roomInfo.postValue(response.body()!!.data)
                 }
             } else {
                 Log.d(TAG, "onError: Error Code ${response.code()}")
