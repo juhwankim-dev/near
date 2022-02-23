@@ -29,9 +29,7 @@ import com.ssafy.near.src.main.fingersign.FingerSignAdapter
 import com.ssafy.near.src.main.game.CustomWordTextView
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -152,13 +150,23 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 // 입력한 텍스트가 정답이라면
                 if (input == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
                     wordQuizViewModel.sendMessage(MsgType.ANSWER, roomInfo.roomId, nickname, input)
-                    wordQuizViewModel.sendMessage(MsgType.NOTICE, roomInfo.roomId, nickname, "100")
-                    binding.etYourAnswer.isEnabled = false
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val job = CoroutineScope(Dispatchers.IO).async {
+                            delay(100)
+                        }
+
+                        job.join()
+                        wordQuizViewModel.sendMessage(MsgType.NOTICE, roomInfo.roomId, nickname, "100")
+                        binding.etYourAnswer.isEnabled = false
+                    }
                 }
 
                 // 입력한 텍스트가 정답이 아니라면
                 else {
-                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, input)
+                    if(input.isNotEmpty()) {
+                        wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, input)
+                    }
                 }
 
                 binding.etYourAnswer.setText("")

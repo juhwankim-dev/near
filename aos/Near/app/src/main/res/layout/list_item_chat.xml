@@ -42,7 +42,7 @@
             android:layout_marginStart="@dimen/activity_margin_narrow"
             app:layout_constraintTop_toTopOf="parent"
             tools:visibility="gone"
-            tools:text="김주환님이 정답을 맞혀서 +1점 획득" />
+            tools:text="김주환님이 정답을 맞혀서 100점 획득" />
 
         <TextView
             style="@style/header_text"
