@@ -70,10 +70,10 @@ function LoginPage() {
           // console.log(JSON.stringify(res.payload));
           localStorage.setItem('user', JSON.stringify(res.payload.data));
           localStorage.setItem('userid', JSON.stringify(res.payload.data.id));
-          
+          navigate(`/main`);
           
           // localStorage.setItem('user', JSON.stringify(res.payload));
-          // navigate('/main');
+          
           // const loginUser = JSON.parse(localStorage.getItem('user'));
 
           axios

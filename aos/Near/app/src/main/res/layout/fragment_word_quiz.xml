@@ -226,7 +226,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintVertical_bias="0.30"
             app:srcCompat="@drawable/img_white_word_space" />
 
         <ImageView
@@ -256,6 +256,21 @@
             android:adjustViewBounds="true"
             android:src="@drawable/img_chat_edit"
             app:layout_constraintBottom_toTopOf="@id/iv_bottom" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#909086"
+            app:layout_constraintBottom_toTopOf="@+id/rv_chat"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_chat"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#80BDBFB4"
+            android:paddingVertical="@dimen/activity_margin_default"
+            app:layout_constraintBottom_toTopOf="@+id/iv_edit_bg" />
 
         <ImageView
             android:id="@+id/iv_bottom"

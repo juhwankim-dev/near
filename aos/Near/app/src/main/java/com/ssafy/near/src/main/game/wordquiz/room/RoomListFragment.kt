@@ -1,5 +1,6 @@
 package com.ssafy.near.src.main.game.wordquiz.room
 
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ssafy.near.R
@@ -17,10 +18,12 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
             .get(WordQuizViewModel::class.java)
     }
     private lateinit var roomListAdapter: RoomListAdapter
+    private var isNotInit = false
 
 
     override fun onResume() {
         super.onResume()
+        isNotInit = false
         initView()
         initViewModel()
         initEvent()
@@ -32,17 +35,20 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
         }
 
         wordQuizViewModel.getRoomInfo().observe(viewLifecycleOwner) {
-            when {
-                it == null -> {
-                    showToastMessage("존재하지 않는 방입니다.")
-                    wordQuizViewModel.loadRooms()
-                }
-                it.userCount >= 4 -> {
-                    showToastMessage("정원초과")
-                    wordQuizViewModel.loadRooms()
-                }
-                else -> {
-                    (context as RoomActivity).enterRoom(it)
+            if (isNotInit) {
+                when {
+                    it == null -> {
+                        showToastMessage("존재하지 않는 방입니다.")
+                        wordQuizViewModel.loadRooms()
+                    }
+                    it.userCount >= 4 -> {
+                        showToastMessage("정원초과")
+                        wordQuizViewModel.loadRooms()
+                    }
+                    else -> {
+                        Log.d("test", "initViewModel: 입장")
+                        (context as RoomActivity).enterRoom(it)
+                    }
                 }
             }
         }
@@ -77,6 +83,7 @@ class RoomListFragment : BaseFragment<FragmentRoomListBinding>(R.layout.fragment
 
         roomListAdapter.setItemClickListener(object : RoomListAdapter.ItemClickListener {
             override fun onClick(roomInfo: RoomInfo) {
+                isNotInit = true
                 wordQuizViewModel.loadRoom(roomInfo.roomId)
             }
         })

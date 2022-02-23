@@ -15,20 +15,21 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.ssafy.near.R
 import com.ssafy.near.config.BaseFragment
 import com.ssafy.near.databinding.FragmentWordQuizBinding
 import com.ssafy.near.dto.GameUser
+import com.ssafy.near.dto.Message
 import com.ssafy.near.dto.MsgType
 import com.ssafy.near.dto.RoomInfo
 import com.ssafy.near.repository.GameRepository
+import com.ssafy.near.src.main.fingersign.FingerSignAdapter
 import com.ssafy.near.src.main.game.CustomWordTextView
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModel
 import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -55,6 +56,8 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
     private val tvUserNameList = ArrayList<TextView>()
     private val ivUserList = ArrayList<ImageView>()
     private val tvUserScoreList = ArrayList<TextView>()
+
+    lateinit var chatAdapter: ChatAdapter
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -126,6 +129,13 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
                 ivUserList[i].visibility = View.GONE
             }
         }
+
+        chatAdapter = ChatAdapter()
+        binding.rvChat.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = chatAdapter
+        }
+        chatAdapter.addStartMessage()
     }
 
     private fun initEvent() {
@@ -134,13 +144,32 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         }
 
         binding.etYourAnswer.setOnKeyListener { view, keyCode, keyEvent ->
-            if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                val answer = binding.etYourAnswer.text.toString().replace(" ", "")
-                if (answer == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
-                    wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, "100")
+            if ((keyEvent.action == KeyEvent.ACTION_UP) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                val input = binding.etYourAnswer.text.toString().replace(" ", "")
+
+                // 입력한 텍스트가 정답이라면
+                if (input == wordQuizViewModel.question[wordQuizViewModel.getQNum().value!!]) {
+                    wordQuizViewModel.sendMessage(MsgType.ANSWER, roomInfo.roomId, nickname, input)
+
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val job = CoroutineScope(Dispatchers.IO).async {
+                            delay(100)
+                        }
+
+                        job.join()
+                        wordQuizViewModel.sendMessage(MsgType.NOTICE, roomInfo.roomId, nickname, "100")
+                        binding.etYourAnswer.isEnabled = false
+                    }
                 }
+
+                // 입력한 텍스트가 정답이 아니라면
+                else {
+                    if(input.isNotEmpty()) {
+                        wordQuizViewModel.sendMessage(MsgType.TALK, roomInfo.roomId, nickname, input)
+                    }
+                }
+
                 binding.etYourAnswer.setText("")
-                binding.etYourAnswer.isEnabled = false
             }
             true
         }
@@ -178,9 +207,26 @@ class WordQuizFragment : BaseFragment<FragmentWordQuizBinding>(R.layout.fragment
         }
 
         wordQuizViewModel.getMessage().observe(viewLifecycleOwner) {
-            if (it.type == MsgType.TALK) {
-                wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
+            when(it.type) {
+                // 메시지 타입이 ANSWER 라면 (정답을 맞춘거라면)
+                MsgType.ANSWER -> {
+                    // 정답을 맞춘게 나라면
+                    if(it.sender == nickname) {
+                        chatAdapter.updateNewMsg(it)
+                    }
+                }
+
+                MsgType.NOTICE -> {
+                    wordQuizViewModel.updateUserScore(it.sender, it.message.toInt())
+                    chatAdapter.updateNewMsg(it)
+                }
+
+                // 메시지 타입이 TALK 라면 (정답이 아니라 일반 메시지)
+                MsgType.TALK -> {
+                    chatAdapter.updateNewMsg(it)
+                }
             }
+            binding.rvChat.scrollToPosition(chatAdapter.itemCount - 1)
         }
     }
 

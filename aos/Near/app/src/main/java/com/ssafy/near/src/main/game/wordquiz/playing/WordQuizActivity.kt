@@ -17,9 +17,6 @@ import com.ssafy.near.src.main.game.wordquiz.WordQuizViewModelFactory
 
 
 class WordQuizActivity : BaseActivity<ActivityWordQuizeBinding>(R.layout.activity_word_quize) {
-    private val FINISH_INTERVAL_TIME = 2000L
-    private var backPressedTime = 0L
-
     private var roomInfo: RoomInfo? = null
     private val wordQuizViewModel: WordQuizViewModel by lazy {
         ViewModelProvider(this, WordQuizViewModelFactory(
@@ -76,8 +73,9 @@ class WordQuizActivity : BaseActivity<ActivityWordQuizeBinding>(R.layout.activit
             sendMessage(MsgType.OUT, roomInfo!!.roomId, nickname, "")
             if (nickname == roomInfo!!.host)
                 deleteRoom(roomInfo!!.roomId)
-            else
+            else {
                 finish()
+            }
         }
     }
 }
