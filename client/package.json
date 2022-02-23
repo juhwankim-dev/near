@@ -19,6 +19,7 @@
     "hammerjs": "^2.0.8",
     "http-proxy-middleware": "^2.0.1",
     "jquery": "^3.6.0",
+    "net": "^1.0.2",
     "node-sass": "^7.0.1",
     "react": "^17.0.2",
     "react-anime": "^4.1.1",
