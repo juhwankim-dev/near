@@ -61,7 +61,8 @@ function SignPage(){
       <div style={{ paddingTop: '130px' }} className="button-effect"> 
       {currentData.map((data, i) => {
         return (
-        <button style={{width:'24%', height:'100px', fontSize:'40px', margin:'18px'   }} className="effect" key={i} type="button" onClick={() => { navigate(`${i}`); } }> {data.name.split('(')[0]}
+        // <button style={{width:'24%', height:'100px', fontSize:'40px', margin:'18px'   }} className="effect" key={i} type="button" onClick={() => { navigate(`${i}`); } }> {data.name.split('(')[0]}
+        <button style={{width:'24%', height:'100px', fontSize:'40px', margin:'18px'   }} className="effect" key={i} type="button" onClick={() => { navigate(`${data.handcontent_key-1}`); } }> {data.name.split('(')[0]}
         </button>
         )}
       )}
